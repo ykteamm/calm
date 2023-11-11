@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
         User::create([
             'phone' => '1998',
             'password' => Hash::make('password'),
-            'type' => UserTypeEnum::SYSTEM_USER
+            'type' => UserTypeEnum::ADMIN
         ]); 
     }
 }

@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('firstname', 50)->nullable();
             $table->string('lastname', 50)->nullable();
-            $table->tinyInteger('type')->default(UserTypeEnum::WEB_USER);
+            $table->tinyInteger('type')->default(UserTypeEnum::ADMIN);
             $table->string('username', 50)->nullable();
             $table->string('phone', 20)->unique();
             $table->string('email', 50)->nullable();
