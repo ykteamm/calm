@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,4 +19,5 @@ use Illuminate\Support\Facades\Route;
 //     return view('admin.index');
 // });
 
-Route::get('/',[TestController::class, 'index'])->name('index');
+Route::post('login', [AuthController::class, 'login'])->name('auth.login');
+// Route::get('/',[TestController::class, 'index'])->name('index');
