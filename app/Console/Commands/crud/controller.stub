@@ -4,38 +4,44 @@ namespace App\Http\Controllers;
 
 use App\Services\ExampleService;
 use App\Http\Requests\IndexRequest;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ExampleUpsertRequest;
 
 class ExampleController extends Controller
 {
 
-    public function __construct(
-        protected ExampleService $exampleService
-    ) {
+    public function __construct(protected ExampleService $service)
+    {
+        //
     }
 
     public function index(IndexRequest $indexRequest)
     {
-        return $this->exampleService->getList($indexRequest->validated());
+        $this->serviceResult = $this->service->getList($indexRequest);
+        return $this->response();
     }
 
     public function store(ExampleUpsertRequest $upsertRequest)
     {
-        return $this->exampleService->create($upsertRequest->validated());
+        $this->serviceResult = $this->service->create($upsertRequest->validated());
+        return $this->response();
     }
 
     public function show($id)
     {
-        return $this->exampleService->show($id);
+        $this->serviceResult = $this->service->show($id);
+        return $this->response();
     }
 
     public function update($id, ExampleUpsertRequest $upsertRequest)
     {
-        return $this->exampleService->edit($id, $upsertRequest->validated());
+        $this->serviceResult = $this->service->edit($id, $upsertRequest->validated());
+        return $this->response();
     }
 
     public function destroy($id)
     {
-        return $this->exampleService->delete($id);
+        $this->serviceResult = $this->service->softDelete($id);
+        return $this->response();
     }
 }

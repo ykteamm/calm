@@ -2,12 +2,27 @@
 
 namespace App\Services;
 
-use App\Repositories\ExampleRepository;
+use App\Models\Example;
+use App\Services\BaseService;
+use App\Http\Resources\ExampleResource;
 
 class ExampleService extends BaseService
 {
-    public function __construct(
-        protected ExampleRepository $exampleRepository
-    ) {
+    public function __construct(Example $serviceModel)
+    {
+        $this->model = $serviceModel;
+        $this->resource = ExampleResource::class;
+
+        $this->likableFields = [
+            'name',
+        ];
+
+        $this->equalableFields = [
+            'id',
+            'created_by',
+            'updated_by',
+        ];
+
+        parent::__construct();
     }
 }
