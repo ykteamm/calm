@@ -49,7 +49,6 @@ class GenerateCrud extends Command
         $this->generateRequest();
         $this->generateController();
         $this->generateResource();
-        $this->generateRepository();
         $this->generateService();
         $this->generateMigration();
         $this->generateFactory();
@@ -59,7 +58,7 @@ class GenerateCrud extends Command
     public function generateTranslation()
     {
         $name = $this->argument('name');
-        if ($this->withTranslate()) {
+        if($this->withTranslate()){
             $path = app_path('Models');
             $file = $path . '/' . $name . 'Translation.php';
             if (!file_exists($file)) {
@@ -210,9 +209,6 @@ class GenerateCrud extends Command
     {
         $name = $this->argument('name');
         $path = app_path('Http/Resources');
-        if (!file_exists($path)) {
-            mkdir($path);
-        }
         $file = $path . '/' . $name . 'Resource.php';
         if (!file_exists($file)) {
             $stub = $this->getStub('resource');
@@ -234,16 +230,16 @@ class GenerateCrud extends Command
         }
     }
 
-    public function generateRepository()
+    public function generateService()
     {
         $name = $this->argument('name');
-        $path = app_path('Repositories');
-        $file = $path . '/' . $name . 'Repository.php';
+        $path = app_path('Services');
+        $file = $path . '/' . $name . 'Service.php';
         if (!file_exists($file)) {
-            $stub = $this->getStub('repository');
+            $stub = $this->getStub('service');
             $stub = $this->replaceString($name, $stub);
             file_put_contents($file, $stub);
-            $this->info('Repository created successfully.');
+            $this->info('Service created successfully.');
         }
     }
 
@@ -251,9 +247,6 @@ class GenerateCrud extends Command
     {
         $name = $this->argument('name');
         $path = app_path('Http/Requests');
-        if (!file_exists($path)) {
-            mkdir($path);
-        }
         $file = $path . '/' . $name . 'UpsertRequest.php';
         if (!file_exists($file)) {
             $stub = $this->getStub('request');
@@ -269,22 +262,6 @@ class GenerateCrud extends Command
             $stub = $this->replaceString($name, $stub);
             file_put_contents($file, $stub);
             $this->info('Request created successfully.');
-        }
-    }
-
-    public function generateService()
-    {
-        $name = $this->argument('name');
-        $path = app_path('Services');
-        $file = $path . '/' . $name . 'Service.php';
-        if (!file_exists($file)) {
-            $stub = $this->getStub('service');
-            $stub = $this->replaceString($name, $stub);
-            if ($this->withSoftDelete()) {
-                $stub = Str::replace('delete', 'softDelete', $stub);
-            }
-            file_put_contents($file, $stub);
-            $this->info('Service created successfully.');
         }
     }
 
@@ -323,7 +300,7 @@ class GenerateCrud extends Command
 
     public function withFactory()
     {
-        return true || !$this->option('f');
+        return !$this->option('f');
     }
 
     protected function replaceString($name, $stub)
