@@ -1,0 +1,29 @@
+
+
+.mt0 
+{
+    margin-top: 0px;
+}
+
+.main-color{
+    background: linear-gradient(90deg, #162a39, #194d75);
+
+}
+
+.main-color-rtl{
+    background: #16527f;
+
+}
+
+.height100{
+    height: 100%;
+}
+
+.text-color-white{
+    color: white;
+    font-size: 28px;
+}
+
+.swiper-width{
+    width: 230px !important;
+}

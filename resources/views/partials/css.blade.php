@@ -10,3 +10,4 @@
 <!-- Stylesheets -->
 <link rel="stylesheet" href="{{asset('calm/css/vendors.css')}}">
 <link rel="stylesheet" href="{{asset('calm/css/main.css')}}">
+<link rel="stylesheet" href="{{asset('calm/css/style.css')}}">

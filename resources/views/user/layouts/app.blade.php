@@ -26,6 +26,7 @@
             @yield('user_content')
             
           </main>
+          @include('components.user-sidebar')
         </div>
         <!-- barba container end -->
       
