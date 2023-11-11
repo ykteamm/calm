@@ -254,7 +254,8 @@ class GenerateCrud extends Command
                 $tr = "'translations' => [" . '$required' . ", 'array'],
             'translations.*' => [" . '$required' . ", 'array'],
             'translations.*.id' => ['nullable'],
-            'translations.*.name' => [" . '$required' . ", 'string'],";
+            'translations.*.name' => [" . '$required' . ", 'string'],
+            'translations.*.language_code' => [" . '$required' . ", 'string'],";
                 $stub = str_replace('{translation}', $tr, $stub);
             } else {
                 $stub = str_replace('{translation}', '', $stub);

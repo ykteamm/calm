@@ -41,7 +41,7 @@ class ExampleController extends Controller
 
     public function destroy($id)
     {
-        $data = $this->service->softDelete($id);
+        $data = $this->service->delete($id);
         return $data;
     }
 }

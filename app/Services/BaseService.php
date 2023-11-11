@@ -211,7 +211,7 @@ class BaseService
         $this->specialFilter();
         $this->sort();
         $this->specialSort();
-        $data = $needPagination ? $this->query->paginate($rows, $page) : $this->query->get();
+        $data = $needPagination ? $this->query->paginate($rows, ['*'], $page) : $this->query->get();
         if ($withResource) return $this->withResource($data, true);
         return $data;
     }
@@ -424,7 +424,7 @@ class BaseService
     {
         if (!empty($this->translation)) {
             $this->query->whereHas('translation', function ($query) {
-                $query->where('language_code', config('app.user_language'));
+                $query->where('language_code', config('app.locale'));
             });
         }
     }

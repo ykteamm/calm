@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +21,5 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::post('login', [AuthController::class, 'login'])->name('auth.login');
+Route::apiResource('category', CategoryController::class);
 // Route::get('/',[TestController::class, 'index'])->name('index');
