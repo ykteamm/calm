@@ -9,39 +9,39 @@ use App\Http\Requests\ExampleUpsertRequest;
 
 class ExampleController extends Controller
 {
-
-    public function __construct(protected ExampleService $service)
+    protected ExampleService $service;
+    public function __construct(ExampleService $service)
     {
-        //
+        $this->service = $service;
     }
 
     public function index(IndexRequest $indexRequest)
     {
-        $this->serviceResult = $this->service->getList($indexRequest);
-        return $this->response();
+        $data = $this->service->getList($indexRequest);
+        return $data;
     }
 
     public function store(ExampleUpsertRequest $upsertRequest)
     {
-        $this->serviceResult = $this->service->create($upsertRequest->validated());
-        return $this->response();
+        $data = $this->service->create($upsertRequest->validated());
+        return $data;
     }
 
     public function show($id)
     {
-        $this->serviceResult = $this->service->show($id);
-        return $this->response();
+        $data = $this->service->show($id);
+        return $data;
     }
 
     public function update($id, ExampleUpsertRequest $upsertRequest)
     {
-        $this->serviceResult = $this->service->edit($id, $upsertRequest->validated());
-        return $this->response();
+        $data = $this->service->edit($id, $upsertRequest->validated());
+        return $data;
     }
 
     public function destroy($id)
     {
-        $this->serviceResult = $this->service->softDelete($id);
-        return $this->response();
+        $data = $this->service->softDelete($id);
+        return $data;
     }
 }
