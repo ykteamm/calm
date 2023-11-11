@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Traits\ResolveResponse;
+use Error;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -12,8 +14,10 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class BaseService
+abstract class BaseService
 {
+    use ResolveResponse;
+    
      /**
      * Model instance
      * @var Model
@@ -196,7 +200,7 @@ class BaseService
         }
     }
 
-    public function getList($data, $withResource = false)
+    public function getList($data)
     {
         $this->authorizeMethod(__FUNCTION__);
         $needPagination = $data['pagination'] ?? 1;
@@ -212,8 +216,13 @@ class BaseService
         $this->sort();
         $this->specialSort();
         $data = $needPagination ? $this->query->paginate($rows, ['*'], $page) : $this->query->get();
-        if ($withResource) return $this->withResource($data, true);
         return $data;
+    }
+
+    public function getListWithResponse($data, $withResource = false)
+    {
+        if ($withResource) return $this->makeResponse(1, $this->withResource($this->getList($data), true));
+        return $this->makeResponse(1, $this->getList($data));
     }
 
     protected function callQueryClosure()
@@ -247,6 +256,15 @@ class BaseService
 
     public function create($data)
     {
+        try {
+            return $this->createWithThrow($data);
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
+    }
+
+    public function createWithThrow($data)
+    {
         $data = $this->checkColumn($data, 'created_by');
         DB::connection($this->model->connection)->beginTransaction();
         $this->authorizeMethod(__FUNCTION__);
@@ -268,11 +286,20 @@ class BaseService
             }
             DB::connection($this->model->connection)->commit();
             $model->refresh();
-            return $this->withResource($model);
+            return $model;
         } catch (\Throwable $throwable) {
             DB::connection($this->model->connection)->rollBack();
             Log::error($throwable->getMessage() . " " . static::class . '::' . __FUNCTION__ . ' ' . $throwable->getLine() ?? __LINE__ . ' line');
-            return 'not_implemented. ' . $throwable->getMessage();
+            throw new Error('not_implemented. ' . $throwable->getMessage(), 501);
+        }
+    }
+
+    public function createWithResponse($data)
+    {
+        try {
+            return $this->makeResponse(1, $this->createWithThrow($data), null, 201);
+        } catch (\Throwable $th) {
+            return $this->makeResponse(0, null, $th->getMessage(), $th->getCode());;
         }
     }
 
@@ -301,6 +328,15 @@ class BaseService
     }
 
     public function edit($id, $data)
+    {
+        try {
+            return $this->editWithThrow($id, $data);
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
+    }
+
+    public function editWithThrow($id, $data)
     {
         $this->setQuery();
         $model = $this->findById($id);
@@ -343,17 +379,26 @@ class BaseService
             } catch (\Throwable $throwable) {
                 DB::connection($this->model->connection)->rollBack();
                 Log::error($throwable->getMessage() . " " . static::class . '::' . __FUNCTION__ . ' ' . $throwable->getLine() ?? __LINE__ . ' line');
-                return ['message' => $throwable->getMessage()];
+                throw new Error($throwable->getMessage(), 501);
             }
         } else {
             $message = 'not_found';
             $arr = explode('\\', get_class($this->model));
-            if ($this->checkInitialized('model')) $message = Str::lower(Str::snake(end($arr))) . "_$message";
-            return ['message' => $message];
+            $message = Str::lower(Str::snake(end($arr))) . "_$message";
+            throw new Error($message, 404);
         }
     }
 
-    public function show($id, $withResource = false)
+    public function editWithResponse($id, $data)
+    {
+        try {
+            return $this->makeResponse(1, $this->editWithThrow($id, $data));
+        } catch (\Throwable $th) {
+            return $this->makeResponse(0, null, $th->getMessage(), $th->getCode());
+        }
+    }
+
+    public function showWithThrow($id)
     {
         $this->setQuery();
         $this->query->with($this->relations + parseToRelation($this->willParseToRelation));
@@ -361,17 +406,34 @@ class BaseService
         $model = $this->findById($id, $this->query);
         if ($model) {
             $this->authorizeMethod(__FUNCTION__, $model);
-            if($withResource) return $this->withResource($model);
             return $model;
         } else {
             $message = 'not_found';
             $arr = explode('\\', get_class($this->model));
-            if ($this->checkInitialized('model')) $message = Str::lower(Str::snake(end($arr))) . "_$message";
-            return ['message' => $message];
+            $message = Str::lower(Str::snake(end($arr))) . "_$message";
+            throw new Error($message, 404);
         }
     }
 
-    public function delete($id)
+    public function show($id)
+    {
+        try {
+            return $this->showWithThrow($id);
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
+    }
+    public function showWithResponse($id, $withResource = true)
+    {
+        try {
+            if($withResource) return $this->makeResponse(1, $this->withResource($this->show($id)));
+            else return $this->makeResponse(1, $this->show($id));
+        } catch (\Throwable $th) {
+            return $this->makeResponse(0, null, $th->getMessage(), $th->getCode());  
+        }
+    }
+
+    public function deleteWithThrow($id)
     {
         $this->setQuery();
         $model = $this->findById($id);
@@ -379,30 +441,29 @@ class BaseService
             $this->authorizeMethod(__FUNCTION__, $model);
             if ($this->translation) $model->translations()->delete();
             $model->delete();
-            return ['message' => 'ok'];
         } else {
             $message = 'not_found';
             $arr = explode('\\', get_class($this->model));
-            if ($this->checkInitialized('model')) $message = Str::lower(Str::snake(end($arr))) . "_$message";
-            return ['message' => $message];
+            $message = Str::lower(Str::snake(end($arr))) . "_$message";
+            throw new Error($message, 404);
         }
     }
 
-    public function softDelete($id)
+    public function delete($id)
     {
-        $this->setQuery();
-        $model = $this->findById($id);
-        if ($model) {
-            $this->authorizeMethod(__FUNCTION__, $model);
-            $model->deleted_by = auth()->id();
-            $model->save();
-            $model->delete();
-            return ['message' => 'ok'];
-        } else {
-            $message = 'not_found';
-            $arr = explode('\\', get_class($this->model));
-            if ($this->checkInitialized('model')) $message = Str::lower(Str::snake(end($arr))) . "_$message";
-            return ['message' => $message];
+        try {
+            return $this->deleteWithThrow($id);
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
+    }
+
+    public function deleteWithResponse($id)
+    {
+        try {
+            return $this->makeResponse(1, $this->deleteWithThrow($id), null, 204);
+        } catch (\Throwable $th) {
+            return $this->makeResponse(0, null, $th->getMessage(), $th->getCode());
         }
     }
 

@@ -277,6 +277,13 @@ class GenerateCrud extends Command
             file_put_contents($file, $stub);
             $this->info('Controller created successfully.');
         }
+        $file = $path . '/' . 'Api/' . $name . 'Controller.php';
+        if (!file_exists($file)) {
+            $stub = $this->getStub('controller_api');
+            $stub = $this->replaceString($name, $stub);
+            file_put_contents($file, $stub);
+            $this->info('Api Controller created successfully.');
+        }
     }
 
     protected function getStub($type)
