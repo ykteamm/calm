@@ -23,4 +23,9 @@ class Meditator extends BaseModel
     {
         return $this->morphOne(Image::class, 'imageable', 'imageable_type', 'imageable_id');
     }
+
+    public function lessons()
+    {
+        
+    }
 }

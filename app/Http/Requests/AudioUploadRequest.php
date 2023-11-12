@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ImageUploadRequest extends FormRequest
+class AudioUploadRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class ImageUploadRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => ['required', 'file', 'mimes:png,jpg,jpeg,svg']
+            'audio' => ['required', 'file', 'mimes:mp3,wav,ogg,aac,flac,wma,m4a']
         ];
     }
 }

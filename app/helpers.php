@@ -55,3 +55,15 @@ if (!function_exists("makeWithRelationQuery")) {
         };
     }
 }
+
+
+if(!function_exists('mediaDelete')) {
+    function mediaDelete($media)
+    {
+        $name = $media->name.'.'.$media->extension;
+        $folder = $media->folder;
+        $path = storage_path("app/$folder/$name");
+        if(file_exists($path)) return unlink($path);
+        return false;
+    }
+}

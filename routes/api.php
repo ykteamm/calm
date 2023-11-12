@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\LessonController;
 use App\Http\Controllers\Api\MeditationController;
 use App\Http\Controllers\Api\MeditatorController;
 use App\Http\Controllers\Api\UserController;
@@ -28,3 +29,7 @@ Route::apiResource('meditator', MeditatorController::class);
 Route::post('meditator-avatar/{id}', [MeditatorController::class, 'avatarUpload'])->name('meditator-avatar');
 Route::post('meditator-image/{id}', [MeditatorController::class, 'imageUpload'])->name('meditator-image');
 Route::apiResource('meditation', MeditationController::class);
+Route::apiResource('lesson', LessonController::class);
+Route::post('lesson-audio-upload/{id}', [LessonController::class, 'audioUpload'])->name('lesson-audio-upload');
+Route::post('lesson-audio-update/{id}/{audio}', [LessonController::class, 'audioUpdate'])->name('lesson-audio-update');
+Route::delete('lesson-audio-delete/{id}/{audio}', [LessonController::class, 'audioDelete'])->name('lesson-audio-delete');

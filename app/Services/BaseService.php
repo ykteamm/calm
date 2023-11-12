@@ -300,7 +300,7 @@ abstract class BaseService
         try {
             return $this->makeResponse(1, $this->createWithThrow($data), null, 201);
         } catch (\Throwable $th) {
-            return $this->makeResponse(0, null, $th->getMessage(), $th->getCode());;
+            return $this->makeResponse(0, null, $th->getMessage(), 500);
         }
     }
 
@@ -395,7 +395,7 @@ abstract class BaseService
         try {
             return $this->makeResponse(1, $this->editWithThrow($id, $data));
         } catch (\Throwable $th) {
-            return $this->makeResponse(0, null, $th->getMessage(), $th->getCode());
+            return $this->makeResponse(0, null, $th->getMessage(), 500);
         }
     }
 
@@ -430,7 +430,7 @@ abstract class BaseService
             if($withResource) return $this->makeResponse(1, $this->withResource($this->show($id)));
             else return $this->makeResponse(1, $this->show($id));
         } catch (\Throwable $th) {
-            return $this->makeResponse(0, null, $th->getMessage(), $th->getCode());  
+            return $this->makeResponse(0, null, $th->getMessage(), 500);  
         }
     }
 
@@ -439,6 +439,7 @@ abstract class BaseService
         $this->setQuery();
         $model = $this->findById($id);
         if ($model) {
+            $this->callQueryClosure();
             $this->authorizeMethod(__FUNCTION__, $model);
             if ($this->translation) $model->translations()->delete();
             $model->delete();
@@ -464,7 +465,7 @@ abstract class BaseService
         try {
             return $this->makeResponse(1, $this->deleteWithThrow($id), null, 204);
         } catch (\Throwable $th) {
-            return $this->makeResponse(0, null, $th->getMessage(), $th->getCode());
+            return $this->makeResponse(0, null, $th->getMessage(), 500);
         }
     }
 
@@ -666,7 +667,7 @@ abstract class BaseService
             }
         } catch (\Throwable $th) {
             DB::rollBack();
-            $code = $th->getCode();
+            $code = 500;
             if(!is_numeric($code)) $code = 500;
             if($code > 505 || $code < 100) $code = 500;
             if ($catch && $catch instanceof \Closure) {
