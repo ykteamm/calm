@@ -23,4 +23,9 @@ class Category extends BaseModel
     {
         return $this->hasMany(self::class, 'parent_id', 'id');
     }
+
+    public function meditations()
+    {
+        return $this->hasMany(Meditation::class, 'category_id', 'id');
+    }
 }

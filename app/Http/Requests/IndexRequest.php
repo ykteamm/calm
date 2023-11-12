@@ -25,6 +25,7 @@ class IndexRequest extends FormRequest
     {
         return [
             'pagination' => ['nullable'],
+            'p' => ['nullable'],
             'rows' => ['nullable'],
             'filter' => ['nullable'],
             'sort' => ['nullable'],

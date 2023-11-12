@@ -203,11 +203,12 @@ abstract class BaseService
     public function getList($data)
     {
         $this->authorizeMethod(__FUNCTION__);
-        $needPagination = $data['pagination'] ?? 1;
+        $needPagination = $data['pagination'] ?? $data['p'] ?? 1;
         $page = $data['page'] ?? 1;
         $rows = $data['rows'] ?? 100;
         $this->setQuery();
-        $this->query->with($this->relations + parseToRelation($this->willParseToRelation));
+        $this->query->with(parseToRelation($this->willParseToRelation));
+        $this->query->with($this->relations);
         $this->query->where($this->prepareConditions());
         $this->callQueryClosure();
         $this->languageFilter();
@@ -219,7 +220,7 @@ abstract class BaseService
         return $data;
     }
 
-    public function getListWithResponse($data, $withResource = false)
+    public function getListWithResponse($data, $withResource = true)
     {
         if ($withResource) return $this->makeResponse(1, $this->withResource($this->getList($data), true));
         return $this->makeResponse(1, $this->getList($data));
