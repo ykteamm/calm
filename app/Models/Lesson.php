@@ -20,4 +20,9 @@ class Lesson extends BaseModel
     {
         return $this->morphMany(Audio::class, 'audioable');
     }
+
+    public function meditation()
+    {
+        return $this->belongsTo(Meditation::class, 'meditation_id', 'id');
+    }
 }

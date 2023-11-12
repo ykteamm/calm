@@ -28,4 +28,9 @@ class Meditation extends BaseModel
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
+
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class, 'meditation_id', 'id');
+    }
 }
