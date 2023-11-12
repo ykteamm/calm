@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use App\Traits\HasLog;
-use App\Traits\TableColumns;
+use App\Traits\ModelRandom;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class BaseModel extends Model
 {
-    use HasFactory;
+    use HasFactory, ModelRandom;
 
     protected $connection = 'pgsql';
 

@@ -14,9 +14,21 @@ class MeditatorSeeder extends Seeder
      */
     public function run()
     {
-        Meditator::create([
-            'firstname' => "Abdumannon",
-            'lastname' => "Norboyev"
-        ]);
+        for ($i=1; $i < 11; $i++) { 
+            $m = Meditator::create([
+                'firstname' => "User $i",
+                'lastname' => "Family $i"
+            ]);
+           $m->avatar()->create([
+                'name' => "avatar$i",
+                'extension' => 'jpeg',
+                'folder' => 'images'
+           ]);
+           $m->image()->create([
+                'name' => "img$i",
+                'extension' => 'jpeg',
+                'folder' => 'images'
+            ]);
+        }
     }
 }
