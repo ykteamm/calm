@@ -20,23 +20,23 @@ class CategorySeeder extends Seeder
         $menus = ["Home", "Music", "Calm", "Sleep", "Rest"];
         $categories = ["Featured", "Sport", "Mental", "Physical", "Sleeping", "Exercising"];
         foreach ($categories as $cat){
-            $cat = Category::create([]);
+            $category = Category::create([]);
             CategoryTranslation::create([
                 'name' => $cat,
-                'object_id' => $cat->id,
+                'object_id' => $category->id,
                 'language_code' => 'en'
             ]);
         }
         $categories = Category::all();
         foreach ($menus as $menu){
-            $menu = Menu::create([]);
+            $menu_cat = Menu::create([]);
             MenuTranslation::create([
                 'name' => $menu,
-                'object_id' => $menu->id,
+                'object_id' => $menu_cat->id,
                 'language_code' => 'en'
             ]);
             foreach ($categories as $c) {
-                $menu->categories()->attach($c->id);
+                $menu_cat->categories()->attach($c->id);
             }
         }
     }

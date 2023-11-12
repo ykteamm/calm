@@ -10,18 +10,17 @@
               <div class="text-16 lh-1 fw-500 text-dark-1 mb-30 text-center">General</div>
               <div>
 
-                @for ($i=0;$i<7;$i++)
-
-                <div class="sidebar__item text-color-white mb-20">
-                  <a href="about-1.html" class="-dark-sidebar-white d-flex items-center lh-1 fw-500">
-                    <div class="icon-circle mr-10">
-                      <i class="icon-discovery"></i>
-                    </div>
-                    Explore
-                  </a>
-                </div>
-
-                @endfor
+                @foreach ($categories as $key => $value)
+                  <div class="sidebar__item text-color-white mb-20">
+                    <a href="about-1.html" class="-dark-sidebar-white d-flex items-center lh-1 fw-500">
+                      <div class="icon-circle mr-10">
+                        <i class="icon-discovery"></i>
+                      </div>
+                      {{$value->translation->name}}
+                    </a>
+                  </div>
+                @endforeach
+                
               </div>
             </div>
 
