@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Rules\CategoryDoesntHaveChild;
 use App\Rules\CategoryExists;
 use App\Rules\CategoryHaveParent;
-use App\Rules\UserExists;
+use App\Rules\MeditatorExists;
 use Illuminate\Foundation\Http\FormRequest;
 
 class MeditationUpsertRequest extends FormRequest
@@ -30,7 +30,7 @@ class MeditationUpsertRequest extends FormRequest
         $required = ($this->isMethod('put')) ? 'nullable' : 'required';
         
         return [
-            'user_id' => [$required, new UserExists],
+            'meditator_id' => [$required, new MeditatorExists],
             'category_id' => [$required, new CategoryExists, new CategoryHaveParent, new CategoryDoesntHaveChild],
             'translations' => [$required, 'array'],
             'translations.*' => [$required, 'array'],

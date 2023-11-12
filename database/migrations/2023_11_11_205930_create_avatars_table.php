@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMeditationsTable extends Migration
+class CreateAvatarsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,17 @@ class CreateMeditationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('meditations', function (Blueprint $table) {
+        Schema::create('avatars', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('meditator_id');
-            $table->bigInteger('category_id');
+            $table->string('name', 70);
+            $table->string('extension', 10);
+            $table->string('folder', 70);
+            $table->bigInteger('avatarable_id');
+            $table->string('avatarable_type');
             $table->timestamps();
+            $table->index('avatarable_id');
         });
     }
-
 
     /**
      * Reverse the migrations.
@@ -29,6 +32,6 @@ class CreateMeditationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('meditations');
+        Schema::dropIfExists('avatars');
     }
 }

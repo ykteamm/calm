@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMeditationsTable extends Migration
+class CreateMeditatorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateMeditationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('meditations', function (Blueprint $table) {
+        Schema::create('meditators', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('meditator_id');
-            $table->bigInteger('category_id');
+            $table->string('firstname', 50)->nullable();
+            $table->string('lastname', 50)->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateMeditationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('meditations');
+        Schema::dropIfExists('meditators');
     }
 }

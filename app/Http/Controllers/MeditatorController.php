@@ -2,18 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\UserService;
+use App\Services\MeditatorService;
 use App\Http\Requests\IndexRequest;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UserUpsertRequest;
+use App\Http\Requests\ImageUploadRequest;
+use App\Http\Requests\MeditatorUpsertRequest;
 
-class UserController extends Controller
+class MeditatorController extends Controller
 {
-    protected UserService $service;
+    protected MeditatorService $service;
 
-    public function __construct(UserService $service)
+    public function __construct(MeditatorService $service)
     {
         $this->service = $service;
+    }
+
+    public function avatarUpload(ImageUploadRequest $uploadRequest, $id)
+    {
+        return $this->service->avatarUpload($id, $uploadRequest->validated());
+    }
+    
+    public function imageUpload(ImageUploadRequest $uploadRequest, $id)
+    {
+        return $this->service->imageUpload($id, $uploadRequest->validated());
     }
 
     public function index(IndexRequest $indexRequest)
@@ -22,7 +33,7 @@ class UserController extends Controller
         return $data;
     }
 
-    public function store(UserUpsertRequest $upsertRequest)
+    public function store(MeditatorUpsertRequest $upsertRequest)
     {
         $data = $this->service->create($upsertRequest->validated());
         return $data;
@@ -34,7 +45,7 @@ class UserController extends Controller
         return $data;
     }
 
-    public function update($id, UserUpsertRequest $upsertRequest)
+    public function update($id, MeditatorUpsertRequest $upsertRequest)
     {
         $data = $this->service->edit($id, $upsertRequest->validated());
         return $data;

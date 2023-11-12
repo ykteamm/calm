@@ -668,6 +668,7 @@ abstract class BaseService
             DB::rollBack();
             $code = $th->getCode();
             if(!is_numeric($code)) $code = 500;
+            if($code > 505 || $code < 100) $code = 500;
             if ($catch && $catch instanceof \Closure) {
                 $catch($th->getMessage(), $code);
             }

@@ -15,13 +15,13 @@ class Meditation extends BaseModel
     protected $guarded = [];
 
     protected $fillable = [
-        'user_id',
+        'meditator_id',
         'category_id'
     ];
 
-    public function user()
+    public function meditator()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(Meditator::class, 'meditator_id', 'id');
     }
 
     public function category()

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\MeditationController;
+use App\Http\Controllers\Api\MeditatorController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('login', [AuthController::class, 'login'])->name('auth.login');
 Route::apiResource('category', CategoryController::class);
 Route::apiResource('user', UserController::class);
-Route::post('user-avatar/{id}', [UserController::class, 'avatarUpload'])->name('user-avatar');
-Route::post('user-background/{id}', [UserController::class, 'backgroundUpload'])->name('user-background');
+Route::apiResource('meditator', MeditatorController::class);
+Route::post('meditator-avatar/{id}', [MeditatorController::class, 'avatarUpload'])->name('meditator-avatar');
+Route::post('meditator-image/{id}', [MeditatorController::class, 'imageUpload'])->name('meditator-image');
 Route::apiResource('meditation', MeditationController::class);

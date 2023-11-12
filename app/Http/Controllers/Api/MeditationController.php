@@ -17,7 +17,6 @@ class MeditationController extends Controller
 
     public function index(IndexRequest $indexRequest)
     {
-        // $this->service->relations = [];
         $this->service->willParseToRelation = ['user', 'category'];
         return $this->service->getListWithResponse($indexRequest);
     }
