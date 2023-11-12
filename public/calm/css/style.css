@@ -24,6 +24,21 @@
     font-size: 28px;
 }
 
+.text-color-white-for{
+    color: white;
+}
+
 .swiper-width{
     width: 230px !important;
+}
+
+.icon-circle{
+    border: 2px solid #2b9fa3;
+    border-radius: 50px;
+    padding: 10px 10px;
+}
+
+.pd{
+    padding: 15px;
+    width: 250px;
 }

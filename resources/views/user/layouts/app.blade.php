@@ -21,7 +21,7 @@
       
           <main class="main-content  ">
       
-            @include('components.user-header')
+            {{-- @include('components.user-header') --}}
       
             @yield('user_content')
             

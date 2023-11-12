@@ -25,4 +25,4 @@ Route::post('login', [AuthController::class, 'login'])->name('auth.login');
 Route::apiResource('category', CategoryController::class);
 Route::apiResource('user', UserController::class);
 Route::post('user-avatar-upload/{id}', [UserController::class, 'avatarUpload'])->name('user-avatar-upload');
-// Route::get('/',[TestController::class, 'index'])->name('index');
+Route::get('/',[TestController::class, 'index'])->name('index');
