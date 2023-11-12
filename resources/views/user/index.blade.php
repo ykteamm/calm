@@ -32,7 +32,8 @@
       <div class="dashboard__main mt-0 main-color">
         <div class="dashboard__content pt-0 px-15 pb-0">
 
-          @for ($j=0;$j<2;$j++)
+          @foreach ($categories_sub as $key => $value)
+
          
           <section class="layout-pt-lg layout-pb-md">
             <div data-anim-wrap class="container">
@@ -41,7 +42,7 @@
 
                   <div class="sectionTitle">
 
-                    <h2 class="sectionTitle__title text-color-white-for">Top Categories</h2>
+                    <h2 class="sectionTitle__title text-color-white-for">{{$value->translation->name}}</h2>
 
                     {{-- <p class="sectionTitle__text ">Lorem ipsum dolor sit amet, consectetur.</p> --}}
 
@@ -53,15 +54,15 @@
 
                   <div class="d-flex x-gap-15 items-center justify-center">
                     <div class="col-auto">
-                      <button class="d-flex items-center text-24 arrow-left-hover js-cat-slider-prev{{$j}}">
+                      <button class="d-flex items-center text-24 arrow-left-hover js-cat-slider-prev{{$key}}">
                         <i class="icon icon-arrow-left"></i>
                       </button>
                     </div>
                     <div class="col-auto">
-                      <div class="pagination -arrows js-cat-slider-pag{{$j}}"></div>
+                      <div class="pagination -arrows js-cat-slider-pag{{$key}}"></div>
                     </div>
                     <div class="col-auto">
-                      <button class="d-flex items-center text-24 arrow-right-hover js-cat-slider-next{{$j}}">
+                      <button class="d-flex items-center text-24 arrow-right-hover js-cat-slider-next{{$key}}">
                         <i class="icon icon-arrow-right"></i>
                       </button>
                     </div>
@@ -70,16 +71,17 @@
                 </div>
               </div>
 
-              <div class="overflow-hidden pt-50 js-section-slider" data-gap="30" data-loop data-slider-cols="xl-6 lg-4 md-3 sm-2" data-pagination="js-cat-slider-pag{{$j}}" data-nav-prev="js-cat-slider-prev{{$j}}" data-nav-next="js-cat-slider-next{{$j}}">
+              <div class="overflow-hidden pt-50 js-section-slider" data-gap="30" data-loop data-slider-cols="xl-6 lg-4 md-3 sm-2" data-pagination="js-cat-slider-pag{{$key}}" data-nav-prev="js-cat-slider-prev{{$key}}" data-nav-next="js-cat-slider-next{{$key}}">
                 <div class="swiper-wrapper">
 
-                  @for ($i=0;$i<7;$i++)
+                @foreach ($value->meditations as $g => $f)
+
                   <div class="swiper-slide h-100 swiper-width">
                     <div data-anim-child="slide-left delay-2">
                       <div class="featureCard -type-1 -featureCard-hover-3">
                         <div class="featureCard__content">
                           <div class="featureCard__icon">
-                            <img src="img/featureCards/1.svg" alt="icon">
+                            <img src="{{asset('images2/images/img1.jpeg')}}" alt="icon">
                           </div>
                           <div class="featureCard__title">Design Creative</div>
                           <div class="featureCard__text">573+ Courses</div>
@@ -87,7 +89,8 @@
                       </div>
                     </div>
                   </div>
-                  @endfor
+
+                @endforeach
 
                   
 
@@ -96,7 +99,7 @@
             </div>
           </section>
 
-          @endfor
+          @endforeach
 
 
         </div>

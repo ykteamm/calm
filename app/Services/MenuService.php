@@ -22,4 +22,9 @@ class MenuService extends BaseService
 
         parent::__construct();
     }
+
+    // public function cat($name)
+    // {
+    //     return $this->setQuery()
+    // }
 }

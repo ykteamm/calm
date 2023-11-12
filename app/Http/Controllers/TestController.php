@@ -21,25 +21,26 @@ class TestController extends Controller
     }
     public function index(IndexRequest $indexRequest)
     {
-        // $data = $indexRequest->validated();
-        // $data['p'] = 0;
-        // return view("user.index");
 
-
-
-        // $this->service->relations = [];
         $this->menu_service->willParseToRelation = [
             'translation',
-            // 'childs' => ['id', 'parent_id', 'translation' => ['object_id', 'name']],
-            // 'parent' => ['id', 'translation' => ['object_id', 'name']]
+            'categories' => [
+                'translation' => [],
+                'meditations' => ['meditator' => ['image'=>[],'avatar' => []]]
+                ]
         ];
 
+
         $data = $this->menu_service->getList($indexRequest->validated());
+
         
-        // return $data;
+        // return $data[0]->categories;
+
+
 
         return view("user.index",[
-            'categories' => $data
+            'categories' => $data,
+            'categories_sub' => $data[0]->categories
         ]);
 
     }
