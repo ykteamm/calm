@@ -182,7 +182,7 @@ abstract class BaseService
         $this->translation = $this->model->translationClass ?? null;
 
         if (!empty($this->translation)) {
-            $this->relations += ['translations', 'translation'];
+            // $this->relations += ['translations', 'translation'];
         }
         $this->setTableName();
     }
@@ -203,7 +203,7 @@ abstract class BaseService
     public function getList($data)
     {
         $this->authorizeMethod(__FUNCTION__);
-        $needPagination = $data['pagination'] ?? $data['p'] ?? 1;
+        $needPagination = $data['pagination'] ?? $data['p'] ?? 0;
         $page = $data['page'] ?? 1;
         $rows = $data['rows'] ?? 100;
         $this->setQuery();

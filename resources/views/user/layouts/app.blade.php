@@ -19,11 +19,12 @@
         <div class="barba-container" data-barba="container">
       
       
-          <main class="main-content  ">
+          <main class="main-content">
       
             {{-- @include('components.user-header') --}}
       
             @yield('user_content')
+            @include('user.player.index')
             
           </main>
           @include('components.user-sidebar')

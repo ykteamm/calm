@@ -11,17 +11,11 @@ class Category extends BaseModel
 	public $translationClass = CategoryTranslation::class;
 
     protected $fillable = [
-        'parent_id'
     ];
 
-    public function parent()
+    public function menus()
     {
-        return $this->belongsTo(self::class, 'parent_id', 'id');
-    }
-
-    public function childs()
-    {
-        return $this->hasMany(self::class, 'parent_id', 'id');
+        return $this->belongsToMany(Menu::class);
     }
 
     public function meditations()
