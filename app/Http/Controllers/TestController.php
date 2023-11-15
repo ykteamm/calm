@@ -26,7 +26,7 @@ class TestController extends Controller
             'translation',
             'categories' => [
                 'translation' => [],
-                'meditations' => ['meditator' => ['image'=>[],'avatar' => []]]
+                'meditations' => ['meditator' => ['image'=>[],'avatar' => []],'translation' => []]
                 ]
         ];
 

@@ -29,8 +29,24 @@ class MeditationController extends Controller
 
     public function show($id)
     {
+        // return $id;
+
+        $this->service->willParseToRelation = [
+            // 'translation',
+            // 'categories' => [
+                'translation' => [],
+                'lessons' => ['audios' => []],
+                'meditator' => ['image'=>[],'avatar' => []]
+                // ]
+            
+        ];
+
         $data = $this->service->show($id);
-        return $data;
+
+        // return $data;
+        return view('user.meditation.play',[
+            'medidation' => $data
+        ]);
     }
 
     public function update($id, MeditationUpsertRequest $upsertRequest)

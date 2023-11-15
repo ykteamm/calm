@@ -15183,11 +15183,15 @@ div[data-slider] > input[type=range]::-ms-tooltip {
 }
 
 .section-slider-nav.-absolute.-prev {
-  left: -35px;
+  /* left: -35px; */
+  left: 830px;
+  top: -75px;
 }
 
 .section-slider-nav.-absolute.-next {
-  right: -35px;
+  /* right: -35px; */
+  right: -15px;
+    top: -75px;
 }
 
 @media (max-width: 575px) {

@@ -1,9 +1,12 @@
 <?php
 
+// use App\Http\Controllers\Api\MeditationController;
+use App\Http\Controllers\MeditationController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TestController;
+use App\Models\Meditation;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +29,7 @@ Route::apiResource('category', CategoryController::class);
 Route::apiResource('user', UserController::class);
 Route::post('user-avatar-upload/{id}', [UserController::class, 'avatarUpload'])->name('user-avatar-upload');
 Route::get('/',[TestController::class, 'index'])->name('index');
+
+
+
+Route::resource('meditation', MeditationController::class);

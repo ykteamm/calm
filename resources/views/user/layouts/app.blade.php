@@ -24,7 +24,7 @@
             {{-- @include('components.user-header') --}}
       
             @yield('user_content')
-            @include('user.player.player')
+            {{-- @include('user.player.player') --}}
             
           </main>
           @include('components.user-sidebar')
