@@ -6,6 +6,7 @@ use App\Services\CategoryService;
 use App\Http\Requests\IndexRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryUpsertRequest;
+use Illuminate\Support\Facades\Route;
 
 class CategoryController extends Controller
 {
@@ -19,13 +20,12 @@ class CategoryController extends Controller
     {
         $this->service->relations = [];
         $this->service->willParseToRelation = [
-            'childs' => ['id', 'parent_id', 'translation' => ['object_id', 'name']],
-            'parent' => ['id', 'translation' => ['object_id', 'name']]
+         
         ];
-
+// dd(Route::current()->getName());
         $data = $this->service->getList($indexRequest);
         
-        return $data;
+        return view('admin.category.index');
     }
 
     public function store(CategoryUpsertRequest $upsertRequest)

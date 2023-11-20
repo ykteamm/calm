@@ -324,7 +324,7 @@ abstract class BaseService
         try {
             return $this->query->where($this->id, '=', $id)->first();
         } catch (QueryException $e) {
-            throw new \Error("Please give main operation column name " . static::class . '::$id constructor. Default column is id');
+            throw new \Error("Please give main operation column name " . static::class . '::$id constructor. Default column is id or check ' . $e->getMessage());
         }
     }
 
@@ -349,7 +349,7 @@ abstract class BaseService
                     $translations = $data['translations'];
                     unset($data['translations']);
                 }
-                $data['updated_by'] = auth()->id();
+                // $data['updated_by'] = auth()->id();
                 foreach ($this->serializingToJsonFields as $field) {
                     if (isset($data[$field]) && is_array($data[$field])) {
                         $data[$field] = json_encode($data[$field]);

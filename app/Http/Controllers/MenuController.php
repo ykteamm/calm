@@ -6,42 +6,68 @@ use App\Services\MenuService;
 use App\Http\Requests\IndexRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MenuUpsertRequest;
+use App\Services\LanguageService;
 
 class MenuController extends Controller
 {
     protected MenuService $service;
-    public function __construct(MenuService $service)
+    protected LanguageService $languageService;
+    public function __construct(
+        MenuService $service,
+        LanguageService $languageService
+    )
     {
         $this->service = $service;
+        $this->languageService = $languageService;
     }
 
     public function index(IndexRequest $indexRequest)
     {
-        $data = $this->service->getList($indexRequest);
-        return $data;
+        $this->service->willParseToRelation = [
+            'translation' => ['object_id', 'name'], 'translations' => ['object_id', 'name']
+        ];
+        $menu = $this->service->getList($indexRequest);
+        return view('admin.menu.index', compact('menu'));
+    }
+
+    public function create()
+    {
+        $langs = $this->languageService->getList([]);
+        return view('admin.menu.create', compact('langs'));
     }
 
     public function store(MenuUpsertRequest $upsertRequest)
     {
-        $data = $this->service->create($upsertRequest->validated());
-        return $data;
+        $this->service->create($upsertRequest->validated());
+        return redirect(route('admin.menu.index'));
     }
 
     public function show($id)
     {
-        $data = $this->service->show($id);
-        return $data;
+        $this->service->willParseToRelation = [
+            'translation' => ['object_id', 'name'], 'translations' => ['object_id', 'name']
+        ];
+        $menu = $this->service->show($id);
+        return view('admin.menu.show', compact('menu'));
+    }
+
+    public function edit($id)
+    {
+        $this->service->willParseToRelation = ['translations'];
+        $menu = $this->service->show($id);
+        $langs = $this->languageService->getList([]);
+        return view('admin.menu.edit', compact('langs', 'menu'));
     }
 
     public function update($id, MenuUpsertRequest $upsertRequest)
     {
         $data = $this->service->edit($id, $upsertRequest->validated());
-        return $data;
+        return redirect(route('admin.menu.index'));
     }
 
     public function destroy($id)
     {
-        $data = $this->service->delete($id);
-        return $data;
+        $this->service->delete($id);
+        return redirect(route('admin.menu.index'));
     }
 }

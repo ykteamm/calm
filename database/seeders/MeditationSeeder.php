@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Language;
 use App\Models\Lesson;
 use App\Models\Meditation;
 use App\Models\MeditationTranslation;
@@ -18,6 +19,7 @@ class MeditationSeeder extends Seeder
      */
     public function run()
     {
+        $langs = Language::all();
         $meditators = Meditator::all();
         $categoryRandom = Category::randomBuilder();
 
@@ -26,11 +28,13 @@ class MeditationSeeder extends Seeder
                 'meditator_id' => $m->id,
                 'category_id' => $categoryRandom->random()->id
             ]);
-            MeditationTranslation::create([
-                'name' => "$meditation->id meditation",
-                'object_id' => $meditation->id,
-                'language_code' => 'en'
-            ]);
+            foreach ($langs as $lang) {
+                MeditationTranslation::create([
+                    'name' => "$meditation->id meditation",
+                    'object_id' => $meditation->id,
+                    'language_code' => $lang->code
+                ]);
+            }
             for ($i=1; $i < 4; $i++) { 
                 $lesson = Lesson::create([
                     'meditation_id' => $meditation->id

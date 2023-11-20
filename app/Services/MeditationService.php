@@ -19,8 +19,6 @@ class MeditationService extends BaseService
 
         $this->equalableFields = [
             'id',
-            'created_by',
-            'updated_by',
         ];
 
         parent::__construct();

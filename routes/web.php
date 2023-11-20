@@ -6,7 +6,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TestController;
-use App\Models\Meditation;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,3 +32,7 @@ Route::get('/',[TestController::class, 'index'])->name('index');
 
 
 Route::resource('meditation', MeditationController::class);
+
+Route::group(['middleware' => 'user.type:admin'], function () {
+    Route::prefix('admin')->name('admin.')->group(base_path('routes/web/admin.php'));
+});

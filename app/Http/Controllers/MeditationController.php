@@ -29,20 +29,23 @@ class MeditationController extends Controller
 
     public function show($id)
     {
-        // return $id;
-
+        // $this->service->queryClosure = function ($q) {
+        //     $q->with(['translation', 'lessons.audios', 'meditator.image', 'meditator.avatar']);
+        // };
         $this->service->willParseToRelation = [
-            // 'translation',
-            // 'categories' => [
-                'translation' => [],
-                'lessons' => ['audios' => []],
-                'meditator' => ['image'=>[],'avatar' => []]
-                // ]
-            
+            'translation' => ['object_id', 'name'],
+            'lessons' => [
+                'id', 'meditation_id', 
+                'audios' => ['audioable_id', 'name', 'extension', 'folder', 'duration']
+            ],
+            'meditator' => [
+                'id','firstname', 'lastname', 
+                'image' => ['name', 'extension', 'folder', 'imageable_id'],
+                'avatar' => ['name', 'extension', 'folder', 'avatarable_id']
+            ]
         ];
-
+        
         $data = $this->service->show($id);
-
         // return $data;
         return view('user.meditation.play',[
             'medidation' => $data
