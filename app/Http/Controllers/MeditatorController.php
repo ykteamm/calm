@@ -19,41 +19,63 @@ class MeditatorController extends Controller
 
     public function avatarUpload(ImageUploadRequest $uploadRequest, $id)
     {
-        return $this->service->avatarUpload($id, $uploadRequest->validated());
+        return $this->service->avatarUploadWeb($id, $uploadRequest->validated())->redirect('admin.meditator.index');
+    }
+
+    public function avatar($meditator)
+    {
+        return view('admin.meditator.avatar', compact('meditator'));
     }
     
     public function imageUpload(ImageUploadRequest $uploadRequest, $id)
     {
-        return $this->service->imageUpload($id, $uploadRequest->validated());
+        return $this->service->imageUploadWeb($id, $uploadRequest->validated())->redirect('admin.meditator.index');
+    }
+
+    public function image($meditator)
+    {
+        return view('admin.meditator.image', compact('meditator'));
     }
 
     public function index(IndexRequest $indexRequest)
     {
-        $data = $this->service->getList($indexRequest);
-        return $data;
+        $this->service->willParseToRelation = [
+            'image', 'avatar'
+        ];
+        $meditators = $this->service->getList($indexRequest);
+        // return $meditators;
+        return view('admin.meditator.index', compact('meditators'));
+    }
+
+    public function create()
+    {
+        return view('admin.meditator.create');
     }
 
     public function store(MeditatorUpsertRequest $upsertRequest)
     {
-        $data = $this->service->create($upsertRequest->validated());
-        return $data;
+        return $this->service->create($upsertRequest->validated())->redirect('admin.meditator.index');
     }
 
     public function show($id)
     {
-        $data = $this->service->show($id);
-        return $data;
+        $meditator = $this->service->show($id);
+        return view('admin.meditator.show', compact('meditator'));
+    }
+
+    public function edit($id)
+    {
+        $meditator = $this->service->show($id);
+        return view('admin.meditator.edit', compact('meditator'));
     }
 
     public function update($id, MeditatorUpsertRequest $upsertRequest)
     {
-        $data = $this->service->edit($id, $upsertRequest->validated());
-        return $data;
+        return $this->service->edit($id, $upsertRequest->validated())->redirect('admin.meditator.index');
     }
 
     public function destroy($id)
     {
-        $data = $this->service->delete($id);
-        return $data;
+        return $this->service->delete($id)->redirect('admin.meditator.index');
     }
 }

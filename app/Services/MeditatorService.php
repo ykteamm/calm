@@ -9,8 +9,10 @@ use Illuminate\Support\Str;
 
 class MeditatorService extends BaseService
 {
-    public function __construct(Meditator $serviceModel)
+    protected $result;
+    public function __construct(Meditator $serviceModel, Result $result)
     {
+        $this->result = $result;
         $this->model = $serviceModel;
         $this->resource = MeditatorResource::class;
 
@@ -49,6 +51,56 @@ class MeditatorService extends BaseService
             }
         );
         return $this->response();
+    }
+
+    public function avatarUploadWeb($id, $data)
+    {
+        $this->withTransaction(
+            function() use ($id, $data) {
+                if ($meditator = $this->findById($id)) {
+                    if($meditator->avatar) $this->imageDelete($meditator->avatar);
+                    $image = $data['image'];
+                    $name = date("Ymdis") . Str::random(5);
+                    $extension = $image->getClientOriginalExtension();
+                    $image->storeAs('images', "$name.$extension");
+                    $avatar = $meditator->avatar()->create([
+                        'name' => $name,
+                        'extension' => $extension,
+                        'folder' => 'images'
+                    ]);
+                    return $this->result->setData($avatar);
+                } else $this->result->setError('Meditator not found');
+            },
+            function ($error, $code) {
+                return $this->result->setError($error);
+            }
+        );
+        return $this->result;
+    }
+
+    public function imageUploadWeb($id, $data)
+    {
+        $this->withTransaction(
+            function() use ($id, $data) {
+                if ($meditator = $this->findById($id)) {
+                    if($meditator->image) $this->imageDelete($meditator->image);
+                    $image = $data['image'];
+                    $name = date("Ymdis") . Str::random(5);
+                    $extension = $image->getClientOriginalExtension();
+                    $image->storeAs('images', "$name.$extension");
+                    $image = $meditator->image()->create([
+                        'name' => $name,
+                        'extension' => $extension,
+                        'folder' => 'images'
+                    ]);
+                    return $this->result->setData($image);
+                } else $this->result->setError('Meditator not found');
+            },
+            function ($error, $code) {
+                return $this->result->setError($error);
+            }
+        );
+        return $this->result;
     }
 
     public function imageUpload($id, $data)
