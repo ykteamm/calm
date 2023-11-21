@@ -38,8 +38,7 @@ class MenuController extends Controller
 
     public function store(MenuUpsertRequest $upsertRequest)
     {
-        $this->service->create($upsertRequest->validated());
-        return redirect(route('admin.menu.index'));
+        return $this->service->create($upsertRequest->validated())->redirect('admin.menu.index');
     }
 
     public function show($id)
@@ -61,13 +60,11 @@ class MenuController extends Controller
 
     public function update($id, MenuUpsertRequest $upsertRequest)
     {
-        $data = $this->service->edit($id, $upsertRequest->validated());
-        return redirect(route('admin.menu.index'));
+        return $this->service->edit($id, $upsertRequest->validated())->redirect('admin.menu.index');
     }
 
     public function destroy($id)
     {
-        $this->service->delete($id);
-        return redirect(route('admin.menu.index'));
+        return $this->service->delete($id)->redirect('admin.menu.index');
     }
 }

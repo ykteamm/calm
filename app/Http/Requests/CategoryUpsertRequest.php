@@ -27,7 +27,6 @@ class CategoryUpsertRequest extends FormRequest
         $required = ($this->isMethod('put')) ? 'nullable' : 'required';
         
         return [
-            'parent_id' => ['nullable', 'string'],
             'translations' => [$required, 'array'],
             'translations.*' => [$required, 'array'],
             'translations.*.id' => ['nullable'],

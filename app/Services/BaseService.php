@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 abstract class BaseService
@@ -257,10 +258,11 @@ abstract class BaseService
 
     public function create($data)
     {
+        $result = new Result;
         try {
-            return $this->createWithThrow($data);
+            return $result->setData($this->createWithThrow($data));
         } catch (\Throwable $th) {
-            return $th->getMessage();
+            return $result->setError($th->getMessage());
         }
     }
 
@@ -330,10 +332,11 @@ abstract class BaseService
 
     public function edit($id, $data)
     {
+        $result = new Result();
         try {
-            return $this->editWithThrow($id, $data);
+            return $result->setData($this->editWithThrow($id, $data));
         } catch (\Throwable $th) {
-            return $th->getMessage();
+            return $result->setError($th->getMessage());
         }
     }
 
@@ -453,10 +456,11 @@ abstract class BaseService
 
     public function delete($id)
     {
+        $result = new Result;
         try {
-            return $this->deleteWithThrow($id);
+            return $result->setData($this->deleteWithThrow($id));
         } catch (\Throwable $th) {
-            return $th->getMessage();
+            return $result->setError($th->getMessage());
         }
     }
 
@@ -673,6 +677,58 @@ abstract class BaseService
             if ($catch && $catch instanceof \Closure) {
                 $catch($th->getMessage(), $code);
             }
+        }
+    }
+}
+
+
+class Result
+{
+    protected $data = null;
+    protected $key = 'error';
+    protected $error = null;
+
+    public function __construct($data = null)
+    {
+        $this->data = $data;       
+    }
+
+    public function setData($data)
+    {
+        $this->data = $data;
+        return $this;
+    }
+    
+    public function setError($error)
+    {
+        $this->error = $error;
+        return $this;
+    }
+
+    public function redirect($to = null, $status = 302, $headers = [], $secure = null)
+    {
+        if(str_contains($to, '.')) $to = route($to);
+        if ($this->error) {
+            return redirect($to, $status, $headers, $secure)->with($this->key, $this->error);
+        } else {
+            return redirect($to, $status, $headers, $secure);
+        }
+    }
+
+    public function errorKey($key)
+    {
+        $this->key = $key;
+        return $this;
+    }
+
+    public function __toString()
+    {
+        if ($this->data && $this->data instanceof Collection) {
+            return $this->data->toJson();
+        } else if ($this->data && is_array($this->data)) {
+            return json_encode($this->data);
+        } else {
+            return "data null";
         }
     }
 }
