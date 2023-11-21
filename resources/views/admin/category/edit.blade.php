@@ -21,8 +21,8 @@
             @foreach ($langs as $key => $lang)
                 <div class="col-12">
                     <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Category title {{$lang->code}}</label>
-                    <input name="translations[{{$key}}][id]" type="text" value="{{$category->translations[$key]->id}}" style="display: none">
-                    <input name="translations[{{$key}}][name]" type="text" value="{{$category->translations[$key]->name}}" placeholder="{{"Title $lang->code"}}" >
+                    <input name="translations[{{$key}}][id]" type="text" @isset($category->translations[$key]) value="{{$category->translations[$key]->id}}" @endisset style="display: none">
+                    <input name="translations[{{$key}}][name]" type="text" @isset($category->translations[$key]) value="{{$category->translations[$key]->name}}" @endisset placeholder="{{"Title $lang->code"}}" >
                     <input name="translations[{{$key}}][language_code]" type="text" value="{{$lang->code}}" style="display: none">
                 </div>
             @endforeach

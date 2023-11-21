@@ -367,6 +367,7 @@ abstract class BaseService
                                 $trModel->update($translation);
                             }
                         } else {
+                            unset($translation['id']);
                             $isExists = $this->translation::firstWhere([
                                 'object_id' => $model->id,
                                 'language_code' => $translation['language_code'],

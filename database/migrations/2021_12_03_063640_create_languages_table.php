@@ -17,7 +17,7 @@ class CreateLanguagesTable extends Migration
             $table->id();
             $table->string('name', 50);
             $table->string('code', 15);
-            $table->smallInteger('is_active')->default(1);
+            $table->smallInteger('is_active')->default(0);
             $table->timestamps();
             $table->unique(["name", "code"], 'name_code_unique');
         });

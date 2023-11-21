@@ -7,6 +7,13 @@
     }   
 @endphp
 <div class="sidebar -dashboard">
+    <div class="sidebar__item {{classer('admin.language.index')}}">
+        <a href="{{route('admin.language.index')}}" class="d-flex items-center text-17 lh-1 fw-500 -dark-text-white">
+        <i class="text-20 icon-discovery mr-15"></i>
+            Language
+        </a>
+    </div>
+
     <div class="sidebar__item {{classer('admin.menu.index')}}">
         <a href="{{route('admin.menu.index')}}" class="d-flex items-center text-17 lh-1 fw-500 -dark-text-white">
         <i class="text-20 icon-discovery mr-15"></i>
