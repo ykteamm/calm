@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\MeditationExists;
 use Illuminate\Foundation\Http\FormRequest;
 
-class LessonUpsertRequest extends FormRequest
+class AssetRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,14 +24,15 @@ class LessonUpsertRequest extends FormRequest
     public function rules()
     {
         $required = ($this->isMethod('put')) ? 'nullable' : 'required';
-        
+
         return [
-            'meditation_id' => [$required, new MeditationExists],
-            'translations' => [$required, 'array'],
+            'translations' => ['nullable', 'array'],
             'translations.*' => [$required, 'array'],
             'translations.*.id' => ['nullable'],
             'translations.*.name' => [$required, 'string'],
             'translations.*.language_code' => [$required, 'string'],
+            'type' => ['nullable'],
+            'file' => ['required', 'file', 'mimes:mp3,wav,ogg,aac,flac,wma,m4a']
         ];
     }
 }

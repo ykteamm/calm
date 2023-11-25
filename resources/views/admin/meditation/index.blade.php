@@ -14,29 +14,26 @@
     <div class="rounded-16 bg-white -dark-bg-dark-1 shadow-4 h-100">
       <div class="d-flex justify-between items-center py-20 px-30 border-bottom-light">
         <h2 class="text-17 fw-500">Meditator control</h2>
-        <a href="{{route('admin.meditator.create')}}" class="text-14 text-purple-1 underline">Create</a>
+        <a href="{{route('admin.meditation.create')}}" class="text-14 text-purple-1 underline">Create</a>
       </div>
-      @foreach ($meditators as $item)
+      @foreach ($meditations as $item)
         <div class="py-30 px-30 hover:green">
           <div class="d-flex" style="justify-content: space-between">
-            @if (isset($item->avatar))
-              <div style="width: 60px;height:60px">
-                <img src="{{asset($item->avatar->folder.'/'.$item->avatar->name.'.'.$item->avatar->extension)}}" alt="ALt">
-              </div>
-            @endif
-            <h4 class="ml-10 text-15 lh-1 fw-500">{{$item->firstname}} {{$item->lastname}}</h4>
+            <h4 class="ml-10 text-15 lh-1 fw-500">Name: {{$item->translation->name}}</h4>
+            <h4 class="ml-10 text-15 lh-1 fw-500">Category: {{$item->category->translation->name}}</h4>
+            <h4 class="ml-10 text-15 lh-1 fw-500">Meditator: {{$item->meditator->firstname}}</h4>
             <div class="d-flex items-center x-gap-20 y-gap-10 flex-wrap pt-10">
               <div class="d-flex items-center">
                 <i class="icon-message text-15 mr-10"></i>
-                <a href="{{route('admin.meditator.show', ['meditator' => $item->id])}}" class="text-14 text-purple-1 underline">Show</a>
+                <a href="{{route('admin.meditation.show', ['meditation' => $item->id])}}" class="text-14 text-purple-1 underline">Show</a>
               </div>
               <div class="d-flex items-center">
                 <i class="icon-online-learning text-15 mr-10"></i>
-                <a href="{{route('admin.meditator.edit', ['meditator' => $item->id])}}" class="text-14 text-purple-1 underline">Update</a>
+                <a href="{{route('admin.meditation.edit', ['meditation' => $item->id])}}" class="text-14 text-purple-1 underline">Update</a>
               </div>
               <div class="d-flex items-center">
                 <i class="icon-play text-15 mr-10"></i>
-                <form action="{{route('admin.meditator.destroy', ['meditator' => $item->id])}}" method="POST">
+                <form action="{{route('admin.meditation.destroy', ['meditation' => $item->id])}}" method="POST">
                   @csrf
                   @method('delete')
                   <button type="submit" class="text-14 text-purple-1 underline">Delete</button>
@@ -44,11 +41,7 @@
               </div>
               <div class="d-flex items-center">
                 <i class="icon-online-learning text-15 mr-10"></i>
-                <a href="{{route('admin.meditator-avatar-view', ['meditator' => $item->id])}}" class="text-14 text-purple-1 underline">Avatar</a>
-              </div>
-              <div class="d-flex items-center">
-                <i class="icon-online-learning text-15 mr-10"></i>
-                <a href="{{route('admin.meditator-image-view', ['meditator' => $item->id])}}" class="text-14 text-purple-1 underline">Image</a>
+                <a href="{{route('admin.meditation-audio-upload-view', ['meditation' => $item->id])}}" class="text-14 text-purple-1 underline">Lesson</a>
               </div>
             </div>
             <div class="">

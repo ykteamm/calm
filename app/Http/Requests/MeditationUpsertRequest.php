@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\CategoryDoesntHaveChild;
 use App\Rules\CategoryExists;
-use App\Rules\CategoryHaveParent;
 use App\Rules\MeditatorExists;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -31,7 +29,7 @@ class MeditationUpsertRequest extends FormRequest
         
         return [
             'meditator_id' => [$required, new MeditatorExists],
-            'category_id' => [$required, new CategoryExists, new CategoryHaveParent, new CategoryDoesntHaveChild],
+            'category_id' => [$required, new CategoryExists],
             'translations' => [$required, 'array'],
             'translations.*' => [$required, 'array'],
             'translations.*.id' => ['nullable'],

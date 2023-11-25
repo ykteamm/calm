@@ -23,8 +23,15 @@ class AudioUploadRequest extends FormRequest
      */
     public function rules()
     {
+        $required = ($this->isMethod('put')) ? 'nullable' : 'required';
         return [
-            'audio' => ['required', 'file', 'mimes:mp3,wav,ogg,aac,flac,wma,m4a']
+            'translations' => ['nullable', 'array'],
+            'translations.*' => [$required, 'array'],
+            'translations.*.id' => ['nullable'],
+            'translations.*.name' => [$required, 'string'],
+            'translations.*.language_code' => [$required, 'string'],
+            'type' => ['nullable'],
+            'file' => ['sometimes', 'file', 'mimes:mp3,wav,ogg,aac,flac,wma,m4a']
         ];
     }
 }

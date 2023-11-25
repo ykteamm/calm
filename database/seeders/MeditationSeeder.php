@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Language;
-use App\Models\Lesson;
 use App\Models\Meditation;
 use App\Models\MeditationTranslation;
 use App\Models\Meditator;

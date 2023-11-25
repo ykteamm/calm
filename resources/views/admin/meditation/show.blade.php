@@ -9,34 +9,32 @@
   </div>
   <div class="row y-gap-30 pt-30">
     <div class="rounded-16 bg-white -dark-bg-dark-1 shadow-4 h-100">
+      <h4 class="ml-10 text-15 lh-1 fw-500">Name: {{$meditation->translation->name}}</h4>
+      <h4 class="ml-10 text-15 lh-1 fw-500">Category: {{$meditation->category->translation->name}}</h4>
+      <h4 class="ml-10 text-15 lh-1 fw-500">Meditator: {{$meditation->meditator->firstname}}</h4>
+      @foreach ($meditation->lessons as $lesson)
+          <div class="d-flex items-center rounded-16 bg-white -dark-bg-dark-4 p-2 m-3 shadow-4 h-100" style="justify-content:space-between;border: 1px solid rgb(124, 124, 179)">
+            <div>{{$lesson->translation->name}}</div>
+            <audio src="{{asset($lesson->path)}}" controls></audio>
+            <div class="d-flex items-center">
+              <i class="icon-online-learning text-15 mr-10"></i>
+              <a href="{{route('admin.meditation-audio-update-view', ['meditation' => $meditation->id, 'audio' => $lesson->id])}}" class="text-14 text-purple-1 underline">Update</a>
+            </div>
+            <div class="d-flex items-center">
+              <i class="icon-online-learning text-15 mr-10"></i>
+              <a href="{{route('admin.meditation-audio-download', ['meditation' => $meditation->id, 'audio' => $lesson->id])}}" class="text-14 text-purple-1 underline">Download</a>
+            </div>
+            <div class="d-flex items-center">
+              <i class="icon-play text-15 mr-10"></i>
+              <form action="{{route('admin.meditation-audio-delete', ['meditation' => $meditation->id, 'audio' => $lesson->id])}}" method="POST">
+                @csrf
+                @method('delete')
+                <button type="submit" class="text-14 text-purple-1 underline">Delete</button>
+              </form>
+            </div>
+          </div>
+      @endforeach
       <div class="d-flex justify-between meditators-center py-20 px-30 border-bottom-light">
-        <h2 class="text-17 fw-500">{{$meditator->firstname}}</h2>
-          @if (isset($meditator->assets[0]) && ($avatar = $meditator->assets[0]))
-          <div style="width: 300px;height:300px">
-            <div>Avatar</div>
-            <div>
-              <form action="{{route('admin.meditator-unupload', ['meditator' => $meditator->id, 'asset' => $avatar->id])}}" method="POST">
-                @csrf
-                @method('delete')
-                <button type="submit">Delete</button>
-              </form>
-            </div>
-              <img src="{{asset($avatar->path)}}" alt="ALt">
-            </div>
-          @endif
-          @if (isset($meditator->assets[1]) && ($image = $meditator->assets[1]))
-          <div style="width: 300px;height:300px">
-            <div>Image</div>
-            <div>
-              <form action="{{route('admin.meditator-unupload', ['meditator' => $meditator->id, 'asset' => $image->id])}}" method="POST">
-                @csrf
-                @method('delete')
-                <button type="submit">Delete</button>
-              </form>
-            </div>
-              <img src="{{asset($image->path)}}" alt="ALt">
-            </div>
-          @endif
       </div>
     </div>
   </div>

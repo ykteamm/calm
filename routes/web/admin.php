@@ -17,5 +17,9 @@ Route::delete('/meditator-unupload/{meditator}/{asset}', [MeditatorController::c
 Route::get('/meditator-avatar/{meditator}', [MeditatorController::class, 'avatar'])->name('meditator-avatar-view');
 Route::get('/meditator-image/{meditator}', [MeditatorController::class, 'image'])->name('meditator-image-view');
 Route::resource('/meditation', MeditationController::class);
-Route::post('/meditator-audio/{meditation}', [MeditationController::class, 'upload'])->name('meditation-upload');
-Route::get('/meditator-audio/{meditation}', [MeditationController::class, 'audio'])->name('meditation-audio-view');
+Route::post('/meditator-audio-upload/{meditation}', [MeditationController::class, 'audioStore'])->name('meditation-audio-upload');
+Route::get('/meditation-audio-upload/{meditation}', [MeditationController::class, 'audioCreate'])->name('meditation-audio-upload-view');
+Route::post('/meditator-audio-update/{meditation}/{audio}', [MeditationController::class, 'audioUpdate'])->name('meditation-audio-update');
+Route::get('/meditator-audio-update/{meditation}/{audio}', [MeditationController::class, 'audioEdit'])->name('meditation-audio-update-view');
+Route::get('/meditator-audio-download/{meditation}/{audio}', [MeditationController::class, 'audioDownload'])->name('meditation-audio-download');
+Route::delete('/meditator-audio-delete/{meditation}/{audio}', [MeditationController::class, 'audioDelete'])->name('meditation-audio-delete');

@@ -34,15 +34,14 @@
                 Meditators
             </a>
     </div>
-
-    <div class="sidebar__item ">
-        <a href="dshb-messages.html" class="d-flex items-center text-17 lh-1 fw-500 ">
-        <i class="text-20 icon-message mr-15"></i>
-        Messages
+    <div class="sidebar__item {{classer('admin.meditation.index')}}">
+        <a href="{{route('admin.meditation.index')}}" class="d-flex items-center text-17 lh-1 fw-500 ">
+            <i class="text-20 icon-message mr-15"></i>
+            Meditations
         </a>
     </div>
 
-    <div class="sidebar__item ">
+    {{-- <div class="sidebar__item ">
         <a href="dshb-listing.html" class="d-flex items-center text-17 lh-1 fw-500 ">
         <i class="text-20 icon-list mr-15"></i>
         Create Course
@@ -68,5 +67,5 @@
         <i class="text-20 icon-power mr-15"></i>
         Logout
         </a>
-    </div>
+    </div> --}}
 </div>

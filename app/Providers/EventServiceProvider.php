@@ -2,14 +2,13 @@
 
 namespace App\Providers;
 
-use App\Models\Lesson;
+use App\Models\Meditation;
 use App\Models\Meditator;
-use App\Observers\LessonObserver;
+use App\Observers\MeditationObserver;
 use App\Observers\MeditatorObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -32,6 +31,6 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         Meditator::observe([MeditatorObserver::class]);
-        Lesson::observe([LessonObserver::class]);
+        Meditation::observe([MeditationObserver::class]);
     }
 }

@@ -8,8 +8,6 @@ class Meditator extends BaseModel
 {
     const AVATAR = 10;
     const IMAGE = 20;
-    const AUDIO = 30;
-    const VIDEOS = 40;
 
     use HasAsset;
 
@@ -26,16 +24,6 @@ class Meditator extends BaseModel
         ];
     }
 
-    function audio()
-    {
-        return $this->asset()->where('type', static::AUDIO);
-    }
-
-    function videos()
-    {
-        return $this->assets()->where('type', static::VIDEOS);
-    }
-
     function avatar()
     {
         return $this->asset()->where('type', static::AVATAR);
@@ -45,7 +33,6 @@ class Meditator extends BaseModel
     {
         return $this->asset()->where('type', static::IMAGE);
     }
-
 
     public function meditations()
     {

@@ -15,23 +15,41 @@
         </div>
 
         <div class="py-30 px-30">
-          <form class="contact-form row y-gap-30" action="{{route('admin.meditator.update', ['meditator' => $meditator->id])}}" method="POST">
+          <form class="contact-form row y-gap-30" action="{{route('admin.meditation.update', ['meditation' => $meditation->id])}}" method="POST">
             @csrf
             @method('put')
-            <div class="col-12">
-              <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Meditator firstname</label>
-              <input name="firstname" type="text" value="{{$meditator->firstname}}" >
+            <div class="row">
+              <div class="col-6">
+                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Meditators select</label>
+                <select name="meditator_id" id="">
+                  @foreach ($meditators as $meditator)
+                    <option value="{{$meditator->id}}">{{$meditator->firstname}}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="col-6">
+                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Categoris select</label>
+                <select name="category_id" id="">
+                  @foreach ($categories as $category)
+                    <option value="{{$category->id}}">{{$category->translation->name}}</option>
+                  @endforeach
+                </select>
+              </div>
             </div>
-            <div class="col-12">
-              <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Meditator lastname</label>
-              <input name="lastname" type="text" value="{{$meditator->lastname}}" >
-            </div>
+            @foreach ($langs as $key => $lang)
+                <div class="col-12">
+                    <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Meditation {{$lang->code}}</label>
+                    <input name="translations[{{$key}}][id]" type="text" @isset($meditation->translations[$key]) value="{{$meditation->translations[$key]->id}}" @endisset style="display: none">
+                    <input name="translations[{{$key}}][name]" type="text" @isset($meditation->translations[$key]) value="{{$meditation->translations[$key]->name}}" @endisset placeholder="{{"Title $lang->code"}}" >
+                    <input name="translations[{{$key}}][language_code]" type="text" value="{{$lang->code}}" style="display: none">
+                </div>
+            @endforeach
             <div class="row justify-between pt-15">
               <div class="col-auto">
               </div>
-
+  
               <div class="col-auto">
-                <button type="submit" class="button -md -purple-1 text-white">Update</button>
+                <button type="submit" class="button -md -purple-1 text-white">Create</button>
               </div>
             </div>
           </form>

@@ -39,7 +39,10 @@ trait MakeAsset
     {   
         if (($model = $this->findById($id)) && $this->model->assetable) {
             $this->withTransaction(function () use ($model, $data) {
-                $file = $this->getFile($data);
+                if (!($file = $this->getFile($data))) {
+                    $this->setResponseData(0, null, 'file_not_found', 500);
+                    return;
+                };
                 if ($info = $this->uploadAsset($file)) {
                     $assetObject = $this->storeAssetModel($model, $info, $data);
                     $this->storeAssetModelTranslations($model, $assetObject, $data);
@@ -97,9 +100,12 @@ trait MakeAsset
     public function updateAsset($id, $asset, $data, $redirective = false)
     {
         if (($model = $this->findById($id)) && $this->model->assetable) {
-            $this->withTransaction(function () use ($model, $asset,$data) {
-                $file = $this->getFile($data);
-                if ($assetObject = $model->assetModel::find($asset)) {
+            $this->withTransaction(function () use ($model, $asset, $data) {
+                if ($assetObject = $model->assets()->find($asset)) {
+                    if (!($file = $this->getFile($data))) {
+                        $this->updateAssetModelTranslations($model, $assetObject, $data);
+                        return;
+                    }
                     if(!$this->deleteFile($assetObject)){
                         $this->setResponseData(0, null, 'cant_delete_file', 500);
                         return;
@@ -125,7 +131,7 @@ trait MakeAsset
     {
         if (($model = $this->findById($id)) && $this->model->assetable) {
             $this->withTransaction(function () use ($model, $asset) {
-                if ($assetObject = $model->assetModel::find($asset)) {
+                if ($assetObject = $model->assets()->find($asset)) {
                     if(!$this->deleteFile($assetObject)){
                         $this->setResponseData(0, null, 'cant_delete_file', 500);
                         return;
@@ -144,13 +150,20 @@ trait MakeAsset
     public function downloadAsset($id, $asset, $redirective = false)
     {
         if (($model = $this->findById($id)) && $this->model->assetable) {
-            if ($assetObject = $model->assetModel::find($asset)) {
+            if ($assetObject = $model->assets()->find($asset)) {
                 if (Storage::exists($assetObject->path)) {
                     return Storage::download($assetObject->path);
                 } else $this->setResponseData(0, null, 'asset_not_found', 404);
             } else $this->setResponseData(0, null, 'asset_not_found', 404);
         } else $this->setResponseData(0, null, $this->getModelName() . '_not_found', 404);
         return $this->response($redirective);
+    }
+
+    public function getAsset($id, $asset)
+    {
+        if (($model = $this->findById($id)) && $this->model->assetable) {
+            if ($assetObject = $model->assets()->find($asset)) return $assetObject;
+        }
     }
 
     public function deleteFile($assetObject)

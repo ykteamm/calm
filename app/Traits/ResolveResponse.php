@@ -100,6 +100,15 @@ class Result
         }
     }
 
+    public function back($status = 302, $headers = [], $secure = null)
+    {
+        if ($this->error) {
+            return back($status, $headers, $secure)->with($this->key, $this->error);
+        } else {
+            return back($status, $headers, $secure);
+        }
+    }
+
     public function errorKey($key)
     {
         $this->key = $key;

@@ -44,7 +44,6 @@ class AssetRequest extends FormRequest
                 'required',
                 'file',
                 'mimes:jpg,jpeg,png,gif,pdf,doc,docx,xls,xlsx,ppt,pptx,mp4,avi,mov,mpg,mpeg,flv',
-                'max:4096'
             ],
         ];
     }
