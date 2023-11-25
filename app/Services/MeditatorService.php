@@ -10,10 +10,8 @@ use App\Traits\MakeAsset;
 class MeditatorService extends BaseService
 {
     use MakeAsset;
-    protected $result;
-    public function __construct(Meditator $serviceModel, Result $result)
+    public function __construct(Meditator $serviceModel)
     {
-        $this->result = $result;
         $this->model = $serviceModel;
         $this->resource = MeditatorResource::class;
 
