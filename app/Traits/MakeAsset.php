@@ -27,7 +27,7 @@ trait MakeAsset
         ],
     ];
 
-    public function getTypeByExtension($ext)
+    protected function getTypeByExtension($ext)
     {
         foreach ($this->types as $type => $value) {
             if (in_array($ext, $value['extensions'])) return $type;
@@ -35,7 +35,7 @@ trait MakeAsset
         return 'other';
     }
 
-    public function storeAsset($id, $data)
+    public function storeAsset($id, $data, $redirective = false)
     {   
         if (($model = $this->findById($id)) && $this->model->assetable) {
             $this->withTransaction(function () use ($model, $data) {
@@ -50,8 +50,8 @@ trait MakeAsset
             }, function ($error, $code) {
                 $this->setResponseData(0, null, $error, $code);
             });
-            return $this->response();
-        } else return $this->makeResponse(0, null, $this->getModelName() . '_not_found', 404);
+        } else $this->setResponseData(0, null, $this->getModelName() . '_not_found', 404);
+        return $this->response($redirective);
     }
 
     protected function storeAssetModel($model, $info, $data)
@@ -94,7 +94,7 @@ trait MakeAsset
         }
     }
 
-    public function updateAsset($id, $asset, $data)
+    public function updateAsset($id, $asset, $data, $redirective = false)
     {
         if (($model = $this->findById($id)) && $this->model->assetable) {
             $this->withTransaction(function () use ($model, $asset,$data) {
@@ -117,11 +117,11 @@ trait MakeAsset
             }, function ($error, $code) {
                 $this->setResponseData(0, null, $error, $code);
             });
-            return $this->response();
-        } else return $this->makeResponse(0, null, $this->getModelName() . '_not_found', 404);
+        } else $this->setResponseData(0, null, $this->getModelName() . '_not_found', 404);
+        return $this->response($redirective);
     }
 
-    public function deleteAsset($id, $asset)
+    public function deleteAsset($id, $asset, $redirective = false)
     {
         if (($model = $this->findById($id)) && $this->model->assetable) {
             $this->withTransaction(function () use ($model, $asset) {
@@ -130,18 +130,18 @@ trait MakeAsset
                         $this->setResponseData(0, null, 'cant_delete_file', 500);
                         return;
                     }
-                    $asset->translations()->delete();
-                    $asset->delete();
+                    $assetObject->translations()->delete();
+                    $assetObject->delete();
                     $this->setResponseData(1, 'delted_successfully', null, 204);
                 } else $this->setResponseData(0, null, 'asset_not_found', 500);
             }, function ($error, $code) {
                 $this->setResponseData(0, null, $error, $code);
             });
-            return $this->response();
-        } else return $this->makeResponse(0, null, $this->getModelName() . '_not_found', 404);
+        } else $this->setResponseData(0, null, $this->getModelName() . '_not_found', 404);
+        return $this->response($redirective);
     }
 
-    public function downloadAsset($id, $asset)
+    public function downloadAsset($id, $asset, $redirective = false)
     {
         if (($model = $this->findById($id)) && $this->model->assetable) {
             if ($assetObject = $model->assetModel::find($asset)) {
@@ -150,7 +150,7 @@ trait MakeAsset
                 } else $this->setResponseData(0, null, 'asset_not_found', 404);
             } else $this->setResponseData(0, null, 'asset_not_found', 404);
         } else $this->setResponseData(0, null, $this->getModelName() . '_not_found', 404);
-        return $this->response();
+        return $this->response($redirective);
     }
 
     public function deleteFile($assetObject)

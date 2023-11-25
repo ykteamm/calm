@@ -38,7 +38,7 @@ class CategoryController extends Controller
 
     public function store(CategoryUpsertRequest $upsertRequest)
     {
-        return $this->service->create($upsertRequest->validated())->redirect('admin.category.index');
+        return $this->service->create($upsertRequest->validated(), true)->redirect('admin.category.index');
     }
 
     public function show($id)
@@ -60,11 +60,11 @@ class CategoryController extends Controller
 
     public function update($id, CategoryUpsertRequest $upsertRequest)
     {
-        return $this->service->edit($id, $upsertRequest->validated())->redirect('admin.category.index');
+        return $this->service->edit($id, $upsertRequest->validated(), true)->redirect('admin.category.index');
     }
 
     public function destroy($id)
     {
-        return $this->service->delete($id)->redirect('admin.category.index');
+        return $this->service->delete($id, true)->redirect('admin.category.index');
     }
 }

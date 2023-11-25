@@ -19,17 +19,20 @@ class MeditatorController extends Controller
 
     public function upload(AssetRequest $assetRequest, $meditator)
     {
-        return $this->service->storeAsset($meditator, $assetRequest->validated());
+        return $this->service->storeAsset($meditator, $assetRequest->validated(), true)
+            ->redirect('admin.meditator.index');
     }
 
     public function reupload(AssetRequest $assetRequest, $meditator, $asset)
     {
-        return $this->service->updateAsset($meditator, $asset, $assetRequest->validated());
+        return $this->service->updateAsset($meditator, $asset, $assetRequest->validated(), true)
+            ->redirect('admin.meditator.index');
     }
 
     public function unupload($meditator, $asset)
     {
-        return $this->service->deleteAsset($meditator, $asset);
+        return $this->service->deleteAsset($meditator, $asset, true)
+            ->redirect('admin.meditator.index');
     }
 
     public function avatar($meditator)
@@ -60,7 +63,8 @@ class MeditatorController extends Controller
 
     public function store(MeditatorUpsertRequest $upsertRequest)
     {
-        return $this->service->create($upsertRequest->validated())->redirect('admin.meditator.index');
+        return $this->service->create($upsertRequest->validated(), true)
+            ->redirect('admin.meditator.index');
     }
 
     public function show($id)
@@ -78,11 +82,12 @@ class MeditatorController extends Controller
 
     public function update($id, MeditatorUpsertRequest $upsertRequest)
     {
-        return $this->service->edit($id, $upsertRequest->validated())->redirect('admin.meditator.index');
+        return $this->service->edit($id, $upsertRequest->validated(), true)
+            ->redirect('admin.meditator.index');
     }
 
     public function destroy($id)
     {
-        return $this->service->delete($id)->redirect('admin.meditator.index');
+        return $this->service->delete($id, true)->redirect('admin.meditator.index');
     }
 }

@@ -31,7 +31,7 @@ class LanguageController extends Controller
 
     public function store(LanguageUpsertRequest $upsertRequest)
     {
-        return $this->service->create($upsertRequest->validated())->redirect('admin.language.index');
+        return $this->service->create($upsertRequest->validated(), true)->redirect('admin.language.index');
     }
 
     public function show($id)
@@ -50,11 +50,11 @@ class LanguageController extends Controller
     {
         $data = $upsertRequest->validated();
         if(!isset($data['is_active'])) $data['is_active'] = '0';
-        return $this->service->edit($id, $data)->redirect('admin.language.index');
+        return $this->service->edit($id, $data, true)->redirect('admin.language.index');
     }
 
     public function destroy($id)
     {
-        return $this->service->delete($id)->redirect('admin.language.index');
+        return $this->service->delete($id, true)->redirect('admin.language.index');
     }
 }

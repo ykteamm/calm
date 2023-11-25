@@ -256,13 +256,12 @@ abstract class BaseService
         return (new \ReflectionProperty($class ?? static::class, $property))->isInitialized($object ?? $this);
     }
 
-    public function create($data)
+    public function create($data, $redirective = false)
     {
-        $result = new Result;
         try {
-            return $result->setData($this->createWithThrow($data));
+            return $this->makeResponse(1, $this->createWithThrow($data), null, 201,$redirective);
         } catch (\Throwable $th) {
-            return $result->setError($th->getMessage());
+            return $this->makeResponse(0, null, $th->getMessage(), 500, $redirective);
         }
     }
 
@@ -297,14 +296,14 @@ abstract class BaseService
         }
     }
 
-    public function createWithResponse($data)
-    {
-        try {
-            return $this->makeResponse(1, $this->createWithThrow($data), null, 201);
-        } catch (\Throwable $th) {
-            return $this->makeResponse(0, null, $th->getMessage(), 500);
-        }
-    }
+    // public function createWithResponse($data)
+    // {
+    //     try {
+    //         return $this->makeResponse(1, $this->createWithThrow($data), null, 201);
+    //     } catch (\Throwable $th) {
+    //         return $this->makeResponse(0, null, $th->getMessage(), 500);
+    //     }
+    // }
 
     public function getModelName()
     {
@@ -336,13 +335,12 @@ abstract class BaseService
         }
     }
 
-    public function edit($id, $data)
+    public function edit($id, $data, $redirective = false)
     {
-        $result = new Result();
         try {
-            return $result->setData($this->editWithThrow($id, $data));
+            return $this->makeResponse(1, $this->editWithThrow($id, $data), null, 200, $redirective);
         } catch (\Throwable $th) {
-            return $result->setError($th->getMessage());
+            return $this->makeResponse(0, null, $th->getMessage(), 500, $redirective);
         }
     }
 
@@ -400,14 +398,14 @@ abstract class BaseService
         }
     }
 
-    public function editWithResponse($id, $data)
-    {
-        try {
-            return $this->makeResponse(1, $this->editWithThrow($id, $data));
-        } catch (\Throwable $th) {
-            return $this->makeResponse(0, null, $th->getMessage(), 500);
-        }
-    }
+    // public function editWithResponse($id, $data)
+    // {
+    //     try {
+    //         return $this->makeResponse(1, $this->editWithThrow($id, $data));
+    //     } catch (\Throwable $th) {
+    //         return $this->makeResponse(0, null, $th->getMessage(), 500);
+    //     }
+    // }
 
     public function showWithThrow($id)
     {
@@ -461,24 +459,23 @@ abstract class BaseService
         }
     }
 
-    public function delete($id)
+    public function delete($id, $redirective = false)
     {
-        $result = new Result;
         try {
-            return $result->setData($this->deleteWithThrow($id));
+            return $this->makeResponse(1, $this->deleteWithThrow($id), null, 204, $redirective);
         } catch (\Throwable $th) {
-            return $result->setError($th->getMessage());
+            return $this->makeResponse(0, null, $th->getMessage(), 500, $redirective);
         }
     }
 
-    public function deleteWithResponse($id)
-    {
-        try {
-            return $this->makeResponse(1, $this->deleteWithThrow($id), null, 204);
-        } catch (\Throwable $th) {
-            return $this->makeResponse(0, null, $th->getMessage(), 500);
-        }
-    }
+    // public function deleteWithResponse($id)
+    // {
+    //     try {
+    //         return $this->makeResponse(1, $this->deleteWithThrow($id), null, 204);
+    //     } catch (\Throwable $th) {
+    //         return $this->makeResponse(0, null, $th->getMessage(), 500);
+    //     }
+    // }
 
     protected function setQuery()
     {
@@ -684,58 +681,6 @@ abstract class BaseService
             if ($catch && $catch instanceof \Closure) {
                 $catch($th->getMessage() . ' in '. $th->getFile() . ' '  . $th->getLine() . '-line', $code);
             }
-        }
-    }
-}
-
-
-class Result
-{
-    protected $data = null;
-    protected $key = 'error';
-    protected $error = null;
-
-    public function __construct($data = null)
-    {
-        $this->data = $data;       
-    }
-
-    public function setData($data)
-    {
-        $this->data = $data;
-        return $this;
-    }
-    
-    public function setError($error)
-    {
-        $this->error = $error;
-        return $this;
-    }
-
-    public function redirect($to = null, $status = 302, $headers = [], $secure = null)
-    {
-        if(str_contains($to, '.')) $to = route($to);
-        if ($this->error) {
-            return redirect($to, $status, $headers, $secure)->with($this->key, $this->error);
-        } else {
-            return redirect($to, $status, $headers, $secure);
-        }
-    }
-
-    public function errorKey($key)
-    {
-        $this->key = $key;
-        return $this;
-    }
-
-    public function __toString()
-    {
-        if ($this->data && $this->data instanceof Collection) {
-            return $this->data->toJson();
-        } else if ($this->data && is_array($this->data)) {
-            return json_encode($this->data);
-        } else {
-            return "data null";
         }
     }
 }
