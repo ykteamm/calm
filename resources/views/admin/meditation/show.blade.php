@@ -11,38 +11,32 @@
     <div class="rounded-16 bg-white -dark-bg-dark-1 shadow-4 h-100">
       <div class="d-flex justify-between meditators-center py-20 px-30 border-bottom-light">
         <h2 class="text-17 fw-500">{{$meditator->firstname}}</h2>
-        <div>
-          <div>Avatar</div>
-          <div>
-            @if ($meditator->avatar)
-              <form action="{{route('admin.meditator-unupload', ['meditator' => $meditator->id, 'asset' => $meditator->avatar->id])}}" method="POST">
+          @if (isset($meditator->assets[0]) && ($avatar = $meditator->assets[0]))
+          <div style="width: 300px;height:300px">
+            <div>Avatar</div>
+            <div>
+              <form action="{{route('admin.meditator-unupload', ['meditator' => $meditator->id, 'asset' => $avatar->id])}}" method="POST">
                 @csrf
                 @method('delete')
                 <button type="submit">Delete</button>
               </form>
-            @endif
-          </div>
-            @if ($meditator->avatar)
-              <img src="{{asset($meditator->avatar->path)}}" alt="ALt">
-            @endif
-          </div>
-        </div>
-        <div>
-          <div>Image</div>
-          <div>
-            @if ($meditator->image)
-              <form action="{{route('admin.meditator-unupload', ['meditator' => $meditator->id, 'asset' => $meditator->image->id])}}" method="POST">
+            </div>
+              <img src="{{asset($avatar->path)}}" alt="ALt">
+            </div>
+          @endif
+          @if (isset($meditator->assets[1]) && ($image = $meditator->assets[1]))
+          <div style="width: 300px;height:300px">
+            <div>Image</div>
+            <div>
+              <form action="{{route('admin.meditator-unupload', ['meditator' => $meditator->id, 'asset' => $image->id])}}" method="POST">
                 @csrf
                 @method('delete')
                 <button type="submit">Delete</button>
               </form>
-            @endif
-          </div>
-            @if ($meditator->image)
-              <img src="{{asset($meditator->image->path)}}" alt="ALt">
-            @endif
-          </div>
-        </div>
+            </div>
+              <img src="{{asset($image->path)}}" alt="ALt">
+            </div>
+          @endif
       </div>
     </div>
   </div>

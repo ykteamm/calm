@@ -21,7 +21,7 @@
           <div class="d-flex" style="justify-content: space-between">
             @if (isset($item->avatar))
               <div style="width: 60px;height:60px">
-                <img src="{{asset($item->avatar->path)}}" alt="ALt">
+                <img src="{{asset($item->avatar->folder.'/'.$item->avatar->name.'.'.$item->avatar->extension)}}" alt="ALt">
               </div>
             @endif
             <h4 class="ml-10 text-15 lh-1 fw-500">{{$item->firstname}} {{$item->lastname}}</h4>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLessonTranslationsTable extends Migration
+class CreateAssetTranslationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateLessonTranslationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('lesson_translations', function (Blueprint $table) {
+        Schema::create('asset_translations', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('object_id');
-            $table->string('language_code');
+            $table->foreignId('object_id')->constrained('assets', 'id')->onDelete('CASCADE');
+            $table->string('language_code', 5);
             $table->string('name');
             $table->index(['object_id']);
         });
@@ -29,9 +29,9 @@ class CreateLessonTranslationsTable extends Migration
      */
     public function down()
     {
-        Schema::table('lesson_translations', function (Blueprint $table) {
+        Schema::table('asset_translations', function (Blueprint $table) {
             $table->dropIndex('object_id');
         });
-        Schema::dropIfExists('lesson_translations');
+        Schema::dropIfExists('asset_translations');
     }
 }

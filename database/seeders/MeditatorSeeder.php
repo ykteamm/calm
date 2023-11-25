@@ -19,16 +19,6 @@ class MeditatorSeeder extends Seeder
                 'firstname' => "User $i",
                 'lastname' => "Family $i"
             ]);
-           $m->avatar()->create([
-                'name' => "avatar$i",
-                'extension' => 'jpeg',
-                'folder' => 'images'
-           ]);
-           $m->image()->create([
-                'name' => "img$i",
-                'extension' => 'jpeg',
-                'folder' => 'images'
-            ]);
         }
     }
 }

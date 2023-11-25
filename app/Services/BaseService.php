@@ -23,7 +23,7 @@ abstract class BaseService
      * Model instance
      * @var Model
      */
-    protected $model;
+    public $model;
 
      /**
      * Model query builder instance
@@ -305,6 +305,12 @@ abstract class BaseService
             return $this->makeResponse(0, null, $th->getMessage(), 500);
         }
     }
+
+    public function getModelName()
+    {
+        $arr = explode('\\', get_class($this->model));
+        if ($this->checkInitialized('model')) return Str::lower(Str::snake(end($arr)));
+    } 
 
     public function find($values)
     {
@@ -676,7 +682,7 @@ abstract class BaseService
             if(!is_numeric($code)) $code = 500;
             if($code > 505 || $code < 100) $code = 500;
             if ($catch && $catch instanceof \Closure) {
-                $catch($th->getMessage(), $code);
+                $catch($th->getMessage() . ' in '. $th->getFile() . ' '  . $th->getLine() . '-line', $code);
             }
         }
     }

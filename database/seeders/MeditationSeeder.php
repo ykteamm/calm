@@ -35,17 +35,6 @@ class MeditationSeeder extends Seeder
                     'language_code' => $lang->code
                 ]);
             }
-            for ($i=1; $i < 4; $i++) { 
-                $lesson = Lesson::create([
-                    'meditation_id' => $meditation->id
-                ]);
-                $lesson->audios()->create([
-                    'name' => "audio$i",
-                    'extension' => 'mp3',
-                    'duration' => '10.3',
-                    'folder' => 'audios'
-                ]);
-            }
         }
     }
 }

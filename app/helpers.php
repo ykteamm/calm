@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Collection;
+
 if (!function_exists("parseToRelation")) {
     function parseToRelation($relations = null)
     {
@@ -65,5 +67,19 @@ if(!function_exists('mediaDelete')) {
         $path = storage_path("app/$folder/$name");
         if(file_exists($path)) return unlink($path);
         return false;
+    }
+}
+
+if (!function_exists('getProp')) {
+    function getProp($data, $key, $default = null)
+    {
+        if(str_contains($key, '.') && ($arr = explode('.', $key))) {
+            $first = array_shift($arr);
+            $firstProp = getProp($data, $first, $default);
+            return getProp($firstProp, implode('.', $arr), $default);
+        }
+        if (is_array($data)) return isset($data[$key]) ? $data[$key] : $default;
+        else if  (is_object($data)) return isset($data->{$key}) ? $data->{$key} : $default;
+        else return $default;
     }
 }

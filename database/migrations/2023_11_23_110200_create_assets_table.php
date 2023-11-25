@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateImagesTable extends Migration
+class CreateAssetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('assets', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 70);
-            $table->string('extension', 10);
-            $table->string('folder', 70);
-            $table->bigInteger('imageable_id');
-            $table->string('imageable_type');
+            $table->text('info');
+            $table->string('path');
+            $table->bigInteger('assetable_id');
+            $table->string('assetable_type');
+            $table->tinyInteger('type')->default(0);
             $table->timestamps();
-            $table->index('imageable_id');
+            $table->index('assetable_id');
         });
     }
 
@@ -32,6 +32,6 @@ class CreateImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('assets');
     }
 }

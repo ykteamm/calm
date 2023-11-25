@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Traits;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 trait ResolveResponse
 {
@@ -50,8 +51,9 @@ trait ResolveResponse
     
     protected function response()
     {
+        if ($this->data instanceof StreamedResponse) return $this->data;
         if ($this->code == 204) return response()->json([], $this->code);
-        elseif($this->status) return response()->json($this->data, $this->code);
+        elseif($this->status == 1) return response()->json($this->data, $this->code);
         else return response()->json(['message' => $this->message], $this->code);
     }
 }

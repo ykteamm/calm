@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\MeditatorService;
 use App\Http\Requests\IndexRequest;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ImageUploadRequest;
+use App\Http\Requests\AssetRequest;
 use App\Http\Requests\MeditatorUpsertRequest;
 
 class MeditatorController extends Controller
@@ -17,33 +17,39 @@ class MeditatorController extends Controller
         $this->service = $service;
     }
 
-    public function avatarUpload(ImageUploadRequest $uploadRequest, $id)
+    public function upload(AssetRequest $assetRequest, $meditator)
     {
-        return $this->service->avatarUploadWeb($id, $uploadRequest->validated())->redirect('admin.meditator.index');
+        return $this->service->storeAsset($meditator, $assetRequest->validated());
+    }
+
+    public function reupload(AssetRequest $assetRequest, $meditator, $asset)
+    {
+        return $this->service->updateAsset($meditator, $asset, $assetRequest->validated());
+    }
+
+    public function unupload($meditator, $asset)
+    {
+        return $this->service->deleteAsset($meditator, $asset);
     }
 
     public function avatar($meditator)
     {
+        $this->service->willParseToRelation = ['avatar'];
+        $meditator = $this->service->show($meditator);
         return view('admin.meditator.avatar', compact('meditator'));
-    }
-    
-    public function imageUpload(ImageUploadRequest $uploadRequest, $id)
-    {
-        return $this->service->imageUploadWeb($id, $uploadRequest->validated())->redirect('admin.meditator.index');
     }
 
     public function image($meditator)
     {
+        $this->service->willParseToRelation = ['image'];
+        $meditator = $this->service->show($meditator);
         return view('admin.meditator.image', compact('meditator'));
     }
 
     public function index(IndexRequest $indexRequest)
     {
-        $this->service->willParseToRelation = [
-            'image', 'avatar'
-        ];
+        $this->service->willParseToRelation = ['avatar'];
         $meditators = $this->service->getList($indexRequest);
-        // return $meditators;
         return view('admin.meditator.index', compact('meditators'));
     }
 
@@ -59,6 +65,7 @@ class MeditatorController extends Controller
 
     public function show($id)
     {
+        $this->service->willParseToRelation = ['image', 'avatar'];
         $meditator = $this->service->show($id);
         return view('admin.meditator.show', compact('meditator'));
     }
