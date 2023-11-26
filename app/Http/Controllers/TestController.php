@@ -26,22 +26,19 @@ class TestController extends Controller
             'translation',
             'categories' => [
                 'translation' => [],
-                'meditations' => ['meditator' => ['image'=>[],'avatar' => []],'translation' => []]
+                'meditations' => [
+                    'meditator' => [
+                        'image'=> [], 
+                        'avatar' => []
+                    ],
+                    'translation' => []
                 ]
+            ]
         ];
-
-
         $data = $this->menu_service->getList($indexRequest->validated());
-
-        
-        // return $data[0]->categories;
-
-
-
         return view("user.index",[
             'categories' => $data,
             'categories_sub' => $data[0]->categories
         ]);
-
     }
 }

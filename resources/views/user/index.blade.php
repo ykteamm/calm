@@ -75,7 +75,9 @@
                               <a href="{{route('meditation.show',$f->id)}}" class="coursesCard -type-1 ">
                                 <div class="relative">
                                   <div class="coursesCard__image overflow-hidden rounded-8">
-                                    <img class="w-1/1" src="{{asset('images2/images/'.$f->meditator->image->name.'.'.$f->meditator->image->extension)}}" alt="image">
+                                    @if ($f->image)
+                                      <img class="w-1/1" src="{{asset($f->image->path)}}" alt="image">
+                                    @endif
                                     <div class="coursesCard__image_overlay rounded-8"></div>
                                   </div>
                                   <div class="d-flex justify-between py-10 px-10 absolute-full-center z-3">

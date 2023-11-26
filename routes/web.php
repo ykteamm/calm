@@ -23,16 +23,13 @@ use Illuminate\Support\Facades\Route;
 //     return view('admin.index');
 // });
 
-Route::post('login', [AuthController::class, 'login'])->name('auth.login');
-Route::apiResource('category', CategoryController::class);
-Route::apiResource('user', UserController::class);
-Route::post('user-avatar-upload/{id}', [UserController::class, 'avatarUpload'])->name('user-avatar-upload');
-Route::get('/',[TestController::class, 'index'])->name('index');
 
+Route::get('/login', [AuthController::class, 'loginView'])->name('login');
 
-
-Route::resource('meditation', MeditationController::class);
-
-Route::group(['middleware' => 'user.type:admin'], function () {
+Route::prefix('auth')->name('auth.')->group(base_path('routes/web/auth.php'));
+Route::group([], function () {
+    Route::name('')->group(base_path('routes/web/user.php'));
+});
+Route::group(['middleware' => ['auth', 'user.type:admin']], function () {
     Route::prefix('admin')->name('admin.')->group(base_path('routes/web/admin.php'));
 });

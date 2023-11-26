@@ -589,6 +589,26 @@ abstract class BaseService
     {
     }
 
+    public function exists($id)
+    {
+        try {
+            $this->setQuery();
+            return $this->query->where($this->id, '=', $id)->exists();
+        } catch (QueryException $e) {
+            throw new Error("Please give main operation column name " . static::class . '::$id constructor. Default column is id');
+        }
+    }
+
+    public function existsByColumn($column, $value)
+    {
+        try {
+            $this->setQuery();
+            return $this->query->where($column, '=', $value)->exists();
+        } catch (QueryException $e) {
+            throw new Error($e->getMessage(), 501);
+        }
+    }
+
     /**
      * Service uchun relation columnlariga filter qo'shish funksiyasi. Service ni o'zida ushbu funksiya overwrite qilinadi.
      * @return Query $query

@@ -90,13 +90,14 @@ class Result
         return $this;
     }
 
-    public function redirect($to = null, $status = 302, $headers = [], $secure = null)
+    public function redirect($ok = null, $no = null, $status = 302, $headers = [], $secure = null)
     {
-        if(str_contains($to, '.')) $to = route($to);
+        if(str_contains($ok, '.')) $ok = route($ok);
+        if(str_contains($no, '.')) $no = route($no);
         if ($this->error) {
-            return redirect($to, $status, $headers, $secure)->with($this->key, $this->error);
+            return redirect($no, $status, $headers, $secure)->with($this->key, $this->error);
         } else {
-            return redirect($to, $status, $headers, $secure);
+            return redirect($ok, $status, $headers, $secure);
         }
     }
 

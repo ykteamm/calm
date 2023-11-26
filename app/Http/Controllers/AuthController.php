@@ -3,26 +3,59 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Services\AuthService;
-use Illuminate\Http\Request;
+use App\Services\UserService;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
     protected AuthService $authService;
+    protected UserService $userService;
 
-    public function __construct(AuthService $service)
+    public function __construct(
+        AuthService $service,
+        UserService $userService)
     {
         $this->authService = $service;
+        $this->userService = $userService;
+    }
+    
+    public function register(RegisterRequest $registerRequest)
+    {
+        $data = $registerRequest->validated();
+        if ($this->userService->existsByColumn('username', $data['username'])) {
+            return back()->with('error', 'Username already exists');
+        }
+        return $this->userService->create($data, true)
+            ->redirect('auth.login-view', 'auth.register-view');
     }
 
-    public function login (LoginRequest $loginRequest)
+    public function login(LoginRequest $loginRequest)
     {
-        if(Auth::attempt($data = $loginRequest->validated())) {
-            $user = $this->authService->getUser($data);
-            return ['token' => $user->createToken('secret')->plainTextToken];
+        $data = $loginRequest->validated();
+        $data['password'] = 'password';
+        if(Auth::guard('web')->attempt($data)) return redirect('/');
+        else return back()->with('error', 'Username incorrect');
+    }
+
+    public function logout()
+    {
+        if(Auth::user()) {
+            Auth::logout();
+            return redirect('/');
         } else {
-            return ['message' => 'User not found'];
+            return redirect('auth/login');
         }
+    }
+
+    public function registerView()
+    {
+        return view('auth.register');
+    }
+
+    public function loginView()
+    {
+        return view('auth.login');
     }
 }

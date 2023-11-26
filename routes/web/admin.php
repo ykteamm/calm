@@ -8,6 +8,7 @@ use App\Http\Controllers\MeditationController;
 use App\Http\Controllers\MeditatorController;
 use App\Http\Controllers\MenuController;
 
+Route::get('/', [MenuController::class, 'index']);
 Route::resource('/menu', MenuController::class);
 Route::resource('/category', CategoryController::class);
 Route::resource('/language', LanguageController::class);

@@ -14,4 +14,9 @@ class AuthService
         ->orWhere('phone', $phone)
         ->first();
     }
+
+    public function getUserByUsername()
+    {
+        
+    }
 }
