@@ -40,7 +40,13 @@
             Meditations
         </a>
     </div>
-
+    <div class="sidebar__item {{classer('admin.lesson.index')}}">
+        <a href="{{route('admin.lesson.index')}}" class="d-flex items-center text-17 lh-1 fw-500 ">
+            <i class="text-20 icon-list mr-15"></i>
+            Lessons
+            </a>
+        </a>
+    </div>
     {{-- <div class="sidebar__item ">
         <a href="dshb-listing.html" class="d-flex items-center text-17 lh-1 fw-500 ">
         <i class="text-20 icon-list mr-15"></i>

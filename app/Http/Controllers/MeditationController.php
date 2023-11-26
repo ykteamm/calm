@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Services\MeditationService;
 use App\Http\Requests\IndexRequest;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AudioUploadRequest;
 use App\Http\Requests\MeditationUpsertRequest;
 use App\Services\CategoryService;
 use App\Services\LanguageService;
@@ -17,6 +16,7 @@ class MeditationController extends Controller
     protected LanguageService $languageService;
     protected CategoryService $categoryService;
     protected MeditatorService $meditatorService;
+    
     public function __construct(
         MeditationService $service, 
         LanguageService $languageService,
@@ -27,43 +27,6 @@ class MeditationController extends Controller
         $this->languageService = $languageService;
         $this->categoryService = $categoryService;
         $this->meditatorService = $meditatorService;
-    }
-
-    public function audioStore(AudioUploadRequest $audioUploadRequest, $meditation)
-    {
-        return $this->service->storeAsset($meditation, $audioUploadRequest->validated(), true)
-            ->redirect('admin.meditation.index');
-    }
-    
-    public function audioCreate($meditation)
-    {
-        $meditation = $this->service->show($meditation);
-        $langs = $this->languageService->getList([]);
-        return view('admin.meditation.audio-create', compact('meditation', 'langs'));
-    }
-
-    public function audioUpdate(AudioUploadRequest $audioUploadRequest, $meditation, $audio)
-    {
-        return $this->service->updateAsset($meditation, $audio, $audioUploadRequest->validated(), true)
-            ->redirect('admin.meditation.index');
-    }
-
-    public function audioEdit($meditation, $audio)
-    {
-        $audio = $this->service->getAsset($meditation, $audio);
-        $meditation = $this->service->show($meditation);
-        $langs = $this->languageService->getList([]);
-        return view('admin.meditation.audio-edit', compact('meditation', 'langs', 'audio'));
-    }
-
-    public function audioDelete($meditation, $audio)
-    {
-        return $this->service->deleteAsset($meditation, $audio, true)->back();
-    }
-
-    public function audioDownload($meditation, $audio)
-    {
-        return $this->service->downloadAsset($meditation, $audio, true);
     }
 
     public function index(IndexRequest $indexRequest)
@@ -94,7 +57,7 @@ class MeditationController extends Controller
 
     public function show($id)
     {
-        $this->service->willParseToRelation = ['lessons' => ['translation' => []]];
+        $this->service->willParseToRelation = ['lessons' => ['audio' => [], 'translation' => []]];
         $meditation = $this->service->show($id);
         return view('admin.meditation.show', compact('meditation'));
     }

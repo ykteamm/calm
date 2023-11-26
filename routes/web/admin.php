@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\LessonController;
 use App\Http\Controllers\MeditationController;
 use App\Http\Controllers\MeditatorController;
 use App\Http\Controllers\MenuController;
@@ -17,9 +18,10 @@ Route::delete('/meditator-unupload/{meditator}/{asset}', [MeditatorController::c
 Route::get('/meditator-avatar/{meditator}', [MeditatorController::class, 'avatar'])->name('meditator-avatar-view');
 Route::get('/meditator-image/{meditator}', [MeditatorController::class, 'image'])->name('meditator-image-view');
 Route::resource('/meditation', MeditationController::class);
-Route::post('/meditator-audio-upload/{meditation}', [MeditationController::class, 'audioStore'])->name('meditation-audio-upload');
-Route::get('/meditation-audio-upload/{meditation}', [MeditationController::class, 'audioCreate'])->name('meditation-audio-upload-view');
-Route::post('/meditator-audio-update/{meditation}/{audio}', [MeditationController::class, 'audioUpdate'])->name('meditation-audio-update');
-Route::get('/meditator-audio-update/{meditation}/{audio}', [MeditationController::class, 'audioEdit'])->name('meditation-audio-update-view');
-Route::get('/meditator-audio-download/{meditation}/{audio}', [MeditationController::class, 'audioDownload'])->name('meditation-audio-download');
-Route::delete('/meditator-audio-delete/{meditation}/{audio}', [MeditationController::class, 'audioDelete'])->name('meditation-audio-delete');
+Route::resource('/lesson', LessonController::class);
+Route::get('/lesson-audio-upload/{lesson}', [LessonController::class, 'audioCreate'])->name('lesson-audio-upload-view');
+Route::post('/lesson-audio-upload/{lesson}', [LessonController::class, 'audioStore'])->name('lesson-audio-upload');
+Route::post('/lesson-audio-update/{lesson}/{audio}', [LessonController::class, 'audioUpdate'])->name('lesson-audio-update');
+Route::get('/lesson-audio-update/{lesson}/{audio}', [LessonController::class, 'audioEdit'])->name('lesson-audio-update-view');
+Route::get('/lesson-audio-download/{lesson}/{audio}', [LessonController::class, 'audioDownload'])->name('lesson-audio-download');
+Route::delete('/lesson-audio-delete/{lesson}/{audio}', [LessonController::class, 'audioDelete'])->name('lesson-audio-delete');

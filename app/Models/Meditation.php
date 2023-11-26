@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use App\Traits\HasAsset;
 use App\Traits\HasTranslation;
 use Database\Factories\MeditationFactory;
 
 class Meditation extends BaseModel
 {
-	use HasTranslation, HasAsset;
+	use HasTranslation;
 
 	protected static string $model_factory = MeditationFactory::class;
 	public $translationClass = MeditationTranslation::class;
@@ -32,6 +31,6 @@ class Meditation extends BaseModel
 
     public function lessons()
     {
-        return $this->assets();
+        return $this->hasMany(Lesson::class, 'meditation_id', 'id');
     }
 }

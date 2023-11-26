@@ -9,7 +9,10 @@ class MeditationObserver
     public function deleted($meditation)
     {
         foreach ($meditation->lessons as $lesson) {
-            if(Storage::exists($lesson->path)) Storage::delete($lesson->path);
+            if($lesson->audio) {
+                if(Storage::exists($lesson->audio->path)) Storage::delete($lesson->audio->path);
+            }
+            $lesson->audio()->delete();
         }
         $meditation->lessons()->delete();
     }
