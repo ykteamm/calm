@@ -7,6 +7,7 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\MeditationController;
 use App\Http\Controllers\MeditatorController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\MotivationController;
 
 Route::get('/', [MenuController::class, 'index']);
 Route::resource('/menu', MenuController::class);
@@ -26,3 +27,4 @@ Route::post('/lesson-audio-update/{lesson}/{audio}', [LessonController::class, '
 Route::get('/lesson-audio-update/{lesson}/{audio}', [LessonController::class, 'audioEdit'])->name('lesson-audio-update-view');
 Route::get('/lesson-audio-download/{lesson}/{audio}', [LessonController::class, 'audioDownload'])->name('lesson-audio-download');
 Route::delete('/lesson-audio-delete/{lesson}/{audio}', [LessonController::class, 'audioDelete'])->name('lesson-audio-delete');
+Route::resource('/motivation', MotivationController::class);
