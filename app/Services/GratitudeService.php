@@ -8,8 +8,13 @@ use App\Http\Resources\GratitudeResource;
 
 class GratitudeService extends BaseService
 {
-    public function __construct(Gratitude $serviceModel)
+    protected ReplyService $replyService;
+    public function __construct(
+        Gratitude $serviceModel,
+        ReplyService $replyService
+        )
     {
+        $this->replyService = $replyService;
         $this->model = $serviceModel;
         $this->resource = GratitudeResource::class;
 
@@ -23,5 +28,16 @@ class GratitudeService extends BaseService
         $this->translationFields = ['name'];
 
         parent::__construct();
+    }
+
+    public function lastGratitude()
+    {
+        if ($last = $this->replyService->last()) {
+            $this->willParseToRelation = [
+                'replies'
+            ];
+            $gratitude = $this->show($last->gratitude_id);
+            return $gratitude;
+        }
     }
 }

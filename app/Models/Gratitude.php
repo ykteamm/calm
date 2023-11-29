@@ -15,4 +15,9 @@ class Gratitude extends BaseModel
     protected $fillable = [
         
     ];
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class, 'gratitude_id', 'id');
+    }
 }
