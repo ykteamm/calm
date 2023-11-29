@@ -29,6 +29,11 @@ class MeditationController extends Controller
         $this->meditatorService = $meditatorService;
     }
 
+    public function incViewsValue($meditation)
+    {
+        return $this->service->incViewsValue($meditation);
+    }
+
     public function index(IndexRequest $indexRequest)
     {
         $this->service->willParseToRelation = [

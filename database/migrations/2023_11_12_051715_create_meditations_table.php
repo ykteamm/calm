@@ -17,6 +17,7 @@ class CreateMeditationsTable extends Migration
             $table->id();
             $table->bigInteger('meditator_id');
             $table->bigInteger('category_id');
+            $table->bigInteger('views')->default(0);
             $table->timestamps();
         });
     }

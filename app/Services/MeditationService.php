@@ -14,13 +14,25 @@ class MeditationService extends BaseService
         $this->resource = MeditationResource::class;
 
         $this->likableFields = [
-            'name',
         ];
 
         $this->equalableFields = [
             'id',
+            'meditator_id',
+            'category_id'
         ];
 
         parent::__construct();
+    }
+
+    public function incViewsValue($meditation, $redirective = false)
+    {
+        if($meditation = $this->findById($meditation)) {
+            $meditation->views = $meditation->views + 1;
+            $meditation->save();
+            return $this->makeResponse(1, $meditation, null, 200, $redirective); 
+        } else {
+            return $this->makeResponse(0, null, 'Meditation not found', 404, $redirective);
+        }
     }
 }
