@@ -28,10 +28,20 @@ class MeditationController extends Controller
         $this->categoryService = $categoryService;
         $this->meditatorService = $meditatorService;
     }
-
-    public function incViewsValue($meditation)
+    
+    public function recentlyViewed(IndexRequest $indexRequest)
     {
-        return $this->service->incViewsValue($meditation);
+        return $this->service->recentlyViewed($indexRequest->validated());
+    }
+
+    public function popularByCategory(IndexRequest $indexRequest)
+    {
+        return $this->service->popularByCategory($indexRequest->validated());
+    }
+
+    public function markAsViewed($meditation)
+    {
+        return $this->service->markAsViewed($meditation);
     }
 
     public function index(IndexRequest $indexRequest)

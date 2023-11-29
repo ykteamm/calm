@@ -323,7 +323,9 @@ abstract class BaseService
             return $this->query->first();
         }
     }
-
+    /**
+     * @return Model|Builder|null
+     */
     public function findById($id, $query = null)
     {
         if(!$query) $this->setQuery();

@@ -17,13 +17,12 @@ class MeditationController extends Controller
 
     public function index(IndexRequest $indexRequest)
     {
-        $this->service->willParseToRelation = ['user', 'category'];
-        return $this->service->getListWithResponse($indexRequest);
+        return $this->service->getList($indexRequest->validated());
     }
 
     public function store(MeditationUpsertRequest $upsertRequest)
     {
-        return $this->service->createWithResponse($upsertRequest->validated());
+        return $this->service->create($upsertRequest->validated());
     }
 
     public function show($id)
@@ -33,11 +32,11 @@ class MeditationController extends Controller
 
     public function update($id, MeditationUpsertRequest $upsertRequest)
     {
-        return $this->service->editWithResponse($id, $upsertRequest->validated());
+        return $this->service->edit($id, $upsertRequest->validated());
     }
 
     public function destroy($id)
     {
-        return $this->service->deleteWithResponse($id);
+        return $this->service->delete($id);
     }
 }

@@ -34,4 +34,9 @@ class Meditation extends BaseModel
     {
         return $this->hasMany(Lesson::class, 'meditation_id', 'id');
     }
+
+    public function usershows()
+    {
+        return $this->hasMany(Usershow::class, 'meditation_id', 'id');
+    }
 }

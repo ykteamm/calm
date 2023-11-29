@@ -27,6 +27,7 @@ class IndexRequest extends FormRequest
             'pagination' => ['nullable'],
             'p' => ['nullable'],
             'rows' => ['nullable'],
+            'page' => ['nullable'],
             'filter' => ['nullable'],
             'sort' => ['nullable'],
             'language_code' => ['nullable'],

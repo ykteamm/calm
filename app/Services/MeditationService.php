@@ -8,8 +8,15 @@ use App\Http\Resources\MeditationResource;
 
 class MeditationService extends BaseService
 {
-    public function __construct(Meditation $serviceModel)
-    {
+    protected UsershowService $usershowService;
+    protected CategoryService $categoryService; 
+    public function __construct(
+        Meditation $serviceModel,
+        UsershowService $usershowService,
+        CategoryService $categoryService
+    ){
+        $this->usershowService = $usershowService;
+        $this->categoryService = $categoryService;
         $this->model = $serviceModel;
         $this->resource = MeditationResource::class;
 
@@ -25,14 +32,36 @@ class MeditationService extends BaseService
         parent::__construct();
     }
 
-    public function incViewsValue($meditation, $redirective = false)
+    public function markAsViewed($meditation, $redirective = false)
     {
         if($meditation = $this->findById($meditation)) {
+            if (!$this->usershowService->userViewExists($meditation->id)) {
+                $this->usershowService->create([
+                    'user_id' => auth()->id(),
+                    'meditation_id' => $meditation->id
+                ]);
+            }
             $meditation->views = $meditation->views + 1;
             $meditation->save();
             return $this->makeResponse(1, $meditation, null, 200, $redirective); 
         } else {
             return $this->makeResponse(0, null, 'Meditation not found', 404, $redirective);
         }
+    }
+
+    public function recentlyViewed($data)
+    {
+        $this->queryClosure = fn ($q) => $q->has('usershows');
+        return $this->getList($data);
+    }
+
+    public function popularByCategory($data)
+    {
+        $this->categoryService->willParseToRelation = [
+            'meditations' => [
+                fn ($q) => $q->orderBy('views', 'DESC') 
+            ]
+        ];
+        return $this->categoryService->getList($data);
     }
 }
