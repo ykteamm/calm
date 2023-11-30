@@ -11,6 +11,7 @@ use App\Http\Controllers\MeditatorController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MotivationController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\VariantController;
 
 Route::get('/', [MenuController::class, 'index']);
 Route::resource('/menu', MenuController::class);
@@ -34,3 +35,4 @@ Route::resource('/motivation', MotivationController::class);
 Route::resource('/gratitude', GratitudeController::class);
 Route::resource('/issue', IssueController::class);
 Route::resource('/question', QuestionController::class);
+Route::resource('/variant', VariantController::class);

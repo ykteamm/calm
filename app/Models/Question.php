@@ -16,4 +16,15 @@ class Question extends BaseModel
         'issue_id',
         'type'
     ];
+
+
+    public function variants()
+    {
+        return $this->hasMany(Variant::class, 'question_id', 'id');
+    }
+
+    public function issue()
+    {
+        return $this->belongsTo(Issue::class, 'issue_id', 'id');
+    }
 }

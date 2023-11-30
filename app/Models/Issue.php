@@ -15,4 +15,9 @@ class Issue extends BaseModel
     protected $fillable = [
         
     ];
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class, 'issue_id', 'id');
+    }
 }
