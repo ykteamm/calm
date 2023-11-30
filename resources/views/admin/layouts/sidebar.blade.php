@@ -61,6 +61,12 @@
             </a>
         </a>
     </div>
+    <div class="sidebar__item {{classer('admin.issue.index')}}">
+        <a href="{{route('admin.issue.index')}}" class="d-flex items-center text-17 lh-1 fw-500 ">
+        <i class="text-20 icon-setting mr-15"></i>
+        Issues
+        </a>
+    </div>
     <div class="sidebar__item {{classer('auth.logout')}}">
         <a href="{{route('auth.logout')}}" class="d-flex items-center text-17 lh-1 fw-500 ">
             <i class="text-20 icon-setting mr-15"></i>

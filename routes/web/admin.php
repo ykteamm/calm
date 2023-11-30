@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GratitudeController;
+use App\Http\Controllers\IssueController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\MeditationController;
@@ -30,3 +31,4 @@ Route::get('/lesson-audio-download/{lesson}/{audio}', [LessonController::class, 
 Route::delete('/lesson-audio-delete/{lesson}/{audio}', [LessonController::class, 'audioDelete'])->name('lesson-audio-delete');
 Route::resource('/motivation', MotivationController::class);
 Route::resource('/gratitude', GratitudeController::class);
+Route::resource('/issue', IssueController::class);
