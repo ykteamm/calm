@@ -18,6 +18,7 @@ class CreateVariantTranslationsTable extends Migration
             $table->bigInteger('object_id');
             $table->string('language_code');
             $table->string('name');
+            $table->text('answer');
             $table->index(['object_id']);
         });
     }

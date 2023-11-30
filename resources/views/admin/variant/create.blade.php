@@ -3,7 +3,7 @@
 <div class="dashboard__content bg-light-4">
   <div class="row pb-50 mb-10">
     <div class="col-auto">
-      <h1 class="text-30 lh-12 fw-700">Question</h1>
+      <h1 class="text-30 lh-12 fw-700">Variant</h1>
       <div class="mt-10">Lorem ipsum dolor sit amet, consectetur.</div>
     </div>
   </div>
@@ -21,10 +21,10 @@
               <div class="col-12">
                 @if (count($questions) == 0)
                   <div class="d-flex justify-between items-center py-20 px-30 border-bottom-light">
-                    <a href="{{route('admin.question.create')}}" class="text-14 text-purple-1 underline">Question create</a>
+                    <a href="{{route('admin.question.create')}}" class="text-14 text-purple-1 underline">Variant create</a>
                   </div>
                 @else  
-                  <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Questions select</label>
+                  <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Variant select</label>
                   <select name="question_id" id="">
                     @foreach ($questions as $question)
                       <option value="{{$question->id}}">{{$question->translation->name}}</option>
@@ -35,8 +35,10 @@
             </div>
             @foreach ($langs as $key => $lang)
                 <div class="col-12">
-                    <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Question title {{$lang->code}}</label>
-                    <input name="translations[{{$key}}][name]" type="text" placeholder="{{"Title $lang->code"}}">
+                    <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Variant {{$lang->code}}</label>
+                    <input name="translations[{{$key}}][name]" type="text" placeholder="{{"Variant $lang->code"}}">
+                    <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Answer {{$lang->code}}</label>
+                    <input name="translations[{{$key}}][answer]" type="text" placeholder="{{"Answer $lang->code"}}">
                     <input name="translations[{{$key}}][language_code]" type="text" value="{{$lang->code}}" style="display: none">
                 </div>
             @endforeach

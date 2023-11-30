@@ -36,9 +36,11 @@
             </div>
             @foreach ($langs as $key => $lang)
                 <div class="col-12">
-                    <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Variant title {{$lang->code}}</label>
+                    <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Variant {{$lang->code}}</label>
                     <input name="translations[{{$key}}][id]" type="text" @isset($variant->translations[$key]) value="{{$variant->translations[$key]->id}}" @endisset style="display: none">
-                    <input name="translations[{{$key}}][name]" type="text" @isset($variant->translations[$key]) value="{{$variant->translations[$key]->name}}" @endisset placeholder="{{"Title $lang->code"}}" >
+                    <input name="translations[{{$key}}][name]" type="text" @isset($variant->translations[$key]) value="{{$variant->translations[$key]->name}}" @endisset placeholder="{{"Variant $lang->code"}}" ><br>
+                    <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Answer {{$lang->code}}</label>
+                    <input name="translations[{{$key}}][answer]" type="text" @isset($variant->translations[$key]) value="{{$variant->translations[$key]->name}}" @endisset placeholder="{{"Answer $lang->code"}}" >
                     <input name="translations[{{$key}}][language_code]" type="text" value="{{$lang->code}}" style="display: none">
                 </div>
             @endforeach

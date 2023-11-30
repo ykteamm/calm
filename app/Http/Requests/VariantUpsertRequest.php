@@ -33,6 +33,7 @@ class VariantUpsertRequest extends FormRequest
             'translations.*' => [$required, 'array'],
             'translations.*.id' => ['nullable'],
             'translations.*.name' => [$required, 'string'],
+            'translations.*.answer' => [$required, 'string'],
             'translations.*.language_code' => [$required, 'string'],
         ];
     }

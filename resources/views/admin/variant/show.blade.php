@@ -12,10 +12,14 @@
       <div class="d-flex justify-between items-center py-20 px-30 border-bottom-light">
         <h2 class="text-17 fw-500">{{$variant->translation->name}}</h2>
       </div>
+      <div class="d-flex justify-between items-center py-20 px-30 border-bottom-light">
+        <h2 class="text-17 fw-500">{{$variant->translation->answer}}</h2>
+      </div>
       @foreach ($variant->translations as $tr)
         <div class="py-30 px-30 hover:green">
           <div class="d-flex" style="justify-content: space-between">
-            <h4 class="ml-10 text-15 lh-1 fw-500">{{$tr->name}}</h4>
+            <h4 class="ml-10 text-15 lh-1 fw-500">Variant:{{$tr->name}}</h4>
+            <h4 class="ml-10 text-15 lh-1 fw-500">Answer:{{$tr->answer}}</h4>
           </div>
         </div>
       @endforeach

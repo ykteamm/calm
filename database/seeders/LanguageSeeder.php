@@ -16,8 +16,8 @@ class LanguageSeeder extends Seeder
     {
         $data = [
             ['name' => 'O\'zbekcha', 'code' => 'uz', 'is_active' => 1],
-            ['name' => 'Русский', 'code' => 'ru', 'is_active' => 1],
-            ['name' => 'English', 'code' => 'en', 'is_active' => 1],
+            // ['name' => 'Русский', 'code' => 'ru', 'is_active' => 1],
+            // ['name' => 'English', 'code' => 'en', 'is_active' => 1],
         ];
 
         Language::truncate();
