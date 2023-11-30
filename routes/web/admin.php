@@ -10,6 +10,7 @@ use App\Http\Controllers\MeditationController;
 use App\Http\Controllers\MeditatorController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MotivationController;
+use App\Http\Controllers\QuestionController;
 
 Route::get('/', [MenuController::class, 'index']);
 Route::resource('/menu', MenuController::class);
@@ -32,3 +33,4 @@ Route::delete('/lesson-audio-delete/{lesson}/{audio}', [LessonController::class,
 Route::resource('/motivation', MotivationController::class);
 Route::resource('/gratitude', GratitudeController::class);
 Route::resource('/issue', IssueController::class);
+Route::resource('/question', QuestionController::class);
