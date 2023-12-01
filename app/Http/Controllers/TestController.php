@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gratitude;
+use App\Models\GratitudeTranslation;
+use App\Models\Motivation;
+use App\Models\MotivationTranslation;
 use App\Services\CategoryService;
 use App\Controllers\CategoryController;
 use App\Services\MenuService;
@@ -28,7 +32,7 @@ class TestController extends Controller
                 'translation' => [],
                 'meditations' => [
                     'meditator' => [
-                        'image'=> [], 
+                        'image'=> [],
                         'avatar' => []
                     ],
                     'translation' => []
@@ -36,9 +40,61 @@ class TestController extends Controller
             ]
         ];
         $data = $this->menu_service->getList($indexRequest->validated());
+        $time = date('H:i:s');
+        $id = Motivation::inRandomOrder()
+            ->select('id')->first();
+        $motivation = MotivationTranslation::where('object_id', $id->id)->get();
+
+        $graduate_id = Gratitude::inRandomOrder()->select('id')->first();
+        $graduate = GratitudeTranslation::where('object_id', $graduate_id->id)->get();
+
+
+
+
         return view("user.index",[
+            'graduate'=>$graduate,
+            'motivation'=>$motivation,
+            'time'=>$time,
             'categories' => $data,
             'categories_sub' => $data[0]->categories
         ]);
     }
+
+    public function manzara(IndexRequest $indexRequest)
+    {
+
+        $this->menu_service->willParseToRelation = [
+            'translation',
+            'categories' => [
+                'translation' => [],
+                'meditations' => [
+                    'meditator' => [
+                        'image'=> [],
+                        'avatar' => []
+                    ],
+                    'translation' => []
+                ]
+            ]
+        ];
+        $data = $this->menu_service->getList($indexRequest->validated());
+        $time = date('H:i:s');
+        $id = Motivation::inRandomOrder()
+            ->select('id')->first();
+        $motivation = MotivationTranslation::where('object_id', $id->id)->get();
+
+        $graduate_id = Gratitude::inRandomOrder()->select('id')->first();
+        $graduate = GratitudeTranslation::where('object_id', $graduate_id->id)->get();
+
+
+
+
+        return view("user.manzara",[
+            'graduate'=>$graduate,
+            'motivation'=>$motivation,
+            'time'=>$time,
+            'categories' => $data,
+            'categories_sub' => $data[0]->categories
+        ]);
+    }
+
 }

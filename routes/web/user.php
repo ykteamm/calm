@@ -6,6 +6,7 @@ use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [TestController::class, 'index'])->name('index');
+Route::get('/manzara', [TestController::class, 'manzara'])->name('manzara');
 Route::group(['middleware' => ['auth', 'user.type:admin']], function () {
     Route::get('/last-reply', [ReplyController::class, 'lastReply'])->name('reply.last-reply');
     Route::post('/reply', [ReplyController::class, 'store'])->name('reply.store');
