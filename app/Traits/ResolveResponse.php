@@ -95,6 +95,7 @@ class Result
         if(str_contains($ok, '.')) $ok = route($ok);
         if(str_contains($no, '.')) $no = route($no);
         if ($this->error) {
+            dd($this->error);
             return redirect($no, $status, $headers, $secure)->with($this->key, $this->error);
         } else {
             return redirect($ok, $status, $headers, $secure);

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\EmojiController;
 use App\Http\Controllers\GratitudeController;
 use App\Http\Controllers\IssueController;
 use App\Http\Controllers\LanguageController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\MeditatorController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MotivationController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\SmileController;
 use App\Http\Controllers\VariantController;
 
 Route::get('/', [MenuController::class, 'index']);
@@ -36,3 +38,8 @@ Route::resource('/gratitude', GratitudeController::class);
 Route::resource('/issue', IssueController::class);
 Route::resource('/question', QuestionController::class);
 Route::resource('/variant', VariantController::class);
+Route::resource('/emoji', EmojiController::class);
+Route::post('/emoji-upload/{emoji}', [EmojiController::class, 'upload'])->name('emoji-upload');
+Route::post('/emoji-reupload/{emoji}/{asset}', [EmojiController::class, 'reupload'])->name('emoji-reupload');
+Route::delete('/emoji-unupload/{emoji}/{asset}', [EmojiController::class, 'unupload'])->name('emoji-unupload');
+Route::get('/emoji-image/{emoji}', [EmojiController::class, 'image'])->name('emoji-image-view');

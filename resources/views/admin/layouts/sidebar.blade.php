@@ -80,6 +80,12 @@
             Variants
         </a>
     </div>
+    <div class="sidebar__item {{classer('admin.emoji.index')}}">
+        <a href="{{route('admin.emoji.index')}}" class="d-flex items-center text-17 lh-1 fw-500 ">
+            <i class="text-20 icon-message mr-15"></i>
+            Emojies
+        </a>
+    </div>
     <div class="sidebar__item {{classer('auth.logout')}}">
         <a href="{{route('auth.logout')}}" class="d-flex items-center text-17 lh-1 fw-500 ">
             <i class="text-20 icon-setting mr-15"></i>
