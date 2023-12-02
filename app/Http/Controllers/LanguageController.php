@@ -22,13 +22,14 @@ class LanguageController extends Controller
     {
         $prev = url()->previous();
         if($this->service->existsByColumn('code', $locale)) {
-            app()->setLocale($locale);
             foreach (explode('/', $prev) as $item) {
                 if($this->service->existsByColumn('code', $item)) {
+                    app()->setLocale($locale);
                     $prev = str_replace($item, $locale, $prev);
                     session()->put('locale', $locale);
                     break;
                 } else if (str_starts_with($item, $locale)) {
+                    app()->setLocale($locale);
                     $prev = str_replace($item, $locale, $prev);
                     session()->put('locale', $locale);
                     break;
