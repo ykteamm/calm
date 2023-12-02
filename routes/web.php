@@ -4,6 +4,7 @@
 use App\Http\Controllers\MeditationController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
@@ -31,5 +32,7 @@ Route::group([], function () {
     Route::name('')->group(base_path('routes/web/user.php'));
 });
 Route::group(['middleware' => ['auth', 'user.type:admin']], function () {
-    Route::prefix('admin')->name('admin.')->group(base_path('routes/web/admin.php'));
+    $locale = app()->getLocale();
+    Route::get('admin-change-locale/{locale}', [LanguageController::class, 'changeLocale'])->name('admin-change-locale');
+    Route::prefix("$locale/admin")->name('admin.')->group(base_path('routes/web/admin.php'));
 });

@@ -21,7 +21,7 @@
       <div class="col-auto">
         <div class="d-flex items-center">
           <div class="text-white d-flex items-center lg:d-none mr-15">
-            <div class="dropdown bg-transparent px-0 py-0">
+            {{-- <div class="dropdown bg-transparent px-0 py-0">
               <div class="d-flex items-center text-14 text-dark-1">
                 All Pages <i class="text-9 icon-chevron-down ml-10"></i>
               </div>
@@ -33,6 +33,19 @@
                   <div><a href="dshb-listing.html" class="d-block text-dark-1">Add Listing</a></div>
                   <div><a href="dshb-reviews.html" class="d-block text-dark-1">Reviews</a></div>
                   <div><a href="dshb-settings.html" class="d-block text-dark-1">Settings</a></div>
+                </div>
+              </div>
+            </div> --}}
+
+            <div class="dropdown bg-transparent px-0 py-0">
+              <div class="d-flex items-center text-14 text-dark-1">
+                Lang <i class="text-9 icon-chevron-down ml-10"></i>
+              </div>
+              <div class="dropdown__item -dark-bg-dark-2 -dark-border-white-10">
+                <div class="text-14 y-gap-15">
+                  @foreach (getLanguages() as $lang)
+                    <div><a href="{{route('admin-change-locale', ['locale' => $lang->code])}}" class="d-block text-dark-1">{{$lang->name}}</a></div>
+                  @endforeach
                 </div>
               </div>
             </div>

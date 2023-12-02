@@ -18,6 +18,22 @@ class LanguageController extends Controller
         $this->service = $service;
     }
 
+    public function changeLocale($locale) 
+    {
+        $prev = url()->previous();
+        if($this->service->existsByColumn('code', $locale)) {
+            app()->setLocale($locale);
+            foreach (explode('/', $prev) as $item) {
+                if($this->service->existsByColumn('code', $item)) {
+                    $prev = str_replace($item, $locale, $prev);
+                    session()->put('locale', $locale);
+                    break;
+                }
+            }
+        }
+        return redirect($prev);
+    }
+
     public function index(IndexRequest $indexRequest)
     {
         $languages = $this->service->getList($indexRequest);

@@ -1,5 +1,14 @@
 <?php
 
+use App\Models\Language;
+
+if(!function_exists('getLanguages')) {
+    function getLanguages()
+    {
+        return Language::all();
+    }
+}
+
 if (!function_exists("parseToRelation")) {
     function parseToRelation($relations = null)
     {
