@@ -28,6 +28,10 @@ class LanguageController extends Controller
                     $prev = str_replace($item, $locale, $prev);
                     session()->put('locale', $locale);
                     break;
+                } else if (str_starts_with($item, $locale)) {
+                    $prev = str_replace($item, $locale, $prev);
+                    session()->put('locale', $locale);
+                    break;
                 }
             }
         }
