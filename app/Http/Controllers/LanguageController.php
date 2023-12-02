@@ -27,16 +27,16 @@ class LanguageController extends Controller
                     app()->setLocale($locale);
                     $prev = str_replace($item, $locale, $prev);
                     session()->put('locale', $locale);
-                    break;
+                    return redirect($prev);
                 } else if (str_starts_with($item, $locale)) {
                     app()->setLocale($locale);
                     $prev = str_replace($item, $locale, $prev);
                     session()->put('locale', $locale);
-                    break;
+                    return redirect($prev);
                 }
             }
+            return redirect($locale . '/admin');
         }
-        return redirect($prev);
     }
 
     public function index(IndexRequest $indexRequest)
