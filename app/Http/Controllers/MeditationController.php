@@ -16,9 +16,9 @@ class MeditationController extends Controller
     protected LanguageService $languageService;
     protected CategoryService $categoryService;
     protected MeditatorService $meditatorService;
-    
+
     public function __construct(
-        MeditationService $service, 
+        MeditationService $service,
         LanguageService $languageService,
         CategoryService $categoryService,
         MeditatorService $meditatorService
@@ -28,7 +28,7 @@ class MeditationController extends Controller
         $this->categoryService = $categoryService;
         $this->meditatorService = $meditatorService;
     }
-    
+
     public function recentlyViewed(IndexRequest $indexRequest)
     {
         return $this->service->recentlyViewed($indexRequest->validated());
@@ -73,8 +73,8 @@ class MeditationController extends Controller
     public function show($id)
     {
         $this->service->willParseToRelation = ['lessons' => ['audio' => [], 'translation' => []]];
-        $meditation = $this->service->show($id);
-        return view('admin.meditation.show', compact('meditation'));
+        $medidation = $this->service->show($id);
+        return view('user.meditation.play', compact('medidation'));
     }
 
     public function edit($id)

@@ -24,8 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $urlArray = explode('/', request()->path());
-        $locale = $urlArray[0]; 
-        app()->setLocale($locale);
+//        $urlArray = explode('/', request()->path());
+//        $locale = $urlArray[0];
+//        app()->setLocale($locale);
     }
 }

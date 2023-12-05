@@ -20,7 +20,7 @@ class AuthController extends Controller
         $this->authService = $service;
         $this->userService = $userService;
     }
-    
+
     public function register(RegisterRequest $registerRequest)
     {
         $data = $registerRequest->validated();
@@ -35,6 +35,7 @@ class AuthController extends Controller
     {
         $data = $loginRequest->validated();
         $data['password'] = 'password';
+
         if(Auth::guard('web')->attempt($data)) return redirect('/');
         else return back()->with('error', 'Username incorrect');
     }

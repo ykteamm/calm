@@ -7515,6 +7515,12 @@ h1, h2, h3, h4, h5, h6 {
     transform: rotate(90deg);
     opacity: 0;
 }
+.active_add{
+    background: #115d98;
+}
+.active_add_card{
+    border:5px solid #1977be
+}
 
 .accordion__item.is-active .accordion__icon > *:nth-child(2) {
     transform: none;
@@ -15937,3 +15943,4 @@ table.table td {
     border-radius: 100%;
     background: white;
 }
+

@@ -29,9 +29,18 @@
                             <div class="icon-circle mr-10">
                                 <i class="icon-discovery"></i>
                             </div>
-                            Manzara Uz
+                            Manzara
                         </a>
                     </div>
+
+{{--                    <div class="sidebar__item text-color-white mb-20">--}}
+{{--                        <a href="{{url('free')}}" class="-dark-sidebar-white d-flex items-center lh-1 fw-500">--}}
+{{--                            <div class="icon-circle mr-10">--}}
+{{--                                <i class="icon-discovery"></i>--}}
+{{--                            </div>--}}
+{{--                            Savollar--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
 
 
               </div>
@@ -44,6 +53,8 @@
 
       <div class="dashboard__main mt-0 main-color">
         <div class="dashboard__content pt-0 px-15 pb-0">
+
+
 
             <div class="container pt-40">
                 <div class="col-auto">
@@ -58,7 +69,10 @@
                         @else
                             Hayrli tung,
                         @endif
-                        Abrorbek
+                        @auth
+                            {{auth()->user()->username}}
+                        @endauth
+{{--                        Abrorbek--}}
                     </h1>
                 </div>
             </div>
@@ -285,12 +299,13 @@
                           <div class="swiper-slide">
                             <div data-anim-child="slide-up delay-2">
 
-                              <a href="{{route('meditation.show',$f->id)}}" class="coursesCard -type-1 ">
+                              <a href="" class="coursesCard -type-1 ">
                                 <div class="relative">
                                   <div class="coursesCard__image overflow-hidden rounded-8">
-                                    @if ($f->image)
-                                      <img class="w-1/1" src="{{asset($f->image->path)}}" alt="image">
-                                    @endif
+{{--                                    @if ($f->image)--}}
+                                      <img class="w-1/1" src="https://assets.calm.com/640/609df0416991dfe06e3c61e779158566.png" alt="image">
+{{--                                          <img class="w-1/1" src="{{asset($f->image->path)}}" alt="image">--}}
+{{--                                    @endif--}}
                                     <div class="coursesCard__image_overlay rounded-8"></div>
                                   </div>
                                   <div class="d-flex justify-between py-10 px-10 absolute-full-center z-3">
@@ -390,10 +405,13 @@
                                                 </h5>
                                             @endif
                                         @endforeach
+
                                     </div>
+
                                     <div class="col-md-1 col-sm-1 col-1">
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
+
                                     <br><br>
                                     <div class="col-md-12 text-center">
                                         <h6 class="modal-title text-color-white-for" id="question" style="cursor: pointer;">
@@ -405,19 +423,28 @@
                                 </div>
 
                                 <div class="modal-body">
-                                    <form action="" class="contact-form" method="POST">
+                                    <form action="{{url('create-reply')}}" class="contact-form" method="POST">
+                                        @csrf
+
+                                        <input type="hidden" value="2" name="user_id">
+                                        @foreach($graduate as $grad)
+                                            @if($grad->language_code == "en")
+                                                <input type="hidden" value="{{$grad->object_id}}" name="gratitude_id">
+                                            @endif
+                                        @endforeach
+
                                         <div class="row">
                                             <div class="col-12 d-flex align-items-center">
                                                 <label class="text-16 lh-1 fw-500 text-dark-1 mb-10 text-color-white-for">1.</label>
-                                                <input type="text" class="placeholder123" name="title1" placeholder="I'm grateful for...">
+                                                <input type="text" class="placeholder123" name="titles[]" placeholder="I'm grateful for...">
                                             </div>
                                             <div class="col-12 d-flex align-items-center">
                                                 <label class="text-16 lh-1 fw-500 text-dark-1 mb-10 text-color-white-for">2.</label>
-                                                <input type="text" class="placeholder123" name="title2" placeholder="I'm grateful for...">
+                                                <input type="text" class="placeholder123" name="titles[]" placeholder="I'm grateful for...">
                                             </div>
                                             <div class="col-12 d-flex align-items-center">
                                                 <label class="text-16 lh-1 fw-500 text-dark-1 mb-10 text-color-white-for">3.</label>
-                                                <input type="text" class="placeholder123" name="title3" placeholder="I'm grateful for...">
+                                                <input type="text" class="placeholder123" name="titles[]" placeholder="I'm grateful for...">
                                             </div>
                                         </div>
                                         <div class="modal-footer" style="border: none">

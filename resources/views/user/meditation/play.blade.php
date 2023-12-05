@@ -1,8 +1,9 @@
 @extends('user.layouts.app')
 @section('user_content')
 <div class="content-wrapper js-content-wrapper">
-    <div class="dashboard -home-9 px-0 js-dashboard-home-9" style="background-image: url('/images2/images/{{$medidation->meditator->image->name}}.{{$medidation->meditator->image->extension}}');height:100vh;background-size: cover;">
-      <div class="dashboard__sidebar -base scroll-bar-1 border-right-light lg:px-30 mt0 height100 pd" style="background: rgba(0, 0, 0, 0.3);backdrop-filter: blur(12px);">
+{{--    <div class="dashboard -home-9 px-0 js-dashboard-home-9" style="background-image: url('/images2/images/{{$medidation->meditator->image->name}}.{{$medidation->meditator->image->extension}}');height:100vh;background-size: cover;">--}}
+    <div class="dashboard -home-9 px-0 js-dashboard-home-9" style="background-image: url('https://assets.calm.com/384/9c1d8d0876904827cf12a9cc228ad435.jpeg');height:100vh;background-size: cover;" >
+    <div class="dashboard__sidebar -base scroll-bar-1 border-right-light lg:px-30 mt0 height100 pd" style="background: rgba(0, 0, 0, 0.3);backdrop-filter: blur(12px);">
 
         <div class="sidebar -base-sidebar">
           <div class="sidebar__inner">
@@ -61,13 +62,13 @@
                               <div class="testimonials__author">
                                 {{-- <h5 class="text-17 lh-15 fw-500">Ali Tufan</h5>
                                 <div class="mt-5">Product Manager, Apple Inc</div> --}}
-                                
+
                                 <div class="mt-25">
 
-                                  
-        
+
+
                                   @foreach ($medidation->lessons as $vali)
-                                      
+
 
                                   <div class="d-flex justify-between py-8 mb-40">
                                     <div class="d-flex items-center text-dark-1">
@@ -78,13 +79,13 @@
                                     <div class="text-dark-1">{{$vali->audios[0]->duration}} m</div>
                                   </div>
                                   @endforeach
-        
+
                                 </div>
                               </div>
                             {{-- </div> --}}
                           {{-- </div> --}}
 
-                          
+
 
                         {{-- </div> --}}
 
@@ -113,7 +114,7 @@
   <div class="player">
     <div class="p-controls-panel">
       <div class="p-title">
-        1.Calm music 
+        1.Calm music
       </div>
       <div class="p-buttons">
           <div class="p-prev-track" onclick="prevTrack()"><i class="fa fa-step-backward fa-1x"></i></div>

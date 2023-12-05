@@ -34,6 +34,15 @@
                         </a>
                     </div>
 
+                    <div class="sidebar__item text-color-white mb-20">
+                        <a href="{{url('free')}}" class="-dark-sidebar-white d-flex items-center lh-1 fw-500">
+                            <div class="icon-circle mr-10">
+                                <i class="icon-discovery"></i>
+                            </div>
+                            Free Uz
+                        </a>
+                    </div>
+
 
               </div>
             </div>

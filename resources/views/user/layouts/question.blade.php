@@ -5,12 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Medidation</title>
-
         @include('partials.css')
+        @livewireStyles
 
 
     </head>
-    <body class="preloader-visible" data-barba="wrapper">
+    <body class="preloader-visible main-color" data-barba="wrapper" >
 
         <!-- preloader start -->
             @include('components.loader')
@@ -33,8 +33,10 @@
         <!-- barba container end -->
 
         <!-- JavaScript -->
-{{--        <script src="https://cdn.jsdelivr.net/gh/livewire/vue@v0.3.x/dist/livewire-vue.js"></script>--}}
         @include('partials.js')
+        <script src="{{asset('calm/js/one_active_click.js')}}"></script>
+        @livewireScripts
 
-      </body>
+
+    </body>
 </html>
