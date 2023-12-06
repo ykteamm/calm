@@ -6,6 +6,7 @@
 
         <title>Medidation</title>
         @include('partials.css')
+        <link rel="stylesheet" href="{{asset('calm/css/animation.css')}}">
         @livewireStyles
 
 
@@ -35,6 +36,22 @@
         <!-- JavaScript -->
         @include('partials.js')
         <script src="{{asset('calm/js/one_active_click.js')}}"></script>
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function () {
+                setTimeout(function () {
+                    document.getElementById('load').classList.add('d-none');
+                    document.getElementById('ready').style.opacity = 1;
+                    document.getElementById('ready').classList.add('show');
+                }, 10000); // 20000 == 20 seconds
+
+                setTimeout(function () {
+                    document.getElementById('account').classList.remove('d-none');
+                    document.getElementById('log_in').classList.remove('d-none');
+                    document.getElementById('account').classList.add('show');
+                    document.getElementById('log_in').classList.add('show');
+                }, 13000);
+            });
+        </script>
         @livewireScripts
 
 

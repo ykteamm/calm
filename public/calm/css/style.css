@@ -1,6 +1,6 @@
 
 
-.mt0 
+.mt0
 {
     margin-top: 0px;
 }
@@ -56,7 +56,7 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
-} 
+}
 .player.open {
   bottom: 0;
 }
@@ -185,6 +185,10 @@ i.fa-step-backward {
   cursor: pointer;
 }
 @media (max-width: 500px) {
+  .dashboard__sidebar{
+      display: none;
+  }
+
   .p-controls-panel {
     width: 100%;
     display: flex;

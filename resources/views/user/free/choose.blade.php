@@ -7,8 +7,8 @@
     <div class="content-wrapper js-content-wrapper">
         <div class="-home-9 px-0 js-dashboard-home-9">
             <div class="container">
-                <div class="mt-30">
-                    <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                <div class="mt-20">
+                    <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="height: 8px">
                         <div class="progress-bar" style="width: 10%"></div>
                     </div>
                 </div>
@@ -16,7 +16,7 @@
 
             <section class="">
                 <div class="container mt-30">
-                    <h3 class="text-color-white-for text-center">
+                    <h3 class="text-color-white-for text-center font_family_a">
                         What wellness goals can Balance help you achieve?
                     </h3>
                 </div>
@@ -34,8 +34,8 @@
                                     <div class="blogCard__image ratio ratio-3:2">
                                         <img class="img-ratio" src="../calm/img/home-3/blog/img.png" alt="image">
                                     </div>
-                                    <div class="px-30 py-30 bg-white">
-                                        <h4 class="text-17 lh-15 fw-500">Reduce Stress</h4>
+                                    <div class="px-15 py-15 text-center bg-white">
+                                        <h4 class="text-17 lh-15 fw-500 font_family_a">Reduce Stress</h4>
                                     </div>
                                 </div>
                             </div>
@@ -46,8 +46,8 @@
                                     <div class="blogCard__image ratio ratio-3:2">
                                         <img class="img-ratio" src="../calm/img/home-3/blog/img_1.png" alt="image">
                                     </div>
-                                    <div class="px-30 py-30 bg-white">
-                                        <h4 class="text-17 lh-15 fw-500" >Improve Sleep</h4>
+                                    <div class="px-15 py-15 text-center bg-white">
+                                        <h4 class="text-17 lh-15 fw-500 font_family_a" >Improve Sleep</h4>
                                     </div>
 
                                 </div>
@@ -59,8 +59,8 @@
                                     <div class="blogCard__image ratio ratio-3:2">
                                         <img class="img-ratio" src="../calm/img/home-3/blog/img.png" alt="image">
                                     </div>
-                                    <div class="px-30 py-30 bg-white">
-                                        <h4 class="text-17 lh-15 fw-500" >Increase Focus</h4>
+                                    <div class="px-15 py-15 text-center bg-white">
+                                        <h4 class="text-17 lh-15 fw-500 font_family_a" >Increase Focus</h4>
                                     </div>
                                 </div>
                             </div>
@@ -71,8 +71,8 @@
                                     <div class="blogCard__image ratio ratio-3:2">
                                         <img class="img-ratio" src="../calm/img/home-3/blog/img_1.png" alt="image">
                                     </div>
-                                    <div class="px-30 py-30 bg-white">
-                                        <h4 class="text-17 lh-15 fw-500" >Improve Mood</h4>
+                                    <div class="px-15 py-15 text-center bg-white">
+                                        <h4 class="text-17 lh-15 fw-500 font_family_a" >Improve Mood</h4>
                                     </div>
 
                                 </div>
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                     <div class="text-center mt-30">
-                        <button type="submit" id="submit_choose" class="btn btn-primary">Continue</button>
+                        <button type="submit" id="submit_choose" class="btn btn-primary font_family_a">Continue</button>
                     </div>
                 </form>
             </section>

@@ -7,8 +7,8 @@
     <div class="content-wrapper js-content-wrapper">
         <div class="-home-9 px-0 js-dashboard-home-9">
             <div class="container">
-                <div class="mt-30">
-                    <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                <div class="mt-20">
+                    <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="height: 8px">
                         <div class="progress-bar" style="width: 20%"></div>
                     </div>
                 </div>
@@ -16,7 +16,7 @@
 
             <section class="">
                 <div class="container mt-30">
-                    <h3 class="text-color-white-for text-center">
+                    <h3 class="text-color-white-for text-center font_family_a">
                         Here's what our members are saying:
                     </h3>
                 </div>
@@ -35,8 +35,8 @@
                                         <div class="blogCard__image ratio ratio-3:2">
                                             <img class="img-ratio" src="../../calm/img/home-3/blog/img.png" alt="image">
                                         </div>
-                                        <div class="px-30 py-30 bg-white">
-                                            <h4 class="text-17 lh-15 fw-500">95% report less stress</h4>
+                                        <div class="px-15 py-15 text-center bg-white">
+                                            <h4 class="text-17 lh-15 fw-500 font_family_a">95% report less stress</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -47,8 +47,8 @@
                                         <div class="blogCard__image ratio ratio-3:2">
                                             <img class="img-ratio" src="../../calm/img/home-3/blog/img_1.png" alt="image">
                                         </div>
-                                        <div class="px-30 py-30 bg-white">
-                                            <h4 class="text-17 lh-15 fw-500">82% report better sleep</h4>
+                                        <div class="px-15 py-15 text-center bg-white">
+                                            <h4 class="text-17 lh-15 fw-500 font_family_a">82% report better sleep</h4>
                                         </div>
 
                                     </div>
@@ -60,8 +60,8 @@
                                         <div class="blogCard__image ratio ratio-3:2">
                                             <img class="img-ratio" src="../../calm/img/home-3/blog/img.png" alt="image">
                                         </div>
-                                        <div class="px-30 py-30 bg-white">
-                                            <h4 class="text-17 lh-15 fw-500">75% report increased focus</h4>
+                                        <div class="px-15 py-15 text-center bg-white">
+                                            <h4 class="text-17 lh-15 fw-500 font_family_a" >75% report increased focus</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -72,8 +72,8 @@
                                         <div class="blogCard__image ratio ratio-3:2">
                                             <img class="img-ratio" src="../../calm/img/home-3/blog/img_1.png" alt="image">
                                         </div>
-                                        <div class="px-30 py-30 bg-white">
-                                            <h4 class="text-17 lh-15 fw-500">92% report improved mood</h4>
+                                        <div class="px-15 py-15 text-center bg-white">
+                                            <h4 class="text-17 lh-15 fw-500 font_family_a">92% report improved mood</h4>
                                         </div>
 
                                     </div>

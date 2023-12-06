@@ -15,6 +15,8 @@
 <script>
     var audioElement1 = document.getElementById('audio-player');
     var audioElement2 = document.getElementById('audio-player-1');
+    var video_bg = document.getElementById('myVideo');
+    var video_bg1 = document.getElementById('myVideo1');
     var isPlaying1 = false;
     var isPlaying2 = false;
 
@@ -23,9 +25,13 @@
             audioElement.play();
             if (audioElement === audioElement1) {
                 isPlaying1 = true;
+                video_bg.style.display = 'block';
+                video_bg1.style.display = 'none';
                 isPlaying2 = false;
             } else if (audioElement === audioElement2) {
                 isPlaying1 = false;
+                video_bg.style.display = 'none';
+                video_bg1.style.display = 'block';
                 isPlaying2 = true;
             }
 
@@ -34,12 +40,15 @@
                 audioElement.currentTime = 0;
                 audioElement.play();
             });
+            // video_bg.style.display = 'none';
         }
         if (task === 'stop') {
             audioElement.pause();
             audioElement.currentTime = 0;
             isPlaying1 = false;
             isPlaying2 = false;
+
+            // video_bg.style.display = 'block';
         }
     }
 
@@ -68,71 +77,6 @@
         audioElement2.load();
     });
 </script>
-
-
-{{--<script>--}}
-{{--    var audioElement = document.querySelector('.my_audio');--}}
-{{--    var audioElement1 = document.querySelector('.my_audio1');--}}
-{{--    var isPlaying = false;--}}
-
-{{--    function play_audio(task) {--}}
-{{--        if (task === 'play') {--}}
-{{--            audioElement.play();--}}
-{{--            isPlaying = true;--}}
-
-{{--            // Qaytaruvchi (looper) qo'shish--}}
-{{--            audioElement.addEventListener('ended', function() {--}}
-{{--                audioElement.currentTime = 0;--}}
-{{--                audioElement.play();--}}
-{{--            });--}}
-{{--        }--}}
-{{--        if (task === 'stop') {--}}
-{{--            audioElement.pause();--}}
-{{--            audioElement.currentTime = 0;--}}
-{{--            isPlaying = false;--}}
-{{--        }--}}
-{{--    }--}}
-{{--    function play_audio1(task1) {--}}
-{{--        if (task1 === 'play') {--}}
-{{--            audioElement1.play();--}}
-{{--            isPlaying = true;--}}
-
-{{--            // Qaytaruvchi (looper) qo'shish--}}
-{{--            audioElement1.addEventListener('ended', function() {--}}
-{{--                audioElement1.currentTime = 0;--}}
-{{--                audioElement1.play();--}}
-{{--            });--}}
-{{--        }--}}
-{{--        if (task1 === 'stop') {--}}
-{{--            audioElement1.pause();--}}
-{{--            audioElement1.currentTime = 0;--}}
-{{--            isPlaying = false;--}}
-{{--        }--}}
-{{--    }--}}
-
-{{--    document.getElementById('playBtn').addEventListener('click', function() {--}}
-{{--        if (!isPlaying) {--}}
-{{--            play_audio('play');--}}
-{{--        }--}}
-{{--    });--}}
-{{--    document.getElementById('playBtn1').addEventListener('click', function() {--}}
-{{--        if (!isPlaying) {--}}
-{{--            play_audio1('play');--}}
-{{--        }--}}
-{{--    });--}}
-
-{{--    document.getElementById('stopBtn').addEventListener('click', function() {--}}
-{{--        play_audio('stop');--}}
-{{--    });--}}
-
-{{--    // Saqlangan sahifani ochib bo'lganda audio ni yuklash--}}
-{{--    window.addEventListener('load', function() {--}}
-{{--        audioElement.load();--}}
-{{--    });--}}
-{{--    window.addEventListener('load', function() {--}}
-{{--        audioElement1.load();--}}
-{{--    });--}}
-{{--</script>--}}
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
