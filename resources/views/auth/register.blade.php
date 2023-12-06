@@ -16,18 +16,8 @@
         <div class="py-30 px-30">
           <form class="contact-form row y-gap-30" action="{{route('auth.register')}}" method="POST">
             @csrf
-            <div class="mb-10">
-              <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Firstname</label>
-              <input name="firstname" type="text" placeholder="Firstname">
-            </div>
-            <div class="mb-10">
-              <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Lastname</label>
-              <input name="lastname" type="text" placeholder="Lastname">
-            </div>
-            <div class="mb-10">
-              <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Phone number</label>
-              <input name="phone" type="text" placeholder="Phone number">
-            </div>
+            <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Username</label>
+            <input name="username" type="text" placeholder="Username">
             <div class="row justify-between pt-15">
               <div class="col-auto">
               </div>
