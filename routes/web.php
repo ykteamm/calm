@@ -40,6 +40,10 @@ Route::post('/free/choose/keep_awake', [TestController::class, 'keep_awake'])->n
 
 Route::post('/free/choose/morning_night', [TestController::class, 'morning_night'])->name('free-choose-morning_night');
 
+Route::post('/free/choose/xavotir', [TestController::class, 'xavotir'])->name('free-choose-xavotir');
+
+Route::post('/free/choose/depressiya', [TestController::class, 'depressiya'])->name('free-choose-depressiya');
+
 Route::post('/free/choose/age', [TestController::class, 'age'])->name('free-choose-age');
 
 Route::post('/free/choose/age_metrics', [TestController::class, 'age_metrics'])->name('free-choose-age_metrics');

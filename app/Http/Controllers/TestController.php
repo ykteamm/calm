@@ -185,6 +185,18 @@ class TestController extends Controller
         return view("user.free.morning_night");
     }
 
+        public function xavotir()
+    {
+
+        return view("user.free.xavotir");
+    }
+
+    public function depressiya()
+    {
+
+        return view("user.free.depressiya");
+    }
+
     public function age()
     {
 
