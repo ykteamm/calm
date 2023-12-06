@@ -12,17 +12,23 @@ use App\Controllers\CategoryController;
 use App\Services\MenuService;
 use Illuminate\Http\Request;
 use App\Http\Requests\IndexRequest;
-
+use App\Services\EmojiService;
 
 class TestController extends Controller
 {
 
     protected CategoryService $service;
     protected MenuService $menu_service;
-    public function __construct(CategoryService $service,MenuService $menu_service)
+    protected EmojiService $emojiService;
+    public function __construct(
+        CategoryService $service,
+        MenuService $menu_service,
+        EmojiService $emojiService
+    )
     {
         $this->service = $service;
         $this->menu_service = $menu_service;
+        $this->emojiService = $emojiService;
     }
     public function index(IndexRequest $indexRequest)
     {
@@ -49,12 +55,11 @@ class TestController extends Controller
 
         $graduate_id = Gratitude::inRandomOrder()->select('id')->first();
         $graduate = GratitudeTranslation::where('object_id', $graduate_id->id)->get();
-
-
-
-
+        $emojies = $this->emojiService->withRelation(['image'])->getList([]);
+        // return $data[0]->categories;
 //        dd($data[0]->categories[2]->meditations);
         return view("user.index",[
+            'emojies' => $emojies,
             'graduate'=>$graduate,
             'motivation'=>$motivation,
             'time'=>$time,

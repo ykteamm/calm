@@ -70,7 +70,7 @@
                             Hayrli tung,
                         @endif
                         @auth
-                            {{auth()->user()->username}}
+                            {{auth()->user()->firstname}}
                         @endauth
 {{--                        Abrorbek--}}
                     </h1>
@@ -125,30 +125,7 @@
                         <div class="accordion__content__inner">
                             <form action="" method="POST">
                                 <div class="row">
-
-                                    <div class="col-md-2 col-4 pb-10">
-                                        <div class="accordion__item add-class">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="accordion__button justify-content-around">
-                                                        <div class="accordion__icon" >
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
-                                                                <img src="player/calm.svg" sty alt="">
-                                                            </svg>
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <p class="text-color-white-for text-center pb-10">Calm</p>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <input type="hidden" class="form-control" name="icon">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    @foreach ($emojies as $emoji)
                                     <div class="col-md-2 col-4 pb-10">
                                         <div class="accordion__item  add-class">
                                             <div class="row">
@@ -156,99 +133,21 @@
                                                     <div class="accordion__button justify-content-around">
                                                         <div class="accordion__icon" >
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
-                                                                <img src="player/sad.svg" sty alt="">
+                                                                @if ($emoji->image)
+                                                                    <img src="{{asset($emoji->image->path)}}" alt=""/>
+                                                                @endif
                                                             </svg>
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <p class="text-color-white-for text-center pb-10">Sad</p>
+                                                    <p class="text-color-white-for text-center pb-10">{{$emoji->text}}</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="col-md-2 col-4 pb-10 ">
-                                        <div class="accordion__item add-class">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="accordion__button justify-content-around">
-                                                        <div class="accordion__icon" >
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
-                                                                <img src="player/tired-face.svg" sty alt="">
-                                                            </svg>
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <p class="text-color-white-for text-center pb-10">Tired</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2 col-4 pb-10 ">
-                                        <div class="accordion__item add-class">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="accordion__button justify-content-around">
-                                                        <div class="accordion__icon" >
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
-                                                                <img src="player/anxi.svg" sty alt="">
-                                                            </svg>
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <p class="text-color-white-for text-center pb-10">Anxious</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2 col-4 pb-10">
-                                        <div class="accordion__item add-class">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="accordion__button justify-content-around">
-                                                        <div class="accordion__icon" >
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
-                                                                <img src="player/panic.svg" sty alt="">
-                                                            </svg>
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <p class="text-color-white-for text-center pb-10">Panicked</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2 col-4 pb-10">
-                                        <div class="accordion__item add-class">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="accordion__button justify-content-around">
-                                                        <div class="accordion__icon" >
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
-                                                                <img src="player/unsure.svg" sty alt="">
-                                                            </svg>
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <p class="text-color-white-for text-center pb-10 title-color">Unsure</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    @endforeach
                                 </div>
                                 <div class="d-flex justify-content-center pt-10 pl-10 pr-10">
                                     <button class="button -md -purple-1 text-white">Continue</button>
@@ -302,10 +201,11 @@
                               <a href="" class="coursesCard -type-1 ">
                                 <div class="relative">
                                   <div class="coursesCard__image overflow-hidden rounded-8">
-{{--                                    @if ($f->image)--}}
-                                      <img class="w-1/1" src="https://assets.calm.com/640/609df0416991dfe06e3c61e779158566.png" alt="image">
-{{--                                          <img class="w-1/1" src="{{asset($f->image->path)}}" alt="image">--}}
-{{--                                    @endif--}}
+                                    @if ($image = $f->meditator->image)
+                                    <img class="w-1/1" src="{{$image->path}}" alt="image">
+                                    @else
+                                        <img class="w-1/1" src="https://assets.calm.com/640/609df0416991dfe06e3c61e779158566.png" alt="image">
+                                    @endif
                                     <div class="coursesCard__image_overlay rounded-8"></div>
                                   </div>
                                   <div class="d-flex justify-between py-10 px-10 absolute-full-center z-3">

@@ -20,7 +20,7 @@
             @method('put')
             <div class="col-12">
               <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Emoji text</label>
-              <input name="tex" type="text" value="{{$emoji->text}}" >
+              <input name="text" type="text" value="{{$emoji->text}}" >
             </div>
             <div class="col-12">
               <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Emoji icon</label>

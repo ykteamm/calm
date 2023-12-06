@@ -25,7 +25,7 @@ Route::post('/meditator-reupload/{meditator}/{asset}', [MeditatorController::cla
 Route::delete('/meditator-unupload/{meditator}/{asset}', [MeditatorController::class, 'unupload'])->name('meditator-unupload');
 Route::get('/meditator-avatar/{meditator}', [MeditatorController::class, 'avatar'])->name('meditator-avatar-view');
 Route::get('/meditator-image/{meditator}', [MeditatorController::class, 'image'])->name('meditator-image-view');
-//Route::resource('/meditation', MeditationController::class);
+Route::resource('/meditation', MeditationController::class);
 Route::resource('/lesson', LessonController::class);
 Route::get('/lesson-audio-upload/{lesson}', [LessonController::class, 'audioCreate'])->name('lesson-audio-upload-view');
 Route::post('/lesson-audio-upload/{lesson}', [LessonController::class, 'audioStore'])->name('lesson-audio-upload');

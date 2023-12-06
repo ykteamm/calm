@@ -24,8 +24,8 @@ class AuthController extends Controller
     public function register(RegisterRequest $registerRequest)
     {
         $data = $registerRequest->validated();
-        if ($this->userService->existsByColumn('username', $data['username'])) {
-            return back()->with('error', 'Username already exists');
+        if ($this->userService->existsByColumn('phone', $data['phone'])) {
+            return back()->with('error', 'Phone already exists');
         }
         return $this->userService->create($data, true)
             ->redirect('auth.login-view', 'auth.register-view');
@@ -34,10 +34,11 @@ class AuthController extends Controller
     public function login(LoginRequest $loginRequest)
     {
         $data = $loginRequest->validated();
-        $data['password'] = 'password';
-
-        if(Auth::guard('web')->attempt($data)) return redirect('/');
-        else return back()->with('error', 'Username incorrect');
+        if ($user = $this->userService->find(['phone' => $data['phone']])) {
+            Auth::login($user);
+            return redirect('/');
+        }
+        else return back()->with('error', 'Phone incorrect');
     }
 
     public function logout()

@@ -26,13 +26,9 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::get('/login', [AuthController::class, 'loginView'])->name('login');
+// Route::get('/login', [AuthController::class, 'loginView'])->name('login');
 
 //Route::prefix('auth')->name('auth.')->group(base_path('routes/web/auth.php'));
-
-Route::group([], function () {
-    Route::name('')->group(base_path('routes/web/user.php'));
-});
 
 Route::post('/free/choose', [TestController::class, 'choose'])->name('/free-choose');
 
@@ -52,8 +48,12 @@ Route::post('/free/choose/is_student', [TestController::class, 'is_student'])->n
 
 Route::post('/free/choose/medicate', [TestController::class, 'medicate'])->name('free-choose-medicate');
 
-//Route::resource('/meditation', MeditationController::class);
-
+Route::group([], function () {
+    Route::prefix('auth')->name('auth.')->group(base_path('routes/web/auth.php'));
+});
+Route::group([], function () {
+    Route::name('')->group(base_path('routes/web/user.php'));
+});
 Route::group(['middleware' => ['auth', 'user.type:admin']], function () {
     $locale = app()->getLocale();
     Route::get('admin-change-locale/{locale}', [LanguageController::class, 'changeLocale'])->name('admin-change-locale');

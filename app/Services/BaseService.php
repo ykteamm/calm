@@ -221,6 +221,12 @@ abstract class BaseService
         return $data;
     }
 
+    public function withRelation($relations = [])
+    {
+        $this->willParseToRelation = $relations;
+        return $this;
+    }
+
     public function getListWithResponse($data, $withResource = true)
     {
         if ($withResource) return $this->makeResponse(1, $this->withResource($this->getList($data), true));

@@ -16,8 +16,8 @@
         <div class="py-30 px-30">
           <form class="contact-form row y-gap-30" action="{{route('auth.login')}}" method="POST">
             @csrf
-            <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Username</label>
-            <input name="username" type="text" placeholder="Username">
+            <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Phone</label>
+            <input name="phone" type="text" placeholder="Phone number">
             <div class="row justify-between pt-15">
               <div class="col-auto">
               </div>

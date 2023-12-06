@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             MeditatorSeeder::class,
             MeditationSeeder::class,
-            GratitudeSeeder::class
+            GratitudeSeeder::class,
+            MotivationSeeder::class
         ]);
     }
 }

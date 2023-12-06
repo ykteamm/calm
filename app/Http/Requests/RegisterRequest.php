@@ -25,8 +25,10 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => ['required'],
-            'phone' => ['nullable'],
+            'username' => ['nullable'],
+            'firstname' => ['nullable'],
+            'lastname' => ['nullable'],
+            'phone' => ['required'],
             'password' => ['nullable']
         ];
     }
