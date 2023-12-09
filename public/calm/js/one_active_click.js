@@ -21,6 +21,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     var cards = document.getElementsByClassName('card_active');
 
+    var submit  = document.getElementById('question');
+
     for (var i = 0; i < cards.length; i++) {
         cards[i].addEventListener('click', function () {
             // Remove 'active_add_card' class and set input's checked to false for all elements
@@ -37,11 +39,13 @@ document.addEventListener('DOMContentLoaded', function () {
             // Toggle 'active_add_card' class and set input's checked accordingly
             if (this.classList.contains('active_add_card')) {
                 this.classList.remove('active_add_card');
+                submit.classList.add('d-none')
                 var thisCheckbox = this.querySelector('input[type="checkbox"]');
                 if (thisCheckbox) {
                     thisCheckbox.checked = false;
                 }
             } else {
+                submit.classList.remove('d-none')
                 this.classList.add('active_add_card');
                 var thisCheckbox = this.querySelector('input[type="checkbox"]');
                 if (thisCheckbox) {

@@ -1,4 +1,6 @@
 <?php
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 ?>
 @extends('user.layouts.app')
 @section('user_content')
@@ -10,14 +12,26 @@
                 <div class="sidebar -base-sidebar">
                     <div class="sidebar__inner">
                         <div>
-                            <div class="text-16 lh-1 fw-500 text-dark-1 mb-30 text-center">General</div>
+                            <div class="text-16 lh-1 fw-500 text-dark-1 mb-30 text-center">
+                                <h2 class="font_family_a text-color-white-for">
+                                    Medidation
+                                </h2>
+                            </div>
                             <div>
 
-                                @foreach ($categories as $key => $value)
+                                @foreach ($menus as $key => $value)
                                     <div class="sidebar__item text-color-white mb-20" style="padding: 0">
                                         <a href="about-1.html" class="-dark-sidebar-white d-flex items-center font_family_a text-20 ">
                                             <div class="icon-circle mr-10">
-                                                <i class="icon-discovery"></i>
+                                                {{--                                                <i class="icon-discovery"></i>--}}
+                                                {{--                                                icon list--}}
+                                                {{--                                                <i class="fas fa-home"></i>--}}
+                                                {{--                                                <i class="far fa-moon"></i>--}}
+                                                {{--                                                rotate 248deg--}}
+                                                {{--                                                <i class="fab fa-opera"></i>--}}
+                                                {{--                                                <i class="far fa-laugh"></i>--}}
+                                                <i class="fas fa-sun"></i>
+                                                {{--                                                before "\1F319" kun sarguzashti--}}
                                             </div>
                                             {{$value->translation->name}}
                                         </a>
@@ -27,21 +41,12 @@
                                 <div class="sidebar__item text-color-white mb-20" style="padding: 0">
                                     <a href="{{url('manzara')}}" class="-dark-sidebar-white font_family_a d-flex items-center text-20" >
                                         <div class="icon-circle mr-10">
-                                            <i class="icon-discovery"></i>
+                                            {{--                                            <i class="icon-discovery"></i>--}}
+                                            <i class="fas fa-mountain"></i>
                                         </div>
                                         Manzara
                                     </a>
                                 </div>
-
-                                {{--                    <div class="sidebar__item text-color-white mb-20">--}}
-                                {{--                        <a href="{{url('free')}}" class="-dark-sidebar-white d-flex items-center lh-1 fw-500">--}}
-                                {{--                            <div class="icon-circle mr-10">--}}
-                                {{--                                <i class="icon-discovery"></i>--}}
-                                {{--                            </div>--}}
-                                {{--                            Savollar--}}
-                                {{--                        </a>--}}
-                                {{--                    </div>--}}
-
 
                             </div>
                         </div>
@@ -70,7 +75,7 @@
                                     Hayrli tung,
                                 @endif
                                 @auth
-                                    {{auth()->user()->username}}
+                                    {{auth()->user()->firstname}}
                                 @endauth
                                 {{--                        Abrorbek--}}
                             </h1>
@@ -109,152 +114,115 @@
 
                         <div class="accordion__item">
                             <div class="accordion__button">
-                                <div class="accordion__icon" style="margin-right: 22px;" >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
-                                        <img src="player/smile.svg" sty alt="">
-                                    </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
+                                <div class="col-1">
+                                    <div class="accordion__icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
+                                            <img src="player/smile.svg" sty alt="">
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
+                                    </div>
                                 </div>
-
-                                <span class="text-17 fw-500 text-dark-1 font_family_a text-color-white-for">
-                            How are you feeling?
-                        </span>
+                                <div class="col-9">
+                                        <span class="text-17 fw-500 text-dark-1 font_family_a text-color-white-for">
+                                            How are you feeling?
+                                        </span>
+                                </div>
+                                @foreach($emoj_have as $have)
+                                    @if($have->user_id == auth()->user()->id)
+                                        @foreach($emoji as $emoj)
+                                            @if($have->emoji_id == $emoj->id )
+                                                <div class="col-2"  style="display: flex; justify-content: space-around;">
+                                                    <div class="accordion__icon ">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
+                                                            <img src="{{asset($emoj->image->path)}}" sty alt="">
+                                                        </svg>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                @endforeach
                             </div>
 
-                            <div class="accordion__content" style="">
-                                <div class="accordion__content__inner">
-                                    <form action="" method="POST">
-                                        <div class="row">
-
-                                            <div class="col-md-2 col-4 pb-10">
-                                                <div class="accordion__item add-class">
+                            <div class="accordion__content">
+                                @if($user_emoj_have)
+                                    @foreach($emoj_have as $have)
+                                        @if($have->user_id == auth()->user()->id)
+                                            {{--  update --}}
+                                            <div class="accordion__content__inner">
+                                                <form action="{{url('feelings/'.$have->id)}}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
                                                     <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="accordion__button justify-content-around">
-                                                                <div class="accordion__icon" >
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
-                                                                        <img src="player/calm.svg" sty alt="">
-                                                                    </svg>
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
+                                                        @foreach($emoji as $emoj)
+                                                            <div class="col-md-2 col-4 pb-10">
+                                                                <div class="accordion__item add-class">
+                                                                    <input type="checkbox" class="d-none" value="{{$emoj->id}}" name="emoji_id">
+                                                                    <input type="hidden" class="d-none" value="{{auth()->user()->id}}" name="user_id">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="accordion__button justify-content-around">
+                                                                                <div class="accordion__icon" >
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
+                                                                                        <img src="{{asset($emoj->image->path)}}" sty alt="">
+                                                                                    </svg>
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <p class="text-color-white-for text-center font_family_a pb-10">{{$emoj->text}}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                    <div class="d-flex justify-content-center pt-10 pl-10 pr-10">
+                                                        <button class="button -md -purple-1 font_family_a text-white">Save</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        @else
+                                        @endif
+                                    @endforeach
+                                @else
+                                    {{-- create --}}
+                                    <div class="accordion__content__inner">
+                                        <form action="{{route('create-feelings')}}" method="POST">
+                                            @csrf
+                                            <div class="row">
+                                                @foreach($emoji as $emoj)
+                                                    <div class="col-md-2 col-4 pb-10">
+                                                        <div class="accordion__item add-class">
+                                                            <input type="checkbox" class="d-none" value="{{$emoj->id}}" name="emoji_id">
+                                                            <input type="hidden" class="d-none" value="{{auth()->user()->id}}" name="user_id">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="accordion__button justify-content-around">
+                                                                        <div class="accordion__icon" >
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
+                                                                                <img src="{{asset($emoj->image->path)}}" sty alt="">
+                                                                            </svg>
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <p class="text-color-white-for text-center font_family_a pb-10">{{$emoj->text}}</p>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-12">
-                                                            <p class="text-color-white-for text-center font_family_a pb-10">Calm</p>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <input type="hidden" class="form-control" name="icon">
-                                                        </div>
                                                     </div>
-                                                </div>
+                                                @endforeach
                                             </div>
-
-                                            <div class="col-md-2 col-4 pb-10">
-                                                <div class="accordion__item  add-class">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="accordion__button justify-content-around">
-                                                                <div class="accordion__icon" >
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
-                                                                        <img src="player/sad.svg" sty alt="">
-                                                                    </svg>
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <p class="text-color-white-for text-center font_family_a pb-10">Sad</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <div class="d-flex justify-content-center pt-10 pl-10 pr-10">
+                                                <button class="button -md -purple-1 font_family_a text-white">Save</button>
                                             </div>
-
-                                            <div class="col-md-2 col-4 pb-10 ">
-                                                <div class="accordion__item add-class">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="accordion__button justify-content-around">
-                                                                <div class="accordion__icon" >
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
-                                                                        <img src="player/tired-face.svg" sty alt="">
-                                                                    </svg>
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <p class="text-color-white-for font_family_a text-center pb-10">Tired</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-2 col-4 pb-10 ">
-                                                <div class="accordion__item add-class">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="accordion__button justify-content-around">
-                                                                <div class="accordion__icon" >
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
-                                                                        <img src="player/anxi.svg" sty alt="">
-                                                                    </svg>
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <p class="text-color-white-for font_family_a text-center pb-10">Anxious</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-2 col-4 pb-10">
-                                                <div class="accordion__item add-class">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="accordion__button justify-content-around">
-                                                                <div class="accordion__icon" >
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
-                                                                        <img src="player/panic.svg" sty alt="">
-                                                                    </svg>
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <p class="text-color-white-for font_family_a text-center pb-10">Panicked</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-2 col-4 pb-10">
-                                                <div class="accordion__item add-class">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="accordion__button justify-content-around">
-                                                                <div class="accordion__icon" >
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
-                                                                        <img src="player/unsure.svg" sty alt="">
-                                                                    </svg>
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <p class="text-color-white-for font_family_a text-center pb-10 title-color">Unsure</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="d-flex justify-content-center pt-10 pl-10 pr-10">
-                                            <button class="button -md -purple-1 font_family_a text-white">Save</button>
-                                        </div>
-                                    </form>
-                                </div>
+                                        </form>
+                                    </div>
+                                @endif
                             </div>
                         </div>
 
@@ -302,11 +270,10 @@
                                                                     <a href="" class="coursesCard -type-1 ">
                                                                         <div class="relative">
                                                                             <div class="coursesCard__image overflow-hidden rounded-8">
-                                                                                                                   @if ($f->meditator->image)
-                                                                                                                   <img class="w-1/1" src="{{asset($f->meditator->image->path)}}" alt="image">
-                                                                                                                   @else
-                                                                                <img class="w-1/1" src="https://assets.calm.com/640/609df0416991dfe06e3c61e779158566.png" alt="image">
-                                                                                                                   @endif
+                                                                            @if ($f->meditator->image)
+{{--                                                                                <img class="w-1/1" src="https://assets.calm.com/640/609df0416991dfe06e3c61e779158566.png" alt="image">--}}
+                                                                                <img class="w-1/1" src="{{asset($f->meditator->image->path)}}" alt="image">
+                                                                            @endif
                                                                                 <div class="coursesCard__image_overlay rounded-8"></div>
                                                                             </div>
                                                                             <div class="d-flex justify-between py-10 px-10 absolute-full-center z-3">
@@ -369,135 +336,238 @@
 
 
 
-
-
-                    <div class="container">
-
-                        <div class="accordion -block text-left pt-60 lg:pt-40 js-accordion">
-
-                            {{--                    @dd($graduate)--}}
-
-                            <div class="item_test"  data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <div class="accordion__button">
-                                    <div class="accordion__icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                                    </div>
-                                    @foreach($graduate as $grad)
-                                        @if($grad->language_code == "en")
-                                            <span class="text-17 fw-500 text-dark-1 ml-30 text-color-white-for">
-                                           {{$grad->name}}
-                                    </span>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content" style="background: #1a4d73">
-                                        <div class="modal-header row" style="border-bottom: none">
-                                            <div class="col-md-11 col-sm-11 col-11">
-                                                @foreach($graduate as $grad)
-                                                    @if($grad->language_code == "en")
-                                                        <h5 class="modal-title text-color-white-for" id="exampleModalLabel">
-                                                            {{$grad->name}}
-                                                        </h5>
-                                                    @endif
-                                                @endforeach
-
-                                            </div>
-
-                                            <div class="col-md-1 col-sm-1 col-1">
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-
-                                            <br><br>
-                                            <div class="col-md-12 text-center">
-                                                <h6 class="modal-title text-color-white-for" id="question" style="cursor: pointer;">
-                                                    <i class="fas fa-exchange-alt mr-10"></i>
-                                                    Change question?
-                                                </h6>
-                                            </div>
-
+                    {{--                    @dd($reply == null)--}}
+                    @if($user_reply_have == null)
+                        <div class="container">
+                            <div class="accordion -block text-left pt-60 lg:pt-40 js-accordion">
+                                <div class="item_test"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <div class="accordion__button">
+                                        <div class="accordion__icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                                         </div>
+                                        @foreach($graduate as $grad)
+                                            @if($grad->language_code == "en")
+                                                <span class="text-17 fw-500 text-dark-1 ml-30 text-color-white-for">
+                                               {{$grad->name}}
+                                        </span>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </div>
 
-                                        <div class="modal-body">
-                                            <form action="{{url('create-reply')}}" class="contact-form" method="POST">
-                                                @csrf
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content" style="background: #1a4d73">
+                                            <div class="modal-header row" style="border-bottom: none">
+                                                <div class="col-md-11 col-sm-11 col-11">
+                                                    @foreach($graduate as $grad)
+                                                        @if($grad->language_code == "en")
+                                                            <h5 class="modal-title text-color-white-for" id="exampleModalLabel">
+                                                                {{$grad->name}}
+                                                            </h5>
+                                                        @endif
+                                                    @endforeach
 
-                                                <input type="hidden" value="2" name="user_id">
-                                                @foreach($graduate as $grad)
-                                                    @if($grad->language_code == "en")
-                                                        <input type="hidden" value="{{$grad->object_id}}" name="gratitude_id">
-                                                    @endif
-                                                @endforeach
-
-                                                <div class="row">
-                                                    <div class="col-12 d-flex align-items-center">
-                                                        <label class="text-16 lh-1 fw-500 text-dark-1 mb-10 text-color-white-for">1.</label>
-                                                        <input type="text" class="placeholder123" name="titles[]" placeholder="I'm grateful for...">
-                                                    </div>
-                                                    <div class="col-12 d-flex align-items-center">
-                                                        <label class="text-16 lh-1 fw-500 text-dark-1 mb-10 text-color-white-for">2.</label>
-                                                        <input type="text" class="placeholder123" name="titles[]" placeholder="I'm grateful for...">
-                                                    </div>
-                                                    <div class="col-12 d-flex align-items-center">
-                                                        <label class="text-16 lh-1 fw-500 text-dark-1 mb-10 text-color-white-for">3.</label>
-                                                        <input type="text" class="placeholder123" name="titles[]" placeholder="I'm grateful for...">
-                                                    </div>
                                                 </div>
-                                                <div class="modal-footer" style="border: none">
-                                                    <button type="submit" class="btn btn-primary">
-                                                        <i class="fas fa-plus-circle"></i>
-                                                        Create
-                                                    </button>
+
+                                                <div class="col-md-1 col-sm-1 col-1">
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
-                                            </form>
+
+                                                <br><br>
+                                                <div class="col-md-12 text-center">
+                                                    <h6 class="modal-title text-color-white-for" id="question" style="cursor: pointer;">
+                                                        <i class="fas fa-exchange-alt mr-10"></i>
+                                                        Change question?
+                                                    </h6>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <form action="{{url('create-reply')}}" class="contact-form" method="POST">
+                                                    @csrf
+
+                                                    <input type="hidden" value="{{auth()->user()->id}}" name="user_id">
+                                                    @foreach($graduate as $grad)
+                                                        @if($grad->language_code == "en")
+                                                            <input type="hidden" value="{{$grad->object_id}}" name="gratitude_id">
+                                                        @endif
+                                                    @endforeach
+
+                                                    <div class="row">
+                                                        <div class="col-12 d-flex align-items-center">
+                                                            <label class="text-16 lh-1 fw-500 text-dark-1 mb-10 text-color-white-for">1.</label>
+                                                            <input type="text" class="placeholder123" required name="titles[]" placeholder="I'm grateful for...">
+                                                        </div>
+                                                        <div class="col-12 d-flex align-items-center">
+                                                            <label class="text-16 lh-1 fw-500 text-dark-1 mb-10 text-color-white-for">2.</label>
+                                                            <input type="text" class="placeholder123" required name="titles[]" placeholder="I'm grateful for...">
+                                                        </div>
+                                                        <div class="col-12 d-flex align-items-center">
+                                                            <label class="text-16 lh-1 fw-500 text-dark-1 mb-10 text-color-white-for">3.</label>
+                                                            <input type="text" class="placeholder123" required name="titles[]" placeholder="I'm grateful for...">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer" style="border: none">
+                                                        <button type="submit" class="btn btn-primary">
+                                                            <i class="fas fa-plus-circle"></i>
+                                                            Create
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
 
                         </div>
+                    @else
+                        <div class="container">
+                            @if($user_reply_create == null)
+                               <div class="accordion -block" style="display: flex; justify-content: flex-end">
+                                   <div class="col-1"  data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                                       <div class="accordion__button">
+                                           <div class="accordion__icon">
+                                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                            @else
+                            @endif
+                            @foreach($reply_for as $for)
+                                @php
+                                    $date = Carbon::parse($for->created_at);
+                                    $format = $date->format('Y-m-d')
+                                @endphp
+                                @if($for->language_code == 'en' && $for->user_id == auth()->user()->id)
+                                    <div class="accordion -block text-left pt-60 lg:pt-40 js-accordion">
+                                        <div class="item_test">
+                                            <div class="p-3">
+                                                <div class="row align-items-center">
+                                                    <h4 class="col-11 text-17 fw-500 text-dark-1 text-color-white-for">
+                                                        {{$for->name}}
+                                                    </h4>
 
-                    </div>
 
+{{--                                                    @if(($for->user_id == auth()->user()->id) && ($format < Carbon::today()->format('Y-m-d')))--}}
 
-                    <div class="container">
+{{--                                                    @else--}}
+{{--                                                        <div class="col-1"  data-bs-toggle="modal" data-bs-target="#exampleModal1">--}}
+{{--                                                            <div class="accordion__button">--}}
+{{--                                                                <div class="accordion__icon">--}}
+{{--                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>--}}
+{{--                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"><line x1="5" y1="12" x2="19" y2="12"></line></svg>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                    @endif--}}
 
-                        <div class="accordion -block text-left pt-60 lg:pt-40 js-accordion">
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg">
+                                                            <div class="modal-content" style="background: #1a4d73">
+                                                                <div class="modal-header row" style="border-bottom: none">
+                                                                    <div class="col-md-11 col-sm-11 col-11">
+                                                                        @foreach($graduate as $grad)
+                                                                            @if($grad->language_code == "en")
+                                                                                <h5 class="modal-title text-color-white-for" id="exampleModalLabel">
+                                                                                    {{$grad->name}}
+                                                                                </h5>
+                                                                            @endif
+                                                                        @endforeach
 
-                            <div class="item_test">
-                                <div class="p-3">
-                                    <h5 class="text-17 fw-500 text-dark-1 text-color-white-for">
-                                        Fri, 27 Oct 2023 at 12:04 AM
-                                    </h5>
-                                    <br>
-                                    <h4 class="text-17 fw-500 text-dark-1 text-color-white-for">
-                                        O'zingizga minnatdorchilik bildiring ?
-                                    </h4>
-                                    <br>
-                                    <ol class="list-group list-group-numbered">
-                                        <li class="list_li list-group-item">A list item</li>
-                                        <li class="list_li list-group-item">A list item</li>
-                                        <li class="list_li list-group-item">A list item</li>
-                                    </ol>
-                                </div>
-                            </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-1 col-sm-1 col-1">
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+
+                                                                    <br><br>
+                                                                    <div class="col-md-12 text-center">
+                                                                        <h6 class="modal-title text-color-white-for" id="question" style="cursor: pointer;">
+                                                                            <i class="fas fa-exchange-alt mr-10"></i>
+                                                                            Change question?
+                                                                        </h6>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="modal-body">
+                                                                    <form action="{{url('create-reply')}}" class="contact-form" method="POST">
+                                                                        @csrf
+
+                                                                        <input type="hidden" value="{{auth()->user()->id}}" name="user_id">
+                                                                        @foreach($graduate as $grad)
+                                                                            @if($grad->language_code == "en")
+                                                                                <input type="hidden" value="{{$grad->object_id}}" name="gratitude_id">
+                                                                            @endif
+                                                                        @endforeach
+
+                                                                        <div class="row">
+                                                                            <div class="col-12 d-flex align-items-center">
+                                                                                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10 text-color-white-for">1.</label>
+                                                                                <input type="text" class="placeholder123" required name="titles[]" placeholder="I'm grateful for...">
+                                                                            </div>
+                                                                            <div class="col-12 d-flex align-items-center">
+                                                                                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10 text-color-white-for">2.</label>
+                                                                                <input type="text" class="placeholder123" required name="titles[]" placeholder="I'm grateful for...">
+                                                                            </div>
+                                                                            <div class="col-12 d-flex align-items-center">
+                                                                                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10 text-color-white-for">3.</label>
+                                                                                <input type="text" class="placeholder123" required name="titles[]" placeholder="I'm grateful for...">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer" style="border: none">
+                                                                            <button type="submit" class="btn btn-primary">
+                                                                                <i class="fas fa-plus-circle"></i>
+                                                                                Create
+                                                                            </button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <ol class="list-group list-group-numbered">
+                                                    @foreach($reply as $rep)
+                                                        @php
+                                                            $date = Carbon::parse($for->created_at);
+                                                            $format = $date->format('Y-m-d');
+
+                                                            $date2 = Carbon::parse($rep->created_at);
+                                                            $format2 = $date2->format('Y-m-d')
+                                                        @endphp
+                                                        @if($rep->id)
+                                                            @if($for->gratitude_id == $rep->gratitude_id && $format == $format2)
+                                                                <li class="list_li list-group-item">{{$rep->text}}</li>
+                                                            @endif
+                                                        @endif
+                                                    @endforeach
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+
                         </div>
-
-                    </div>
-
-
+                    @endif
 
                     <div class="container">
                         <ul class="comments__list mt-30 mb-30">
                             <li class="comments__item mt-30 mb-30">
                                 <div class="row comments__item-inner">
 
-                                    <div class="comments__img col-md-2 col-sm-3 col-4">
+                                    <div class="comments__img col-md-2 col-sm-4 col-5">
                                         <!-- <div class="bg-image rounded-full js-lazy loaded" data-ll-status="loaded"> -->
                                         <img src="../calm/img/about-1/1.png" class="bg-image" style="border-radius: 20px;" alt="">
                                         <!-- </div> -->
@@ -523,7 +593,7 @@
                             <li class="comments__item mt-30 mb-30">
                                 <div class="row comments__item-inner">
 
-                                    <div class="comments__img col-md-2 col-sm-3 col-4">
+                                    <div class="comments__img col-md-2 col-sm-4 col-5">
                                         <!-- <div class="bg-image rounded-full js-lazy loaded" data-ll-status="loaded"> -->
                                         <img src="../calm/img/about-1/1.png" style="border-radius: 20px;" class="bg-image" alt="">
                                         <!-- </div> -->
@@ -549,7 +619,7 @@
                             <li class="comments__item mt-30 mb-30">
                                 <div class="row comments__item-inner">
 
-                                    <div class="comments__img col-md-2 col-sm-3 col-4">
+                                    <div class="comments__img col-md-2 col-sm-4 col-5">
                                         <!-- <div class="bg-image rounded-full js-lazy loaded" data-ll-status="loaded"> -->
                                         <img src="../calm/img/about-1/1.png" style="border-radius: 20px;" class="bg-image" alt="">
                                         <!-- </div> -->
@@ -573,7 +643,6 @@
                             </li>
                         </ul>
                     </div>
-
                 </div>
             </div>
         </div>

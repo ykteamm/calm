@@ -52,6 +52,13 @@ Route::post('/free/choose/is_student', [TestController::class, 'is_student'])->n
 
 Route::post('/free/choose/medicate', [TestController::class, 'medicate'])->name('free-choose-medicate');
 
+
+Route::post('/feelings', [TestController::class, 'feelings'])->name('create-feelings');
+
+Route::put('/feelings/{id}', [TestController::class, 'Updatefeelings'])->name('update-feelings');
+
+
+
 Route::group([], function () {
     Route::prefix('auth')->name('auth.')->group(base_path('routes/web/auth.php'));
 });

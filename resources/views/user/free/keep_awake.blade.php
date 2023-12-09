@@ -82,7 +82,7 @@
                     </div>
 
                     <div class="text-center mt-20">
-                        <button type="submit"  class="btn btn-primary">Continue</button>
+                        <button type="submit" id="question"  class="d-none btn btn-primary">Continue</button>
                     </div>
                 </form>
 

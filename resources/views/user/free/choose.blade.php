@@ -81,7 +81,7 @@
                         </div>
                     </div>
                     <div class="text-center mt-30">
-                        <button type="submit" id="submit_choose" class="btn btn-primary font_family_a">Continue</button>
+                        <button type="submit" id="submit_choose" class="d-none btn btn-primary font_family_a">Continue</button>
                     </div>
                 </form>
             </section>

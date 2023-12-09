@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Feeling;
 use App\Models\Gratitude;
 use App\Models\GratitudeTranslation;
 use App\Models\IssueTranslation;
 use App\Models\Motivation;
 use App\Models\MotivationTranslation;
+use App\Models\Reply;
 use App\Services\CategoryService;
 use App\Controllers\CategoryController;
 use App\Services\MenuService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests\IndexRequest;
 use App\Services\EmojiService;
@@ -71,6 +74,7 @@ class TestController extends Controller
 
     public function index(IndexRequest $indexRequest)
     {
+        if (auth()->check()){
 
         $this->menu_service->willParseToRelation = [
             'translation',
@@ -87,6 +91,8 @@ class TestController extends Controller
         ];
         $data = $this->menu_service->getList($indexRequest->validated());
 
+//        return $data;
+
         $time = date('H:i:s');
         $id = Motivation::inRandomOrder()
             ->select('id')->first();
@@ -95,9 +101,57 @@ class TestController extends Controller
         $graduate_id = Gratitude::inRandomOrder()->select('id')->first();
         $graduate = GratitudeTranslation::where('object_id', $graduate_id->id)->get();
         $emojies = $this->emojiService->withRelation(['image'])->getList([]);
-        // return $data[0]->categories;
-//        dd($data[0]->categories[2]->meditations);
+
+        $reply = Reply::where('user_id', auth()->user()->id)
+            ->select('id','text','user_id','gratitude_id','created_at')
+            ->orderBy('created_at','desc')
+            ->get();
+
+
+//        return $reply;
+
+
+        $reply_for = Reply::
+        select('user_id', 'gratitude_id', 'replies.created_at','gratitude_translations.name', 'gratitude_translations.language_code')
+            ->join('gratitude_translations', function ($join) {
+                $join->on('replies.gratitude_id', '=', 'gratitude_translations.object_id')
+                    ->whereIn('gratitude_translations.language_code', ['uz', 'ru', 'en']);
+            })
+            ->groupBy('user_id','replies.created_at', 'gratitude_id', 'gratitude_translations.name', 'gratitude_translations.language_code')
+            ->orderBy('replies.created_at', 'desc')
+            ->get();
+
+//        return $reply_for;
+        $user_reply_create = Reply::where('user_id', auth()->user()->id)
+            ->whereDate('created_at', Carbon::today())
+            ->first();
+//        return $user_reply_create;
+
+
+        $user_reply_have = Reply::where('user_id',auth()->user()->id)->first();
+
+//        return $user_reply_have;
+
+//        return $reply_for;
+
+
+        $emojies = $this->emojiService->getList($indexRequest);
+
+//        return $emojies;
+
+        $user_emoj_have = Feeling::where('user_id',auth()->user()->id)->first();
+
+        $emoj_have = Feeling::get();
+
+
         return view("user.index",[
+            'user_reply_create'=>$user_reply_create,
+            'user_reply_have'=>$user_reply_have,
+            'reply_for'=>$reply_for,
+            'user_emoj_have'=>$user_emoj_have,
+            'emoj_have'=>$emoj_have,
+            'emoji'=>$emojies,
+            'reply'=>$reply,
             'emojies' => $emojies,
             'graduate'=>$graduate,
             'motivation'=>$motivation,
@@ -105,6 +159,46 @@ class TestController extends Controller
             'menus' => $data,
             'categories_sub' => $data[0]->categories
         ]);
+        }else{
+            return view("user.free");
+//            abort(404);
+        }
+    }
+
+    public function feelings(Request $request)
+    {
+//        $data = $request->all();
+
+        $data = new Feeling();
+        $data->user_id = $request->user_id;
+        $data->emoji_id = $request->emoji_id;
+        $data->status = 10;
+
+        if (!$data->save()){
+            return redirect(route('index'))->with('error','Your emoj doesn\'t create');
+        }
+        return redirect(route('index'))->with('success','Your emoj successfull create!');
+
+//        return  $data;
+//        return view("user.index");
+    }
+
+    public function Updatefeelings(Request $request, $id)
+    {
+        $user_data = Feeling::find($id);
+        $input = $request->all();
+//        return $input;
+        $user_data->update($input);
+
+        $user_data->user_id = $request->user_id;
+        $user_data->emoji_id = $request->emoji_id;
+        $user_data->status = 10;
+
+        if (!$user_data->save()){
+            return redirect(route('index'))->with('error','Your emoj doesn\'t update');
+        }
+        return redirect(route('index'))->with('success','Your emoj successfull update!');
+
     }
 
     public function manzara(IndexRequest $indexRequest)

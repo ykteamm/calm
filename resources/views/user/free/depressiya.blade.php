@@ -77,14 +77,10 @@
 
                                     </div>
                                 </div>
-
-
                         </div>
                     </div>
-
-
                             <div class="text-center mt-40">
-                                <button type="submit"  class="btn btn-primary font_family_a">Continue</button>
+                                <button type="submit" id="question"  class="d-none btn btn-primary font_family_a">Continue</button>
                             </div>
                 </form>
 

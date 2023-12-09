@@ -4,6 +4,7 @@
 <script src="{{asset('calm/js/vendors.js')}}"></script>
 <script src="{{asset('calm/js/main.js')}}"></script>
 <script src="{{asset('calm/js/player.js')}}"></script>
+<script src="{{asset('calm/js/click.js')}}"></script>
 <script>
     // JavaScript orqali sahifani yangilash
     document.getElementById('question').addEventListener('click', function() {

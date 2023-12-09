@@ -43,7 +43,7 @@
                     </h2>
 
                     <div id="account" class="text-center mt-60 d-none">
-                        <a href="{{url('register')}}">
+                        <a href="{{url('auth/register')}}">
                             <button class="btn  font_family_a" style="background: #32c5ca; padding: 10px 70px;color: white">
                                 Create an account
                             </button>
@@ -53,7 +53,7 @@
                     <div id="log_in" class="text-center mt-20 d-none">
                         <p class="font_family_a text-color-white-for">
                             Already have an account?
-                            <a href="{{url('login')}}" class="font_family_a" style="color: #32c5ca">
+                            <a href="{{url('auth/login')}}" class="font_family_a" style="color: #32c5ca">
                                 Log in
                             </a>
                         </p>

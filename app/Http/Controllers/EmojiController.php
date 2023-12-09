@@ -47,6 +47,8 @@ class EmojiController extends Controller
     {
         $this->service->willParseToRelation = ['image'];
         $emojies = $this->service->getList($indexRequest);
+
+
         return view('admin.emoji.index', compact('emojies'));
     }
 

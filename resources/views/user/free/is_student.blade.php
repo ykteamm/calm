@@ -35,9 +35,7 @@
                                 <div class="col-lg-6 col-md-6 col-6" style="cursor: pointer;">
                                     <div data-anim-child="slide-left delay-2" class="blogCard card_active -type-1 rounded-8  shadow-1 overflow-hidden is-in-view">
                                         <input type="checkbox" value="0 - 15 minute" class="checkbox-ajax d-none" name="0_15_minute">
-{{--                                        <div class="blogCard__image ratio ratio-3:2">--}}
-{{--                                            <img class="img-ratio" src="../../calm/img/home-3/blog/img.png" alt="image">--}}
-{{--                                        </div>--}}
+
                                         <div class="px-30 py-30 text-center bg-white">
                                             <h4 class="text-17 lh-15 fw-500 font_family_a">Erkak</h4>
                                         </div>
@@ -47,9 +45,7 @@
                                 <div class="col-lg-6 col-md-6 col-6" style="cursor: pointer;">
                                     <div  data-anim-child="slide-left delay-2" class="blogCard card_active -type-1 rounded-8  shadow-1 overflow-hidden is-in-view">
                                         <input type="checkbox"  value="0 - 15 minute" class="checkbox-ajax d-none" name="15_30_minute">
-{{--                                        <div class="blogCard__image ratio ratio-3:2">--}}
-{{--                                            <img class="img-ratio" src="../../calm/img/home-3/blog/img_1.png" alt="image">--}}
-{{--                                        </div>--}}
+
                                         <div class="px-30 py-30 text-center bg-white">
                                             <h4 class="text-17 lh-15 fw-500 font_family_a">Ayol</h4>
                                         </div>
@@ -62,7 +58,7 @@
 
 
                     <div class="text-center mt-40">
-                        <button type="submit"  class="btn btn-primary font_family_a">Continue</button>
+                        <button type="submit" id="question" class="d-none btn btn-primary font_family_a">Continue</button>
                     </div>
                 </form>
 
