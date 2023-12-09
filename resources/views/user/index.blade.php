@@ -302,10 +302,11 @@
                                                                     <a href="" class="coursesCard -type-1 ">
                                                                         <div class="relative">
                                                                             <div class="coursesCard__image overflow-hidden rounded-8">
-                                                                                {{--                                    @if ($f->image)--}}
+                                                                                                                   @if ($f->meditator->image)
+                                                                                                                   <img class="w-1/1" src="{{asset($f->meditator->image->path)}}" alt="image">
+                                                                                                                   @else
                                                                                 <img class="w-1/1" src="https://assets.calm.com/640/609df0416991dfe06e3c61e779158566.png" alt="image">
-                                                                                {{--                                          <img class="w-1/1" src="{{asset($f->image->path)}}" alt="image">--}}
-                                                                                {{--                                    @endif--}}
+                                                                                                                   @endif
                                                                                 <div class="coursesCard__image_overlay rounded-8"></div>
                                                                             </div>
                                                                             <div class="d-flex justify-between py-10 px-10 absolute-full-center z-3">
