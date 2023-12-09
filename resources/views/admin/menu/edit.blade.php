@@ -18,6 +18,10 @@
           <form class="contact-form row y-gap-30" action="{{route('admin.menu.update', ['menu' => $menu->id])}}" method="POST">
             @csrf
             @method('put')
+            <div class="col-12">
+              <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Menu slug </label>
+              <input name="slug" value="{{$menu->slug}}" type="text" placeholder="Slug for route">
+            </div>
             @foreach ($langs as $key => $lang)
                 <div class="col-12">
                     <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Menu title {{$lang->code}}</label>

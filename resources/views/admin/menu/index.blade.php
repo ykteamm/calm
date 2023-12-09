@@ -20,6 +20,11 @@
         <div class="py-30 px-30 hover:green">
           <div class="d-flex" style="justify-content: space-between">
             <h4 class="ml-10 text-15 lh-1 fw-500">{{$item->translation->name}}</h4>
+            <div>
+              @if ($item->image)
+                <img width="100" src="{{asset($item->image->path)}}" alt="">
+              @endif
+            </div>
             <div class="d-flex items-center x-gap-20 y-gap-10 flex-wrap pt-10">
               <div class="d-flex items-center">
                 <i class="icon-message text-15 mr-10"></i>
@@ -28,6 +33,10 @@
               <div class="d-flex items-center">
                 <i class="icon-online-learning text-15 mr-10"></i>
                 <a href="{{route('admin.menu.edit', ['menu' => $item->id])}}" class="text-14 text-purple-1 underline">Update</a>
+              </div>
+              <div class="d-flex items-center">
+                <i class="icon-online-learning text-15 mr-10"></i>
+                <a href="{{route('admin.menu-image-view', ['menu' => $item->id])}}" class="text-14 text-purple-1 underline">Image</a>
               </div>
               <div class="d-flex items-center">
                 <i class="icon-play text-15 mr-10"></i>

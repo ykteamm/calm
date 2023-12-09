@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\MenuService;
 use App\Http\Requests\IndexRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AssetRequest;
 use App\Http\Requests\MenuUpsertRequest;
 use App\Services\LanguageService;
 
@@ -21,10 +22,36 @@ class MenuController extends Controller
         $this->languageService = $languageService;
     }
 
+    public function upload(AssetRequest $assetRequest, $menu)
+    {
+        return $this->service->storeAsset($menu, $assetRequest->validated(), true)
+            ->redirect('admin.menu.index');
+    }
+
+    public function reupload(AssetRequest $assetRequest, $menu, $asset)
+    {
+        return $this->service->updateAsset($menu, $asset, $assetRequest->validated(), true)
+            ->redirect('admin.menu.index');
+    }
+
+    public function unupload($menu, $asset)
+    {
+        return $this->service->deleteAsset($menu, $asset, true)
+            ->redirect('admin.menu.index');
+    }
+
+    public function image($menu)
+    {
+        $this->service->willParseToRelation = ['image'];
+        $menu = $this->service->show($menu);
+        return view('admin.menu.image', compact('menu'));
+    }
+
     public function index(IndexRequest $indexRequest)
     {
         $this->service->willParseToRelation = [
-            'translation' => ['object_id', 'name'], 'translations' => ['object_id', 'name']
+            'translation' => ['object_id', 'name'], 'translations' => ['object_id', 'name'],
+            'image'
         ];
         $menu = $this->service->getList($indexRequest);
         return view('admin.menu.index', compact('menu'));

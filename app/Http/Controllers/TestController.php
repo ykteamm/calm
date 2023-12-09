@@ -13,6 +13,7 @@ use App\Services\MenuService;
 use Illuminate\Http\Request;
 use App\Http\Requests\IndexRequest;
 use App\Services\EmojiService;
+use App\Services\MeditationService;
 
 class TestController extends Controller
 {
@@ -20,16 +21,54 @@ class TestController extends Controller
     protected CategoryService $service;
     protected MenuService $menu_service;
     protected EmojiService $emojiService;
+    protected CategoryService $categoryService;
+    protected MeditationService $meditationService;
     public function __construct(
         CategoryService $service,
         MenuService $menu_service,
-        EmojiService $emojiService
+        EmojiService $emojiService,
+        CategoryService $categoryService,
+        MeditationService $meditationService
     )
     {
         $this->service = $service;
         $this->menu_service = $menu_service;
         $this->emojiService = $emojiService;
+        $this->categoryService = $categoryService;
+        $this->meditationService = $meditationService;
     }
+
+    public function menu(IndexRequest $indexRequest, $slug)
+    {
+        $this->menu_service->willParseToRelation = [
+            'translation'
+        ];
+        $data = $this->menu_service->getList($indexRequest->validated());
+        $categories = $this->categoryService->getByMenuSlug($slug);
+        $time = date('H:i:s');
+        $id = Motivation::inRandomOrder()
+            ->select('id')->first();
+        $motivation = MotivationTranslation::where('object_id', $id->id)->get();
+
+        $graduate_id = Gratitude::inRandomOrder()->select('id')->first();
+        $graduate = GratitudeTranslation::where('object_id', $graduate_id->id)->get();
+        $emojies = $this->emojiService->withRelation(['image'])->getList([]);
+        $recentlyViewed = $this->meditationService->recentlyViewed([]);
+
+
+        // return $data[0]->categories;
+//        dd($data[0]->categories[2]->meditations);
+        return view("user.menu",[
+            'emojies' => $emojies,
+            'graduate'=>$graduate,
+            'motivation'=>$motivation,
+            'time'=>$time,
+            'menus' => $data,
+            'categories_sub' => $categories,
+            'recentlyViewed' => $recentlyViewed
+        ]);
+    }
+
     public function index(IndexRequest $indexRequest)
     {
 
@@ -63,7 +102,7 @@ class TestController extends Controller
             'graduate'=>$graduate,
             'motivation'=>$motivation,
             'time'=>$time,
-            'categories' => $data,
+            'menus' => $data,
             'categories_sub' => $data[0]->categories
         ]);
     }

@@ -33,7 +33,9 @@ class CategorySeeder extends Seeder
         }
         $categories = Category::all();
         foreach ($menus as $menu){
-            $menu_cat = Menu::create([]);
+            $menu_cat = Menu::create([
+                'slug' => strtolower($menu)
+            ]);
             foreach ($langs as $lang) {
                 MenuTranslation::create([
                     'name' => $menu .'-'. strtoupper($lang->code),

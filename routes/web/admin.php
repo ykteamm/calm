@@ -17,6 +17,10 @@ use App\Http\Controllers\VariantController;
 
 Route::get('/', [MenuController::class, 'index']);
 Route::resource('/menu', MenuController::class);
+Route::post('/menu-upload/{menu}', [MenuController::class, 'upload'])->name('menu-upload');
+Route::post('/menu-reupload/{menu}/{asset}', [MenuController::class, 'reupload'])->name('menu-reupload');
+Route::delete('/menu-unupload/{menu}/{asset}', [MenuController::class, 'unupload'])->name('menu-unupload');
+Route::get('/menu-image/{menu}', [MenuController::class, 'image'])->name('menu-image-view');
 Route::resource('/category', CategoryController::class);
 Route::resource('/language', LanguageController::class);
 Route::resource('/meditator', MeditatorController::class);

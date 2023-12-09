@@ -22,4 +22,26 @@ class CategoryService extends BaseService
         ];
         parent::__construct();
     }
+
+    public function getByMenuSlug($slug)
+    {
+        $this->queryClosure = function($q) use ($slug) {
+            $q->whereHas('menus', function($q) use ($slug) {
+                $q->where('slug', $slug);
+            });
+        };
+        $categories = $this
+            ->withRelation([
+                'translation' => [],
+                'meditations' => [
+                    'meditator' => [
+                        'image'=> [],
+                        'avatar' => []
+                    ],
+                    'translation' => []
+                ]
+            ])
+            ->getList([]);
+        return $categories;
+    }
 }

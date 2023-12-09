@@ -17,7 +17,10 @@
         <div class="py-30 px-30">
           <form class="contact-form row y-gap-30" action="{{route('admin.menu.store')}}" method="POST">
             @csrf
-
+            <div class="col-12">
+              <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Menu slug </label>
+              <input name="slug" type="text" placeholder="Slug for route">
+            </div>
             @foreach ($langs as $key => $lang)
                 <div class="col-12">
                     <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Menu title {{$lang->code}}</label>

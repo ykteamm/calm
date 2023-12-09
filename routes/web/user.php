@@ -4,11 +4,10 @@ use App\Http\Controllers\MeditationController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
-use App\Http\Livewire\Counter;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [TestController::class, 'index'])->name('index');
-//Route::post('/', [TestController::class, 'index'])->name('index');
+Route::get('/menu/{slug}', [TestController::class, 'menu'])->name('menu-index');
 Route::get('/manzara', [TestController::class, 'manzara'])->name('manzara');
 Route::get('/free', [TestController::class, 'free'])->name('free');
 

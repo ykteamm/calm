@@ -51,7 +51,11 @@ class MeditationService extends BaseService
 
     public function recentlyViewed($data)
     {
-        $this->queryClosure = fn ($q) => $q->has('usershows');
+        $this->queryClosure = function ($q) {
+            $q->whereHas('usershows', function($q) {
+                $q->where('user_id', auth()->id());
+            });
+        };
         return $this->getList($data);
     }
 

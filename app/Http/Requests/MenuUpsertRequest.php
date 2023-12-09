@@ -27,6 +27,7 @@ class MenuUpsertRequest extends FormRequest
         $required = ($this->isMethod('put')) ? 'nullable' : 'required';
         
         return [
+            'slug' => [$required, 'string'],
             'translations' => [$required, 'array'],
             'translations.*' => [$required, 'array'],
             'translations.*.id' => ['nullable'],
