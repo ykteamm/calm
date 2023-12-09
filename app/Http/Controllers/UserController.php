@@ -5,44 +5,44 @@ namespace App\Http\Controllers;
 use App\Services\UserService;
 use App\Http\Requests\IndexRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AssetRequest;
 use App\Http\Requests\UserUpsertRequest;
+use App\Models\User;
 
 class UserController extends Controller
 {
     protected UserService $service;
 
-    public function __construct(UserService $service)
+    public function __construct(UserService $userService)
     {
-        $this->service = $service;
+        $this->service = $userService;
+    }
+    
+    public function upload(AssetRequest $assetRequest)
+    {
+        $data = $assetRequest->validated();
+        $data['type'] = User::IMAGE;
+        return $this->service->storeAsset(auth()->id(), $data, true)
+            ->redirect('/');
     }
 
-    public function index(IndexRequest $indexRequest)
+    public function reupload(AssetRequest $assetRequest, $asset)
     {
-        $data = $this->service->getList($indexRequest);
-        return $data;
+        $data = $assetRequest->validated();
+        $data['type'] = User::IMAGE;
+        return $this->service->updateAsset(auth()->id(), $asset, $data, true)
+            ->redirect('/');
     }
 
-    public function store(UserUpsertRequest $upsertRequest)
+    public function unupload($asset)
     {
-        $data = $this->service->create($upsertRequest->validated());
-        return $data;
+        return $this->service->deleteAsset(auth()->id(), $asset, true)
+            ->redirect('/');
     }
-
-    public function show($id)
+    
+    public function image()
     {
-        $data = $this->service->show($id);
-        return $data;
+        return view('user.image', ['user' => auth()->user()]);
     }
-
-    public function update($id, UserUpsertRequest $upsertRequest)
-    {
-        $data = $this->service->edit($id, $upsertRequest->validated());
-        return $data;
-    }
-
-    public function destroy($id)
-    {
-        $data = $this->service->delete($id);
-        return $data;
-    }
+    
 }

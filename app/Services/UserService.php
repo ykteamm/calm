@@ -5,9 +5,11 @@ namespace App\Services;
 use App\Models\User;
 use App\Services\BaseService;
 use App\Http\Resources\UserResource;
+use App\Traits\MakeAsset;
 
 class UserService extends BaseService
 {
+    use MakeAsset;
     public function __construct(User $serviceModel)
     {
         $this->model = $serviceModel;
@@ -27,4 +29,6 @@ class UserService extends BaseService
 
         parent::__construct();
     }
+
+    
 }

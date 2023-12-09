@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\UserExistsByUsername;
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegisterRequest extends FormRequest
+class SmsVerifyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +24,7 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => ['nullable', 'string'],
-            'firstname' => ['nullable', 'string'],
-            'lastname' => ['nullable', 'string'],
-            'phone' => ['required', 'string'],
-            'password' => ['required', 'string']
+            'sms_verif_code' => ['string', 'min:6']
         ];
     }
 }

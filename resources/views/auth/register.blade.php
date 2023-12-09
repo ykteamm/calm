@@ -29,6 +29,10 @@
                                 <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Phone number</label>
                                 <input name="phone" type="text" placeholder="Phone number">
                             </div>
+                            <div class="mb-10">
+                                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Password</label>
+                                <input name="password" type="password" placeholder="Password">
+                            </div>
                             <div class="row justify-between pt-15">
                                 <div class="col-auto">
                                 </div>

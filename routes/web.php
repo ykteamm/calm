@@ -63,3 +63,6 @@ Route::group(['middleware' => ['auth', 'user.type:admin']], function () {
     Route::get('admin-change-locale/{locale}', [LanguageController::class, 'changeLocale'])->name('admin-change-locale');
     Route::prefix("$locale/admin")->name('admin.')->group(base_path('routes/web/admin.php'));
 });
+Route::fallback(function () {
+    return redirect('/');
+});

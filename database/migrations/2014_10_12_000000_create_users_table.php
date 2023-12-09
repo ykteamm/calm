@@ -23,7 +23,10 @@ class CreateUsersTable extends Migration
             $table->string('username', 50)->nullable();
             $table->string('phone', 20)->unique()->nullable();
             $table->string('email', 50)->nullable();
-            $table->string('password')->default(Hash::make('password'));
+            $table->string('password');
+            $table->timestamp('sms_verif_code_expires_at')->nullable();
+            $table->timestamp('sms_verif_code_verified_at')->nullable();
+            $table->string('sms_verif_code')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

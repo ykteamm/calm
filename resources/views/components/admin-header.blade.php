@@ -259,7 +259,11 @@
 
           <div class="relative d-flex items-center ml-10">
             <a href="#" data-el-toggle=".js-profile-toggle">
-              <img class="size-50" src="img/misc/user-profile.png" alt="image">
+              @if ($image = auth()->user()->image)
+                <img class="size-50" src="{{asset($image->path)}}" alt="image">
+              @else 
+                <img class="size-50" src="img /misc/user-profile.png" alt="image">
+              @endif
             </a>
 
             <div class="toggle-element js-profile-toggle">

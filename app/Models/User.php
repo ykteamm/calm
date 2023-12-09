@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasAsset;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -9,7 +10,8 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    const IMAGE = 10;
+    use HasApiTokens, HasFactory, Notifiable, HasAsset;
 
     protected $fillable = [
         'firstname',
@@ -19,6 +21,8 @@ class User extends Authenticatable
         'phone',
         'type',
         'password',
+        'sms_verif_code_expires_at',
+        'sms_verif_code',
     ];
     
     protected $hidden = [
@@ -29,6 +33,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function assetTypes()
+    {
+        return [
+            static::IMAGE => $this->image()
+        ];
+    }
+
+    public function image()
+    {
+        return $this->asset()->where('type', static::IMAGE);
+    }
 
     public function replies()
     {
