@@ -27,7 +27,7 @@ class VariantController extends Controller
     public function index(IndexRequest $indexRequest)
     {
         $this->service->willParseToRelation = [
-            'translation' => ['object_id', 'name', 'answer'], 'translations' => ['object_id', 'name', 'answer']
+            'translation' => ['object_id', 'name'], 'translations' => ['object_id', 'name']
         ];
         $variant = $this->service->getList($indexRequest);
         return view('admin.variant.index', compact('variant'));
@@ -35,7 +35,7 @@ class VariantController extends Controller
 
     public function create()
     {
-        $this->questionService->willParseToRelation = ['translation' => ['object_id', 'name', 'answer']];
+        $this->questionService->willParseToRelation = ['translation' => ['object_id', 'name']];
         $questions = $this->questionService->getList([]);
         $langs = $this->languageService->getList([]);
         return view('admin.variant.create', compact('langs', 'questions'));
@@ -49,7 +49,7 @@ class VariantController extends Controller
     public function show($id)
     {
         $this->service->willParseToRelation = [
-            'translation' => ['object_id', 'name', 'answer'], 'translations' => ['object_id', 'name', 'answer']
+            'translation' => ['object_id', 'name'], 'translations' => ['object_id', 'name']
         ];
         $variant = $this->service->show($id);
         return view('admin.variant.show', compact('variant'));
@@ -60,7 +60,7 @@ class VariantController extends Controller
         $this->service->willParseToRelation = ['translations'];
         $variant = $this->service->show($id);
         $langs = $this->languageService->getList([]);
-        $this->questionService->willParseToRelation = ['translation' => ['object_id', 'name', 'answer']];
+        $this->questionService->willParseToRelation = ['translation' => ['object_id', 'name']];
         $questions = $this->questionService->getList([]);
         return view('admin.variant.edit', compact('langs', 'variant', 'questions'));
     }
