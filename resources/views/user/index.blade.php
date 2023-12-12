@@ -10,7 +10,10 @@ use Illuminate\Support\Facades\DB;
             <div class="dashboard__sidebar -base scroll-bar-1 border-right-light lg:px-30 mt0 height100 main-color-rtl pd">
 
                 <div class="sidebar -base-sidebar">
-                    <div class="sidebar__inner">
+                    <div class="menu_div">
+                        <button type="button" id="close_btn" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="sidebar__inner top_width">
                         <div>
                             <div class="text-16 lh-1 fw-500 text-dark-1 mb-30 text-center">
                                 <h2 class="font_family_a text-color-white-for">
@@ -57,10 +60,11 @@ use Illuminate\Support\Facades\DB;
             </div>
 
             <div class="dashboard__main mt-0 main-color">
+                <div class="menu__btn" id="menu_btn">
+{{--                    <i class="fa-solid fa-bars"></i>--}}
+                    Menu
+                </div>
                 <div class="dashboard__content pt-0 px-30 pb-0">
-
-
-
                     <div class="container pt-40">
                         <div class="col-auto">
                             <h1 class="text-30 font_family_a text-color-white lh-12 fw-700">
@@ -122,7 +126,7 @@ use Illuminate\Support\Facades\DB;
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
                                     </div>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-9 text_cent">
                                         <span class="text-17 fw-500 text-dark-1 font_family_a text-color-white-for">
                                             How are you feeling?
                                         </span>

@@ -5031,13 +5031,13 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 991px) {
     .dashboard.-home-9 {
-        margin-top: 30px;
+        /*margin-top: 30px;*/
     }
 }
 
 @media (max-width: 767px) {
     .dashboard.-home-9 {
-        margin-top: 60px;
+        /*margin-top: 60px;*/
     }
 }
 
@@ -5046,14 +5046,24 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
+.menu__btn{
+    padding: 20px 50px;
+    color: white;
+    font-size: 22px;
+    display: none;
+}
+
 @media (max-width: 991px) {
+    .menu__btn{
+        display: block;
+    }
     .dashboard.-home-9 .dashboard__sidebar {
         z-index: 110;
         position: fixed;
         top: 0;
         bottom: 0;
         width: 300px;
-        margin-top: 90px;
+        /*margin-top: 90px;*/
     }
 }
 
@@ -5098,7 +5108,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .sidebar.-base-sidebar .sidebar__inner {
-    padding-top: 40px;
+    /*padding-top: 40px;*/
 }
 
 .sidebar.-base-sidebar .sidebar__item {
@@ -5110,6 +5120,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 575px) {
+    .text_cent{
+        text-align: center;
+    }
     .sidebar.-base-sidebar .sidebar__item {
         border-radius: 0;
         height: 45px;
@@ -5328,6 +5341,9 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     padding: 140px 0 160px 0;
     padding: 140px 0 320px 0;
+}
+.top_width{
+    margin-top: 30px;
 }
 
 @media (max-width: 991px) {
@@ -8607,10 +8623,19 @@ h1, h2, h3, h4, h5, h6 {
     padding-left: 30px;
 }
 
+.menu_div{
+    display: none;
+}
+
 @media (max-width: 991px) {
     .dashboard {
         flex-direction: column;
-        padding: 30px;
+        /*padding: 30px;*/
+    }
+    .menu_div{
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 10px
     }
 }
 

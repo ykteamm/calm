@@ -186,7 +186,7 @@ i.fa-step-backward {
 }
 @media (max-width: 500px) {
   .dashboard__sidebar{
-      display: none;
+      /*display: none;*/
   }
 
   .p-controls-panel {

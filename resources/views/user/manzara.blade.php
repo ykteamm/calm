@@ -5,14 +5,19 @@
 @section('user_content')
 
 <div class="content-wrapper js-content-wrapper">
-    <div class="dashboard  px-0 js-dashboard-home-9">
+    <div class="dashboard -home-9 px-0 js-dashboard-home-9">
       <div class="dashboard__sidebar -base scroll-bar-1 border-right-light lg:px-30 mt0 height100 main-color-rtl pd" >
 
         <div class="sidebar -base-sidebar">
-          <div class="sidebar__inner">
+            <div class="menu_div">
+                <button type="button" id="close_btn" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+          <div class="sidebar__inner top_width">
             <div>
               <div class="text-16 lh-1 fw-500 text-dark-1 mb-30 text-center">
-                  <a href="/">Home</a>
+                  <h2 class="font_family_a text-color-white-for">
+                      Medidation
+                  </h2>
               </div>
               <div>
 
@@ -57,6 +62,7 @@
 {{--        main-color class dashboard backgroud--}}
       <div class="dashboard__main mt-0">
         <div class="dashboard__content pt-0 px-15 pb-0" style="padding-left: 0 !important; position: relative;background: linear-gradient(90deg, #162a39, #194d75);border-radius: 0;overflow: hidden;">
+
             <div class="main_video" style="position: relative; z-index: 2; background: linear-gradient(90deg, #162a39, #194d75);color: #f1f1f1; width: 100%;height: 900px;padding: 20px;">
                 <video autoplay loop muted playsinline id="myVideo" class="background-video " style="position: absolute; z-index: 0;opacity: 50%; right: 0; bottom: 0;left: 0; min-width: 100%; min-height: 100%; display: none">
                     <source src="../calm/media/video_bg.mp4" type="video/mp4">
@@ -67,7 +73,12 @@
                 </video>
 
 
-
+                <div class="container">
+                    <div class="menu__btn" id="menu_btn" style="padding: 0 !important;">
+                        {{--                    <i class="fa-solid fa-bars"></i>--}}
+                        Menu
+                    </div>
+                </div>
                 <div class="container pt-40" style="position: relative; z-index: 5;">
                     <div class="col-auto">
                         <h1 class="text-30 text-color-white lh-12 fw-700 font_family_a">

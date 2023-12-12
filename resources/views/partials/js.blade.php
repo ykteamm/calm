@@ -5,6 +5,22 @@
 <script src="{{asset('calm/js/main.js')}}"></script>
 <script src="{{asset('calm/js/player.js')}}"></script>
 <script src="{{asset('calm/js/click.js')}}"></script>
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        var menuBtn = document.getElementById('menu_btn');
+        var dashboard = document.querySelector('.dashboard');
+        var closeButton = document.getElementById('close_btn');
+        menuBtn.addEventListener('click', function () {
+            // Click hodisasida ishlatiladigan funktsiya
+            // menuBtn.classList.toggle('clicked');
+            dashboard.classList.toggle('-is-sidebar-hidden');
+        });
+        closeButton.addEventListener('click', function () {
+            // Close button bosganda sidebarni yopish
+            dashboard.classList.add('-is-sidebar-hidden');
+        });
+    });
+</script>
 <script>
     // JavaScript orqali sahifani yangilash
     document.getElementById('question').addEventListener('click', function() {
