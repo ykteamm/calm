@@ -17,7 +17,7 @@
             <section class="">
                 <div class="container mt-30">
                     <h3 class="text-color-white-for text-center font_family_a">
-                        What wellness goals can Balance help you achieve?
+                        Bu ilova sizga qanday salomatlik maqsadlariga erishishga yordam bersin!
                     </h3>
                 </div>
             </section>
@@ -35,7 +35,7 @@
                                         <img class="img-ratio" src="../calm/img/home-3/blog/img.png" alt="image">
                                     </div>
                                     <div class="px-15 py-15 text-center bg-white">
-                                        <h4 class="text-17 lh-15 fw-500 font_family_a">Reduce Stress</h4>
+                                        <h4 class="text-17 lh-15 fw-500 font_family_a">Stressni kamaytirish</h4>
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                                         <img class="img-ratio" src="../calm/img/home-3/blog/img_1.png" alt="image">
                                     </div>
                                     <div class="px-15 py-15 text-center bg-white">
-                                        <h4 class="text-17 lh-15 fw-500 font_family_a" >Improve Sleep</h4>
+                                        <h4 class="text-17 lh-15 fw-500 font_family_a" >Uyquni yaxshilash</h4>
                                     </div>
 
                                 </div>
@@ -60,7 +60,7 @@
                                         <img class="img-ratio" src="../calm/img/home-3/blog/img.png" alt="image">
                                     </div>
                                     <div class="px-15 py-15 text-center bg-white">
-                                        <h4 class="text-17 lh-15 fw-500 font_family_a" >Increase Focus</h4>
+                                        <h4 class="text-17 lh-15 fw-500 font_family_a" >Fokusni oshiring</h4>
                                     </div>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                                         <img class="img-ratio" src="../calm/img/home-3/blog/img_1.png" alt="image">
                                     </div>
                                     <div class="px-15 py-15 text-center bg-white">
-                                        <h4 class="text-17 lh-15 fw-500 font_family_a" >Improve Mood</h4>
+                                        <h4 class="text-17 lh-15 fw-500 font_family_a" >Kayfiyatni yaxshilash</h4>
                                     </div>
 
                                 </div>
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                     <div class="text-center mt-30">
-                        <button type="submit" id="submit_choose" class="d-none btn btn-primary font_family_a">Continue</button>
+                        <button type="submit" id="submit_choose" class="d-none btn btn-primary font_family_a">Davom etamiz</button>
                     </div>
                 </form>
             </section>

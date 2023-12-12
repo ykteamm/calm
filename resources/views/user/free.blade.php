@@ -16,9 +16,9 @@
                 <form action="{{url('free/choose')}}" method="POST">
                     @csrf
                     <div class="row text-center">
-                        <h1 class="text-color-white-for font_family_a">Answer a few questions to personalize your experince</h1>
+                        <h1 class="text-color-white-for font_family_a">Tajribangizni shaxsiylashtirish uchun bir nechta savollarga javob bering!</h1>
                         <div class="text-center mt-30">
-                            <button type="submit" class="btn btn-primary font_family_a">Continue</button>
+                            <button type="submit" class="btn btn-primary font_family_a">Davom etamiz</button>
                         </div>
                     </div>
                 </form>

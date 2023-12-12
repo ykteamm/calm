@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\IndexRequest;
 use App\Services\EmojiService;
 use App\Services\MeditationService;
+use Illuminate\Support\Facades\DB;
 
 class TestController extends Controller
 {
@@ -300,34 +301,168 @@ class TestController extends Controller
 
     public function question()
     {
+
+        $question_data = DB::table('variants')
+            ->join('variant_translations', 'variants.id', '=', 'variant_translations.object_id')
+            ->join('questions', 'variants.question_id', '=', 'questions.id')
+            ->join('question_translations', 'questions.id', '=', 'question_translations.object_id')
+            ->join('issues', 'questions.issue_id', '=', 'issues.id')
+            ->join('issue_translations', 'issues.id', '=', 'issue_translations.object_id')
+            ->select(
+                'issues.id as issue_id',
+                'issue_translations.name as issue_name',
+                'issue_translations.language_code as issue_language_code',
+                'questions.id as question_id',
+                'question_translations.name as question_name',
+                'question_translations.language_code as question_language_code',
+                'variants.id as variant_id',
+                'variant_translations.name as variant_name',
+                'variant_translations.answer as variant_answer',
+                'variant_translations.language_code as variant_language_code',
+            )
+            ->where('issue_translations.language_code', '=', 'uz')
+            ->where('question_translations.language_code', '=', 'uz')
+            ->where('questions.id', '=', 1)
+            ->where('variant_translations.language_code', '=', 'uz')
+            ->get();
+
+
+//        return $question_data;
+
+
+//        return $variants;
 //        $data = $request->all();
 //        dd($request->all());
-        return view("user.free.question");
+        return view("user.free.question",[
+            'question_data'=>$question_data,
+        ]);
     }
 
-    public function keep_awake(Request $request)
+    public function keep_awake()
     {
-//        $data = $request->all();
-//        dd($request->all());
-        return view("user.free.keep_awake");
+        $question_data = DB::table('variants')
+            ->join('variant_translations', 'variants.id', '=', 'variant_translations.object_id')
+            ->join('questions', 'variants.question_id', '=', 'questions.id')
+            ->join('question_translations', 'questions.id', '=', 'question_translations.object_id')
+            ->join('issues', 'questions.issue_id', '=', 'issues.id')
+            ->join('issue_translations', 'issues.id', '=', 'issue_translations.object_id')
+            ->select(
+                'issues.id as issue_id',
+                'issue_translations.name as issue_name',
+                'issue_translations.language_code as issue_language_code',
+                'questions.id as question_id',
+                'question_translations.name as question_name',
+                'question_translations.language_code as question_language_code',
+                'variants.id as variant_id',
+                'variant_translations.name as variant_name',
+                'variant_translations.answer as variant_answer',
+                'variant_translations.language_code as variant_language_code',
+            )
+            ->where('issue_translations.language_code', '=', 'uz')
+            ->where('question_translations.language_code', '=', 'uz')
+            ->where('questions.id', '=', 2)
+            ->where('variant_translations.language_code', '=', 'uz')
+            ->get();
+//        return $keep_data;
+
+        return view("user.free.keep_awake",[
+            'question_data'=>$question_data,
+            ]);
     }
 
     public function morning_night()
     {
+        $question_data = DB::table('variants')
+            ->join('variant_translations', 'variants.id', '=', 'variant_translations.object_id')
+            ->join('questions', 'variants.question_id', '=', 'questions.id')
+            ->join('question_translations', 'questions.id', '=', 'question_translations.object_id')
+            ->join('issues', 'questions.issue_id', '=', 'issues.id')
+            ->join('issue_translations', 'issues.id', '=', 'issue_translations.object_id')
+            ->select(
+                'issues.id as issue_id',
+                'issue_translations.name as issue_name',
+                'issue_translations.language_code as issue_language_code',
+                'questions.id as question_id',
+                'question_translations.name as question_name',
+                'question_translations.language_code as question_language_code',
+                'variants.id as variant_id',
+                'variant_translations.name as variant_name',
+                'variant_translations.answer as variant_answer',
+                'variant_translations.language_code as variant_language_code',
+            )
+            ->where('issue_translations.language_code', '=', 'uz')
+            ->where('question_translations.language_code', '=', 'uz')
+            ->where('questions.id', '=', 3)
+            ->where('variant_translations.language_code', '=', 'uz')
+            ->get();
 
-        return view("user.free.morning_night");
+//        return $question_data;
+
+        return view("user.free.morning_night",[
+            'question_data'=>$question_data,
+        ]);
     }
 
         public function xavotir()
     {
+        $question_data = DB::table('variants')
+            ->join('variant_translations', 'variants.id', '=', 'variant_translations.object_id')
+            ->join('questions', 'variants.question_id', '=', 'questions.id')
+            ->join('question_translations', 'questions.id', '=', 'question_translations.object_id')
+            ->join('issues', 'questions.issue_id', '=', 'issues.id')
+            ->join('issue_translations', 'issues.id', '=', 'issue_translations.object_id')
+            ->select(
+                'issues.id as issue_id',
+                'issue_translations.name as issue_name',
+                'issue_translations.language_code as issue_language_code',
+                'questions.id as question_id',
+                'question_translations.name as question_name',
+                'question_translations.language_code as question_language_code',
+                'variants.id as variant_id',
+                'variant_translations.name as variant_name',
+                'variant_translations.answer as variant_answer',
+                'variant_translations.language_code as variant_language_code',
+            )
+            ->where('issue_translations.language_code', '=', 'uz')
+            ->where('question_translations.language_code', '=', 'uz')
+            ->where('questions.id', '=', 4)
+            ->where('variant_translations.language_code', '=', 'uz')
+            ->get();
 
-        return view("user.free.xavotir");
+        return view("user.free.xavotir",[
+            'question_data'=>$question_data,
+        ]);
     }
 
     public function depressiya()
     {
+        $question_data = DB::table('variants')
+            ->join('variant_translations', 'variants.id', '=', 'variant_translations.object_id')
+            ->join('questions', 'variants.question_id', '=', 'questions.id')
+            ->join('question_translations', 'questions.id', '=', 'question_translations.object_id')
+            ->join('issues', 'questions.issue_id', '=', 'issues.id')
+            ->join('issue_translations', 'issues.id', '=', 'issue_translations.object_id')
+            ->select(
+                'issues.id as issue_id',
+                'issue_translations.name as issue_name',
+                'issue_translations.language_code as issue_language_code',
+                'questions.id as question_id',
+                'question_translations.name as question_name',
+                'question_translations.language_code as question_language_code',
+                'variants.id as variant_id',
+                'variant_translations.name as variant_name',
+                'variant_translations.answer as variant_answer',
+                'variant_translations.language_code as variant_language_code',
+            )
+            ->where('issue_translations.language_code', '=', 'uz')
+            ->where('question_translations.language_code', '=', 'uz')
+            ->where('questions.id', '=', 5)
+            ->where('variant_translations.language_code', '=', 'uz')
+            ->get();
 
-        return view("user.free.depressiya");
+        return view("user.free.depressiya",[
+            'question_data'=>$question_data,
+        ]);
     }
 
     public function age()

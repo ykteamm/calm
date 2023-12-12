@@ -17,15 +17,15 @@
             <section class="">
                 <div class="container mt-30">
                     <h3 class="text-color-white-for text-center font_family_a">
-                        DID YOU KNOW?
+                        Siz bilasizmi?
                     </h3>
                     <br><br>
                     <h5 class="text-center text-color-white-for font_family_a">
-                        Balance has helped 542,273 people your age improve mental wellness.
+                        Bu ilova sizning yoshingizdagi 542 273 kishiga ruhiy salomatlikni yaxshilashga yordam berdi.
                     </h5>
 
                     <h6 class="text-center text-color-white-for font_family_a">
-                        As of January 2022
+                        2023 yil yanvar holatiga ko'ra
                     </h6>
                 </div>
             </section>
@@ -35,7 +35,7 @@
                     @csrf
 
                     <div class="text-center mt-40">
-                        <button type="submit"  class="btn btn-primary font_family_a">Continue</button>
+                        <button type="submit"  class="btn btn-primary font_family_a">Davom etamiz</button>
                     </div>
                 </form>
 

@@ -18,7 +18,7 @@
 
                 @foreach ($categories as $key => $value)
                   <div class="sidebar__item text-color-white mb-20" style="padding: 0">
-                    <a href="about-1.html" class="-dark-sidebar-white d-flex items-center font_family_a" style="font-size: 20px">
+                    <a href="menu/{{$value->slug}}" class="-dark-sidebar-white d-flex items-center font_family_a" style="font-size: 20px">
                       <div class="icon-circle mr-10">
                         <i class="icon-discovery"></i>
                       </div>

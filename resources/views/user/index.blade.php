@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\DB;
 
                                 @foreach ($menus as $key => $value)
                                     <div class="sidebar__item text-color-white mb-20" style="padding: 0">
-                                        <a href="about-1.html" class="-dark-sidebar-white d-flex items-center font_family_a text-20 ">
+                                        <a href="menu/{{$value->slug}}" class="-dark-sidebar-white d-flex items-center font_family_a text-20 ">
                                             <div class="icon-circle mr-10">
                                                 {{--                                                <i class="icon-discovery"></i>--}}
                                                 {{--                                                icon list--}}
@@ -131,10 +131,14 @@ use Illuminate\Support\Facades\DB;
                                     @if($have->user_id == auth()->user()->id)
                                         @foreach($emoji as $emoj)
                                             @if($have->emoji_id == $emoj->id )
+{{--                                                @dd($emoj)--}}
                                                 <div class="col-2"  style="display: flex; justify-content: space-around;">
                                                     <div class="accordion__icon ">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
+                                                            @if(asset($emoj->image->path))
                                                             <img src="{{asset($emoj->image->path)}}" sty alt="">
+                                                            @else
+                                                            @endif
                                                         </svg>
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
                                                     </div>
@@ -165,7 +169,10 @@ use Illuminate\Support\Facades\DB;
                                                                             <div class="accordion__button justify-content-around">
                                                                                 <div class="accordion__icon" >
                                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
-                                                                                        <img src="{{asset($emoj->image->path)}}" sty alt="">
+                                                                                        @if(asset($emoj->image->path))
+                                                                                            <img src="{{asset($emoj->image->path)}}" sty alt="">
+                                                                                        @else
+                                                                                        @endif
                                                                                     </svg>
                                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
                                                                                 </div>
@@ -194,6 +201,7 @@ use Illuminate\Support\Facades\DB;
                                             @csrf
                                             <div class="row">
                                                 @foreach($emoji as $emoj)
+{{--                                                    @dd($emoj)--}}
                                                     <div class="col-md-2 col-4 pb-10">
                                                         <div class="accordion__item add-class">
                                                             <input type="checkbox" class="d-none" value="{{$emoj->id}}" name="emoji_id">
@@ -203,7 +211,10 @@ use Illuminate\Support\Facades\DB;
                                                                     <div class="accordion__button justify-content-around">
                                                                         <div class="accordion__icon" >
                                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
-                                                                                <img src="{{asset($emoj->image->path)}}" sty alt="">
+                                                                                @if(asset($emoj->image->path))
+                                                                                    <img src="{{asset($emoj->image->path)}}" sty alt="">
+                                                                                @else
+                                                                                @endif
                                                                             </svg>
                                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
                                                                         </div>
