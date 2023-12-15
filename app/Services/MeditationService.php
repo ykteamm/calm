@@ -49,12 +49,19 @@ class MeditationService extends BaseService
         }
     }
 
-    public function recentlyViewed($data)
+    public function recentlyViewed($data = [])
     {
         $this->queryClosure = function ($q) {
             $q->whereHas('usershows', function($q) {
                 $q->where('user_id', auth()->id());
-            });
+            })
+            ->with(parseToRelation([
+                'meditator' => [
+                    'image'=> [],
+                    'avatar' => []
+                ],
+            'translation' => []]))
+            ->limit(10);
         };
         return $this->getList($data);
     }
@@ -66,6 +73,20 @@ class MeditationService extends BaseService
                 fn ($q) => $q->orderBy('views', 'DESC') 
             ]
         ];
+        $this->categoryService->queryClosure = fn ($q) => $q->limit(10);
         return $this->categoryService->getList($data);
+    }
+
+    public function popular($data = [])
+    {
+        $this->queryClosure = fn ($q) => $q
+        ->orderBy('views', 'DESC')
+        ->with(parseToRelation(['meditator' => [
+            'image'=> [],
+            'avatar' => []
+        ],
+        'translation' => []]))
+        ->limit(10);
+        return $this->getList($data);
     }
 }

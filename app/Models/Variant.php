@@ -20,4 +20,14 @@ class Variant extends BaseModel
     {
         return $this->belongsTo(Question::class, 'question_id', 'id');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_variant', 'user_id', 'variant_id', 'id', 'id');
+    }
+
+    public function uservariants()
+    {
+        return $this->hasMany(UserVariant::class, 'variant_id', 'id');
+    }
 }

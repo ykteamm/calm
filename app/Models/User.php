@@ -55,4 +55,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Usershow::class, 'user_id', 'id');
     }
+
+    public function variants()
+    {
+        return $this->belongsToMany(Variant::class, 'user_variants', 'user_id', 'variant_id', 'id', 'id');
+    }
+
+    public function uservariants()
+    {
+        return $this->hasMany(UserVariant::class, 'user_id', 'id');
+    }
 }

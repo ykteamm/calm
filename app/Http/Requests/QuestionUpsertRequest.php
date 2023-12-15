@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Enums\QuestionTypeEnum;
+use App\Rules\CategoryExists;
 use App\Rules\IssueExists;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -29,7 +30,7 @@ class QuestionUpsertRequest extends FormRequest
         
         return [
             'issue_id' => [$required, 'string', new IssueExists],
-            'type' => [$required, 'string', QuestionTypeEnum::in()],
+            'category_id' => [$required, 'string', new CategoryExists],
             'translations' => [$required, 'array'],
             'translations.*' => [$required, 'array'],
             'translations.*.id' => ['nullable'],

@@ -19,9 +19,18 @@ class QuestionService extends BaseService
         $this->equalableFields = [
             'id',
             'type',
-            'issue_id'
+            'issue_id',
+            'category_id'
         ];
 
         parent::__construct();
+    }
+
+    public function userCategories()
+    {
+        $this->setQuery();
+        $questons = auth()->user()->variants()->pluck('question_id')->toArray();
+        $categories = $this->query->whereIn('id', $questons)->pluck('category_id')->toArray();
+        return $categories;
     }
 }

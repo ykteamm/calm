@@ -14,6 +14,7 @@ class Question extends BaseModel
 
     protected $fillable = [
         'issue_id',
+        'category_id',
         'type'
     ];
 
@@ -21,6 +22,11 @@ class Question extends BaseModel
     public function variants()
     {
         return $this->hasMany(Variant::class, 'question_id', 'id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
     public function issue()

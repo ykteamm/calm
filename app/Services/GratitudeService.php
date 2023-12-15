@@ -30,13 +30,30 @@ class GratitudeService extends BaseService
         parent::__construct();
     }
 
-    public function lastGratitude()
+    public function lastRepliedGratitude($reply = null)
     {
-        if ($last = $this->replyService->last()) {
+        if(!$reply) {
+            $reply = $this->replyService->today();
+        }
+        if ($reply) {
             $this->willParseToRelation = [
                 'replies'
             ];
-            $gratitude = $this->show($last->gratitude_id);
+            $gratitude = $this->show($reply->gratitude_id);
+            return $gratitude;
+        }
+    }
+
+    public function todayRepliedGratitude($reply = null)
+    {
+        if(!$reply) {
+            $reply = $this->replyService->today();
+        }
+        if ($reply) {
+            $this->willParseToRelation = [
+                'replies'
+            ];
+            $gratitude = $this->show($reply->gratitude_id);
             return $gratitude;
         }
     }

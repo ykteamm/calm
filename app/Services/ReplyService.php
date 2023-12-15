@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Reply;
 use App\Services\BaseService;
 use App\Http\Resources\ReplyResource;
+use Carbon\Carbon;
 
 class ReplyService extends BaseService
 {
@@ -29,6 +30,25 @@ class ReplyService extends BaseService
     public function last()
     {
         $this->setQuery();
-        return $this->query->where('user_id', auth()->id())->orderBy('created_at', 'DESC')->first();
+        return $this->query
+            ->where('user_id', auth()->id())
+            ->with(parseToRelation([
+                'gratitude' => ['translation' => []]
+            ]))
+            ->orderBy('created_at', 'DESC')
+            ->first();
+    }
+    
+    public function today()
+    {
+        $this->setQuery();
+        return $this->query
+            ->where('user_id', auth()->id())
+            ->with(parseToRelation([
+                'gratitude' => ['translation' => []]
+            ]))
+            ->whereDate('created_at', date("Y-m-d"))
+            ->orderBy('created_at', 'DESC')
+            ->first();
     }
 }

@@ -25,13 +25,11 @@ class LanguageController extends Controller
             foreach (explode('/', $prev) as $item) {
                 if($this->service->existsByColumn('code', $item)) {
                     app()->setLocale($locale);
-                    $prev = str_replace($item, $locale, $prev);
-                    session()->put('locale', $locale);
-                    return redirect($prev);
-                } else if (str_starts_with($item, $locale)) {
-                    app()->setLocale($locale);
-                    $prev = str_replace($item, $locale, $prev);
-                    session()->put('locale', $locale);
+                    if ($locale == config('app.default_locale')){
+                        $prev = str_replace("/$item", '', $prev);
+                    } else {
+                        $prev = str_replace($item, $locale, $prev);
+                    }
                     return redirect($prev);
                 }
             }

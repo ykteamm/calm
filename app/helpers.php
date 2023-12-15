@@ -90,3 +90,16 @@ if (!function_exists('getProp')) {
         else return $default;
     }
 }
+
+if (!function_exists('langPrefix')) {
+    function langPrefix()
+    {
+        $defaultLocale = config('app.default_locale');
+        $currentLocale = app()->getLocale();
+        if ($currentLocale != $defaultLocale) {
+            return "$currentLocale/";
+        } else {
+            return '';
+        }
+    }
+}

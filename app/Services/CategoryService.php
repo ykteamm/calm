@@ -8,8 +8,16 @@ use App\Http\Resources\CategoryResource;
 
 class CategoryService extends BaseService
 {
-    public function __construct(Category $serviceModel)
+    protected QuestionService $questionService;
+    protected MenuService $menuService;
+    public function __construct(
+        Category $serviceModel,
+        QuestionService $questionService,
+        MenuService $menuService
+        )
     {
+        $this->questionService = $questionService;
+        $this->menuService = $menuService;
         $this->model = $serviceModel;
         $this->resource = CategoryResource::class;
 
@@ -43,5 +51,45 @@ class CategoryService extends BaseService
             ])
             ->getList([]);
         return $categories;
+    }
+
+    public function getForMenu($slug)
+    {
+        $categories = $this->questionService->userCategories();
+        $this->setQuery();
+        $data = $this->query
+            ->whereIn('id', $categories)
+            ->with(parseToRelation([
+                'translation' => [],
+                'meditations' => [
+                    'meditator' => [
+                        'image'=> [],
+                        'avatar' => []
+                    ],
+                    'translation' => []
+                ]
+            ]))
+            ->get();
+        return $data;
+    }
+
+    public function getForUser()
+    {
+        $categories = $this->questionService->userCategories();
+        $this->setQuery();
+        $data = $this->query
+            ->whereIn('id', $categories)
+            ->with(parseToRelation([
+                'translation' => [],
+                'meditations' => [
+                    'meditator' => [
+                        'image'=> [],
+                        'avatar' => []
+                    ],
+                    'translation' => []
+                ]
+            ]))
+            ->get();
+        return $data;
     }
 }

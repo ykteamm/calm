@@ -24,9 +24,11 @@ class LanguageServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $uri = explode('/', request()->path());
-        if(isset($uri[0]) && ($code = $uri[0]) && Language::where('code', $code)->exists()) {
-            app()->setLocale($code);
+        $locale = request()->segment(1);
+        if (Language::where('code', $locale)->exists()) {
+            app()->setLocale($locale);
+        } else {
+            app()->setLocale(config('app.default_locale'));
         }
     }
 }

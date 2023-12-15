@@ -61,6 +61,7 @@ class AuthController extends Controller
         $data = $loginRequest->validated();
         if ($user = $this->userService->find(['phone' => $data['phone']])) {
             if (Hash::check($data['password'], $user->password)) {
+                $this->doneTests($user);
                 Auth::login($user);
                 return redirect('/');
             } else {
@@ -77,6 +78,19 @@ class AuthController extends Controller
             return redirect('/');
         } else {
             return redirect('auth/login');
+        }
+    }
+
+    protected function doneTests($user)
+    {
+        if(($variants = Session::get('variants')) && $user) {
+            foreach (explode(',', $variants) as $id) {
+                if(!$user->uservariants()->where('variant_id', $id)->exists()) {
+                    $user->uservariants()->create([
+                        'variant_id' => $id
+                    ]);
+                }
+            }
         }
     }
 
@@ -148,7 +162,6 @@ class AuthController extends Controller
                 } else {
                     $user->sms_verif_code_verified_at = now();
                     $user->save();
-                    Auth::login($user);
                     return redirect(route('auth.login-view'));
                 }
             } else {

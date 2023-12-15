@@ -7,6 +7,7 @@ use App\Services\QuestionService;
 use App\Http\Requests\IndexRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\QuestionUpsertRequest;
+use App\Services\CategoryService;
 use App\Services\IssueService;
 use App\Services\LanguageService;
 
@@ -14,15 +15,18 @@ class QuestionController extends Controller
 {
     protected QuestionService $service;
     protected LanguageService $languageService;
-    protected IssueService $issueService; 
+    protected IssueService $issueService;
+    protected CategoryService $categoryService; 
     public function __construct(
         QuestionService $service,
         LanguageService $languageService,
-        IssueService $issueService
+        IssueService $issueService,
+        CategoryService $categoryService
     ){
         $this->languageService = $languageService;
         $this->issueService = $issueService;
         $this->service = $service;
+        $this->categoryService = $categoryService;
     }
 
     public function index(IndexRequest $indexRequest)
@@ -37,10 +41,11 @@ class QuestionController extends Controller
     public function create()
     {
         $this->issueService->willParseToRelation = ['translation' => ['object_id', 'name']];
+        $this->categoryService->willParseToRelation = ['translation' => ['object_id', 'name']];
+        $categories = $this->categoryService->getList([]);
         $issues = $this->issueService->getList([]);
         $langs = $this->languageService->getList([]);
-        $types = QuestionTypeEnum::list(true);
-        return view('admin.question.create', compact('langs', 'issues', 'types'));
+        return view('admin.question.create', compact('langs', 'issues', 'categories'));
     }
 
     public function store(QuestionUpsertRequest $upsertRequest)
@@ -63,8 +68,9 @@ class QuestionController extends Controller
         $question = $this->service->show($id);
         $issues = $this->issueService->getList([]);
         $langs = $this->languageService->getList([]);
-        $types = QuestionTypeEnum::list(true);
-        return view('admin.question.edit', compact('langs', 'question', 'types', 'issues'));
+        $this->categoryService->willParseToRelation = ['translation' => ['object_id', 'name']];
+        $categories = $this->categoryService->getList([]);
+        return view('admin.question.edit', compact('langs', 'question', 'types', 'categories'));
     }
 
     public function update($id, QuestionUpsertRequest $upsertRequest)

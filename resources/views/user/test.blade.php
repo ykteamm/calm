@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="pb-30 pr-30 pl-30" style="padding-top: 150px">
-                <form action="{{url('free/choose')}}" method="POST">
+                <form action="{{route('')}}" method="POST">
                     @csrf
                     <div class="row text-center">
                         <h1 class="text-color-white-for font_family_a">Tajribangizni shaxsiylashtirish uchun bir nechta savollarga javob bering!</h1>

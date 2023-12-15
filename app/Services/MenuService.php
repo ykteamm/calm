@@ -29,4 +29,15 @@ class MenuService extends BaseService
     // {
     //     return $this->setQuery()
     // }
+
+    public function getCategories($slug)
+    {
+        $this->setQuery();
+        if($menu = $this->query->where('slug', $slug)->first()) {
+            return $menu->categories()->pluck('id')->toArray();
+        } else {
+            return [];
+        }
+
+    }
 }

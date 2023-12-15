@@ -44,7 +44,7 @@
               <div class="dropdown__item -dark-bg-dark-2 -dark-border-white-10">
                 <div class="text-14 y-gap-15">
                   @foreach (getLanguages() as $lang)
-                    <div><a href="{{route('admin-change-locale', ['locale' => $lang->code])}}" class="d-block text-dark-1">{{$lang->name}}</a></div>
+                    <div><a href="{{route('change-locale', ['locale' => $lang->code])}}" class="d-block text-dark-1">{{$lang->name}}</a></div>
                   @endforeach
                 </div>
               </div>

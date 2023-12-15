@@ -18,6 +18,7 @@ class CreateIssueTranslationsTable extends Migration
             $table->bigInteger('object_id');
             $table->string('language_code');
             $table->string('name');
+            $table->string('results')->default('');
             $table->index(['object_id']);
         });
     }

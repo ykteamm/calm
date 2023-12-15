@@ -82,6 +82,8 @@ return [
 
     'locale' => 'uz',
 
+    'default_locale' => 'uz',
+
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale
@@ -173,8 +175,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
         App\Providers\LanguageServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
     ],
 
     /*

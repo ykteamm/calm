@@ -19,10 +19,10 @@
             @csrf
             <div class="row">
               <div class="col-6">
-                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Question type</label>
-                <select name="type" id="">
-                  @foreach ($types as $code => $name)
-                    <option value="{{$code}}">{{$name}}</option>
+                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Question category</label>
+                <select name="category_id" id="">
+                  @foreach ($categories as $category)
+                    <option value="{{$category->id}}">{{$category->translation->name}}</option>
                   @endforeach
                 </select>
               </div>

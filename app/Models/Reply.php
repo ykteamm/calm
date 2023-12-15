@@ -17,6 +17,11 @@ class Reply extends BaseModel
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    public function gratitude()
+    {
+        return $this->belongsTo(Gratitude::class, 'gratitude_id', 'id');
+    }
+
     public function gratitude_id()
     {
         return $this->belongsTo(GratitudeTranslation::class, 'gratitude_id', 'id');

@@ -19,32 +19,19 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $langs = Language::all();
-        $menus = ["Home", "Music", "Calm", "Sleep", "Rest"];
-        $categories = ["Featured", "Sport", "Mental", "Physical", "Sleeping", "Exercising"];
-        foreach ($categories as $cat){
+        $categories = [
+            'uz' => ["Taniqlangan", "Sport", "Aqliy", "Jismoniy", "Uyqu", "Mashq qilish"],
+            'en' => ["Featured", "Sport", "Mental", "Physical", "Sleeping", "Exercising"],
+            'ru' => ["Рекомендуемые", "Спорт", "Ментальный", "Физический", "Сон", "Тренировки"]
+        ];
+        for ($i = 0; $i < count($categories['uz']); $i++){
             $category = Category::create([]);
             foreach ($langs as $lang) {
                 CategoryTranslation::create([
-                    'name' => $cat .'-'. strtoupper($lang->code),
+                    'name' => $categories[$lang->code][$i],
                     'object_id' => $category->id,
                     'language_code' => $lang->code
                 ]);
-            }
-        }
-        $categories = Category::all();
-        foreach ($menus as $menu){
-            $menu_cat = Menu::create([
-                'slug' => strtolower($menu)
-            ]);
-            foreach ($langs as $lang) {
-                MenuTranslation::create([
-                    'name' => $menu .'-'. strtoupper($lang->code),
-                    'object_id' => $menu_cat->id,
-                    'language_code' => $lang->code
-                ]);
-            }
-            foreach ($categories as $c) {
-                $menu_cat->categories()->attach($c->id);
             }
         }
     }

@@ -201,7 +201,7 @@ abstract class BaseService
         }
     }
 
-    public function getList($data)
+    public function getList($data = [])
     {
         $this->authorizeMethod(__FUNCTION__);
         $needPagination = $data['pagination'] ?? $data['p'] ?? 0;
@@ -225,6 +225,18 @@ abstract class BaseService
     {
         $this->willParseToRelation = $relations;
         return $this;
+    }
+
+    public function with($relations = [])
+    {
+        $this->willParseToRelation = $relations;
+        return $this;
+    }
+
+    public function random($with = [])
+    {
+        $this->setQuery();
+        return $this->query->with(parseToRelation($with))->inRandomOrder()->first();
     }
 
     public function getListWithResponse($data, $withResource = true)
