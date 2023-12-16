@@ -60,7 +60,7 @@ class MeditationService extends BaseService
                     'image'=> [],
                     'avatar' => []
                 ],
-                'lessons' => ['audio' => []],
+                // 'lessons' => ['audio' => []],
             'translation' => []]))
             ->limit(10);
         };

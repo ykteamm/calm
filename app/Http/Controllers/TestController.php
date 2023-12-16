@@ -108,7 +108,6 @@ class TestController extends Controller
             $popularMeditations = $this->meditationService->popular();
             $recentlyViewedMeditations = $this->meditationService->recentlyViewed();
             $meditations = $this->categoryService->getMeditationsForUser();
-            return $recentlyViewedMeditations;
             return view("user.index",[
                 'user_emoj_have' => $user_emoj_have,
                 'emoj_have' => $emoj_have,
