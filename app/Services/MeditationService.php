@@ -60,22 +60,23 @@ class MeditationService extends BaseService
                     'image'=> [],
                     'avatar' => []
                 ],
+                'lessons' => ['audio' => []],
             'translation' => []]))
             ->limit(10);
         };
         return $this->getList($data);
     }
 
-    public function popularByCategory($data)
-    {
-        $this->categoryService->willParseToRelation = [
-            'meditations' => [
-                fn ($q) => $q->orderBy('views', 'DESC') 
-            ]
-        ];
-        $this->categoryService->queryClosure = fn ($q) => $q->limit(10);
-        return $this->categoryService->getList($data);
-    }
+    // public function popularByCategory($data)
+    // {
+    //     $this->categoryService->willParseToRelation = [
+    //         'meditations' => [
+    //             fn ($q) => $q->orderBy('views', 'DESC') 
+    //         ]
+    //     ];
+    //     $this->categoryService->queryClosure = fn ($q) => $q->limit(10);
+    //     return $this->categoryService->getList($data);
+    // }
 
     public function popular($data = [])
     {

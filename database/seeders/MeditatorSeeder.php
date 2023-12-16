@@ -14,10 +14,53 @@ class MeditatorSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=1; $i < 11; $i++) { 
-            $m = Meditator::create([
-                'firstname' => "User $i",
-                'lastname' => "Family $i"
+        $meditators = [
+            [
+                'firstname' => "Cristiano",
+                'lastname' => "Ronaldo",
+                'avatar' => 'meditators/cristiano-avatar.jpeg',
+                'image' => 'meditators/cristiano-image.webp'
+            ],
+            [
+                'firstname' => "Lebron",
+                'lastname' => "James",
+                'avatar' => 'meditators/lebron-avatar.jpg',
+                'image' => 'meditators/lebron-image.jpeg'
+            ],
+            [
+                'firstname' => "Andrew",
+                'lastname' => "Tate",
+                'avatar' => 'meditators/andrew-avatar.webp',
+                'image' => 'meditators/andrew-image.webp'
+            ],
+            [
+                'firstname' => "Jack",
+                'lastname' => "Ma",
+                'avatar' => 'meditators/jack-avatar.jpg',
+                'image' => 'meditators/jack-image.webp'
+            ],
+            [
+                'firstname' => "Elon",
+                'lastname' => "Musk",
+                'avatar' => 'meditators/elon-avatar.jpg',
+                'image' => 'meditators/elon-image.jpg'
+            ],
+        ];
+
+        foreach ($meditators as $m) {
+            $meditator = Meditator::create([
+                'firstname' => $m['firstname'],
+                'lastname' => $m['lastname'],
+            ]);
+            $meditator->avatar()->create([
+                'path' => $m['avatar'],
+                'info' => '[]',
+                'type' => Meditator::AVATAR
+            ]);
+            $meditator->image()->create([
+                'path' => $m['image'],
+                'info' => '[]',
+                'type' => Meditator::IMAGE
             ]);
         }
     }

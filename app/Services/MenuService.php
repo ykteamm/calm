@@ -34,7 +34,7 @@ class MenuService extends BaseService
     {
         $this->setQuery();
         if($menu = $this->query->where('slug', $slug)->first()) {
-            return $menu->categories()->pluck('id')->toArray();
+            return $menu->categories()->pluck('categories.id')->toArray();
         } else {
             return [];
         }

@@ -42,7 +42,7 @@ class Setup extends Command
         sleep(1);
         $this->call('migrate:fresh', ['--seed' => 1]);
         sleep(1);
-        $this->call('optimize');
+        $this->call('optimize:clear');
         sleep(1);
         $this->call('config:clear');
     }

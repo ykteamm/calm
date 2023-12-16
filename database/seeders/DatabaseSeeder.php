@@ -16,14 +16,15 @@ class DatabaseSeeder extends Seeder
         $this->call([
             LanguageSeeder::class,
             UserSeeder::class,
-            MenuSeeder::class,
             CategorySeeder::class,
+            MenuSeeder::class,
             IssueSeeder::class,
             QuestionSeeder::class,
             VariantSeeder::class,
             EmojiSeeder::class,
             MeditatorSeeder::class,
             MeditationSeeder::class,
+            LessonSeeder::class,
             GratitudeSeeder::class,
             MotivationSeeder::class
         ]);

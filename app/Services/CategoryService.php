@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Services;
 
 use App\Models\Category;
@@ -31,31 +30,9 @@ class CategoryService extends BaseService
         parent::__construct();
     }
 
-    public function getByMenuSlug($slug)
+    public function getMeditationsForMenu($slug)
     {
-        $this->queryClosure = function($q) use ($slug) {
-            $q->whereHas('menus', function($q) use ($slug) {
-                $q->where('slug', $slug);
-            });
-        };
-        $categories = $this
-            ->withRelation([
-                'translation' => [],
-                'meditations' => [
-                    'meditator' => [
-                        'image'=> [],
-                        'avatar' => []
-                    ],
-                    'translation' => []
-                ]
-            ])
-            ->getList([]);
-        return $categories;
-    }
-
-    public function getForMenu($slug)
-    {
-        $categories = $this->questionService->userCategories();
+        $categories = $this->menuService->getCategories($slug);
         $this->setQuery();
         $data = $this->query
             ->whereIn('id', $categories)
@@ -73,7 +50,7 @@ class CategoryService extends BaseService
         return $data;
     }
 
-    public function getForUser()
+    public function getMeditationsForUser()
     {
         $categories = $this->questionService->userCategories();
         $this->setQuery();

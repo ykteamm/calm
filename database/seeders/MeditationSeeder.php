@@ -7,7 +7,9 @@ use App\Models\Language;
 use App\Models\Meditation;
 use App\Models\MeditationTranslation;
 use App\Models\Meditator;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class MeditationSeeder extends Seeder
 {
@@ -18,22 +20,33 @@ class MeditationSeeder extends Seeder
      */
     public function run()
     {
-        $langs = Language::all();
         $meditators = Meditator::all();
-        $categoryRandom = Category::randomBuilder();
-
-        foreach ($meditators as $m) {
-            $meditation = Meditation::create([
-                'meditator_id' => $m->id,
-                'category_id' => $categoryRandom->random()->id
-            ]);
-            foreach ($langs as $lang) {
-                MeditationTranslation::create([
-                    'name' => "$meditation->id meditation",
-                    'object_id' => $meditation->id,
-                    'language_code' => $lang->code
-                ]);
+        for ($i=0; $i < 10; $i++) { 
+            foreach ($meditators as $meditator) {
+                $this->create($meditator);
             }
+        }
+    }
+
+    protected function create($meditator)
+    {
+        $names = [
+            'uz' => 'Meditatsiya',
+            'en' => 'Meditation',
+            'ru' => 'Медитация'
+        ];
+        $meditation = Meditation::create([
+            'meditator_id' => $meditator->id,
+            'category_id' => Category::inRandomOrder()->first()->id
+        ]);
+        $meditation->usershows()->create(['user_id' => User::first()->id]);
+        $langs = Language::all();
+        foreach ($langs as $lang) {
+            MeditationTranslation::create([
+                'name' => $names[$lang->code] . ' ' . Str::random(10) . ' ' . $lang->code,
+                'object_id' => $meditation->id,
+                'language_code' => $lang->code
+            ]);
         }
     }
 }

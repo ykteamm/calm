@@ -7,10 +7,8 @@ use App\Models\Gratitude;
 use App\Models\GratitudeTranslation;
 use App\Models\Motivation;
 use App\Models\MotivationTranslation;
-use App\Models\Reply;
 use App\Services\CategoryService;
 use App\Services\MenuService;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests\IndexRequest;
 use App\Services\EmojiService;
@@ -75,9 +73,8 @@ class TestController extends Controller
         $menus = $this->menuService->with(['translation'])->getList([]);
         $popularMeditations = $this->meditationService->popular();
         $recentlyViewedMeditations = $this->meditationService->recentlyViewed();
-        $categories = $this->categoryService->getForUser();
-        
-        return view("user.index",[
+        $meditations = $this->categoryService->getMeditationsForMenu($slug);
+        return view("user.menu",[
             'user_emoj_have' => $user_emoj_have,
             'emoj_have' => $emoj_have,
             'emoji' => $emojies,
@@ -90,7 +87,7 @@ class TestController extends Controller
             'time' => $time,
             'popularMeditations' => $popularMeditations,
             'recentlyViewedMeditations' => $recentlyViewedMeditations,
-            'categories' => $categories
+            'meditations' => $meditations
         ]);
     }
 
@@ -110,7 +107,8 @@ class TestController extends Controller
             $menus = $this->menuService->with(['translation'])->getList([]);
             $popularMeditations = $this->meditationService->popular();
             $recentlyViewedMeditations = $this->meditationService->recentlyViewed();
-            $categories = $this->categoryService->getForUser();
+            $meditations = $this->categoryService->getMeditationsForUser();
+            return $recentlyViewedMeditations;
             return view("user.index",[
                 'user_emoj_have' => $user_emoj_have,
                 'emoj_have' => $emoj_have,
@@ -124,7 +122,7 @@ class TestController extends Controller
                 'time' => $time,
                 'popularMeditations' => $popularMeditations,
                 'recentlyViewedMeditations' => $recentlyViewedMeditations,
-                'categories' => $categories
+                'meditations' => $meditations
             ]);
         } else {
             return view("user.test.start");

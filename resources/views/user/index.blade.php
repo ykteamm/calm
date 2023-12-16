@@ -293,7 +293,7 @@ use Illuminate\Support\Facades\DB;
                     @php
                         $i = 0;
                     @endphp
-                    @foreach ($categories as $key => $category)
+                    @foreach ($meditations as $key => $category)
                         @php
                             $i = $i +1;
                         @endphp
@@ -546,20 +546,24 @@ use Illuminate\Support\Facades\DB;
 
                                             <div class="comments__img col-md-2 col-sm-4 col-5">
                                                 <!-- <div class="bg-image rounded-full js-lazy loaded" data-ll-status="loaded"> -->
-                                                <img src="../calm/img/about-1/1.png" class="bg-image" style="border-radius: 20px;" alt="">
+                                                @if ($item->meditator->avatar)
+                                                    <img src="{{asset($item->meditator->avatar->path)}}" class="bg-image" style="border-radius: 20px;" alt="">
+                                                @else
+                                                    <img src="../calm/img/about-1/1.png" class="bg-image" style="border-radius: 20px;" alt="">
+                                                @endif
                                                 <!-- </div> -->
                                             </div>
 
                                             <div class="comments__body  col-md-9 col-sm-8 col-7">
                                                 <!-- <div class="comments__header"> -->
                                                 <h4 class="text-17 fw-500 lh-15" style="color: #c6c2c2;">
-                                                    Course
+                                                    {{$item->translation->name}}
                                                     <span class="text-13 text-light-1 fw-400" style="color: #c6c2c2;">10 min</span>
                                                 </h4>
 
                                                 <!-- </div> -->
 
-                                                <h5 class="text-15 fw-500 mt-15" style="color: white;">The best LMS Design</h5>
+                                                <h5 class="text-15 fw-500 mt-15" style="color: white;">{{$item->meditator->firstname}} {{$item->meditator->lastname}}</h5>
                                                 <!-- <div class="comments__text mt-10"> -->
                                                 <p class="mt-10" style="color: white;">This course is a very applicable. Professor Ng explains precisely each algorithm</p>
                                                 <!-- </div> -->

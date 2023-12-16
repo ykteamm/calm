@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
-use App\Models\CategoryTranslation;
 use App\Models\Language;
 use App\Models\Menu;
 use App\Models\MenuTranslation;
@@ -24,7 +23,6 @@ class MenuSeeder extends Seeder
             'en' => ["Home", "Music", "Calm", "Sleep", "Rest"],
             'ru' => ["Дом", "Музыка", "Спокойствие", "Сон", "Отдых"],
         ];
-        $categories = Category::all();
         $enmenus = $menus['en'];
         for ($i = 0; $i < count($enmenus); $i++){
             $menu = Menu::create([
@@ -37,8 +35,9 @@ class MenuSeeder extends Seeder
                     'language_code' => $lang->code
                 ]);
             }
-            foreach ($categories as $c) {
-                $menu->categories()->attach($c->id);
+            for ($j=0; $j < 3; $j++) { 
+                $id = Category::inRandomOrder()->first()->id;
+                $menu->categories()->attach($id);
             }
         }
     }
