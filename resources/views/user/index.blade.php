@@ -40,7 +40,7 @@ use Illuminate\Support\Facades\DB;
                                 @endforeach
 
                                 <div class="sidebar__item text-color-white mb-20" style="padding: 0">
-                                    <a href="{{url('manzara')}}" class="-dark-sidebar-white font_family_a d-flex items-center text-20" >
+                                    <a href="{{route('landscape')}}" class="-dark-sidebar-white font_family_a d-flex items-center text-20" >
                                         <div class="icon-circle mr-10">
                                             {{--                                            <i class="icon-discovery"></i>--}}
                                             <i class="fas fa-mountain"></i>
@@ -96,7 +96,7 @@ use Illuminate\Support\Facades\DB;
                             </div>
                         </div>
                     </section>
-                    <div class="accordion -block text-left pt-60 lg:pt-40 js-accordion">
+                    <div class="accordion -block text-left pt-60 lg:pt-40 js-accordion" style="z-index: 100! important;position:relative">
                         <div class="accordion__item">
                             <div class="accordion__button">
                                 <div class="col-1">
@@ -116,7 +116,6 @@ use Illuminate\Support\Facades\DB;
                                     @if($have->user_id == auth()->user()->id)
                                         @foreach($emoji as $emoj)
                                             @if($have->emoji_id == $emoj->id )
-{{--                                                @dd($emoj)--}}
                                                 <div class="col-2"  style="display: flex; justify-content: space-around;">
                                                     <div class="accordion__icon ">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
@@ -138,9 +137,8 @@ use Illuminate\Support\Facades\DB;
                                 @if($user_emoj_have)
                                     @foreach($emoj_have as $have)
                                         @if($have->user_id == auth()->user()->id)
-                                            {{--  update --}}
                                             <div class="accordion__content__inner">
-                                                <form action="{{url('feelings/'.$have->id)}}" method="POST">
+                                                <form action="{{route('feeling.update', ['feeling' => $have->id])}}" method="POST">
                                                     @csrf
                                                     @method('PUT')
                                                     <div class="row">
@@ -180,13 +178,11 @@ use Illuminate\Support\Facades\DB;
                                         @endif
                                     @endforeach
                                 @else
-                                    {{-- create --}}
                                     <div class="accordion__content__inner">
-                                        <form action="{{route('create-feelings')}}" method="POST">
+                                        <form action="{{route('feeling.store')}}" method="POST">
                                             @csrf
                                             <div class="row">
                                                 @foreach($emoji as $emoj)
-{{--                                                    @dd($emoj)--}}
                                                     <div class="col-md-2 col-4 pb-10">
                                                         <div class="accordion__item add-class">
                                                             <input type="checkbox" class="d-none" value="{{$emoj->id}}" name="emoji_id">
@@ -221,7 +217,6 @@ use Illuminate\Support\Facades\DB;
                                 @endif
                             </div>
                         </div>
-
                     </div>
                     <section class="layout-pt-md layout-pb-md">
                         <div data-anim-wrap class="container">
@@ -367,7 +362,7 @@ use Illuminate\Support\Facades\DB;
                     @endforeach
                     @if(!$todayRepliedGratitude && $gratitude)
                         <div class="container">
-                            <div class="accordion -block text-left pt-60 lg:pt-40 js-accordion">
+                            <div class="accordion -block text-left pt-60 lg:pt-40 js-accordion" >
                                 <div class="item_test"  data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     <div class="accordion__button">
                                         <div class="accordion__icon">
@@ -446,7 +441,7 @@ use Illuminate\Support\Facades\DB;
                                     </div>
                                 </div>
                             </div> --}}
-                            <div class="accordion -block text-left pt-60 lg:pt-40 js-accordion">
+                            <div class="accordion -block text-left pt-60 lg:pt-40 js-accordion" style="z-index: 100! important;position:relative">
                                 <div class="item_test">
                                     <div class="p-3">
                                         <div class="row align-items-center">
@@ -539,34 +534,25 @@ use Illuminate\Support\Facades\DB;
                             <div class="text-center pt-3" style="margin-top: 30px">
                                 <h2 style="color: #c6c2c2">Recently viewed</h2>
                             </div>
-                            <ul class="comments__list mt-30 mb-30">
+                            <ul class="comments__list mt-30 mb-30" style="z-index: 100! important;position:relative">
                                 @foreach ($recentlyViewedMeditations as $item)
                                     <li class="comments__item mt-30 mb-30">
                                         <div class="row comments__item-inner">
-
                                             <div class="comments__img col-md-2 col-sm-4 col-5">
-                                                <!-- <div class="bg-image rounded-full js-lazy loaded" data-ll-status="loaded"> -->
                                                 @if ($item->meditator->avatar)
                                                     <img src="{{asset($item->meditator->avatar->path)}}" class="bg-image" style="border-radius: 20px;" alt="">
                                                 @else
                                                     <img src="../calm/img/about-1/1.png" class="bg-image" style="border-radius: 20px;" alt="">
                                                 @endif
-                                                <!-- </div> -->
                                             </div>
 
                                             <div class="comments__body  col-md-9 col-sm-8 col-7">
-                                                <!-- <div class="comments__header"> -->
                                                 <h4 class="text-17 fw-500 lh-15" style="color: #c6c2c2;">
                                                     {{$item->translation->name}}
                                                     <span class="text-13 text-light-1 fw-400" style="color: #c6c2c2;">10 min</span>
                                                 </h4>
-
-                                                <!-- </div> -->
-
                                                 <h5 class="text-15 fw-500 mt-15" style="color: white;">{{$item->meditator->firstname}} {{$item->meditator->lastname}}</h5>
-                                                <!-- <div class="comments__text mt-10"> -->
                                                 <p class="mt-10" style="color: white;">This course is a very applicable. Professor Ng explains precisely each algorithm</p>
-                                                <!-- </div> -->
                                             </div>
                                         </div>
                                     </li>
@@ -579,4 +565,3 @@ use Illuminate\Support\Facades\DB;
         </div>
     </div>
 @endsection
-

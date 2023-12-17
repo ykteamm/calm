@@ -103,3 +103,10 @@ if (!function_exists('langPrefix')) {
         }
     }
 }
+
+if (!function_exists('scriptjs')) {
+    function scriptjs($file)
+    {
+        return base_path("resources/views/scripts/$file.js");
+    }
+}

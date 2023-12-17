@@ -31,7 +31,7 @@ class FeelingUpsertRequest extends FormRequest
             'user_id' => [$required, new UserExists],
             'emoji_id' => [$required, new EmojiExists],
             'status' => ['nullable'],
-            'story' => [$required, 'string']
+            'story' => ['nullable', 'string']
         ];
     }
 }

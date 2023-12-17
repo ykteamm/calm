@@ -23,8 +23,7 @@ class FeelingController extends Controller
 
     public function store(FeelingUpsertRequest $upsertRequest)
     {
-        $data = $this->service->create($upsertRequest->validated());
-        return $data;
+        return $this->service->create($upsertRequest->validated(), true)->back();
     }
 
     public function show($id)
@@ -35,8 +34,7 @@ class FeelingController extends Controller
 
     public function update($id, FeelingUpsertRequest $upsertRequest)
     {
-        $data = $this->service->edit($id, $upsertRequest->validated());
-        return $data;
+        return $this->service->edit($id, $upsertRequest->validated(), true)->back();
     }
 
     public function destroy($id)

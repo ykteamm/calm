@@ -10,15 +10,17 @@
 
 
     </head>
-    <body class="preloader-visible" data-barba="wrapper">
+    <body class="preloader-visible" style="" data-barba="wrapper">
 
         <!-- preloader start -->
             @include('components.loader')
         <!-- preloader end -->
 
         <!-- barba container start -->
-        <div class="barba-container" data-barba="container">
-
+      <video autoplay muted loop playsinline id="iVideo">
+        <source src="../calm/media/video_bg.mp4" type="video/mp4">
+      </video>
+        <div class="barba-container" id="mainContent" data-barba="container">
 
           <main class="main-content">
 
@@ -28,7 +30,7 @@
             {{-- @include('user.player.player') --}}
 
           </main>
-          @include('components.user-sidebar')
+          {{-- @include('components.user-sidebar') --}}
         </div>
         <!-- barba container end -->
 

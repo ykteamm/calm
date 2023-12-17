@@ -3,10 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Feeling;
-use App\Models\Gratitude;
-use App\Models\GratitudeTranslation;
-use App\Models\Motivation;
-use App\Models\MotivationTranslation;
 use App\Services\CategoryService;
 use App\Services\MenuService;
 use Illuminate\Http\Request;
@@ -58,39 +54,6 @@ class TestController extends Controller
         $this->replyService = $replyService;
     }
 
-    public function menu(IndexRequest $indexRequest, $slug)
-    {
-        $time = date('H:i:s');                    
-        $user_emoj_have = Feeling::where('user_id',auth()->user()->id)->first();
-        $emoj_have = Feeling::get();
-        $replyToday = $this->replyService->today();
-        $replyLast = $this->replyService->last();
-        $todayRepliedGratitude = $this->gratitudeService->todayRepliedGratitude($replyToday);
-        $lastRepliedGratitude = $this->gratitudeService->lastRepliedGratitude($replyLast);
-        $gratitude = $this->gratitudeService->random(['translation']);
-        $emojies = $this->emojiService->withRelation(['image'])->getList([]);
-        $motivation = $this->motivationService->random(['translation']);
-        $menus = $this->menuService->with(['translation'])->getList([]);
-        $popularMeditations = $this->meditationService->popular();
-        $recentlyViewedMeditations = $this->meditationService->recentlyViewed();
-        $meditations = $this->categoryService->getMeditationsForMenu($slug);
-        return view("user.menu",[
-            'user_emoj_have' => $user_emoj_have,
-            'emoj_have' => $emoj_have,
-            'emoji' => $emojies,
-            'gratitude' => $gratitude,
-            'todayRepliedGratitude' => $todayRepliedGratitude,
-            'lastRepliedGratitude' => $lastRepliedGratitude,
-            'emojies' => $emojies,
-            'motivation' => $motivation,
-            'menus' => $menus,
-            'time' => $time,
-            'popularMeditations' => $popularMeditations,
-            'recentlyViewedMeditations' => $recentlyViewedMeditations,
-            'meditations' => $meditations
-        ]);
-    }
-
     public function index(IndexRequest $indexRequest)
     {
         if (auth()->check()){
@@ -128,68 +91,46 @@ class TestController extends Controller
         }
     }
 
-    public function feelings(Request $request)
+    public function menu(IndexRequest $indexRequest, $slug)
     {
-        $data = new Feeling();
-        $data->user_id = $request->user_id;
-        $data->emoji_id = $request->emoji_id;
-        $data->status = 10;
-        if (!$data->save()){
-            return redirect(route('index'))->with('error','Your emoj doesn\'t create');
-        }
-        return redirect(route('index'))->with('success','Your emoj successfull create!');
+        $time = date('H:i:s');                    
+        $user_emoj_have = Feeling::where('user_id',auth()->user()->id)->first();
+        $emoj_have = Feeling::get();
+        $replyToday = $this->replyService->today();
+        $replyLast = $this->replyService->last();
+        $todayRepliedGratitude = $this->gratitudeService->todayRepliedGratitude($replyToday);
+        $lastRepliedGratitude = $this->gratitudeService->lastRepliedGratitude($replyLast);
+        $gratitude = $this->gratitudeService->random(['translation']);
+        $emojies = $this->emojiService->withRelation(['image'])->getList([]);
+        $motivation = $this->motivationService->random(['translation']);
+        $menus = $this->menuService->with(['translation'])->getList([]);
+        $popularMeditations = $this->meditationService->popular();
+        $recentlyViewedMeditations = $this->meditationService->recentlyViewed();
+        $meditations = $this->categoryService->getMeditationsForMenu($slug);
+        return view("user.menu",[
+            'user_emoj_have' => $user_emoj_have,
+            'emoj_have' => $emoj_have,
+            'emoji' => $emojies,
+            'gratitude' => $gratitude,
+            'todayRepliedGratitude' => $todayRepliedGratitude,
+            'lastRepliedGratitude' => $lastRepliedGratitude,
+            'emojies' => $emojies,
+            'motivation' => $motivation,
+            'menus' => $menus,
+            'time' => $time,
+            'popularMeditations' => $popularMeditations,
+            'recentlyViewedMeditations' => $recentlyViewedMeditations,
+            'meditations' => $meditations
+        ]);
     }
 
-    public function Updatefeelings(Request $request, $id)
+
+    public function landscape(IndexRequest $indexRequest)
     {
-        $user_data = Feeling::find($id);
-        $input = $request->all();
-        $user_data->update($input);
-        $user_data->user_id = $request->user_id;
-        $user_data->emoji_id = $request->emoji_id;
-        $user_data->status = 10;
-
-        if (!$user_data->save()){
-            return redirect(route('index'))->with('error','Your emoj doesn\'t update');
-        }
-        return redirect(route('index'))->with('success','Your emoj successfull update!');
-
-    }
-
-    public function manzara(IndexRequest $indexRequest)
-    {
-
-        $this->menuService->willParseToRelation = [
-            'translation',
-            'categories' => [
-                'translation' => [],
-                'meditations' => [
-                    'meditator' => [
-                        'image'=> [],
-                        'avatar' => []
-                    ],
-                    'translation' => []
-                ]
-            ]
-        ];
-        $data = $this->menuService->getList($indexRequest->validated());
-        $time = date('H:i:s');
-        $id = Motivation::inRandomOrder()
-            ->select('id')->first();
-        $motivation = MotivationTranslation::where('object_id', $id->id)->get();
-
-        $graduate_id = Gratitude::inRandomOrder()->select('id')->first();
-        $graduate = GratitudeTranslation::where('object_id', $graduate_id->id)->get();
-
-
-
-
-        return view("user.manzara",[
-            'graduate'=>$graduate,
-            'motivation'=>$motivation,
-            'time'=>$time,
-            'categories' => $data,
-            'categories_sub' => $data
+        
+        $menus = $this->menuService->with(['translation'])->getList([]);
+        return view("user.landscape",[
+            'menus' => $menus,
         ]);
     }
 

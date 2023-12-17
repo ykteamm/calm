@@ -15,3 +15,25 @@
 <link rel="stylesheet" href="{{asset('calm/css/vendors.css')}}">
 <link rel="stylesheet" href="{{asset('calm/css/main.css')}}">
 <link rel="stylesheet" href="{{asset('calm/css/style.css')}}">
+
+<style>
+    #iVideo {
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    z-index:0;
+    opacity: 20%; 
+    right: 0; 
+    bottom: 0;
+    left: 0; 
+    display: block;
+    z-index: 0r;
+    object-fit: cover;
+    }
+    #mainContent {
+        /* position: fixed;
+        overflow-y: scroll;
+        /* bottom: 0; */
+        /* background: rgba(0, 0, 0, 0.5); */
+    }
+</style>

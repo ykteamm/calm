@@ -1,9 +1,5 @@
-<?php
-
-?>
 @extends('user.layouts.app')
 @section('user_content')
-
 <div class="content-wrapper js-content-wrapper">
     <div class="dashboard -home-9 px-0 js-dashboard-home-9">
       <div class="dashboard__sidebar -base scroll-bar-1 border-right-light lg:px-30 mt0 height100 main-color-rtl pd" >
@@ -20,20 +16,19 @@
                   </h2>
               </div>
               <div>
-
-                @foreach ($categories as $key => $value)
+                @foreach ($menus as $menu)
                   <div class="sidebar__item text-color-white mb-20" style="padding: 0">
-                    <a href="menu/{{$value->slug}}" class="-dark-sidebar-white d-flex items-center font_family_a" style="font-size: 20px">
+                    <a href="{{route('menu-index', ['slug'=> $menu->slug])}}" class="-dark-sidebar-white d-flex items-center font_family_a" style="font-size: 20px">
                       <div class="icon-circle mr-10">
                         <i class="icon-discovery"></i>
                       </div>
-                      {{$value->translation->name}}
+                      {{$menu->translation->name}}
                     </a>
                   </div>
                 @endforeach
 
                     <div class="sidebar__item text-color-white mb-20" style="padding: 0">
-                        <a href="{{url('manzara')}}" class="-dark-sidebar-white d-flex items-center font_family_a" style="font-size: 20px" >
+                        <a href="{{route('landscape')}}" class="-dark-sidebar-white d-flex items-center font_family_a" style="font-size: 20px" >
                             <div class="icon-circle mr-10">
                                 <i class="icon-discovery"></i>
                             </div>
@@ -138,10 +133,8 @@
 
                                 </div>
                             </div>
-
-
                         </div>
-                </div>
+                    </div>
                 </section>
             </div>
         </div>
