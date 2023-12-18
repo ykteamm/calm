@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EmojiController;
 use App\Http\Controllers\GratitudeController;
 use App\Http\Controllers\IssueController;
+use App\Http\Controllers\LandscapeController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\MeditationController;
@@ -51,3 +52,10 @@ Route::post('emoji-upload/{emoji}', [EmojiController::class, 'upload'])->name('e
 Route::post('emoji-reupload/{emoji}/{asset}', [EmojiController::class, 'reupload'])->name('emoji-reupload');
 Route::delete('emoji-unupload/{emoji}/{asset}', [EmojiController::class, 'unupload'])->name('emoji-unupload');
 Route::get('emoji-image/{emoji}', [EmojiController::class, 'image'])->name('emoji-image-view');
+Route::resource('landscape', LandscapeController::class);
+Route::post('landscape-upload/{landscape}', [LandscapeController::class, 'upload'])->name('landscape-upload');
+Route::post('landscape-reupload/{landscape}/{asset}', [LandscapeController::class, 'reupload'])->name('landscape-reupload');
+Route::delete('landscape-unupload/{landscape}/{asset}', [LandscapeController::class, 'unupload'])->name('landscape-unupload');
+Route::get('landscape-image/{landscape}', [LandscapeController::class, 'image'])->name('landscape-image-view');
+Route::get('landscape-video/{landscape}', [LandscapeController::class, 'video'])->name('landscape-video-view');
+Route::get('landscape-audio/{landscape}', [LandscapeController::class, 'audio'])->name('landscape-audio-view');

@@ -92,6 +92,7 @@ class Result
 
     public function redirect($ok = null, $no = null, $status = 302, $headers = [], $secure = null)
     {
+        if($ok && !$no) $no = $ok; 
         if(str_contains($ok, '.')) $ok = route($ok);
         if(str_contains($no, '.')) $no = route($no);
         if ($this->error) {

@@ -34,10 +34,10 @@ class MeditationController extends Controller
         return $this->service->recentlyViewed($indexRequest->validated());
     }
 
-    public function popularByCategory(IndexRequest $indexRequest)
-    {
-        return $this->service->popularByCategory($indexRequest->validated());
-    }
+    // public function popularByCategory(IndexRequest $indexRequest)
+    // {
+    //     return $this->service->popularByCategory($indexRequest->validated());
+    // }
 
     public function markAsViewed($meditation)
     {

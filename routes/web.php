@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\LandscapeController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->name('auth.')->group(base_path('routes/web/auth.php'));
 
 Route::get('change-locale/{locale}', [LanguageController::class, 'changeLocale'])->name('change-locale');
+
+Route::post('landscape-save-session', [LandscapeController::class, 'landscapeSaveSession'])->name('landscape-save-session');
 
 Route::prefix(langPrefix())->group(function() {
 

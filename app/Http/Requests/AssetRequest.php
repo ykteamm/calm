@@ -36,14 +36,14 @@ class AssetRequest extends FormRequest
             'files.*' => [
                 'required',
                 'file',
-                'mimes:jpg,jpeg,png,gif,pdf,doc,docx,xls,xlsx,ppt,pptx,mp4,avi,mov,mpg,mpeg,flv',
+                'mimes:jpg,jpeg,png,gif,pdf,doc,docx,xls,xlsx,ppt,pptx,mp4,avi,mov,mpg,mpeg,flv,mp3,wav,ogg,aac,flac,wma,m4a',
                 'max:4096'
             ],
             'file' => [
                 'sometimes',
                 'required',
                 'file',
-                'mimes:jpg,jpeg,png,gif,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,mp4,avi,mov,mpg,mpeg,flv',
+                'mimes:jpg,jpeg,png,gif,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,mp4,avi,mov,mpg,mpeg,flv,mp3,wav,ogg,aac,flac,wma,m4a',
             ],
         ];
     }

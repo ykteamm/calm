@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
             MeditationSeeder::class,
             LessonSeeder::class,
             GratitudeSeeder::class,
-            MotivationSeeder::class
+            MotivationSeeder::class,
+            LandscapeSeeder::class
         ]);
     }
 }

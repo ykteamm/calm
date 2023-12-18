@@ -10,6 +10,7 @@ use App\Http\Requests\IndexRequest;
 use App\Services\EmojiService;
 use App\Services\GratitudeService;
 use App\Services\IssueService;
+use App\Services\LandscapeService;
 use App\Services\MeditationService;
 use App\Services\MotivationService;
 use App\Services\QuestionService;
@@ -29,6 +30,7 @@ class TestController extends Controller
     protected MotivationService $motivationService;
     protected GratitudeService $gratitudeService;
     protected ReplyService $replyService;
+    protected LandscapeService $landscapeService; 
     public function __construct(
         MenuService $menuService,
         EmojiService $emojiService,
@@ -39,7 +41,8 @@ class TestController extends Controller
         VariantService $variantService,
         MotivationService $motivationService,
         GratitudeService $gratitudeService,
-        ReplyService $replyService
+        ReplyService $replyService,
+        LandscapeService $landscapeService
     )
     {
         $this->menuService = $menuService;
@@ -52,10 +55,12 @@ class TestController extends Controller
         $this->motivationService = $motivationService;
         $this->gratitudeService = $gratitudeService;
         $this->replyService = $replyService;
+        $this->landscapeService = $landscapeService;
     }
 
     public function index(IndexRequest $indexRequest)
     {
+        // dd(request()->segment(0));
         if (auth()->check()){
             $time = date('H:i:s');                    
             $user_emoj_have = Feeling::where('user_id',auth()->user()->id)->first();
@@ -127,11 +132,11 @@ class TestController extends Controller
 
     public function landscape(IndexRequest $indexRequest)
     {
-        
+        $this->landscapeService->willParseToRelation = ['video', 'audio', 'image'];
+        $this->landscapeService->queryClosure = fn ($q) => $q->has('video');
+        $landscapes = $this->landscapeService->getList([]);
         $menus = $this->menuService->with(['translation'])->getList([]);
-        return view("user.landscape",[
-            'menus' => $menus,
-        ]);
+        return view("user.landscape",compact('menus', 'landscapes'));
     }
 
 
