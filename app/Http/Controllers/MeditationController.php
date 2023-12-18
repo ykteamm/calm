@@ -9,9 +9,11 @@ use App\Http\Requests\MeditationUpsertRequest;
 use App\Services\CategoryService;
 use App\Services\LanguageService;
 use App\Services\MeditatorService;
+use App\Services\MenuService;
 
 class MeditationController extends Controller
 {
+    protected MenuService $menuService;
     protected MeditationService $service;
     protected LanguageService $languageService;
     protected CategoryService $categoryService;
@@ -21,13 +23,17 @@ class MeditationController extends Controller
         MeditationService $service,
         LanguageService $languageService,
         CategoryService $categoryService,
-        MeditatorService $meditatorService
+        MeditatorService $meditatorService,
+        MenuService $menuService
     ){
         $this->service = $service;
         $this->languageService = $languageService;
         $this->categoryService = $categoryService;
         $this->meditatorService = $meditatorService;
+        $this->menuService = $menuService;
     }
+
+    
 
     public function recentlyViewed(IndexRequest $indexRequest)
     {
@@ -72,9 +78,20 @@ class MeditationController extends Controller
 
     public function show($id)
     {
-        $this->service->willParseToRelation = ['lessons' => ['audio' => [], 'translation' => []]];
+        $menus = $this->menuService->with(['translation'])->getList([]);
+        $this->service->willParseToRelation = [
+            'lessons' => [
+                'audio' => [], 
+                'translation' => []
+            ],
+            'meditator' => [
+                'image'=> [],
+                'avatar' => []
+            ],
+        ];
         $medidation = $this->service->show($id);
-        return view('user.meditation.play', compact('medidation'));
+        // return $medidation;
+        return view('user.meditation.play', compact('medidation', 'menus'));
     }
 
     public function edit($id)

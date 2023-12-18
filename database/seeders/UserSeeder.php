@@ -13,8 +13,8 @@ class UserSeeder extends Seeder
     {
         User::create([
             'username' => 'abduser',
-            'phone' => '931687098',
-            'password' => Hash::make('1998'),
+            'phone' => '007',
+            'password' => Hash::make('007'),
             'type' => UserTypeEnum::ADMIN
         ]); 
     }

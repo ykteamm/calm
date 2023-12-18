@@ -16,4 +16,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('user-image-reupload/{asset}', [UserController::class, 'reupload'])->name('user-image-reupload');
     Route::delete('user-image-unupload/{asset}', [UserController::class, 'unupload'])->name('user-image-unupload');
     Route::get('user-image-view', [UserController::class, 'image'])->name('user-image-view');
+    Route::get('meditation/{meditation}', [MeditationController::class, 'show'])->name('meditation.show');
 });

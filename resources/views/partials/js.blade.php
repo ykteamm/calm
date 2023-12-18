@@ -3,10 +3,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="{{asset('calm/js/vendors.js')}}"></script>
 <script src="{{asset('calm/js/main.js')}}"></script>
-<script src="{{asset('calm/js/player.js')}}"></script>
 <script src="{{asset('calm/js/click.js')}}"></script>
 @include('scripts.landscape')
 @include('scripts.track')
+@include('scripts.register')
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
         var menuBtn = document.getElementById('menu_btn');

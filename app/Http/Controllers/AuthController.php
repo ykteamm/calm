@@ -42,7 +42,7 @@ class AuthController extends Controller
         $data['sms_verif_code'] = $sms_verif_code;
         try {
             $this->userService->createWithThrow($data);
-            $message = "Code $sms_verif_code";
+            $message = "Sizning parol $sms_verif_code";
             $response = $this->smsService->sendSms("+998$phone", $message);
             if ($response->ok()) {
                 Session::put('phone', $data['phone']);

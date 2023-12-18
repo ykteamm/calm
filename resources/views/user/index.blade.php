@@ -236,7 +236,7 @@ use Illuminate\Support\Facades\DB;
                                                     <div class="swiper-slide">
                                                         <div data-anim-child="slide-up delay-2">
 
-                                                            <a href="" class="coursesCard -type-1 ">
+                                                            <a href="{{route('meditation.show', ['meditation' => $f->id])}}" class="coursesCard -type-1 ">
                                                                 <div class="relative">
                                                                     <div class="coursesCard__image overflow-hidden rounded-8">
                                                                     @if ($f->meditator->image)
@@ -310,7 +310,7 @@ use Illuminate\Support\Facades\DB;
                                                         <div class="swiper-slide">
                                                             <div data-anim-child="slide-up delay-2">
 
-                                                                <a href="" class="coursesCard -type-1 ">
+                                                                <a href="{{route('meditation.show', ['meditation' => $f->id])}}" class="coursesCard -type-1 ">
                                                                     <div class="relative">
                                                                         <div class="coursesCard__image overflow-hidden rounded-8">
                                                                         @if ($f->meditator->image)

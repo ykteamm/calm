@@ -45,5 +45,10 @@
                 </div>
             </div>
         </div>
+        <div class="text-center">
+            <a href="{{route('auth.login-view')}}">
+                Login
+            </a>
+        </div>
     </div>
 @endsection

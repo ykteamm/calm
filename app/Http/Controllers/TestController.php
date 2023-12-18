@@ -60,7 +60,6 @@ class TestController extends Controller
 
     public function index(IndexRequest $indexRequest)
     {
-        // dd(request()->segment(0));
         if (auth()->check()){
             $time = date('H:i:s');                    
             $user_emoj_have = Feeling::where('user_id',auth()->user()->id)->first();

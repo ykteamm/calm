@@ -39,14 +39,15 @@
       },
     ];
 
-    function playerOpenClose()
+    function playerOpenClose(audio, lessons)
     {
+      track_list = lessons;
       if(player.classList.contains('open')) {
         player.classList.remove('open');
-        pauseTrack()
+        pauseTrack(audio,lessons)
       } else {
         player.classList.add('open');
-        playTrack()
+        playTrack(audio, lessons)
       }
     }
 
@@ -61,8 +62,10 @@
       resetValues();
 
       // Load a new track
-      curr_track.src = track_list[track_index].path;
-      player_title.innerHTML = track_list[track_index].name + '. ' + track_list[track_index].artist
+      if(track_list[track_index]?.audio?.path) {
+        curr_track.src = location.origin+'/'+track_list[track_index]?.audio?.path;
+      }
+      player_title.innerHTML = track_list[track_index]?.translation?.name
 
       curr_track.load();
       // Set an interval of 1000 milliseconds for updating the seek slider
@@ -85,7 +88,12 @@
       else pauseTrack();
     }
 
-    function playTrack() {
+    function playTrack(audio = null, lessons = []) {
+      // console.log(audio, lessons);
+      if(audio) {
+        curr_track.src=location.origin+'/'+audio.path
+      }
+      // console.log(curr_track.src);
       curr_track.play();
       isPlaying = true;
 
@@ -93,7 +101,10 @@
       playpause_btn.innerHTML = '<i class="fa fa-pause-circle fa-3x"></i>';
     }
 
-    function pauseTrack() {
+    function pauseTrack(audio = null, lessons = []) {
+      if(audio) {
+        curr_track.src=location.origin+'/'+audio.path
+      }
       curr_track.pause();
       isPlaying = false;
 

@@ -36,5 +36,10 @@
       </div>
     </div>
   </div>
+  <div class="text-center">
+    <a href="{{route('auth.register-view')}}">
+      Register
+    </a>
+  </div>
 </div>
 @endsection
