@@ -13,7 +13,6 @@ use App\Http\Controllers\MeditatorController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MotivationController;
 use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\SmileController;
 use App\Http\Controllers\VariantController;
 
 Route::get('/', [MenuController::class, 'index']);

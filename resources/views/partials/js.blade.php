@@ -7,6 +7,7 @@
 @include('scripts.landscape')
 @include('scripts.track')
 @include('scripts.register')
+@include('scripts.test-result')
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
         var menuBtn = document.getElementById('menu_btn');
@@ -28,6 +29,7 @@
     document.getElementById('question').addEventListener('click', function() {
         location.reload();
     });
+    // document.getElementById('listResutGroup')classList = null;
 </script>
 
 <script>

@@ -17,7 +17,7 @@
         <!-- preloader end -->
 
         <!-- barba container start -->
-        @if ((request()->segment(1) == 'menu') || (request()->segment(1) == 'meditation/1a') || request()->getPathInfo() == '/')
+        @if ((request()->segment(1) == 'menu') || true || request()->getPathInfo() == '/')
           @if (session('landscape_video_path'))
             <video id="mainBackgroundVideo" autoplay loop muted playsinline style="position: fixed; z-index: 0;opacity: 50%; right: 0; bottom: 0;left: 0; min-width: 100%; min-height: 100%">
               <source src="{{asset(session('landscape_video_path'))}}" type="video/mp4">

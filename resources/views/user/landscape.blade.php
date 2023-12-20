@@ -2,59 +2,7 @@
 @section('user_content')
 <div class="content-wrapper js-content-wrapper">
     <div class="dashboard -home-9 px-0 js-dashboard-home-9">
-      <div class="dashboard__sidebar -base scroll-bar-1 border-right-light lg:px-30 mt0 height100 main-color-rtl pd" >
-
-        <div class="sidebar -base-sidebar">
-            <div class="menu_div">
-                <button type="button" id="close_btn" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-          <div class="sidebar__inner top_width">
-            <div>
-              <div class="text-16 lh-1 fw-500 text-dark-1 mb-30 text-center">
-                  <h2 class="font_family_a text-color-white-for">
-                      Medidation
-                  </h2>
-              </div>
-              <div>
-                @foreach ($menus as $menu)
-                  <div class="sidebar__item text-color-white mb-20" style="padding: 0">
-                    <a href="{{route('menu-index', ['slug'=> $menu->slug])}}" class="-dark-sidebar-white d-flex items-center font_family_a" style="font-size: 20px">
-                      <div class="icon-circle mr-10">
-                        <i class="icon-discovery"></i>
-                      </div>
-                      {{$menu->translation->name}}
-                    </a>
-                  </div>
-                @endforeach
-
-                    <div class="sidebar__item text-color-white mb-20" style="padding: 0">
-                        <a href="{{route('landscape')}}" class="-dark-sidebar-white d-flex items-center font_family_a" style="font-size: 20px" >
-                            <div class="icon-circle mr-10">
-                                <i class="icon-discovery"></i>
-                            </div>
-                            Manzara
-                        </a>
-                    </div>
-
-{{--                    <div class="sidebar__item text-color-white mb-20">--}}
-{{--                        <a href="{{url('free')}}" class="-dark-sidebar-white d-flex items-center lh-1 fw-500">--}}
-{{--                            <div class="icon-circle mr-10">--}}
-{{--                                <i class="icon-discovery"></i>--}}
-{{--                            </div>--}}
-{{--                            Free Uz--}}
-{{--                        </a>--}}
-{{--                    </div>--}}
-
-
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-
-{{--        main-color class dashboard backgroud--}}
+    @include('user.layouts.sidebar')  
       <div class="dashboard__main mt-0">
         <div class="dashboard__content pt-0 px-15 pb-0" style="padding-left: 0 !important; position: relative;background: linear-gradient(90deg, #162a39, #194d75);border-radius: 0;overflow: hidden;">
 

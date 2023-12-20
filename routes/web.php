@@ -12,6 +12,8 @@ Route::post('landscape-save-session', [LandscapeController::class, 'landscapeSav
 
 Route::prefix(langPrefix())->group(function() {
 
+    Route::group([], base_path('routes/web/quiz.php'));
+
     Route::group([], base_path('routes/web/user.php'));
     
     Route::group([], base_path('routes/web/main.php'));

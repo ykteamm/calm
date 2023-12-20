@@ -18,7 +18,7 @@ use App\Services\ReplyService;
 use App\Services\VariantService;
 use Illuminate\Support\Facades\Session;
 
-class TestController extends Controller
+class MainController extends Controller
 {
     protected MenuService $menuService;
     protected EmojiService $emojiService;
