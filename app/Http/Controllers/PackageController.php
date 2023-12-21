@@ -67,8 +67,8 @@ class PackageController extends Controller
 
     public function edit($id)
     {
-        $this->service->willParseToRelation = ['translations'];
-        $package = $this->service->withRelation(['medicines' => ['translation' => []]])->show($id);
+        $this->service->queryClosure = fn ($q) => $q->with(['translation','medicines.translation']);
+        $package = $this->service->show($id);
         $langs = $this->languageService->getList([]);
         $this->medicineService->queryClosure = fn ($q) => $q->whereNotIn('id', $package->medicines->pluck('id')->toArray());
         $medicines = $this->medicineService->with(['translation'])->getList([]);

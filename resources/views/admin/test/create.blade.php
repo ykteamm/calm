@@ -2,8 +2,8 @@
 @section('admin_content')
 <div class="dashboard__content bg-light-4">
   <div class="row pb-50 mb-10">
-    <div class="col-auto">test
-      <h1 class="text-30 lh-12 fw-700">test</h1>
+    <div class="col-auto">Gratitude
+      <h1 class="text-30 lh-12 fw-700">Gratitude</h1>
       <div class="mt-10">Lorem ipsum dolor sit amet, consectetur.</div>
     </div>
   </div>
@@ -15,12 +15,12 @@
         </div>
 
         <div class="py-30 px-30">
-          <form class="contact-form row y-gap-30" action="{{route('admin.test.store')}}" method="POST">
+          <form class="contact-form row y-gap-30" action="{{route('admin.gratitude.store')}}" method="POST">
             @csrf
 
             @foreach ($langs as $key => $lang)
                 <div class="col-12">
-                    <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">test title {{$lang->code}}</label>
+                    <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Gratitude title {{$lang->code}}</label>
                     <input name="translations[{{$key}}][name]" type="text" placeholder="{{"Title $lang->code"}}">
                     <input name="translations[{{$key}}][language_code]" type="text" value="{{$lang->code}}" style="display: none">
                 </div>

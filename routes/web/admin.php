@@ -16,6 +16,7 @@ use App\Http\Controllers\MotivationController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\VariantController;
 use App\Http\Controllers\PackageController;
+use App\Http\Controllers\TestController;
 
 Route::get('/', [MenuController::class, 'index']);
 Route::resource('menu', MenuController::class);
@@ -62,3 +63,4 @@ Route::get('landscape-video/{landscape}', [LandscapeController::class, 'video'])
 Route::get('landscape-audio/{landscape}', [LandscapeController::class, 'audio'])->name('landscape-audio-view');
 Route::resource('medicine', MedicineController::class);
 Route::resource('package', PackageController::class);
+Route::resource('test', TestController::class);
