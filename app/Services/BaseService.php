@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Traits\ResolveResponse;
+use Closure;
 use Error;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\QueryException;
@@ -148,6 +149,12 @@ abstract class BaseService
      */
     public bool $needAuthorization = true;
 
+     /**
+     * Muvafaqiyatli ravishda yangilangan yoki yaratilgan yoki o'chirilgan model
+     * @var array
+     */
+    protected ?Closure $resultClosure = null;
+
     protected function authorizeMethod($method, $model = null)
     {
         if ($this->needAuthorization) {
@@ -233,6 +240,22 @@ abstract class BaseService
         return $this;
     }
 
+    /**
+     * Set result
+     */
+    protected function setResult($result)
+    {
+        if ($this->resultClosure && $this->resultClosure instanceof Closure) {
+            call_user_func($this->resultClosure, $result, $this->query);
+        }
+    }
+
+    public function onSuccess(Closure $callback)
+    {
+        $this->resultClosure = $callback;
+        return $this;
+    }
+
     public function random($with = [])
     {
         $this->setQuery();
@@ -306,6 +329,7 @@ abstract class BaseService
             }
             DB::connection($this->model->connection)->commit();
             $model->refresh();
+            $this->setResult($model);
             return $model;
         } catch (\Throwable $throwable) {
             DB::connection($this->model->connection)->rollBack();
@@ -404,6 +428,7 @@ abstract class BaseService
                 }
                 DB::connection($this->model->connection)->commit();
                 $model->refresh();
+                $this->setResult($model);
                 return $this->withResource($model);
             } catch (\Throwable $throwable) {
                 DB::connection($this->model->connection)->rollBack();
@@ -435,6 +460,7 @@ abstract class BaseService
         $model = $this->findById($id, $this->query);
         if ($model) {
             $this->authorizeMethod(__FUNCTION__, $model);
+            $this->setResult($model);
             return $model;
         } else {
             $message = 'not_found';
@@ -470,6 +496,7 @@ abstract class BaseService
             $this->callQueryClosure();
             $this->authorizeMethod(__FUNCTION__, $model);
             if ($this->translation) $model->translations()->delete();
+            $this->setResult($model);
             $model->delete();
         } else {
             $message = 'not_found';

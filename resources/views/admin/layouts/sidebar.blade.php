@@ -14,6 +14,20 @@
         </a>
     </div>
 
+    <div class="sidebar__item {{classer('admin.medicine.index')}}">
+        <a href="{{route('admin.medicine.index')}}" class="d-flex items-center text-17 lh-1 fw-500 -dark-text-white">
+        <i class="text-20 icon-discovery mr-15"></i>
+        Medicine
+        </a>
+    </div>
+
+    <div class="sidebar__item {{classer('admin.package.index')}}">
+        <a href="{{route('admin.package.index')}}" class="d-flex items-center text-17 lh-1 fw-500 -dark-text-white">
+        <i class="text-20 icon-discovery mr-15"></i>
+        Package
+        </a>
+    </div>
+
     <div class="sidebar__item {{classer('admin.menu.index')}}">
         <a href="{{route('admin.menu.index')}}" class="d-flex items-center text-17 lh-1 fw-500 -dark-text-white">
         <i class="text-20 icon-discovery mr-15"></i>

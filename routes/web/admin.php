@@ -8,12 +8,14 @@ use App\Http\Controllers\IssueController;
 use App\Http\Controllers\LandscapeController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\MeditationController;
 use App\Http\Controllers\MeditatorController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MotivationController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\VariantController;
+use App\Http\Controllers\PackageController;
 
 Route::get('/', [MenuController::class, 'index']);
 Route::resource('menu', MenuController::class);
@@ -58,3 +60,5 @@ Route::delete('landscape-unupload/{landscape}/{asset}', [LandscapeController::cl
 Route::get('landscape-image/{landscape}', [LandscapeController::class, 'image'])->name('landscape-image-view');
 Route::get('landscape-video/{landscape}', [LandscapeController::class, 'video'])->name('landscape-video-view');
 Route::get('landscape-audio/{landscape}', [LandscapeController::class, 'audio'])->name('landscape-audio-view');
+Route::resource('medicine', MedicineController::class);
+Route::resource('package', PackageController::class);

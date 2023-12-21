@@ -110,3 +110,15 @@ if (!function_exists('scriptjs')) {
         return base_path("resources/views/scripts/$file.js");
     }
 }
+
+if (!function_exists('popper')) {
+    function popper(&$array, $key, $default = null)
+    {
+        if (isset($array[$key])) {
+            $data = $array[$key];
+            unset($array[$key]);
+            return $data;
+        }
+        return $default;
+    }
+}
