@@ -45,7 +45,8 @@ class TestController extends Controller
     public function show($id)
     {
         $this->service->willParseToRelation = [
-            'translation' => [], 'translations' => []
+            'translation' => [], 'translations' => [],
+            'answers' => ['translation' => []]
         ];
         $test = $this->service->show($id);
         return view('admin.test.show', compact('test'));

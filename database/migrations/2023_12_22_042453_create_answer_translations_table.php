@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVariantTranslationsTable extends Migration
+class CreateAnswerTranslationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateVariantTranslationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('variant_translations', function (Blueprint $table) {
+        Schema::create('answer_translations', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('object_id');
             $table->string('language_code');
             $table->text('name');
-            $table->text('answer');
             $table->index(['object_id']);
         });
     }
@@ -30,9 +29,9 @@ class CreateVariantTranslationsTable extends Migration
      */
     public function down()
     {
-        Schema::table('variant_translations', function (Blueprint $table) {
+        Schema::table('answer_translations', function (Blueprint $table) {
             $table->dropIndex('object_id');
         });
-        Schema::dropIfExists('variant_translations');
+        Schema::dropIfExists('answer_translations');
     }
 }

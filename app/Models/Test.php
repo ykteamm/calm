@@ -15,4 +15,9 @@ class Test extends BaseModel
     protected $fillable = [
         
     ];
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
 }

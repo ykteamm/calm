@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EmojiController;
@@ -64,3 +65,4 @@ Route::get('landscape-audio/{landscape}', [LandscapeController::class, 'audio'])
 Route::resource('medicine', MedicineController::class);
 Route::resource('package', PackageController::class);
 Route::resource('test', TestController::class);
+Route::resource('answer', AnswerController::class);

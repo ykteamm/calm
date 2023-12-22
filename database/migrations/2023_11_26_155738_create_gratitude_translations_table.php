@@ -17,7 +17,7 @@ class CreateGratitudeTranslationsTable extends Migration
             $table->id();
             $table->bigInteger('object_id');
             $table->string('language_code');
-            $table->string('name');
+            $table->text('name');
             $table->index(['object_id']);
         });
     }
