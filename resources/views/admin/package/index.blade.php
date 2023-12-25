@@ -37,6 +37,10 @@
                   <button type="submit" class="text-14 text-purple-1 underline">Delete</button>
                 </form>
               </div>
+              <div class="d-flex items-center">
+                <i class="icon-online-learning text-15 mr-10"></i>
+                <a href="{{route('admin.package-image-view', ['package' => $item->id])}}" class="text-14 text-purple-1 underline">Image</a>
+              </div>
             </div>
             <div class="">
             </div>

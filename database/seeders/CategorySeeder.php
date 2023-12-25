@@ -5,8 +5,6 @@ namespace Database\Seeders;
 use App\Models\Category;
 use App\Models\CategoryTranslation;
 use App\Models\Language;
-use App\Models\Menu;
-use App\Models\MenuTranslation;
 use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
@@ -20,9 +18,9 @@ class CategorySeeder extends Seeder
     {
         $langs = Language::all();
         $categories = [
-            'uz' => ["Taniqlangan", "Sport", "Aqliy", "Jismoniy", "Uyqu", "Mashq qilish"],
-            'en' => ["Featured", "Sport", "Mental", "Physical", "Sleeping", "Exercising"],
-            'ru' => ["Рекомендуемые", "Спорт", "Ментальный", "Физический", "Сон", "Тренировки"]
+            'uz' => ["Hammasi", "Dori", "Iroda"],
+            'en' => ["All", "Medicine", "Will"],
+            'ru' => ["Все", "Лекарство", "Воля"]
         ];
         for ($i = 0; $i < count($categories['uz']); $i++){
             $category = Category::create([]);

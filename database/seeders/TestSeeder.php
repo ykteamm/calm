@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Enums\AnswerTypeEnum;
 use App\Models\Answer;
 use App\Models\AnswerTranslation;
 use App\Models\Language;
-use App\Models\Package;
 use App\Models\Test;
 use App\Models\TestTranslation;
 use Illuminate\Database\Seeder;
@@ -110,9 +108,6 @@ class TestSeeder extends Seeder
             for ($k = 0; $k < count($answers['uz']); $k++) { 
                 $answer = Answer::create([
                     'test_id' => $test->id,
-                    'type' => AnswerTypeEnum::PACKAGE,
-                    'package_id' => Package::inRandomOrder()->first()->id,
-                    'medicine_id' => null,
                     'order' => $k + 1
                 ]);
                 foreach ($langs as $lang) {

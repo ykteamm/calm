@@ -16,11 +16,8 @@ class CreateAnswersTable extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('type')->default(AnswerTypeEnum::PACKAGE);
             $table->tinyInteger('order')->default(1);
             $table->bigInteger('test_id');
-            $table->bigInteger('package_id')->nullable();
-            $table->bigInteger('medicine_id')->nullable();
             $table->timestamps();
         });
     }

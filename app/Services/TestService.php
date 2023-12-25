@@ -22,4 +22,10 @@ class TestService extends BaseService
 
         parent::__construct();
     }
+
+    public function getCount()
+    {
+        $this->setQuery();
+        return $this->query->count();
+    }
 }

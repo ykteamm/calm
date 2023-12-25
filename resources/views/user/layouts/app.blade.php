@@ -8,7 +8,7 @@
 
         @include('partials.css')
 
-
+        @livewireStyles
     </head>
     <body class="preloader-visible" style="" data-barba="wrapper">
 
@@ -23,7 +23,7 @@
               <source src="{{asset(session('landscape_video_path'))}}" type="video/mp4">
             </video>
           @endif
-          @if (session('landscape_audio_path'))
+          @if (session('landscape_audio_path') == "aaaaa")
             <audio id="mainBackgroundAudio" class="d-none"controls  preload="none">
                 <source src="{{asset(session('landscape_audio_path'))}}" type="audio/ogg">
                 <source src="{{asset(session('landscape_audio_path'))}}" type="audio/mpeg">
@@ -48,6 +48,6 @@
         <!-- JavaScript -->
 {{--        <script src="https://cdn.jsdelivr.net/gh/livewire/vue@v0.3.x/dist/livewire-vue.js"></script>--}}
         @include('partials.js')
-
+        @livewireScripts
       </body>
 </html>

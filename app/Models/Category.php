@@ -13,11 +13,6 @@ class Category extends BaseModel
     protected $fillable = [
     ];
 
-    public function menus()
-    {
-        return $this->belongsToMany(Menu::class);
-    }
-
     public function meditations()
     {
         return $this->hasMany(Meditation::class, 'category_id', 'id');

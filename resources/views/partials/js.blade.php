@@ -8,6 +8,8 @@
 @include('scripts.track')
 @include('scripts.register')
 @include('scripts.test-result')
+@include('scripts.quiz')
+@include('scripts.index')
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
         var menuBtn = document.getElementById('menu_btn');

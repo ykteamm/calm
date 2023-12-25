@@ -18,35 +18,11 @@
           <form class="contact-form row y-gap-30" action="{{route('admin.answer.store')}}" method="POST">
             @csrf
             <div class="row">
-              <div class="col-3">
+              <div class="col-12">
                 <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">test select</label>
                 <select name="test_id" id="">
                   @foreach ($tests as $test)
                     <option value="{{$test->id}}">{{$test->translation->name}}</option>
-                  @endforeach
-                </select>
-              </div>
-              <div class="col-3">
-                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Type select</label>
-                <select name="type" id="">
-                  @foreach ($types as $type => $label)
-                    <option value="{{$type}}">{{$label}}</option>
-                  @endforeach
-                </select>
-              </div>
-              <div class="col-3">
-                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">package select</label>
-                <select name="package_id" id="">
-                  @foreach ($packages as $package)
-                    <option value="{{$package->id}}">{{$package->translation->name}}</option>
-                  @endforeach
-                </select>
-              </div>
-              <div class="col-3">
-                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">medicine select</label>
-                <select name="medicine_id" id="">
-                  @foreach ($medicines as $medicine)
-                    <option value="{{$medicine->id}}">{{$medicine->translation->name}}</option>
                   @endforeach
                 </select>
               </div>

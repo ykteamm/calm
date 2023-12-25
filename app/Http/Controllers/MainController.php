@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Feeling;
 use App\Services\CategoryService;
-use App\Services\MenuService;
 use Illuminate\Http\Request;
 use App\Http\Requests\IndexRequest;
 use App\Services\EmojiService;
@@ -20,7 +19,6 @@ use Illuminate\Support\Facades\Session;
 
 class MainController extends Controller
 {
-    protected MenuService $menuService;
     protected EmojiService $emojiService;
     protected CategoryService $categoryService;
     protected MeditationService $meditationService;
@@ -32,7 +30,6 @@ class MainController extends Controller
     protected ReplyService $replyService;
     protected LandscapeService $landscapeService; 
     public function __construct(
-        MenuService $menuService,
         EmojiService $emojiService,
         CategoryService $categoryService,
         MeditationService $meditationService,
@@ -45,7 +42,6 @@ class MainController extends Controller
         LandscapeService $landscapeService
     )
     {
-        $this->menuService = $menuService;
         $this->emojiService = $emojiService;
         $this->categoryService = $categoryService;
         $this->meditationService = $meditationService;
@@ -71,10 +67,9 @@ class MainController extends Controller
             $gratitude = $this->gratitudeService->random(['translation']);
             $emojies = $this->emojiService->withRelation(['image'])->getList([]);
             $motivation = $this->motivationService->random(['translation']);
-            $menus = $this->menuService->with(['translation'])->getList([]);
             $popularMeditations = $this->meditationService->popular();
             $recentlyViewedMeditations = $this->meditationService->recentlyViewed();
-            $meditations = $this->categoryService->getMeditationsForUser();
+            $meditations = $this->categoryService->getMeditationsAll();
             return view("user.index",[
                 'user_emoj_have' => $user_emoj_have,
                 'emoj_have' => $emoj_have,
@@ -84,46 +79,22 @@ class MainController extends Controller
                 'lastRepliedGratitude' => $lastRepliedGratitude,
                 'emojies' => $emojies,
                 'motivation' => $motivation,
-                'menus' => $menus,
                 'time' => $time,
                 'popularMeditations' => $popularMeditations,
                 'recentlyViewedMeditations' => $recentlyViewedMeditations,
-                'meditations' => $meditations
+                'meditations' => $meditations,
             ]);
         } else {
             return view("user.test.start");
         }
     }
 
-    public function menu(IndexRequest $indexRequest, $slug)
+    public function meditatorsAll(IndexRequest $indexRequest)
     {
-        $time = date('H:i:s');                    
-        $user_emoj_have = Feeling::where('user_id',auth()->user()->id)->first();
-        $emoj_have = Feeling::get();
-        $replyToday = $this->replyService->today();
-        $replyLast = $this->replyService->last();
-        $todayRepliedGratitude = $this->gratitudeService->todayRepliedGratitude($replyToday);
-        $lastRepliedGratitude = $this->gratitudeService->lastRepliedGratitude($replyLast);
-        $gratitude = $this->gratitudeService->random(['translation']);
-        $emojies = $this->emojiService->withRelation(['image'])->getList([]);
-        $motivation = $this->motivationService->random(['translation']);
-        $menus = $this->menuService->with(['translation'])->getList([]);
         $popularMeditations = $this->meditationService->popular();
-        $recentlyViewedMeditations = $this->meditationService->recentlyViewed();
-        $meditations = $this->categoryService->getMeditationsForMenu($slug);
-        return view("user.menu",[
-            'user_emoj_have' => $user_emoj_have,
-            'emoj_have' => $emoj_have,
-            'emoji' => $emojies,
-            'gratitude' => $gratitude,
-            'todayRepliedGratitude' => $todayRepliedGratitude,
-            'lastRepliedGratitude' => $lastRepliedGratitude,
-            'emojies' => $emojies,
-            'motivation' => $motivation,
-            'menus' => $menus,
-            'time' => $time,
+        $meditations = $this->categoryService->getMeditationsAll();
+        return view("user.meditators_all",[
             'popularMeditations' => $popularMeditations,
-            'recentlyViewedMeditations' => $recentlyViewedMeditations,
             'meditations' => $meditations
         ]);
     }
@@ -134,8 +105,7 @@ class MainController extends Controller
         $this->landscapeService->willParseToRelation = ['video', 'audio', 'image'];
         $this->landscapeService->queryClosure = fn ($q) => $q->has('video');
         $landscapes = $this->landscapeService->getList([]);
-        $menus = $this->menuService->with(['translation'])->getList([]);
-        return view("user.landscape",compact('menus', 'landscapes'));
+        return view("user.landscape",compact('landscapes'));
     }
 
 

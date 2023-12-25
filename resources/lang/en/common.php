@@ -1,0 +1,27 @@
+<?php 
+
+return [
+  'meditations' => 'Meditations',
+  'medicine' => 'Medicine',
+  'will' => 'Will',
+  'landscape' => 'Landscape',
+  'home' => 'Home',
+  'popular' => 'Popular',
+  'check_yourself' => 'Check yourself',
+  'start' => 'Start',
+  'test' => 'Test',
+  'subscribe' => 'Subscribe',
+  'get_now' => 'Get now',
+  'delivery' => 'Delivery',
+  'recieve' => 'Recieve',
+  'using' => 'Using',
+  'your_health' => 'Your health',
+  'your_medicines' => 'Medicines',
+  'previous' => 'Previous',
+  'text' => 'Test',
+  'percent' => 'Percent',
+  'tests' => 'Tests',
+  'medicines' => 'Medicines',
+  'complete' => 'Completed',
+  'show_result' => 'Show result',
+];

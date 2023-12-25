@@ -42,20 +42,5 @@ class MedicineSeeder extends Seeder
                 ]);
             }
         }
-        // Reply::create([
-        //     'user_id' => auth()->id() ?? 1,
-        //     'gratitude_id' => $gratitude->id,
-        //     'text' => "Hmmasi yaxshi bo'ldi"
-        // ]);
-        // Reply::create([
-        //     'user_id' => auth()->id() ?? 1,
-        //     'gratitude_id' => $gratitude->id,
-        //     'text' => "Juda charchadim"
-        // ]);
-        // Reply::create([
-        //     'user_id' => auth()->id() ?? 1,
-        //     'gratitude_id' => $gratitude->id,
-        //     'text' => "Samarali kun"
-        // ]);
     }
 }

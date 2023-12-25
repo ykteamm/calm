@@ -50,6 +50,65 @@
               @endforeach
             </div>
            </div>
+           <div class="h2 text-center my-4">
+            Tests
+          </div>
+          <table class="table table-hover table-responsive">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">{{__('common.text')}}</th>
+                <th scope="col">{{__('common.percent')}}</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach ($package->tests as $key => $test)
+                <tr>
+                  <th scope="row">{{$key + 1}}</th>
+                  <td>{{$test->test->translation->name}}</td>
+                  <td><input name="updates[{{$key}}][percent]" 
+                    value="{{$test->percent}}"
+                    type="number" class="form-control form-control-sm" 
+                    style="width: 60px"> %</td>
+                  <td>
+                    <input name="updates[{{$key}}][id]" value="{{$test->id}}" type="checkbox" class="form-check">
+                  </td>
+                  <td>
+                    <input name="deletes[]" value="{{$test->id}}" type="checkbox" class="form-check">
+                  </td>
+                </tr>
+              @endforeach
+            </tbody>
+          </table>
+          <div class="h2 text-center my-4">
+            Unadded tests
+          </div>
+          <table class="table table-hover table-responsive">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">{{__('common.text')}}</th>
+                <th scope="col">{{__('common.percent')}}</th>
+                <th scope="col">Add</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach ($tests as $key => $test)
+                <tr>
+                  <th scope="row">{{$key + 1}}</th>
+                  <td>{{$test->translation->name}}</td>
+                  <td><input name="addes[{{$key}}][percent]" 
+                    type="number" class="form-control form-control-sm" 
+                    style="width: 60px"> %</td>
+                  <td>
+                    <input name="addes[{{$key}}][id]" value="{{$test->id}}" type="checkbox" class="form-check">
+                  </td>
+                </tr>
+              @endforeach
+            </tbody>
+          </table>
             <div class="row justify-between pt-15">
               <div class="col-auto">
               </div>

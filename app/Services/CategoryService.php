@@ -8,15 +8,12 @@ use App\Http\Resources\CategoryResource;
 class CategoryService extends BaseService
 {
     protected QuestionService $questionService;
-    protected MenuService $menuService;
     public function __construct(
         Category $serviceModel,
-        QuestionService $questionService,
-        MenuService $menuService
-        )
+        QuestionService $questionService
+    )
     {
         $this->questionService = $questionService;
-        $this->menuService = $menuService;
         $this->model = $serviceModel;
         $this->resource = CategoryResource::class;
 
@@ -30,12 +27,10 @@ class CategoryService extends BaseService
         parent::__construct();
     }
 
-    public function getMeditationsForMenu($slug)
+    public function getMeditationsAll()
     {
-        $categories = $this->menuService->getCategories($slug);
         $this->setQuery();
         $data = $this->query
-            ->whereIn('id', $categories)
             ->with(parseToRelation([
                 'translation' => [],
                 'meditations' => [

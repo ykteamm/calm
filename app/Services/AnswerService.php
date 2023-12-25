@@ -18,9 +18,7 @@ class AnswerService extends BaseService
 
         $this->equalableFields = [
             'id',
-            'test_id',
-            'package_id',
-            'medicine_id'
+            'test_id'
         ];
 
         parent::__construct();

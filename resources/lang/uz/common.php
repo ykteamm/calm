@@ -1,0 +1,27 @@
+<?php 
+
+return [
+  'meditations' => 'Meditatsiyalar',
+  'medicine' => 'Dori',
+  'will' => 'Iroda',
+  'landscape' => 'Manzara',
+  'home' => 'Asosiy',
+  'popular' => 'Mashhur',
+  'check_yourself' => 'O\'zingizni holatingizni tekshirish',
+  'start' => 'Boshlash',
+  'test' => 'Test',
+  'subscribe' => 'Obuna',
+  'get_now' => 'Hozir olish',
+  'delivery' => 'Yetkazib berish',
+  'recieve' => 'Qabul qilish',
+  'using' => 'Foydalanish',
+  'your_health' => 'Sog\'lig\'ingiz',
+  'your_medicines' => 'Dorilar',
+  'previous' => 'Dastlabki',
+  'text' => 'Matn',
+  'percent' => 'Foiz',
+  'tests' => 'Testlar',
+  'medicines' => 'Dorilar',
+  'complete' => 'Yakunlash',
+  'show_result' => 'Natijani korish',
+];

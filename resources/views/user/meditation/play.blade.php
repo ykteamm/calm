@@ -3,27 +3,7 @@
 <div class="content-wrapper js-content-wrapper">
    <div class="dashboard -home-9 px-0 js-dashboard-home-9" style="background-image: url('{{asset($medidation->meditator->image->path)}}');height:100vh;background-size: cover;">
     {{-- <div class="dashboard -home-9 px-0 js-dashboard-home-9" style="background-image: url('https://assets.calm.com/384/9c1d8d0876904827cf12a9cc228ad435.jpeg');height:100vh;background-size: cover;" > --}}
-    <div class="dashboard__sidebar -base scroll-bar-1 border-right-light lg:px-30 mt0 height100 pd" style="background: rgba(0, 0, 0, 0.3);backdrop-filter: blur(12px);">
-        <div class="sidebar -base-sidebar">
-          <div class="sidebar__inner">
-            <div>
-              <div>
-                @foreach ($menus as $key => $value)
-                  <div class="sidebar__item text-color-white mb-20" style="padding: 0">
-                      <a href="{{route('menu-index', ['slug'=> $value->slug])}}" class="-dark-sidebar-white d-flex items-center font_family_a text-20 ">
-                          <div class="icon-circle mr-10">
-                              <i class="fas fa-sun"></i>
-                          </div>
-                          {{$value->translation->name}}
-                      </a>
-                  </div>
-              @endforeach
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      @include('user.layouts.sidebar')
       <div class="dashboard__main mt-0" >
         {{-- <div class="dashboard__main mt-0 main-color" style="background-image: url('calm/2.jpg');height: 100vh"> --}}
         <div class="dashboard__content pt-0 px-15 pb-0" style="background: rgba(146, 164, 255, 0.129);height:100%">

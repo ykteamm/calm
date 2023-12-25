@@ -179,7 +179,7 @@ use Illuminate\Support\Facades\DB;
                                 <div class="row y-gap-20 justify-between items-end">
                                     <div class="col-auto">
                                         <div class="sectionTitle ">
-                                            <h2 class="sectionTitle__title font_family_a text-color-white-for">Popular</h2>
+                                            <h2 class="sectionTitle__title font_family_a text-color-white-for">{{__('common.popular')}}</h2>
                                         </div>
                                     </div>
                                 </div>
@@ -203,7 +203,7 @@ use Illuminate\Support\Facades\DB;
 
                                                                         <div>
                                                                             <div class="px-15 rounded-200 bg-purple-1">
-                                                                                <span class="text-11 lh-1 uppercase fw-500 text-white">Popular</span>
+                                                                                <span class="text-11 lh-1 uppercase fw-500 text-white">{{__('common.popular')}}</span>
                                                                             </div>
                                                                         </div>
 
@@ -277,7 +277,7 @@ use Illuminate\Support\Facades\DB;
 
                                                                             <div>
                                                                                 <div class="px-15 rounded-200 bg-purple-1">
-                                                                                    <span class="text-11 lh-1 uppercase fw-500 text-white">Popular</span>
+                                                                                    <span class="text-11 lh-1 uppercase fw-500 text-white">{{$category->translation->name}}</span>
                                                                                 </div>
                                                                             </div>
 

@@ -27,6 +27,9 @@ class PackageUpsertRequest extends FormRequest
         $required = ($this->isMethod('put')) ? 'nullable' : 'required';
         
         return [
+            'addes' => ['nullable', 'array'],
+            'updates' => ['nullable', 'array'],
+            'deletes' => ['nullable', 'array'],
             'medicines' => ['nullable', 'array'],
             'medicines_old' => ['nullable', 'array'],
             'medicines_new' => ['nullable', 'array'],

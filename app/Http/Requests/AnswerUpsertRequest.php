@@ -2,9 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Enums\AnswerTypeEnum;
-use App\Rules\MedicineExists;
-use App\Rules\PackageExists;
 use App\Rules\TestExists;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -31,9 +28,6 @@ class AnswerUpsertRequest extends FormRequest
         
         return [
             'test_id' => [$required, 'string', new TestExists],
-            'package_id' => [$required, 'string', new PackageExists],
-            'medicine_id' => [$required, 'string', new MedicineExists],
-            'type' => [$required, AnswerTypeEnum::in()],
             'order' => [$required],
             'translations' => [$required, 'array'],
             'translations.*' => [$required, 'array'],

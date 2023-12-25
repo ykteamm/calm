@@ -9,11 +9,9 @@ use App\Http\Requests\MeditationUpsertRequest;
 use App\Services\CategoryService;
 use App\Services\LanguageService;
 use App\Services\MeditatorService;
-use App\Services\MenuService;
 
 class MeditationController extends Controller
 {
-    protected MenuService $menuService;
     protected MeditationService $service;
     protected LanguageService $languageService;
     protected CategoryService $categoryService;
@@ -23,14 +21,12 @@ class MeditationController extends Controller
         MeditationService $service,
         LanguageService $languageService,
         CategoryService $categoryService,
-        MeditatorService $meditatorService,
-        MenuService $menuService
+        MeditatorService $meditatorService
     ){
         $this->service = $service;
         $this->languageService = $languageService;
         $this->categoryService = $categoryService;
         $this->meditatorService = $meditatorService;
-        $this->menuService = $menuService;
     }
 
     
@@ -78,7 +74,6 @@ class MeditationController extends Controller
 
     public function show($id)
     {
-        $menus = $this->menuService->with(['translation'])->getList([]);
         $this->service->willParseToRelation = [
             'lessons' => [
                 'audio' => [], 
@@ -91,7 +86,7 @@ class MeditationController extends Controller
         ];
         $medidation = $this->service->show($id);
         // return $medidation;
-        return view('user.meditation.play', compact('medidation', 'menus'));
+        return view('user.meditation.play', compact('medidation'));
     }
 
     public function edit($id)

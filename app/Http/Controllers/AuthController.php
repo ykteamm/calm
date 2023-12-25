@@ -63,7 +63,7 @@ class AuthController extends Controller
             if (Hash::check($data['password'], $user->password)) {
                 $this->doneTests($user);
                 Auth::login($user);
-                return redirect('/');
+                return redirect('/admin/language');
             } else {
                 return back()->with('error', 'Password incorrect');
             }

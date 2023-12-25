@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
             LanguageSeeder::class,
             UserSeeder::class,
             CategorySeeder::class,
-            MenuSeeder::class,
             IssueSeeder::class,
             QuestionSeeder::class,
             VariantSeeder::class,
@@ -29,8 +28,9 @@ class DatabaseSeeder extends Seeder
             MotivationSeeder::class,
             LandscapeSeeder::class,
             MedicineSeeder::class,
+            TestSeeder::class,
             PackageSeeder::class,
-            TestSeeder::class
+            SteroidSeeder::class
         ]);
     }
 }

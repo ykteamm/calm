@@ -12,19 +12,15 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\MeditationController;
 use App\Http\Controllers\MeditatorController;
-use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MotivationController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\VariantController;
 use App\Http\Controllers\PackageController;
+use App\Http\Controllers\SteroidController;
+use App\Http\Controllers\SteroidinfoController;
 use App\Http\Controllers\TestController;
 
-Route::get('/', [MenuController::class, 'index']);
-Route::resource('menu', MenuController::class);
-Route::post('menu-upload/{menu}', [MenuController::class, 'upload'])->name('menu-upload');
-Route::post('menu-reupload/{menu}/{asset}', [MenuController::class, 'reupload'])->name('menu-reupload');
-Route::delete('menu-unupload/{menu}/{asset}', [MenuController::class, 'unupload'])->name('menu-unupload');
-Route::get('menu-image/{menu}', [MenuController::class, 'image'])->name('menu-image-view');
+
 Route::resource('category', CategoryController::class);
 Route::resource('language', LanguageController::class);
 Route::resource('meditator', MeditatorController::class);
@@ -64,5 +60,11 @@ Route::get('landscape-video/{landscape}', [LandscapeController::class, 'video'])
 Route::get('landscape-audio/{landscape}', [LandscapeController::class, 'audio'])->name('landscape-audio-view');
 Route::resource('medicine', MedicineController::class);
 Route::resource('package', PackageController::class);
+Route::get('package-image/{package}', [PackageController::class, 'image'])->name('package-image-view');
+Route::post('package-image-upload/{package}', [PackageController::class, 'upload'])->name('package-image-upload');
+Route::post('package-image-reupload/{package}/{asset}', [PackageController::class, 'reupload'])->name('package-image-reupload');
+Route::delete('package-image-unupload/{package}/{asset}', [PackageController::class, 'unupload'])->name('package-image-unupload');
 Route::resource('test', TestController::class);
 Route::resource('answer', AnswerController::class);
+Route::resource('steroid', SteroidController::class);
+Route::resource('steroidinfo', SteroidinfoController::class);

@@ -190,7 +190,7 @@ abstract class BaseService
         $this->translation = $this->model->translationClass ?? null;
 
         if (!empty($this->translation)) {
-            $this->relations += ['translations', 'translation'];
+            // $this->relations += ['translations', 'translation'];
         }
         $this->setTableName();
     }

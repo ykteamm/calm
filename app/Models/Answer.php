@@ -14,24 +14,11 @@ class Answer extends BaseModel
 
     protected $fillable = [
         'test_id',
-        'type',
-        'package_id',
-        'medicine_id',
-        'order'
+        'order',
     ];
 
     public function test()
     {
         return $this->belongsTo(Test::class);
-    }
-
-    public function package()
-    {
-        return $this->belongsTo(Package::class);
-    }
-
-    public function medicine()
-    {
-        return $this->belongsTo(Medicine::class);
     }
 }

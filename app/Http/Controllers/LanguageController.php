@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\MenuService;
 use App\Http\Requests\IndexRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LanguageUpsertRequest;
@@ -33,7 +32,11 @@ class LanguageController extends Controller
                     return redirect($prev);
                 }
             }
-            return redirect($locale . '/admin');
+            if ($url = str_replace(asset(''), '', $prev)) {
+                $redirect = asset('') . "$locale/" . $url;
+                return redirect($redirect);
+            }
+            return redirect($locale . '/admin/language');
         }
     }
 
