@@ -86,7 +86,7 @@ class SteroidSeeder extends Seeder
             ],
             [
                 'min' => 60,
-                'max' => null
+                'max' => 10000
             ]
         ];
     }

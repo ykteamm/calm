@@ -10,7 +10,6 @@ class Usertest extends BaseModel
         'user_id',
         'packages',
         'steroids',
-        'chart'
     ];
 
     public function user()

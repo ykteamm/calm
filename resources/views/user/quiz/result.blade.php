@@ -54,7 +54,7 @@
                 <div style="height:1px;background-color:black">
                 </div>
                 <div style="margin:30px 0">
-                    <button data-bs-toggle="modal" data-bs-target="#quizResultModal" style="background-color: #6f8c46" class="w-100 d-flex justify-content-center btn  ">
+                    <button data-bs-toggle="modal" data-bs-target="#quizChartModal" style="background-color: #6f8c46" class="w-100 d-flex justify-content-center btn  ">
                         <span style="font-weight:700;color:#fff;font-size:20px">{{__('common.your_health')}}</span>
                     </button>
                     <button data-bs-toggle="modal" data-bs-target="#quizResultModal" style="background-color: #6f8c46" class="w-100 d-flex justify-content-center btn  mt-3">
@@ -62,6 +62,7 @@
                     </button>
                 </div>
                 @include('user.quiz.result-modal')
+                @include('user.quiz.chart-modal')
             </div>
         </div>
       </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Medicine;
+use App\Models\Steroidinfo;
 use App\Services\PackageService;
 use App\Services\SteroidService;
 use App\Services\TestService;
@@ -56,18 +57,16 @@ class Quiz extends Component
     {
         try {
             $steroidsData= $this->calculateSteroid();
-            $steroidsDataAvg= $this->calculateSteroidAvg();
             $packagesData = $this->calculatePackage();
+
             $this->result = [
                 'packages' => $packagesData,
                 'steroids' => $steroidsData,
-                'chart' => $steroidsDataAvg
             ];
             $this->isCompleted = true;
             auth()->user()->{'tests'}()->create([
                 'packages' => json_encode($packagesData),
                 'steroids' => json_encode($steroidsData),
-                'chart' => json_encode($steroidsDataAvg)
             ]);
             Session::put('quiz', 'done');
         } catch (\Throwable $th) {
@@ -77,37 +76,53 @@ class Quiz extends Component
 
     private function calculateSteroid()
     {
-        $steroids = $this->steroidService->with(['tests'])->getList([]);
+        $steroids = $this->steroidService->with([
+            'tests', 'translation'
+            ])->getList([]);
         $steroidsData = [];
         foreach ($steroids as $steroid) {
           $sum = 0;
-          foreach ($steroid->tests as $test) {
-            $value = $this->getAnswerValueByTestId($test->test_id);
-            $sum += $value * $test->percent;
-          }  
-          $result = round($sum / 100);
-          $steroidsData["$steroid->id"] = $result;
-        }
-        return $steroidsData;
-    }
-
-    private function calculateSteroidAvg()
-    {
-        $steroids = $this->steroidService->with(['tests'])->getList([]);
-        $steroidsDataAvg = [];
-        foreach ($steroids as $steroid) {
-          $sum = 0;
+          $chartSum  = 0;
           $i = 0;
           foreach ($steroid->tests as $test) {
             $i++;
             $value = $this->getAnswerValueByTestId($test->test_id);
-            $sum += $value;
+            $sum += $value * $test->percent;
+            $chartSum += $value;
           }  
-          $result = round($sum / $i);
-          $steroidsDataAvg["$steroid->id"] = $result;
+          $result = round($sum / 100);
+          $chart = round($chartSum / $i);
+          $info = Steroidinfo::where('steroid_id', $steroid->id)
+            ->where('min', '<=', $result)
+            ->where('max', '>=', $result)
+            ->with('translation')
+            ->first();
+          $steroid = $steroid->toArray();
+          $steroid['info'] = $info->toArray(); 
+          $steroid['result'] = $result;
+          $steroid['chart'] = $chart;
+          $steroidsData[] = $steroid;
         }
-        return $steroidsDataAvg;
+        return $steroidsData;
     }
+
+    // private function calculateSteroidAvg()
+    // {
+    //     $steroids = $this->steroidService->with(['tests'])->getList([]);
+    //     $steroidsDataAvg = [];
+    //     foreach ($steroids as $steroid) {
+    //       $sum = 0;
+    //       $i = 0;
+    //       foreach ($steroid->tests as $test) {
+    //         $i++;
+    //         $value = $this->getAnswerValueByTestId($test->test_id);
+    //         $sum += $value;
+    //       }  
+    //       $result = round($sum / $i);
+    //       $steroidsDataAvg["$steroid->id"] = $result;
+    //     }
+    //     return $steroidsDataAvg;
+    // }
 
     private function calculatePackage()
     {
@@ -116,6 +131,7 @@ class Quiz extends Component
         $ignores = [];
         $total = [];
         foreach ($packages as $package) {
+            $package->qty = 0;
             $sum = 0;
             if (in_array($package->id, $ignores)) {
                 continue;
@@ -126,6 +142,7 @@ class Quiz extends Component
             }  
             $percent = round($sum / 100);
             if ($percent < 59) {
+                $package->qty = 1;
                 $ignores = array_merge($ignores, json_decode($package->ignores));
                 $package->percent = $percent;
                 $package->medicines = ($package->medicines()->with('translation')->get()->toArray());
@@ -137,20 +154,18 @@ class Quiz extends Component
 
         $result = array_values($packagesData);
         if(count($packagesData) == 3) {
-            $result[] = $packagesData[0];
+            $result[0]['qty']++;
         } else if (count($packagesData) == 2) {
-            $result[] = $packagesData[0];
-            $result[] = $packagesData[1];
+            $result[0]['qty']++;
+            $result[1]['qty']++;
         } else if (count($packagesData) == 1) {
             try {
                 $package = $packagesData[0];
                 $extra = json_decode(getProp($package, 'extra', '[]'));
-                $extraMedicines = Medicine::where('id', $extra)->with('translation')->get()->toArray();
+                $extraMedicines = Medicine::whereIn('id', $extra)->with('translation')->get()->toArray();
                 $package['medicines'] = array_merge($package['medicines'], $extraMedicines);
-                $result = []; 
-                for ($i=0; $i < 4; $i++) { 
-                    $result[] = $package;
-                }
+                $package['qty'] = 3;
+                $result = [$package];
             } catch (\Throwable $th) {
                 dd($th->getMessage());
             }
@@ -158,12 +173,10 @@ class Quiz extends Component
             try {
                 $package = $total[0];
                 $extra = json_decode(getProp($package, 'extra', '[]'));
-                $extraMedicines = Medicine::where('id', $extra)->with('translation')->get()->toArray();
+                $extraMedicines = Medicine::whereIn('id', $extra)->with('translation')->get()->toArray();
                 $package['medicines'] = array_merge($package['medicines'], $extraMedicines);
-                $result = []; 
-                for ($i=0; $i < 4; $i++) { 
-                    $result[] = $package;
-                }
+                $package['qty'] = 3;
+                $result = [$package];
             } catch (\Throwable $th) {
                 dd($th->getMessage());
             }

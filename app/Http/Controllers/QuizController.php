@@ -63,10 +63,10 @@ class QuizController extends Controller
             if ($done = Session::get('quiz')) {
                 Session::remove('quiz');
             }
-            // dd(json_decode(auth()->user()->tests->toArray()[0]['packages'],true));
             return view('user.quiz.result', [
                 'done' => $done,
-                'packages' => json_decode($usertest->packages) 
+                'packages' => json_decode($usertest->packages),
+                'steroids' => json_decode($usertest->steroids)
             ]);
         }
         return view('user.quiz.index');
@@ -82,20 +82,16 @@ class QuizController extends Controller
         if ($done = Session::get('quiz')) {
             Session::remove('quiz');
         }
-        
+        $packages = [];
+        $steroids = [];
         if ($usertest = Usertest::orderBy('id', 'DESC')->first()) {
-            if ($done = Session::get('quiz')) {
-                Session::remove('quiz');
-            }
-            // dd(json_decode($usertest->packages));
-            return view('user.quiz.result', [
-                'done' => $done,
-                'packages' => json_decode($usertest->packages)
-            ]);
+            $packages = json_decode($usertest->packages);
+            $steroids = json_decode($usertest->steroids);
         }
         return view('user.quiz.result', [
             'done' => $done,
-            'packages' => []
+            'packages' => $packages,
+            'steroids' => $steroids
         ]);
     }
 

@@ -18,7 +18,6 @@ class CreateUsertestsTable extends Migration
             $table->bigInteger('user_id');
             $table->json('packages')->default('[]');
             $table->json('steroids')->default('[]');
-            $table->json('chart')->default('[]');
             $table->timestamps();
         });
     }

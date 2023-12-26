@@ -17,7 +17,7 @@ class CreateSteroidinfosTable extends Migration
             $table->id();
             $table->bigInteger('steroid_id');
             $table->tinyInteger('min')->default(0);
-            $table->tinyInteger('max')->nullable();
+            $table->integer('max')->default(10000);
             $table->timestamps();
         });
     }
