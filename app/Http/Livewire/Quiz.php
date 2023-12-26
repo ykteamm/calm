@@ -71,7 +71,7 @@ class Quiz extends Component
             ]);
             Session::put('quiz', 'done');
         } catch (\Throwable $th) {
-            dd($packagesData, $steroidsData, $steroidsDataAvg, $th->getMessage());
+            dd($th->getMessage());
         }
     }
 
