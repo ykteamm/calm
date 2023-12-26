@@ -65,7 +65,8 @@ class QuizController extends Controller
             }
             // dd(json_decode(auth()->user()->tests->toArray()[0]['packages'],true));
             return view('user.quiz.result', [
-                'done' => $done
+                'done' => $done,
+                'packages' => json_decode($usertest->packages) 
             ]);
         }
         return view('user.quiz.index');
@@ -81,44 +82,21 @@ class QuizController extends Controller
         if ($done = Session::get('quiz')) {
             Session::remove('quiz');
         }
-        // dd(json_decode(auth()->user()->tests->toArray()[0]['packages'],true));
-        return view('user.quiz.result', [
-            'done' => $done
-        ]);
-    }
-   
-    public function packages()
-    {
-        if ($usertests = Usertest::orderBy('id', 'DESC')->first()) {
-            $packages = json_decode($usertests->packages);
-            $result = [];
-            foreach ($packages as $id => $value) {
-                if ($value < 60) {
-                    $result[$id] = $value;
-                }
+        
+        if ($usertest = Usertest::orderBy('id', 'DESC')->first()) {
+            if ($done = Session::get('quiz')) {
+                Session::remove('quiz');
             }
-            $all = [];
-            $i = 0;
-            while (count($all) < 4) {
-                $i++;
-                foreach ($result as $id => $value) {
-                    if (count($all) > 4) {
-                        break;
-                    }
-                    $this->packageService->willParseToRelation = ['image', 'translation', 'medicines'];
-                    $package = $this->packageService->show($id);
-                    $package->medicines = ($package->medicines()->with('translation')->get());
-                    $all[] = $package;
-                }
-                if($i == 50) {
-                    break;
-                }
-            }   
-            // dd($all);
-            return view('user.quiz.packages',[
-                'packages' => $all
+            // dd(json_decode($usertest->packages));
+            return view('user.quiz.result', [
+                'done' => $done,
+                'packages' => json_decode($usertest->packages)
             ]);
         }
+        return view('user.quiz.result', [
+            'done' => $done,
+            'packages' => []
+        ]);
     }
 
     public function chart()

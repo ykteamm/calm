@@ -12,15 +12,15 @@
             <div class="container">
                 <div class="d-flex justify-content-center pt-5">
                     <div class="w-100" style="height:350px;overflow:hidden">
-                        <img style="margin-top: -200px" src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg" alt="">
+                        <img style="" src="https://images.prismic.io/thesis-shopify/b5bc5d03-e7fa-40be-9fee-3ea365089712_StarterKitBYOBDesktop02.png?auto=compress,format&rect=0,0,2790,760&w=2790&h=760" alt="">
                     </div>
                 </div>
                 <div style="margin:30px 0">
-                    <a class="d-flex justify-content-between btn  btn-secondary ">
+                    <a style="background-color: #B8B8AC" class="d-flex justify-content-between btn  ">
                         <span style="font-weight:700">{{__('common.subscribe')}}</span>
                         <span style="font-weight:700">10 $</span>
                     </a>
-                    <a class="d-flex justify-content-between btn  btn-secondary mt-3">
+                    <a style="background-color: #B8B8AC" class="d-flex justify-content-between btn  mt-3">
                         <span style="font-weight:700">{{__('common.get_now')}}</span>
                         <span style="font-weight:700">15 $</span>
                     </a>
@@ -53,14 +53,15 @@
                 </div>
                 <div style="height:1px;background-color:black">
                 </div>
-                <div style="margin: 30px 0" class="d-flex align-items-center justify-content-between">
-                    <a class="btn btn-primary" href="{{route('chart.info')}}">
-                        {{__('common.your_health')}}
-                    </a>
-                    <a class="btn btn-primary" href="{{route('packages.info')}}">
-                        {{__('common.your_medicines')}}
-                    </a>
+                <div style="margin:30px 0">
+                    <button data-bs-toggle="modal" data-bs-target="#quizResultModal" style="background-color: #6f8c46" class="w-100 d-flex justify-content-center btn  ">
+                        <span style="font-weight:700;color:#fff;font-size:20px">{{__('common.your_health')}}</span>
+                    </button>
+                    <button data-bs-toggle="modal" data-bs-target="#quizResultModal" style="background-color: #6f8c46" class="w-100 d-flex justify-content-center btn  mt-3">
+                        <span style="font-weight:700;color:#fff;font-size:20px">{{__('common.your_medicines')}}</span>
+                    </button>
                 </div>
+                @include('user.quiz.result-modal')
             </div>
         </div>
       </div>

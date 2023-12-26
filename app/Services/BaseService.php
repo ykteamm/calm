@@ -681,6 +681,14 @@ abstract class BaseService
         }
     }
 
+    public function order($field, $direction)
+    {
+        if($this->query) {
+            $this->query->orderBy("$this->table.$field", $direction);
+        }
+        return $this;
+    }
+
     protected function sort()
     {
         if ($sort = request('sort')) {

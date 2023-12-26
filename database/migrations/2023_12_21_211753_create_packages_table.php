@@ -15,6 +15,9 @@ class CreatePackagesTable extends Migration
     {
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
+            $table->integer('priority');
+            $table->json('ignores')->default('[]');
+            $table->json('extra')->default('[]');
             $table->timestamps();
         });
     }

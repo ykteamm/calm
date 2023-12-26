@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Medicine;
 use App\Services\PackageService;
 use App\Services\SteroidService;
 use App\Services\TestService;
@@ -70,7 +71,7 @@ class Quiz extends Component
             ]);
             Session::put('quiz', 'done');
         } catch (\Throwable $th) {
-            dd($packagesData, $steroidsData, $steroidsDataAvg);
+            dd($packagesData, $steroidsData, $steroidsDataAvg, $th->getMessage());
         }
     }
 
@@ -110,18 +111,64 @@ class Quiz extends Component
 
     private function calculatePackage()
     {
-        $packages = $this->packageService->with(['tests'])->getList([]);
+        $packages = $this->packageService->getAll();
         $packagesData = [];
+        $ignores = [];
+        $total = [];
         foreach ($packages as $package) {
-          $sum = 0;
-          foreach ($package->tests as $test) {
-            $value = $this->getAnswerValueByTestId($test->test_id);
-            $sum += $value * $test->percent;
-          }  
-          $result = round($sum / 100);
-          $packagesData["$package->id"] = $result;
+            $sum = 0;
+            if (in_array($package->id, $ignores)) {
+                continue;
+            }
+            foreach ($package->tests as $test) {
+                $value = $this->getAnswerValueByTestId($test->test_id);
+                $sum += $value * $test->percent;
+            }  
+            $percent = round($sum / 100);
+            if ($percent < 59) {
+                $ignores = array_merge($ignores, json_decode($package->ignores));
+                $package->percent = $percent;
+                $package->medicines = ($package->medicines()->with('translation')->get()->toArray());
+                unset($package->tests);
+                $packagesData[] = $package->toArray();
+            }
+            $total[] = $package->toArray();
         }
-        return $packagesData;
+
+        $result = array_values($packagesData);
+        if(count($packagesData) == 3) {
+            $result[] = $packagesData[0];
+        } else if (count($packagesData) == 2) {
+            $result[] = $packagesData[0];
+            $result[] = $packagesData[1];
+        } else if (count($packagesData) == 1) {
+            try {
+                $package = $packagesData[0];
+                $extra = json_decode(getProp($package, 'extra', '[]'));
+                $extraMedicines = Medicine::where('id', $extra)->with('translation')->get()->toArray();
+                $package['medicines'] = array_merge($package['medicines'], $extraMedicines);
+                $result = []; 
+                for ($i=0; $i < 4; $i++) { 
+                    $result[] = $package;
+                }
+            } catch (\Throwable $th) {
+                dd($th->getMessage());
+            }
+        } else if (count($packagesData) == 0) {
+            try {
+                $package = $total[0];
+                $extra = json_decode(getProp($package, 'extra', '[]'));
+                $extraMedicines = Medicine::where('id', $extra)->with('translation')->get()->toArray();
+                $package['medicines'] = array_merge($package['medicines'], $extraMedicines);
+                $result = []; 
+                for ($i=0; $i < 4; $i++) { 
+                    $result[] = $package;
+                }
+            } catch (\Throwable $th) {
+                dd($th->getMessage());
+            }
+        }
+        return $result;
     }
 
     private function getAnswerValueByTestId($testId)

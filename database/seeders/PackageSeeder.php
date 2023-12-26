@@ -23,7 +23,19 @@ class PackageSeeder extends Seeder
         ];
         
         for ($i = 0; $i < count($packages['uz']); $i++){
-            $package = Package::create([]); 
+            $ignores = [];
+            if($i == 2) {
+                $ignores[] = 4;
+            }
+            $extra = [];
+            if($i == 1) {
+                $extra[] = 1;
+            }
+            $package = Package::create([
+                'priority' => $i + 1,
+                'ignores' => json_encode($ignores),
+                'extra' => json_encode($extra)
+            ]); 
             $package->image()->create([
                 'path' => "packages/" . ($i+1) . ".png",
                 'info' => '[]'

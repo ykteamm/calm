@@ -17,7 +17,10 @@
         <div class="py-30 px-30">
           <form class="contact-form row y-gap-30" action="{{route('admin.package.store')}}" method="POST">
             @csrf
-
+            <div class="col-12">
+              <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Priority</label>
+              <input name="priority" type="number" class="form-control form-control-sm" placeholder="Priority">
+          </div>
             @foreach ($langs as $key => $lang)
                 <div class="col-12">
                     <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">package title {{$lang->code}}</label>
@@ -31,6 +34,28 @@
                 @foreach ($medicines as $medicine)
                   <div class="form-check">
                     <input name="medicines[]" class="form-check-input" type="checkbox" value="{{$medicine->id}}" id="flexCheckDefault{{$medicine->id}}">
+                    <label class="form-check-label" for="flexCheckDefault{{$medicine->id}}">
+                        {{$medicine->translation->name}}
+                    </label>
+                  </div>
+                @endforeach
+              </div>
+              <div class="col-6">
+                Ignores
+                @foreach ($packages as $package)
+                  <div class="form-check">
+                    <input name="ignores[]" class="form-check-input" type="checkbox" value="{{$package->id}}" id="flexCheckDefaultIgnore{{$package->id}}">
+                    <label class="form-check-label" for="flexCheckDefaultIgnore{{$package->id}}">
+                        {{$package->translation->name}}
+                    </label>
+                  </div>
+                @endforeach
+              </div>
+              <div class="col-6">
+                Extra Medicines
+                @foreach ($medicines as $medicine)
+                  <div class="form-check">
+                    <input name="extra_medicines[]" class="form-check-input" type="checkbox" value="{{$medicine->id}}" id="flexCheckDefault{{$medicine->id}}">
                     <label class="form-check-label" for="flexCheckDefault{{$medicine->id}}">
                         {{$medicine->translation->name}}
                     </label>

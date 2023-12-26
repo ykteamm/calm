@@ -67,9 +67,10 @@ class PackageController extends Controller
 
     public function create()
     {
+        $packages = $this->service->getList([]);
         $medicines = $this->medicineService->with(['translation'])->getList([]);
         $langs = $this->languageService->getList([]);
-        return view('admin.package.create', compact('langs', 'medicines'));
+        return view('admin.package.create', compact('langs', 'medicines', 'packages'));
     }
 
     public function store(PackageUpsertRequest $upsertRequest)

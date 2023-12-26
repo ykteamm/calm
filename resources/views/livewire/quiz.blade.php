@@ -30,9 +30,9 @@
             </h4>
             <div class="d-flex flex-column row" style="margin-top: 40px">
                 @foreach ($question->answers as $answ)
-                <button wire:click="select({{$answ}})" class="mb-4 offset-3 col-6" 
+                    <button wire:click="select({{$answ}})" class="mb-4 offset-3 col-6 select-btn" 
                     style="color: #1d4d57;height:50px;
-                        background-color:@if($answ->id == getProp($answer, 'id')) #3e646022 @else #fff @endif;
+                        @if($answ->id == getProp($answer, 'id')) background-color: #3e646022 @endif;
                         @if($answ->id == getProp($answer, 'id')) border:1px solid #1d4d57 @endif;
                         border-radius:30px">
                         {{$answ->translation->name}}
@@ -41,4 +41,13 @@
             </div>
         </div>
     @endif
+    <style>
+        .select-btn{
+            background-color: #fff;
+        }
+        .select-btn:hover {
+            border: 1px solid #1d4d57;
+            background-color: #3e646022;
+        }
+    </style>
 </div>

@@ -21,8 +21,21 @@ class PackageService extends BaseService
         $this->equalableFields = [
             'id'
         ];
+        
+        $this->serializingToJsonFields = [
+            'ignores',
+            'extra'
+        ];
 
         parent::__construct();
+    }
+
+    public function getAll()
+    {
+        $this->setQuery();
+        return $this->query->with(parseToRelation([
+            'tests', 'translation', 'image'
+        ]))->orderBy('priority', 'ASC')->get();    
     }
 
     public function getIds()

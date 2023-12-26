@@ -14,7 +14,9 @@ class Package extends BaseModel
     protected $guarded = [];
 
     protected $fillable = [
-        
+        'priority',
+        'ignores',
+        'extra'
     ];
 
     public function image()
