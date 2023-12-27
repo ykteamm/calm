@@ -23,14 +23,14 @@
         @endif
     @else
         <div class="container text-center">
-            <h4 class="" style="font-size: 3rem;
+            <h4 class="quiz-font" style="font-size: 2rem;
             line-height: 2.8125rem;
             color: #1d4d57">
                 {{$question->translation->name}}
             </h4>
             <div class="d-flex flex-column row" style="margin-top: 40px">
                 @foreach ($question->answers as $answ)
-                    <button wire:click="select({{$answ}})" class="mb-4 offset-3 col-6 select-btn" 
+                    <button wire:click="select({{$answ}})" class="mb-4 offset-3 col-6 select-btn"
                     style="color: #1d4d57;height:50px;
                         @if($answ->id == getProp($answer, 'id')) background-color: #3e646022 @endif;
                         @if($answ->id == getProp($answer, 'id')) border:1px solid #1d4d57 @endif;

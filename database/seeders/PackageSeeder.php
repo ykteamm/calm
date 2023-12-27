@@ -17,11 +17,11 @@ class PackageSeeder extends Seeder
         $langs = Language::all();
         $medicines = Medicine::all()->pluck('id')->toArray();
         $packages = [
-            'uz' => ["Uyqu", "Buqoq", "Og'ir streess", "Yengil stress"],
+            'uz' => ["Uyqu", "Endokrin", "Og'ir streess", "Yengil stress"],
             'en' => ["Sleep", "Adenois", "Heavy stress", "Mild stress"],
             'ru' => ["Сон", "Аденуа", "Сильный стресс", "Легкий стресс"],
         ];
-        
+
         for ($i = 0; $i < count($packages['uz']); $i++){
             $ignores = [];
             if($i == 2) {
@@ -35,7 +35,7 @@ class PackageSeeder extends Seeder
                 'priority' => $i + 1,
                 'ignores' => json_encode($ignores),
                 'extra' => json_encode($extra)
-            ]); 
+            ]);
             $package->image()->create([
                 'path' => "packages/" . ($i+1) . ".png",
                 'info' => '[]'

@@ -25,10 +25,10 @@
     min-width: 100%;
     min-height: 100%;
     z-index:0;
-    opacity: 20%; 
-    right: 0; 
+    opacity: 20%;
+    right: 0;
     bottom: 0;
-    left: 0; 
+    left: 0;
     display: block;
     z-index: 0r;
     object-fit: cover;
@@ -40,7 +40,7 @@
         /* background: rgba(0, 0, 0, 0.5); */
     }
 </style>
-<style>     
+<style>
     .player {
         transition: all .2s ease;
         position: fixed;
@@ -53,7 +53,7 @@
         align-items: center;
         flex-direction: column;
         justify-content: center;
-    } 
+    }
     .player.open {
       bottom: 0;
     }
@@ -62,7 +62,7 @@
       display: flex;
       align-items: center;
     }
-    
+
 
     .p-buttons {
       width: 20%;
@@ -94,7 +94,7 @@
       cursor: pointer;
       color: #fff;
     }
-    
+
     .p-playpause-track,
     .p-prev-track,
     .p-next-track {
@@ -102,13 +102,13 @@
       opacity: 0.8;
       transition: opacity .2s;
     }
-    
+
     .p-playpause-track:hover,
     .p-prev-track:hover,
     .p-next-track:hover {
       opacity: 1.0;
     }
-    
+
     .p-slider_container {
       width: 100%;
       max-width: 600px;
@@ -116,7 +116,7 @@
       justify-content: center;
       align-items: center;
     }
-    
+
     /* Modify the appearance of the slider */
     .p-seek_slider,
     .p-volume_slider {
@@ -129,7 +129,7 @@
       -webkit-transition: .2s;
       transition: opacity .2s;
     }
-    
+
     /* Modify the appearance of the slider thumb */
     .p-seek_slider::-webkit-slider-thumb,
     .p-volume_slider::-webkit-slider-thumb {
@@ -142,38 +142,38 @@
       cursor: pointer;
       border-radius: 50%;
     }
-    
+
     .p-seek_slider:hover,
     .p-volume_slider:hover {
       opacity: 1.0;
     }
-    
+
     .p-seek_slider {
       background-color: #fff;
       width: 100%;
       cursor: pointer;
       height: 3px;
     }
-    
+
     .p-volume_slider {
       background-color: #fff;
       width: 30%;
       cursor: pointer;
       height: 3px;
     }
-    
+
     .p-current-time,
     .p-total-duration {
       color: #fff;
       padding: 5px;
     }
-    
+
     i.fa-volume-down,
     i.fa-volume-up {
       color: #fff;
       padding: 5px;
     }
-    
+
     i.fa-play-circle,
     i.fa-pause-circle,
     i.fa-step-forward,
@@ -217,3 +217,9 @@
       }
     }
 </style> --}}
+
+<style>
+    .quiz-font {
+      font-family: math;
+    }
+</style>

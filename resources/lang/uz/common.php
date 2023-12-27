@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 return [
   'meditations' => 'Meditatsiyalar',
@@ -7,16 +7,16 @@ return [
   'landscape' => 'Manzara',
   'home' => 'Asosiy',
   'popular' => 'Mashhur',
-  'check_yourself' => 'O\'zingizni holatingizni tekshirish',
+  'check_yourself' => 'Gormonal holatingizni tekshiring',
   'start' => 'Boshlash',
-  'test' => 'Test',
+  'test' => 'N O V A T I O',
   'subscribe' => 'Obuna',
   'get_now' => 'Hozir olish',
-  'delivery' => 'Yetkazib berish',
-  'recieve' => 'Qabul qilish',
-  'using' => 'Foydalanish',
-  'your_health' => 'Sog\'lig\'ingiz',
-  'your_medicines' => 'Dorilar',
+  'delivery' => 'Bepul yetkazish',
+  'recieve' => '30 kun kafolat',
+  'using' => 'Shifokor maslahati',
+  'your_health' => 'sog\'lik natijalari',
+  'your_medicines' => 'dorilar batafsil',
   'previous' => 'Dastlabki',
   'text' => 'Matn',
   'percent' => 'Foiz',
@@ -24,4 +24,5 @@ return [
   'medicines' => 'Dorilar',
   'complete' => 'Yakunlash',
   'show_result' => 'Natijani korish',
+  'buy_now' => 'Sotib olish',
 ];
