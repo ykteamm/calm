@@ -2,25 +2,26 @@
 
 namespace App\Services;
 
-use App\Models\Aim;
+use App\Models\Reward;
 use App\Services\BaseService;
-use App\Http\Resources\AimResource;
+use App\Http\Resources\RewardResource;
 use Carbon\Carbon;
 
-class AimService extends BaseService
+class RewardService extends BaseService
 {
-    public function __construct(Aim $serviceModel)
+    public function __construct(Reward $serviceModel)
     {
         $this->model = $serviceModel;
-        $this->resource = AimResource::class;
+        $this->resource = RewardResource::class;
 
         $this->likableFields = [
-            'text',
+            'name',
         ];
 
         $this->equalableFields = [
             'id',
-            'user_id'
+            'created_by',
+            'updated_by',
         ];
 
         parent::__construct();
@@ -38,10 +39,10 @@ class AimService extends BaseService
         return $this->query->whereNotIn('id', $items)->inRandomOrder()->first();
     }
 
-    public function saveAims($data)
+    public function saveRewards($data)
     {
         try {
-            foreach ($data['aims'] as $key => $aim) {
+            foreach ($data['rewards'] as $key => $aim) {
                 if(isset($aim['text'])) {
                     $item = [
                         'user_id' => auth()->user()->id,
@@ -62,29 +63,17 @@ class AimService extends BaseService
         }
     }
 
-    public function weekAims()
+    public function weekRewards()
     {
         $this->setQuery();
         $start = Carbon::now()->startOfWeek()->format("Y-m-d");
         $end = Carbon::now()->endOfWeek()->format("Y-m-d");
-        $aims = $this->query
+        $rewards = $this->query
             ->whereBetween('created_at', [$start, $end])
             ->where('user_id', auth()->user()->id)
             ->orderBy('id', 'desc')
             ->limit(3)
             ->get();
-        return $aims;
-    }
-
-    public function doneAims()
-    {
-        $this->setQuery();
-        $start = Carbon::now()->startOfWeek()->format("Y-m-d");
-        $end = Carbon::now()->endOfWeek()->format("Y-m-d");
-        return $this->query
-            ->whereBetween('created_at', [$start, $end])
-            ->where('user_id', auth()->user()->id)
-            ->where('done', 1)
-            ->exists();
+        return $rewards;
     }
 }

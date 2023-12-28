@@ -48,7 +48,45 @@
                     @endif
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    @include('user.will.reward')
+                    @if (!$doneAims)
+                        <div class="alert alert-danger text-center">
+                            Sizda bu hafta bajarilga topshiriqlar navjud emas
+                        </div>
+                    @else
+                        @if (count($rewards) > 0)
+                            <form action="{{route('save-rewards')}}" method="POST">
+                                @csrf
+                                @foreach ($rewards as $k => $aim)
+                                    <div class="card py-5 my-2 border-1">
+                                        <div class="card-header border-0" style="">
+                                            <div class="row">
+                                                <div class="col-11">
+                                                    <span class="mr-5">{{$k+1}}.</span><span>{{$aim->text}}</span>
+                                                </div>
+                                                @if (!$aim->done)
+                                                    <div class="col-1">
+                                                        <input name="rewards[{{$k}}][id]" value="{{$aim->id}}" class="form-check" type="checkbox" >
+                                                    </div>
+                                                @else
+                                                    <div class="col-1">
+                                                        <button type="button" class="" data-bs-toggle="modal" data-bs-target="#showThanks">
+                                                            <img src="{{asset('calm/show.png')}}" alt="Alt">
+                                                        </button>
+                                                    </div>
+                                                    @include('user.will.thanks')                                                
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                                <div class="mb-5 pb-5">
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </form>
+                        @else
+                            @livewire('reward')
+                        @endif
+                    @endif
                 </div>
             </div>
         </div>

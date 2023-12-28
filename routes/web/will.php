@@ -11,4 +11,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/will', [WillController::class, 'index'])->name('will.index');
 Route::post('/save-aims', [WillController::class, 'saveAims'])->name('save-aims');
+Route::post('/save-rewards', [WillController::class, 'saveRewards'])->name('save-rewards');
 Route::resource('aim', AimController::class);
