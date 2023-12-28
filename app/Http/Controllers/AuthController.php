@@ -73,7 +73,7 @@ class AuthController extends Controller
                 $this->doneTests($user);
                 Auth::login($user);
                 if($user->type == UserTypeEnum::ADMIN) {
-                    return redirect('/admin/language');
+                    return redirect('/');
                 } else if ($user->type == UserTypeEnum::MEDITATOR) {
                     return redirect('/');
                 }
