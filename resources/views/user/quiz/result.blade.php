@@ -15,6 +15,9 @@
                         <img style="" src="https://images.prismic.io/thesis-shopify/b5bc5d03-e7fa-40be-9fee-3ea365089712_StarterKitBYOBDesktop02.png?auto=compress,format&rect=0,0,2790,760&w=2790&h=760" alt="">
                     </div>
                 </div>
+                <div class="menu__btn" id="menu_btn" style="color: black;">
+                    Menu
+                </div>
                 <div style="margin:30px 0">
                     {{-- <a style="background-color: #ffffff;border:1px solid rgb(15, 28, 219);" class="d-flex justify-content-between btn  ">
                         <span style="font-weight:700">{{__('common.subscribe')}}</span>

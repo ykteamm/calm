@@ -6,6 +6,9 @@
       <div class="dashboard__main mt-0">
         @include('user.will.slider')
         <div class="container" style="margin-top: 20px">
+            <div class="menu__btn" id="menu_btn" style="color: black;">
+                Menu
+            </div>
             <ul class="nav nav-pills mb-3 justify-content-between" id="pills-tab" role="tablist">
                 <li style="width:45%" class="nav-item text-center" role="presentation">
                   <div style="" class="nav-link w-20 border border-2 active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
@@ -73,6 +76,7 @@
                                                             <img src="{{asset('calm/show.png')}}" alt="Alt">
                                                         </a>
                                                     </div>
+                                                                                         
                                                 @endif
                                             </div>
                                         </div>
