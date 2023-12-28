@@ -64,4 +64,14 @@ class CategoryService extends BaseService
             ->get();
         return $data;
     }
+
+    public function getByName($name)
+    {
+        $this->setQuery();
+        return $this->query->where(function ($q) use ($name) {
+            $q->whereHas('translations', function($q) use ($name){
+                $q->where('name', 'ilike', "$name%");
+            }); 
+        })->first();
+    }
 }

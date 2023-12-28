@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserTypeEnum;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\ForgotPasswordRequest;
 use App\Http\Requests\LoginRequest;
@@ -63,7 +64,11 @@ class AuthController extends Controller
             if (Hash::check($data['password'], $user->password)) {
                 $this->doneTests($user);
                 Auth::login($user);
-                return redirect('/admin/language');
+                if($user->type == UserTypeEnum::ADMIN) {
+                    return redirect('/admin/language');
+                } else if ($user->type == UserTypeEnum::MEDITATOR) {
+                    return redirect('/');
+                }
             } else {
                 return back()->with('error', 'Password incorrect');
             }

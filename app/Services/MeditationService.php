@@ -32,6 +32,21 @@ class MeditationService extends BaseService
         parent::__construct();
     }
 
+    public function getAllByCatName($name)
+    {
+        $category = $this->categoryService->getByName($name);
+        $this->setQuery();
+        return $this->query
+            ->where('category_id', getProp($category, 'id'))
+            ->with(parseToRelation(['meditator' => [
+                'image'=> [],
+                'avatar' => [],
+            ],
+            'category' => ['translation' => []],
+            'translation' => []]))
+            ->get();
+    }
+
     public function markAsViewed($meditation, $redirective = false)
     {
         if($meditation = $this->findById($meditation)) {

@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="sidebar__item text-color-white mb-20" style="padding: 0">
-                        <a href="{{route('quiz.index')}}" class="-dark-sidebar-white font_family_a d-flex items-center text-20" >
+                        <a href="{{route('will.index')}}" class="-dark-sidebar-white font_family_a d-flex items-center text-20" >
                             <div class="icon-circle mr-10">
                                 <i class="fas fa-sun"></i>
                             </div>

@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
             'username' => 'abduser',
             'phone' => '007',
             'password' => Hash::make('007'),
-            'type' => UserTypeEnum::ADMIN
+            'type' => UserTypeEnum::MEDITATOR
         ]); 
     }
 }

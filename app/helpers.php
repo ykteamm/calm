@@ -1,11 +1,19 @@
 <?php
 
+use App\Models\Category;
 use App\Models\Language;
 
 if(!function_exists('getLanguages')) {
     function getLanguages()
     {
         return Language::all();
+    }
+}
+
+if(!function_exists('getCategories')) {
+    function getCategories()
+    {
+        return Category::all();
     }
 }
 

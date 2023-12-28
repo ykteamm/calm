@@ -24,4 +24,6 @@ return [
   'medicines' => 'Medicines',
   'complete' => 'Completed',
   'show_result' => 'Show result',
+  'task' => 'Task',
+  'reward' => 'Reward',
 ];

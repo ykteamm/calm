@@ -18,9 +18,9 @@ class CategorySeeder extends Seeder
     {
         $langs = Language::all();
         $categories = [
-            'uz' => ["Hammasi", "Dori", "Iroda"],
-            'en' => ["All", "Medicine", "Will"],
-            'ru' => ["Все", "Лекарство", "Воля"]
+            'uz' => ["Meditations", "Dori", "Iroda"],
+            'en' => ["Meditatsiyalar", "Medicine", "Will"],
+            'ru' => ["Медитации", "Лекарство", "Воля"]
         ];
         for ($i = 0; $i < count($categories['uz']); $i++){
             $category = Category::create([]);

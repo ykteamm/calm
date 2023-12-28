@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AimController;
 use App\Http\Controllers\MeditationController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\UserController;

@@ -16,6 +16,8 @@ Route::prefix(langPrefix())->group(function() {
 
     Route::group(['middleware' => ['auth']], base_path('routes/web/user.php'));
     
+    Route::group(['middleware' => ['auth']], base_path('routes/web/will.php'));
+
     Route::group([], base_path('routes/web/main.php'));
   
     Route::group(['middleware' => ['auth', 'user.type:admin']], function () {

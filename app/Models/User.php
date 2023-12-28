@@ -70,4 +70,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Usertest::class, 'user_id', 'id');
     }
+
+    public function aims()
+    {
+        return $this->hasMany(Aim::class, 'user_id', 'id');
+    }
 }

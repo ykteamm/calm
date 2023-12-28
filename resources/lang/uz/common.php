@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 return [
   'meditations' => 'Meditatsiyalar',
@@ -25,4 +25,6 @@ return [
   'complete' => 'Yakunlash',
   'show_result' => 'Natijani korish',
   'buy_now' => 'Sotib olish',
+  'task' => 'Vazifa',
+  'reward' => 'Mukofot',
 ];

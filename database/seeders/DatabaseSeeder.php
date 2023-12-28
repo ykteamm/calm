@@ -30,7 +30,8 @@ class DatabaseSeeder extends Seeder
             MedicineSeeder::class,
             TestSeeder::class,
             PackageSeeder::class,
-            SteroidSeeder::class
+            SteroidSeeder::class,
+            AimSeeder::class
         ]);
     }
 }
