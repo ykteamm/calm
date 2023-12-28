@@ -73,7 +73,7 @@
                                                             <img src="{{asset('calm/show.png')}}" alt="Alt">
                                                         </button>
                                                     </div>
-                                                    @include('user.will.thanks')                                                
+                                                    @include('user.will.thanks')
                                                 @endif
                                             </div>
                                         </div>

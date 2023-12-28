@@ -28,7 +28,7 @@ class QuizController extends Controller
     protected MotivationService $motivationService;
     protected GratitudeService $gratitudeService;
     protected ReplyService $replyService;
-    protected LandscapeService $landscapeService; 
+    protected LandscapeService $landscapeService;
     protected PackageService $packageService;
     public function __construct(
         EmojiService $emojiService,
@@ -59,7 +59,7 @@ class QuizController extends Controller
 
     public function index()
     {
-        if ($usertest = Usertest::where('id', auth()->user()->id)->orderBy('id', 'DESC')->first()) {
+        if ($usertest = Usertest::where('user_id', auth()->user()->id)->orderBy('id', 'DESC')->first()) {
             if ($done = Session::get('quiz')) {
                 Session::remove('quiz');
             }
@@ -84,7 +84,7 @@ class QuizController extends Controller
         }
         $packages = [];
         $steroids = [];
-        if ($usertest = Usertest::where('id', auth()->user()->id)->orderBy('id', 'DESC')->first()) {
+        if ($usertest = Usertest::where('user_id', auth()->user()->id)->orderBy('id', 'DESC')->first()) {
             $packages = json_decode($usertest->packages);
             $steroids = json_decode($usertest->steroids);
         }
