@@ -4,11 +4,8 @@
     @if ($error = Session::get('error'))
       <div class="button -md -red-1 text-white">{{$error}}</div>
     @endif
-  <div class="row pb-50 mb-10">
-    <div class="col-auto">
-      <h1 class="text-30 lh-12 fw-700">Login</h1>
-      <div class="mt-10">Lorem ipsum dolor sit amet, consectetur.</div>
-    </div>
+  <div class="row pb-20 mb-10">
+      <h1 class="text-30 lh-12 fw-700" style="text-align: center;">{{__('common.nvt')}}</h1>
   </div>
   <div class="row y-gap-60">
     <div class="col-12">
@@ -16,19 +13,17 @@
         <div class="py-30 px-30">
           <form class="contact-form row y-gap-30" action="{{route('auth.login')}}" method="POST">
             @csrf
-            <div class="mb-10">
-              <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Phone</label>
-              <input name="phone" type="text" placeholder="Phone number">
+            <div class="">
+              <label class="text-16 lh-1 fw-500 text-dark-1 ">{{__('common.login_phone')}}</label>
+              <input name="phone" type="text" value="998" data-inputmask='"mask": "999 (99) 999-99-99"' data-mask name="phone" onfocus="this.removeAttribute('readonly');" readonly>
             </div>
-            <div class="mb-10">
-              <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Password</label>
-              <input name="password" type="password" placeholder="Password">
+            <div class="">
+              <label class="text-16 lh-1 fw-500 text-dark-1 ">{{__('common.login_password')}}</label>
+              <input name="password" type="password">
           </div>
-            <div class="row justify-between pt-15">
+            <div class="row justify-center pt-15">
               <div class="col-auto">
-              </div>
-              <div class="col-auto">
-                <button type="submit" class="button -md -purple-1 text-white">Login </button>
+                <button type="submit" class="button -md -purple-1 text-white">{{__('common.login')}} </button>
               </div>
             </div>
           </form>
@@ -36,10 +31,25 @@
       </div>
     </div>
   </div>
-  <div class="text-center">
-    <a href="{{route('auth.register-view')}}">
-      Register
+  <div class="text-center mt-20">
+    <span>{{__('common.login_if_register')}}</span>
+  </div>
+  <div class="text-center mt-10">
+    <a href="{{route('auth.register-view')}}" style="color: blue">
+        {{__('common.register')}}
     </a>
   </div>
 </div>
+@endsection
+@section('script')
+<script src="{{ asset('calm/js/jquery-3.3.1.min.js') }}"></script>
+<script src="{{asset('calm/js/inputmask/jquery.inputmask.min.js')}}"></script>
+
+<script>
+    $(document).ready(function() {
+        $(function () {
+            $('[data-mask]').inputmask()
+        });
+    });
+</script>
 @endsection

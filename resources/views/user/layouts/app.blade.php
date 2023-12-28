@@ -48,6 +48,8 @@
         <!-- JavaScript -->
 {{--        <script src="https://cdn.jsdelivr.net/gh/livewire/vue@v0.3.x/dist/livewire-vue.js"></script>--}}
         @include('partials.js')
+        @yield('script')
+
         @livewireScripts
       </body>
 </html>

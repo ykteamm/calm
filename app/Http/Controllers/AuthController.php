@@ -34,6 +34,10 @@ class AuthController extends Controller
     public function register(RegisterRequest $registerRequest)
     {
         $data = $registerRequest->validated();
+
+        $phone = preg_replace('/[^0-9]/', '', $data['phone']);
+        $data['phone'] = $phone;
+
         if ($this->userService->existsByColumn('phone', $phone = $data['phone'])) {
             return back()->with('error', 'Phone already exists');
         }
@@ -44,7 +48,7 @@ class AuthController extends Controller
         try {
             $this->userService->createWithThrow($data);
             $message = "Sizning parol $sms_verif_code";
-            $response = $this->smsService->sendSms("+998".$data['phone'], $message);
+            $response = $this->smsService->sendSms("+".$data['phone'], $message);
             if ($response->ok()) {
                 Session::put('phone', $data['phone']);
                 Session::put('sms_verif_code', $sms_verif_code);
@@ -60,6 +64,10 @@ class AuthController extends Controller
     public function login(LoginRequest $loginRequest)
     {
         $data = $loginRequest->validated();
+
+        $phone = preg_replace('/[^0-9]/', '', $data['phone']);
+        $data['phone'] = $phone;
+
         if ($user = $this->userService->find(['phone' => $data['phone']])) {
             if (Hash::check($data['password'], $user->password)) {
                 $this->doneTests($user);

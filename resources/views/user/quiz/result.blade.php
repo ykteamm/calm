@@ -52,13 +52,13 @@
                     </div>
                     <div class="card border-0">
                         <div class="text-center">
-                            <img class="" style="width:20%" src="https://images.prismic.io/thesis-shopify/5432b31e-96d7-4a78-83f0-aba004455adb_Group+1420.png?auto=compress,format&w=72" alt="">
+                            <img class="" style="width:20%" src="https://images.prismic.io/thesis-shopify/37963230-f1ab-4b85-907d-a6cb47189a6e_Group+1415.png?auto=compress,format&w=72" alt="">
                             {{__('common.recieve')}}
                         </div>
                     </div>
                     <div class="card border-0">
                         <div class="text-center">
-                            <img class="" style="width:20%" src="https://images.prismic.io/thesis-shopify/5432b31e-96d7-4a78-83f0-aba004455adb_Group+1420.png?auto=compress,format&w=72" alt="">
+                            <img class="" style="width:20%" src="https://images.prismic.io/thesis-shopify/da6d8ed4-972f-47a9-9fae-5e2e130068c4_Group+1414.png?auto=compress,format&w=72" alt="">
                             {{__('common.using')}}
                         </div>
                     </div>
@@ -155,12 +155,28 @@
                                                 </div>
                                                 <div id="resultBody{{$i}}" style="padding:25px;" class="card-body pt-0">
                                                     <div style="letter-spacing: .01rem;font-weight:402;color:#1e1e1e;margin-bottom:0.5rem">
-                                                        KEY FOCUS AREAS
+                                                        Ta'siri
                                                     </div>
                                                     <ul style="padding-left: 20px">
-                                                      @foreach ($package->medicines as $item)
+                                                      {{-- @foreach ($package->medicines as $item) --}}
+                                                      @if ($package->id == 1)
+                                                        <li style="list-style-type: circle">Tez uxlash</li>
+                                                        <li style="list-style-type: circle">Sifatli uyqu</li>
+                                                      @elseif($package->id == 3)
+                                                        <li style="list-style-type: circle">Kayfiyat barqarorligi</li>
+                                                        <li style="list-style-type: circle">Mamnunlik hissi</li>
+                                                        <li style="list-style-type: circle">Irodani mustahkamlash</li>
+                                                      @elseif($package->id == 2)
+                                                        <li style="list-style-type: circle">Gormonal muvozanat</li>
+                                                        <li style="list-style-type: circle">Buqoq ishini yaxshilash</li>
+                                                      @else
+                                                        <li style="list-style-type: circle">Stress paytida</li>
+                                                        <li style="list-style-type: circle">Kuchli charchoqda</li>
+                                                        <li style="list-style-type: circle">Yaxshi kayfiyat uchun</li>
+                                                      @endif
+                                                          {{-- <li style="list-style-type: circle">{{$package->id}}</li>
                                                           <li style="list-style-type: circle">{{$item->translation->name}}</li>
-                                                      @endforeach
+                                                      @endforeach --}}
                                                   </ul>
                                                     <div style="letter-spacing: .01rem;font-weight:402;color:#1e1e1e;margin-bottom:0.5rem">
                                                         KEY INGREDIENT
@@ -179,7 +195,7 @@
                                                 </div>
                                                 <div id="resultIngridient{{$i}}" style="padding:25px;display:none" class="card-body pt-0">
                                                     <div style="letter-spacing: .01rem;font-weight:402;color:#1e1e1e;margin-bottom:0.5rem">
-                                                        ALL INGREDIENTS:
+                                                        Tarkiblar:
                                                     </div>
                                                     <ul style="padding-left: 20px">
                                                         @foreach ($package->medicines as $item)
@@ -189,10 +205,10 @@
                                                 </div>
                                                 <div onclick="resultCollapser({{$i}})" class="card-footer p-3 bg-transparent d-flex justify-content-between align-items-center pointer">
                                                     <div id="resultCollapse{{$i}}">
-                                                        View All Ingredients
+                                                        Tarkibni ko'rish
                                                     </div>
                                                     <div id="resultCollapseClose{{$i}}" style="display: none">
-                                                        Collapse Ingredients
+                                                        Tarkibni berkitish
                                                     </div>
                                                     <div id="resultCollapsePlus{{$i}}" style="font-size:25px;">
                                                         +
@@ -221,40 +237,109 @@
                 </div> --}}
                 {{-- @include('user.quiz.result-modal') --}}
                 {{-- @include('user.quiz.chart-modal') --}}
-                <section class="layout-pt-sm layout-pb-sm border-bottom-light">
-                    <div class="container">
-                      <div class="row y-gap-30 justify-between">
 
-                        <div class="col-xl-3 col-md-6">
-                          <div class="d-flex items-center">
-                            <div>
-                              <h4 class="text-20 fw-500 text-center">1. Har hafta yangi dori sinab k'oring</h4>
-                              <div class="text-dark-1 text-center">Har hafta uchun bitta formula tanlang va uning ta'sirini kunlik kuzatib boring.</div>
+                  <div class="personalized__WorkBlock">
+                    <div class="personalized__steps">
+
+
+                        <div class="personalized__stepItem mt-20" style="z-index: 2;
+                            color: #1d4d57;
+                            background-color: #e6ebe6;
+                            display: flex;
+                            border-radius: 0.25rem;">
+                          <div class="personalized__stepLeft">
+                            <div class="personalized__stepItemNoBg" style="padding-right: 0.25rem;
+                            padding-bottom: 0.25rem;
+                            background-color: #f7f7f7;
+                            border-bottom-right-radius: 0.25rem;">
+                              <span class="personalized__stepItemNo" style="font-weight: 600;
+                              font-size: 1.25rem;
+                              background-color: #1d4d57;
+                              color: #fff;
+                              width: 2.2rem;
+                              height: 2.2rem;
+                              display: flex;
+                              justify-content: center;
+                              align-items: center;
+                              border-radius: 0.25rem;"><text>1</text></span>
                             </div>
+                          </div>
+                          <div class="personalized__stepRight p-3">
+                            <h3 class="personalized__stepHeading" style="    font-size: 1.2rem;
+                            line-height: 1.5625rem;">Har hafta yangi dori sinab ko'ring</h3>
+                            <p class="personalized__stepDesc" style="margin-top: 0.375rem;
+                            font-size: 1rem;
+                            line-height: 1.6875rem;">Har hafta uchun bitta formula tanlang va uning ta'sirini kunlik kuzatib boring.</p>
                           </div>
                         </div>
 
-                        <div class="col-xl-3 col-md-6">
-                          <div class="d-flex items-center">
-                            <div>
-                              <h4 class="text-20 fw-500 text-center">2. Holatingizni kuzatib boring</h4>
-                              <div class="text-dark-1 text-center" >Qolgan 3 formulaning ta'sirini oy oxirigacha kuzatoib boring</div>
+                        <div class="personalized__stepItem mt-20" style="z-index: 2;
+                            color: #1d4d57;
+                            background-color: #e6ebe6;
+                            display: flex;
+                            border-radius: 0.25rem;">
+                          <div class="personalized__stepLeft">
+                            <div class="personalized__stepItemNoBg" style="padding-right: 0.25rem;
+                            padding-bottom: 0.25rem;
+                            background-color: #f7f7f7;
+                            border-bottom-right-radius: 0.25rem;">
+                              <span class="personalized__stepItemNo" style="font-weight: 600;
+                              font-size: 1.25rem;
+                              background-color: #1d4d57;
+                              color: #fff;
+                              width: 2.2rem;
+                              height: 2.2rem;
+                              display: flex;
+                              justify-content: center;
+                              align-items: center;
+                              border-radius: 0.25rem;"><text>2</text></span>
                             </div>
+                          </div>
+                          <div class="personalized__stepRight p-3">
+                            <h3 class="personalized__stepHeading" style="font-size: 1.2rem;
+                            line-height: 1.5625rem;">Holatingizni kuzatib boring</h3>
+                            <p class="personalized__stepDesc" style="margin-top: 0.375rem;
+                            font-size: 1rm;
+                            line-height: 1.6875rem;">Qolgan 3 formulaning ta'sirini oy oxirigacha kuzatib boring</p>
                           </div>
                         </div>
 
-                        <div class="col-xl-3 col-md-6">
-                          <div class="d-flex items-center">
-                            <div>
-                              <h4 class="text-20 fw-500 text-center">3. Shaxsiy formulangizni optimallashitiring</h4>
-                              <div class="text-dark-1 text-center">Oy o'rtasida sizga yaxshi ta'sir ko'rsatayotganni tekshiramiz va shifokorlarimiz sizning to'plamingizni optimallashtirishda yordamlashadi.</div>
+                        <div class="personalized__stepItem mt-20" style="z-index: 2;
+                            color: #1d4d57;
+                            background-color: #e6ebe6;
+                            display: flex;
+                            border-radius: 0.25rem;">
+                          <div class="personalized__stepLeft">
+                            <div class="personalized__stepItemNoBg" style="padding-right: 0.25rem;
+                            padding-bottom: 0.25rem;
+                            background-color: #f7f7f7;
+                            border-bottom-right-radius: 0.25rem;">
+                              <span class="personalized__stepItemNo" style="font-weight: 600;
+                              font-size: 1.25rem;
+                              background-color: #1d4d57;
+                              color: #fff;
+                              width: 2.2rem;
+                              height: 2.2rem;
+                              display: flex;
+                              justify-content: center;
+                              align-items: center;
+                              border-radius: 0.25rem;"><text>3</text></span>
                             </div>
+                          </div>
+                          <div class="personalized__stepRight p-3">
+                            <h3 class="personalized__stepHeading" style="    font-size: 1.2rem;
+                            line-height: 1.5625rem;">Shaxsiy formulangizni optimallashitiring</h3>
+                            <p class="personalized__stepDesc" style="margin-top: 0.375rem;
+                            font-size: 1rem;
+                            line-height: 1.6875rem;">Oy o'rtasida sizga yaxshi ta'sir ko'rsatayotganni tekshiramiz va shifokorlarimiz sizning to'plamingizni optimallashtirishda yordamlashadi.</p>
                           </div>
                         </div>
 
-                      </div>
+
+
+
                     </div>
-                  </section>
+                  </div>
             </div>
         </div>
       </div>

@@ -29,6 +29,7 @@
                         <div class="col-lg-3 col-md-6 col-6" style="cursor: pointer;">
                             <div data-anim-child="slide-left delay-2" class="blogCard card_active -type-1 rounded-8  shadow-1 overflow-hidden is-in-view">
                                 <div class="blogCard__image ratio ratio-3:2">
+                                    {{-- <img class="img-ratio" src="{{$item->image->path}}" alt="image"> --}}
                                 </div>
                                 <div class="px-15 py-15 text-center bg-white">
                                     <h4 class="text-17 lh-15 fw-500 font_family_a">{{$item->translation->answer}}</h4>

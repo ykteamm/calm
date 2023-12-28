@@ -1,6 +1,9 @@
-<?php 
+<?php
 
 return [
+
+    'nvt' => 'N O V A T I O',
+
   'meditations' => 'Meditatsiyalar',
   'medicine' => 'Dori',
   'will' => 'Iroda',
@@ -15,8 +18,8 @@ return [
   'delivery' => 'Bepul yetkazish',
   'recieve' => '30 kun kafolat',
   'using' => 'Shifokor maslahati',
-  'your_health' => 'sog\'lik natijalari',
-  'your_medicines' => 'dorilar batafsil',
+  'your_health' => 'sog\'lig\'i natijalari',
+  'your_medicines' => 'shaxsiy dorilari batafsil',
   'previous' => 'Dastlabki',
   'text' => 'Matn',
   'percent' => 'Foiz',
@@ -25,6 +28,22 @@ return [
   'complete' => 'Yakunlash',
   'show_result' => 'Natijani korish',
   'buy_now' => 'Sotib olish',
+
+  //login-register-begin
+  'login' => 'Kirish',
+  'login_name' => 'Ism',
+  'login_surname' => 'Familiya',
+  'login_phone' => 'Telefon raqam',
+  'login_password' => 'Parol',
+  'login_re_password' => 'Parolni tekshirish',
+  'login_if_register' => 'Agar siz ro\'yhatdan o\'tmagan bo\'lsangiz',
+  'login_if_login' => 'Agar siz ro\'yhatdan o\'tgan bo\'lsangiz',
+  'register' => 'Ro\'yhatdan o\'tish',
+  'verify' => 'Tasdiqlash',
+  'verify_text' => 'Sizning telefon raqamingizga tasdiqlash kodini yubordik',
+  'verify_pl_text' => 'Tasdiqlash kodini kiriting...',
+  //login-register-end
+
   'task' => 'Vazifa',
   'reward' => 'Mukofot',
 ];
