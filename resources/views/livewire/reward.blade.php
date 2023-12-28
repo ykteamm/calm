@@ -14,9 +14,12 @@
                         <div class="col-1 pointer">
                             <img wire:click="change({{$k}})" style="width:25px" src="{{asset('calm/change.png')}}" alt="">
                         </div>
-                        <div class="col-1">
+<<<<<<< HEAD
+=======
+                        {{-- <div class="col-1">
                             <input name="rewards[{{$k}}][id]" value="{{$reward->id}}" class="form-check" type="checkbox" >
-                        </div>
+                        </div> --}}
+>>>>>>> cb3c52fd0179afb33a9c91a63eac634bea482800
                     </div>
                 </div>
             </div>
