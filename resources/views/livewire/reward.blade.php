@@ -8,14 +8,11 @@
                         <div class="col-1">
                             {{$k+1}}.
                         </div>
-                        <div class="col-9">
+                        <div class="col-10">
                             <input name="rewards[{{$k}}][text]" class="w-100" value="{{$reward->text}}" type="text">
                         </div>
                         <div class="col-1 pointer">
                             <img wire:click="change({{$k}})" style="width:25px" src="{{asset('calm/change.png')}}" alt="">
-                        </div>
-                        <div class="col-1">
-                            <input name="rewards[{{$k}}][id]" value="{{$reward->id}}" class="form-check" type="checkbox" >
                         </div>
                     </div>
                 </div>

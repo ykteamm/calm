@@ -5,10 +5,12 @@ namespace App\Services;
 use App\Models\Reward;
 use App\Services\BaseService;
 use App\Http\Resources\RewardResource;
+use App\Traits\MakeAsset;
 use Carbon\Carbon;
 
 class RewardService extends BaseService
 {
+    use MakeAsset;
     public function __construct(Reward $serviceModel)
     {
         $this->model = $serviceModel;
@@ -42,6 +44,7 @@ class RewardService extends BaseService
     public function saveRewards($data)
     {
         try {
+
             foreach ($data['rewards'] as $key => $aim) {
                 if(isset($aim['text'])) {
                     $item = [
@@ -53,7 +56,10 @@ class RewardService extends BaseService
                     }
                     $this->create($item);
                 } else if (isset($aim['id'])) {
-                    $this->edit($aim['id'], ['done' => 1]);
+                    $this->setQuery();
+                    $this->query->where('id', $aim['id'])->update([
+                        'done' => 1
+                    ]);
                 }
             }
             return back();
@@ -72,6 +78,7 @@ class RewardService extends BaseService
             ->whereBetween('created_at', [$start, $end])
             ->where('user_id', auth()->user()->id)
             ->orderBy('id', 'desc')
+            ->with('images')
             ->limit(3)
             ->get();
         return $rewards;

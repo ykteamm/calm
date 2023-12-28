@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-
 use Illuminate\Foundation\Http\FormRequest;
 
-class RewardUpsertRequest extends FormRequest
+class RewardAssetRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +24,13 @@ class RewardUpsertRequest extends FormRequest
     public function rules()
     {
         $required = ($this->isMethod('put')) ? 'nullable' : 'required';
-        
+
         return [
-            'user_id' => [$required],
-            'text' => [$required],
-            'feelings' => [$required]
+            'file' => [
+                'required',
+                'file',
+                'mimes:jpg,jpeg,png,gif,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,mp4,avi,mov,mpg,mpeg,flv,mp3,wav,ogg,aac,flac,wma,m4a',
+            ],
         ];
     }
 }

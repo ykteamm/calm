@@ -56,24 +56,23 @@
                         @if (count($rewards) > 0)
                             <form action="{{route('save-rewards')}}" method="POST">
                                 @csrf
-                                @foreach ($rewards as $k => $aim)
+                                @foreach ($rewards as $k => $reward)
                                     <div class="card py-5 my-2 border-1">
                                         <div class="card-header border-0" style="">
                                             <div class="row">
                                                 <div class="col-11">
-                                                    <span class="mr-5">{{$k+1}}.</span><span>{{$aim->text}}</span>
+                                                    <span class="mr-5">{{$k+1}}.</span><span>{{$reward->text}}</span>
                                                 </div>
-                                                @if (!$aim->done)
+                                                @if (!$reward->done)
                                                     <div class="col-1">
-                                                        <input name="rewards[{{$k}}][id]" value="{{$aim->id}}" class="form-check" type="checkbox" >
+                                                        <input name="rewards[{{$k}}][id]" value="{{$reward->id}}" class="form-check" type="checkbox" >
                                                     </div>
                                                 @else
                                                     <div class="col-1">
-                                                        <button type="button" class="" data-bs-toggle="modal" data-bs-target="#showThanks">
+                                                        <a href="{{route('reward.thanks', ['reward' => $reward->id])}}">
                                                             <img src="{{asset('calm/show.png')}}" alt="Alt">
-                                                        </button>
+                                                        </a>
                                                     </div>
-                                                    @include('user.will.thanks')                                                
                                                 @endif
                                             </div>
                                         </div>

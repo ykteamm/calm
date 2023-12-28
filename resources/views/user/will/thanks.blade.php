@@ -1,17 +1,36 @@
-<div class="modal fade" id="showThanks" tabindex="-1" aria-labelledby="showThanksLabel" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h5 class="modal-title" id="showThanksLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+@extends('user.layouts.app')
+@section('user_content')
+<div class="content-wrapper js-content-wrapper">
+    <div class="dashboard -home-9 px-0 js-dashboard-home-9">
+    @include('user.layouts.sidebar')
+      <div class="dashboard__main mt-0">
+        <div class="container">
+            <div class="row">
+                @foreach ($reward->images as $image)
+                    <div class="col-6">
+                        <img style="width: 400px" src="{{asset($image->path)}}" alt="">
+                    </div>
+                @endforeach
+            </div>
+
+            <form class="" style="margin-top:30px" action="{{route('reward-image-upload', ['reward' => $reward->id])}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="d-flex justiy-content-between" >
+                    <input name="file" type="file" placeholder="Reward avatar">
+                    <button type="submit" class="btn btn-primary text-white">Upload</button>
+                </div>
+            </form>
+            <form class="" style="margin-top:30px" action="{{route('update-reward-feelings', ['reward' => $reward->id])}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('put')
+                <div class="d-flex justiy-content-between" >
+                    <textarea class="form-control" name="feelings">
+                        {{$reward->feelings}}
+                    </textarea>
+                    <button type="submit" class="btn btn-primary text-white">Save</button>
+                </div>
+            </form>
         </div>
-        <div class="modal-body">
-        ...
-        </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-    </div>
+      </div>
     </div>
 </div>

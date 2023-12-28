@@ -7,10 +7,15 @@ use App\Http\Requests\IndexRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AimsUpsertRequest;
 use App\Http\Requests\AimUpsertRequest;
+use App\Http\Requests\AssetRequest;
+use App\Http\Requests\RewardAssetRequest;
 use App\Http\Requests\RewardsUpsertRequest;
+use App\Http\Requests\RewardUpsertRequest;
 use App\Models\Aim;
+use App\Models\Reward;
 use App\Services\MeditationService;
 use App\Services\RewardService;
+use Illuminate\Http\Request;
 
 class WillController extends Controller
 {
@@ -34,6 +39,7 @@ class WillController extends Controller
         $rewards = $this->rewardService->weekRewards();
         $meditations = $this->meditationService->getAllByCatName('will');
         $doneAims = $this->aimService->doneAims();
+        // dd($rewards->toArray());
         return view('user.will.index', [
             'meditations' => $meditations,
             'doneAims' => $doneAims,
@@ -50,5 +56,41 @@ class WillController extends Controller
     public function saveRewards(RewardsUpsertRequest $rewardsUpsertRequest)
     {
         return $this->rewardService->saveRewards($rewardsUpsertRequest->validated());
+    }
+
+    public function updateRewardFelings(RewardUpsertRequest $rewardUpsertRequest, $reward)
+    {
+        return $this->rewardService->edit($reward, $rewardUpsertRequest->validated())
+            ->redirect('will.index');
+    }
+
+    public function rewardThanks($reward)
+    {
+        $reward = $this->rewardService->show($reward);
+        return view('user.will.thanks', [
+            'reward' => $reward
+        ]);
+    }
+
+    public function upload(RewardAssetRequest $assetRequest, $reward)
+    {
+        $data = $assetRequest->validated();
+        $data['type'] = Reward::IMAGE;
+        return $this->rewardService->storeAsset($reward, $data, true)
+            ->redirect('will.index');
+    }
+
+    public function reupload(RewardAssetRequest $assetRequest, $reward, $asset)
+    {
+        $data = $assetRequest->validated();
+        $data['type'] = Reward::IMAGE;
+        return $this->rewardService->updateAsset($reward, $asset, $data, true)
+            ->redirect('will.index');
+    }
+
+    public function unupload($reward, $asset)
+    {
+        return $this->rewardService->deleteAsset($reward, $asset, true)
+            ->redirect('will.index');
     }
 }

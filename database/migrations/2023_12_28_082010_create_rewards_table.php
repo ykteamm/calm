@@ -17,6 +17,7 @@ class CreateRewardsTable extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->text('text');
+            $table->text('feelings')->nullable();
             $table->tinyInteger('done')->default(0);
             $table->timestamps();
         });

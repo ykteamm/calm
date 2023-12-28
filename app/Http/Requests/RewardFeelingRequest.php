@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RewardUpsertRequest extends FormRequest
+class RewardFeelingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,9 +27,7 @@ class RewardUpsertRequest extends FormRequest
         $required = ($this->isMethod('put')) ? 'nullable' : 'required';
         
         return [
-            'user_id' => [$required],
-            'text' => [$required],
-            'feelings' => [$required]
+            'feelings' => [$required, 'string'],
         ];
     }
 }
