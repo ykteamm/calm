@@ -14,6 +14,9 @@
                     <div class="text-center mt-30">
                         <a href="{{route('test-choose-issue-view')}}" class="btn btn-primary font_family_a">Davom etamiz</a>
                     </div>
+                    <div class="text-center mt-30">
+                        <a href="{{route('auth.login')}}" class="btn btn-primary font_family_a">Keyinroq</a>
+                    </div>
                 </div>
             </div>
         </div>
