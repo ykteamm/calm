@@ -16,6 +16,7 @@ class CreateVariantsTable extends Migration
         Schema::create('variants', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('question_id');
+            $table->integer('ball');
             $table->timestamps();
         });
     }

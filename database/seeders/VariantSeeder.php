@@ -21,62 +21,77 @@ class VariantSeeder extends Seeder
                 [
                     'name' => "Har doim",
                     'answer' => "Meditatsiya bilan davolaning",
-                    'object_id' => 1
+                    'object_id' => 1,
+                    'ball' => 3,
                 ],
                 [
                     'name' => "Tez tez",
                     'answer' => "Meditatsiya bilan davolaning",
-                    'object_id' => 1
+                    'object_id' => 1,
+                    'ball' => 2,
+
                 ],
                 [
                     'name' => "Ba'zida",
                     'answer' => "Sayr qiling va musiqa tinglang",
-                    'object_id' => 1
+                    'object_id' => 1,
+                    'ball' => 1,
+
                 ],
                 [
                     'name' => "Aslo unday emas",
                     'answer' => "Sayr qiling va musiqa tinglang",
-                    'object_id' => 1
+                    'object_id' => 1,
+                    'ball' => 0,
+
                 ],
                 [
                     'name' => "Xuddi shunday",
                     'answer' => "Bir kunda kamida 5 soat uxlash tavsiya qilinadi",
-                    'object_id' => 2
+                    'object_id' => 2,
+                    'ball' => 3,
                 ],
                 [
                     'name' => "Shunday bo'lsa kerak",
                     'answer' => "Bu normal boshqa sabablar",
-                    'object_id' => 2
+                    'object_id' => 2,
+                    'ball' => 2,
                 ],
                 [
                     'name' => "Juda kam holatlarda",
                     'answer' => "Ko'pi zarar",
-                    'object_id' => 2
+                    'object_id' => 2,
+                    'ball' => 1,
                 ],
                 [
                     'name' => "Aslo unday emas",
                     'answer' => "Ko'pi zarar",
-                    'object_id' => 2
+                    'object_id' => 2,
+                    'ball' => 0,
                 ],
                 [
                     'name' => "Xuddi shunday",
                     'answer' => "Bir kunda kamida 5 soat uxlash tavsiya qilinadi",
-                    'object_id' => 3
+                    'object_id' => 3,
+                    'ball' => 3,
                 ],
                 [
                     'name' => "Shunday bo'lsa kerak",
                     'answer' => "Bu normal boshqa sabablar",
-                    'object_id' => 3
+                    'object_id' => 3,
+                    'ball' => 2,
                 ],
                 [
                     'name' => "Juda kam holatlarda",
                     'answer' => "Ko'pi zarar",
-                    'object_id' => 3
+                    'object_id' => 3,
+                    'ball' => 1,
                 ],
                 [
                     'name' => "Aslo unday emas",
                     'answer' => "Ko'pi zarar",
-                    'object_id' => 3
+                    'object_id' => 3,
+                    'ball' => 0,
                 ],
                 [
                     'name' => "Deyarli har doim",
@@ -330,7 +345,8 @@ class VariantSeeder extends Seeder
 
         for ($i = 0; $i < count($variants['uz']); $i++){
             $variant = Variant::create([
-                'question_id' => $variants['uz'][$i]['object_id']
+                'question_id' => $variants['uz'][$i]['object_id'],
+                'ball' => $variants['uz'][$i]['object_id'],
             ]);
             foreach ($langs as $lang) {
                 VariantTranslation::create([

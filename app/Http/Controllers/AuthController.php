@@ -41,10 +41,14 @@ class AuthController extends Controller
 
         $user_exists = User::where('phone', $data['phone'])->first();
 
-        if ($user_exists->sms_verif_code_expires_at == null) {
-            User::find($user_exists->id)->delete();
+        if($user_exists)
+        {
+            if ($user_exists->sms_verif_code_expires_at == null) {
+                User::find($user_exists->id)->delete();
+            }
+
         }
-        
+
         if ($this->userService->existsByColumn('phone', $phone = $data['phone'])) {
             return back()->with('error', 'Phone already exists');
         }

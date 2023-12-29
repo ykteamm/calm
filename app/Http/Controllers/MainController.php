@@ -131,6 +131,9 @@ class MainController extends Controller
         $this->issueService->willParseToRelation = [
             'translation', 'image'
         ];
+        $questtion = Question::where('id','>=',1)->update([
+            'issue_id' => $issues[0],
+        ]);
         $this->issueService->queryClosure = fn ($q) => $q->whereIn('id', $issues);
         $issues = $this->issueService->getList([]);
         return view("user.test.issue-result", compact('issues'));
@@ -201,6 +204,7 @@ class MainController extends Controller
         $this->variantService->willParseToRelation = [
             'translation'
         ];
+        return $variants;
         $this->variantService->queryClosure = fn ($q) => $q->whereIn('id', $variants);
         $variants = $this->variantService->getList([]);
         return view('user.test.answers', compact('variants'));
