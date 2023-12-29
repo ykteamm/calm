@@ -2,7 +2,7 @@
 @section('user_content')
 <div class="content-wrapper js-content-wrapper">
     <div class="dashboard -home-9 px-0 js-dashboard-home-9">
-    @include('user.layouts.sidebar')  
+    @include('user.layouts.sidebar')
       <div class="dashboard__main mt-0">
         <div class="dashboard__content pt-0 px-15 pb-0" style="padding-left: 0 !important; position: relative;background: linear-gradient(90deg, #162a39, #194d75);border-radius: 0;overflow: hidden;">
 
@@ -22,13 +22,7 @@
                     <source src="../calm/media/forest.mp4" type="video/mp4">
                 </video> --}}
 
-
-                <div class="container">
-                    <div class="menu__btn" id="menu_btn" style="padding: 0 !important;">
-                        Menu
-                    </div>
-                </div>
-                <div class="container pt-40" style="position: relative; z-index: 5;">
+                <div class="container pt-40 mp-80" style="position: relative; z-index: 5;">
                     <div class="col-auto">
                         <h1 class="text-30 text-color-white lh-12 fw-700 font_family_a">
                             Scenes

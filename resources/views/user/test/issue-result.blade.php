@@ -17,7 +17,7 @@
             <section class="">
                 <div class="container mt-30">
                     <h3 class="text-color-white-for text-center font_family_a">
-                        Mana bizning a'zolarimiz nima deydi:
+                        Statistika nima deydi:
                     </h3>
                 </div>
             </section>

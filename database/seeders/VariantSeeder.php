@@ -19,64 +19,104 @@ class VariantSeeder extends Seeder
         $variants = [
             'uz' => [
                 [
-                    'name' => "Ko'p o'layman",
-                    'answer' => "Ko'p o'ylamang",
-                    'object_id' => 1
-                ], 
-                [
-                    'name' => "Ko'p ga'm qilaman kelajak haqida",
-                    'answer' => "Ko'p ga'm qilmang kelajak haqida",
+                    'name' => "Har doim",
+                    'answer' => "Meditatsiya bilan davolaning",
                     'object_id' => 1
                 ],
                 [
-                    'name' => "Ko'p ishlayman",
-                    'answer' => "O'zingizga ham yetarli vaqt ajtaring",
+                    'name' => "Tez tez",
+                    'answer' => "Meditatsiya bilan davolaning",
                     'object_id' => 1
                 ],
                 [
-                    'name' => "4 soat uxlayman",
+                    'name' => "Ba'zida",
+                    'answer' => "Sayr qiling va musiqa tinglang",
+                    'object_id' => 1
+                ],
+                [
+                    'name' => "Aslo unday emas",
+                    'answer' => "Sayr qiling va musiqa tinglang",
+                    'object_id' => 1
+                ],
+                [
+                    'name' => "Xuddi shunday",
                     'answer' => "Bir kunda kamida 5 soat uxlash tavsiya qilinadi",
                     'object_id' => 2
                 ],
                 [
-                    'name' => "8 soat uxlayman",
+                    'name' => "Shunday bo'lsa kerak",
                     'answer' => "Bu normal boshqa sabablar",
                     'object_id' => 2
                 ],
                 [
-                    'name' => "10 soat uxlayman",
+                    'name' => "Juda kam holatlarda",
                     'answer' => "Ko'pi zarar",
                     'object_id' => 2
                 ],
                 [
-                    'name' => "Baland ovozda suhbatlashganda",
-                    'answer' => "O'rganing va moslashing",
+                    'name' => "Aslo unday emas",
+                    'answer' => "Ko'pi zarar",
+                    'object_id' => 2
+                ],
+                [
+                    'name' => "Xuddi shunday",
+                    'answer' => "Bir kunda kamida 5 soat uxlash tavsiya qilinadi",
                     'object_id' => 3
                 ],
                 [
-                    'name' => "Bolalar yig'laganda",
-                    'answer' => "Mehribon bo'ling",
+                    'name' => "Shunday bo'lsa kerak",
+                    'answer' => "Bu normal boshqa sabablar",
                     'object_id' => 3
                 ],
                 [
-                    'name' => "Telefon jiringlaganda",
-                    'answer' => "Kamroq telefondan foydalaning",
+                    'name' => "Juda kam holatlarda",
+                    'answer' => "Ko'pi zarar",
                     'object_id' => 3
                 ],
                 [
-                    'name' => "Kayfiyatim obi havo",
+                    'name' => "Aslo unday emas",
+                    'answer' => "Ko'pi zarar",
+                    'object_id' => 3
+                ],
+                [
+                    'name' => "Deyarli har doim",
                     'answer' => "Foydali mashg'ulot bilan shug'ullaning",
                     'object_id' => 4
                 ],
                 [
-                    'name' => "Kayfiyatim yaxshi",
+                    'name' => "Ba'zi - ba'zida",
                     'answer' => "Bu juda yaxshi. Shunday davom eting",
                     'object_id' => 4
                 ],
                 [
-                    'name' => "Kayfiyatim ko'pincha yomon",
+                    'name' => "Kam holatlarda",
                     'answer' => "Yatatgandan rozi bo'ling. Shukr qiling va sizdan pastdagilarga qarang",
                     'object_id' => 4
+                ],
+                [
+                    'name' => "Deyarli kuzatilmaydi",
+                    'answer' => "Yatatgandan rozi bo'ling. Shukr qiling va sizdan pastdagilarga qarang",
+                    'object_id' => 4
+                ],
+                [
+                    'name' => "Deyarli har doim",
+                    'answer' => "Foydali mashg'ulot bilan shug'ullaning",
+                    'object_id' => 5
+                ],
+                [
+                    'name' => "Ko'p holatlarda",
+                    'answer' => "Bu juda yaxshi. Shunday davom eting",
+                    'object_id' => 5
+                ],
+                [
+                    'name' => "Juda kam holatlarda",
+                    'answer' => "Yatatgandan rozi bo'ling. Shukr qiling va sizdan pastdagilarga qarang",
+                    'object_id' => 5
+                ],
+                [
+                    'name' => "Aslo unday emas",
+                    'answer' => "Yatatgandan rozi bo'ling. Shukr qiling va sizdan pastdagilarga qarang",
+                    'object_id' => 5
                 ]
             ],
             'en' => [
@@ -97,8 +137,18 @@ class VariantSeeder extends Seeder
                     'object_id' => 1
                 ],
                 [
+                    'name' => "I work a lot",
+                    'answer' => "Make enough time for yourself too",
+                    'object_id' => 1
+                ],
+                [
                     'name' => "I sleep for 4 hours",
                     'answer' => "It is recommended to sleep at least 5 hours a day",
+                    'object_id' => 2
+                ],
+                [
+                    'name' => "I sleep 8 hours",
+                    'answer' => "This is normal other reasons",
                     'object_id' => 2
                 ],
                 [
@@ -127,6 +177,11 @@ class VariantSeeder extends Seeder
                     'object_id' => 3
                 ],
                 [
+                    'name' => "When the phone rings",
+                    'answer' => "Use less phone",
+                    'object_id' => 3
+                ],
+                [
                     'name' => "I'm in a good mood",
                     'answer' => "Do a useful exercise",
                     'object_id' => 4
@@ -140,6 +195,31 @@ class VariantSeeder extends Seeder
                     'name' => "I'm in a bad mood most of the time",
                     'answer' => "Be content with what you lay down. Give thanks and look at those below you",
                     'object_id' => 4
+                ],
+                [
+                    'name' => "I'm in a bad mood most of the time",
+                    'answer' => "Be content with what you lay down. Give thanks and look at those below you",
+                    'object_id' => 4
+                ],
+                [
+                    'name' => "I'm in a good mood",
+                    'answer' => "Do a useful exercise",
+                    'object_id' => 5
+                ],
+                [
+                    'name' => "I'm in a good mood",
+                    'answer' => "That's great. Keep it up",
+                    'object_id' => 5
+                ],
+                [
+                    'name' => "I'm in a bad mood most of the time",
+                    'answer' => "Be content with what you lay down. Give thanks and look at those below you",
+                    'object_id' => 5
+                ],
+                [
+                    'name' => "I'm in a bad mood most of the time",
+                    'answer' => "Be content with what you lay down. Give thanks and look at those below you",
+                    'object_id' => 5
                 ]
             ],
             'ru' => [
@@ -152,6 +232,11 @@ class VariantSeeder extends Seeder
                 [
                     'name' => "Я очень беспокоюсь о будущем",
                     'answer' => "Не беспокойтесь слишком сильно о будущем",
+                    'object_id' => 1
+                ],
+                [
+                    'name' => "Я много работаю",
+                    'answer' => "Уделите достаточно времени и себе",
                     'object_id' => 1
                 ],
                 [
@@ -175,6 +260,11 @@ class VariantSeeder extends Seeder
                     'object_id' => 2
                 ],
                 [
+                    'name' => "Я сплю 10 часов",
+                    'answer' => "Большой урон",
+                    'object_id' => 2
+                ],
+                [
                     'name' => "При громком разговоре",
                     'answer' => "Учись и адаптируйся",
                     'object_id' => 3
@@ -182,6 +272,11 @@ class VariantSeeder extends Seeder
                 [
                     'name' => "Когда дети плачут",
                     'answer' => "Будьте добры",
+                    'object_id' => 3
+                ],
+                [
+                    'name' => "Когда звонит телефон",
+                    'answer' => "Используйте меньше телефона",
                     'object_id' => 3
                 ],
                 [
@@ -203,11 +298,36 @@ class VariantSeeder extends Seeder
                     'name' => "Большую часть времени я в плохом настроении",
                     'answer' => "Будьте довольны тем, что вы положили. Благодарите и смотрите на тех, кто ниже вас",
                     'object_id' => 4
+                ],
+                [
+                    'name' => "Большую часть времени я в плохом настроении",
+                    'answer' => "Будьте довольны тем, что вы положили. Благодарите и смотрите на тех, кто ниже вас",
+                    'object_id' => 4
+                ],
+                [
+                    'name' => "У меня хорошее настроение",
+                    'answer' => "Сделай полезное упражнение",
+                    'object_id' => 5
+                ],
+                [
+                    'name' => "У меня хорошее настроение",
+                    'answer' => "Отлично. Продолжайте в том же духе",
+                    'object_id' => 5
+                ],
+                [
+                    'name' => "Большую часть времени я в плохом настроении",
+                    'answer' => "Будьте довольны тем, что вы положили. Благодарите и смотрите на тех, кто ниже вас",
+                    'object_id' => 5
+                ],
+                [
+                    'name' => "Большую часть времени я в плохом настроении",
+                    'answer' => "Будьте довольны тем, что вы положили. Благодарите и смотрите на тех, кто ниже вас",
+                    'object_id' => 5
                 ]
             ]
         ];
 
-        
+
         for ($i = 0; $i < count($variants['uz']); $i++){
             $variant = Variant::create([
                 'question_id' => $variants['uz'][$i]['object_id']

@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="text-center mt-30">
-                    <a href="{{route('auth.login-view')}}" class="btn btn-primary">Tugatish</a>
+                    <a href="{{route('auth.register')}}" class="btn btn-primary">Tugatish</a>
                 </div>
             </section>
 

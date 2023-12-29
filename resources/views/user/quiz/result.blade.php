@@ -9,14 +9,11 @@
 
             @endif
 
-            <div class="container">
+            <div class="container mb-80">
                 <div class="d-flex justify-content-center pt-5">
                     <div class="w-100" style="overflow:hidden">
                         <img style="" src="https://images.prismic.io/thesis-shopify/b5bc5d03-e7fa-40be-9fee-3ea365089712_StarterKitBYOBDesktop02.png?auto=compress,format&rect=0,0,2790,760&w=2790&h=760" alt="">
                     </div>
-                </div>
-                <div class="menu__btn" id="menu_btn" style="color: black;">
-                    Menu
                 </div>
                 <div style="margin:30px 0">
                     {{-- <a style="background-color: #ffffff;border:1px solid rgb(15, 28, 219);" class="d-flex justify-content-between btn  ">
@@ -104,7 +101,7 @@
                                                   Sizning daraja
                                                 </div>
                                                 <button class="btn btn-success btn-sm">
-                                                  <h6 class="text-white">{{$steroid->chart}}</h6>
+                                                  <h6 class="text-white">{{$steroid->chart}}%</h6>
                                                 </button>
                                               </div>
                                               <div class="btn btn-secondary d-flex justify-content-between mt-1">
@@ -112,14 +109,13 @@
                                                   O'rtacha holatda
                                                 </div>
                                                 <button class="btn btn-success btn-sm">
-                                                  <h6 class="text-white">{{$steroid->avg}}</h6>
+                                                  <h6 class="text-white">{{$steroid->avg}}%</h6>
                                                 </button>
                                               </div>
                                             </div>
                                             <div class="card-footer border-0">
                                               <div>
                                                 <span style="color: blue">{{$steroid->info->translation->name}}</span>
-                                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi cupiditate itaque tenetur ullam reiciendis a necessitatibus ut repudiandae. Dolorem, adipisci!
                                               </div>
                                             </div>
                                           </div>
@@ -157,10 +153,10 @@
                                                     </span>
                                                 </div>
                                                 <div id="resultBody{{$i}}" style="padding:25px;" class="card-body pt-0">
-                                                    <div style="letter-spacing: .01rem;font-weight:402;color:#1e1e1e;margin-bottom:0.5rem">
+                                                    {{-- <div style="letter-spacing: .01rem;font-weight:402;color:#1e1e1e;margin-bottom:0.5rem">
                                                         Ta'siri
-                                                    </div>
-                                                    <ul style="padding-left: 20px">
+                                                    </div> --}}
+                                                    <ul style="padding-left: 20px;font-size:17px;">
                                                       {{-- @foreach ($package->medicines as $item) --}}
                                                       @if ($package->id == 1)
                                                         <li style="list-style-type: circle">Tez uxlash</li>
@@ -181,14 +177,34 @@
                                                           <li style="list-style-type: circle">{{$item->translation->name}}</li>
                                                       @endforeach --}}
                                                   </ul>
-                                                    <div style="letter-spacing: .01rem;font-weight:402;color:#1e1e1e;margin-bottom:0.5rem">
-                                                        KEY INGREDIENT
+                                                    <div style="letter-spacing: .01rem;font-weight:402;color:#1e1e1e;margin-bottom:0.5rem;" class="mt-20">
+                                                        Asosiy ta'siri
                                                     </div>
-                                                    <div style="font-size: 18px">
-                                                        <span style="font-weight: 700">Alpha-GPC</span>
-                                                        has been shown to support healthy cognitive function and physical performance.
+                                                    <div style="font-size: 16px">
+                                                        @if ($package->id == 1)
+                                                        <span>
+                                                            Bosh miyadagi uyqu markazini stimullash, qon aylanishini va moddalar almashinuvini yaxshilash. Tinch va sifatli uyquni taminlash.
+                                                        </span>
+
+                                                        @elseif($package->id == 3)
+                                                        <span>
+                                                            Bosh miyada impulslar o’tishini yaxshilash. Baxt gormonlari ishlab chiqarilishini yaxshilash, parchalanishini kamaytirish. Kayfiyatni yaxshilash, qoniqishni his qilish, qon bosimini normallashtirish.
+                                                        </span>
+
+                                                        @elseif($package->id == 2)
+                                                        <span>
+                                                            Qalqonsimon bez faoliyatini, qon aylanishi, mushaklar tonusini yaxshilash. Umumiy tanada moddalar almashinuvini kuchaytirish, yetarli energiya bilan ta’minlash.
+                                                        </span>
+
+                                                        @else
+                                                        <span>
+                                                            Bosh miyada qon aylanishini yaxshilash, tinchlantirish, yurak urishini normallashtirish. Charchoq hissini kamaytirish. Bosh og’riqlarini kamaytirish.
+
+                                                        </span>
+
+                                                        @endif
                                                     </div>
-                                                    <div>
+                                                    <div class="mt-10">
                                                         @if ($package->image)
                                                             <img style="width:250px;height:250px" src="{{$package->image->path}}" alt="image">
                                                         @else
@@ -198,7 +214,7 @@
                                                 </div>
                                                 <div id="resultIngridient{{$i}}" style="padding:25px;display:none" class="card-body pt-0">
                                                     <div style="letter-spacing: .01rem;font-weight:402;color:#1e1e1e;margin-bottom:0.5rem">
-                                                        Tarkiblar:
+                                                        Tarkib:
                                                     </div>
                                                     <ul style="padding-left: 20px">
                                                         @foreach ($package->medicines as $item)

@@ -15,7 +15,7 @@ class CreateSteroidsTable extends Migration
     {
         Schema::create('steroids', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('avg')->default(0);
+            $table->double('avg',8,2)->default(0);
             $table->timestamps();
         });
     }

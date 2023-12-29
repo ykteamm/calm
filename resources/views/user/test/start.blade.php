@@ -10,12 +10,12 @@
             </div>
             <div class="pb-30 pr-30 pl-30" style="padding-top: 150px">
                 <div class="row text-center">
-                    <h1 class="text-color-white-for font_family_a">Tajribangizni shaxsiylashtirish uchun bir nechta savollarga javob bering!</h1>
+                    <h1 class="text-color-white-for font_family_a">Ruhiy holatingizni aniqlash uchun bir nechta savollarga javob bering!</h1>
                     <div class="text-center mt-30">
                         <a href="{{route('test-choose-issue-view')}}" class="btn btn-primary font_family_a">Davom etamiz</a>
                     </div>
                     <div class="text-center mt-30">
-                        <a href="{{route('auth.login')}}" class="btn btn-primary font_family_a">Keyinroq</a>
+                        <a href="{{route('auth.register')}}" class="btn btn-primary font_family_a">Keyinroq</a>
                     </div>
                 </div>
             </div>

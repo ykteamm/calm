@@ -17,12 +17,12 @@ class IssueSeeder extends Seeder
     {
         $langs = Language::all();
         $issues = [
-            'uz' => ["Stressni kamaytirish", "Uyquni yaxshilash", "Fokusni oshiring", "Kayfiyatni yaxshilash"],
+            'uz' => ["Stressni kamaytirish", "Uyquni yaxshilash", "Diqqatni jamlash", "Kayfiyatni yaxshilash"],
             'en' => ["Reduce stress", "Improve sleep", "Increase focus", "Improve mood"],
             'ru' => ["Уменьшить стресс", "Улучшить сон", "Повысить концентрацию", "Улучшить настроение"]
         ];
         $results = [
-            'uz' => ["95% kamroq stress haqida xabar beradi", "82% yaxshi uyqu haqida xabar berishadi", "75% e'tiborni kuchaytirganini bildiradi", "92% kayfiyat yaxshilanganini qayd etgan"],
+            'uz' => ["74% inson stresdan aziyat chekadi", "41.5% inson sifatsiz uyqudan qiynaladi", "31% inson diqqatini jamlay olmaydi", "34% inson kayfiyat tez o\'zgarishidan shikoyat qiladi"],
             'en' => ["95% report less stress", "82% report better sleep", "75% report improved focus", "92% report improved mood"],
             'ru' => ["95% сообщают об уменьшении стресса", "82% сообщают об улучшении сна", "75% сообщают об улучшении концентрации внимания", "92% сообщают об улучшении настроения"]
         ];

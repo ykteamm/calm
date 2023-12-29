@@ -6,6 +6,7 @@ use App\Models\Feeling;
 use App\Services\CategoryService;
 use Illuminate\Http\Request;
 use App\Http\Requests\IndexRequest;
+use App\Models\Question;
 use App\Services\EmojiService;
 use App\Services\GratitudeService;
 use App\Services\IssueService;
@@ -28,7 +29,7 @@ class MainController extends Controller
     protected MotivationService $motivationService;
     protected GratitudeService $gratitudeService;
     protected ReplyService $replyService;
-    protected LandscapeService $landscapeService; 
+    protected LandscapeService $landscapeService;
     public function __construct(
         EmojiService $emojiService,
         CategoryService $categoryService,
@@ -57,7 +58,7 @@ class MainController extends Controller
     public function index(IndexRequest $indexRequest)
     {
         if (auth()->check()){
-            $time = date('H:i:s');                    
+            $time = date('H:i:s');
             $user_emoj_have = Feeling::where('user_id',auth()->user()->id)->first();
             $emoj_have = Feeling::get();
             $replyToday = $this->replyService->today();
@@ -140,13 +141,38 @@ class MainController extends Controller
         $this->questionService->willParseToRelation = [
             'translation', 'variants' => ['translation' => []]
         ];
+
+        // if($this->getSession('test_begin'))
+        // {
+        //     $questions = $this->getSession('test_begin');
+        //     $question_id = Question::whereNotIn('id',$questions)->first();
+
+        //     $this->setSession('test_begin', array_push($arr,$question_id->id));
+
+        // }else{
+        //     $arr = [];
+        //     $question_id = Question::whereNotIn('id',$arr)->first();
+        //     $this->setSession('test_begin', $arr);
+
+        // }
+
+
+
+
+
+
         $issues = $this->getSession('issues');
         $this->questionService->queryClosure = fn ($q) => $q->whereIn('issue_id', $issues)->limit(4);
         $questionIds = $this->questionService->getList([])->pluck('id')->toArray();
+
+        // $this->questionService->queryClosure = fn ($q) => $q->where('id', $question_id->id)->get();
+        // $questionIds = $this->questionService->getList([])->pluck('id')->toArray();
+
         $this->setSession('questions', $questionIds);
+
         return redirect(route('test-answer-question-view'));
     }
-    
+
     public function answerQuestion(Request $request)
     {
         $this->rmSession('questions', $request->input('question_id'));
@@ -200,7 +226,7 @@ class MainController extends Controller
     {
         $temp = $this->getSession($key);
         if(!is_array($item)) {
-            for ($i = 0; $i < count($temp); $i++) { 
+            for ($i = 0; $i < count($temp); $i++) {
                 if($temp[$i] == $item) {
                     unset($temp[$i]);
                 }

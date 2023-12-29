@@ -9,11 +9,8 @@ use Illuminate\Support\Facades\DB;
         <div class="dashboard -home-9 px-0 js-dashboard-home-9">
             @include('user.layouts.sidebar')
             <div class="dashboard__main mt-0 main-color">
-                <div class="menu__btn" id="menu_btn">
-                    Menu
-                </div>
-                <div class="dashboard__content pt-0 px-30 pb-0">
-                    <div class="container pt-40">
+                <div class="dashboard__content pt-0 px-30 pb-0 mb-80">
+                    <div class="container pt-40 ">
                         <div class="col-auto">
                             <h1 class="text-30 font_family_a text-color-white lh-12 fw-700">
                                 @if(($time >= "04:00:00" && $time <= "12:00:00") == true)
@@ -31,7 +28,7 @@ use Illuminate\Support\Facades\DB;
                             </h1>
                         </div>
                     </div>
-                    <section class="page-header -type-1">
+                    <section class="-type-1 mt-20">
                         <div class="container">
                             <div class="page-header__content">
                                 <div class="row justify-center text-center">
@@ -42,7 +39,8 @@ use Illuminate\Support\Facades\DB;
                                             </p>
                                         </div>
                                         <div data-anim="slide-up delay-1" class="is-in-view">
-                                            <h3 class="page-header__title font_family_a text-color-white-for">
+                                            <h3 class="page-header__title font_family_a text-color-white-for" style="    text-align: right;
+                                            font-size: 12px;">
                                                 {{$motivation->translation->author}}
                                             </h3>
                                         </div>
@@ -413,7 +411,7 @@ use Illuminate\Support\Facades\DB;
                                                                     <h5 class="modal-title text-color-white-for" id="exampleModalLabel">
                                                                         {{$gratitude->translation->name}}
                                                                     </h5>
-                                                        
+
                                                                 </div>
 
                                                                 <div class="col-md-1 col-sm-1 col-1">

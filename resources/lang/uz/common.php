@@ -37,7 +37,7 @@ return [
   'login_password' => 'Parol',
   'login_re_password' => 'Parolni tekshirish',
   'login_if_register' => 'Agar siz ro\'yhatdan o\'tmagan bo\'lsangiz',
-  'login_if_login' => 'Agar siz ro\'yhatdan o\'tgan bo\'lsangiz',
+  'login_if_login' => 'Sizda allaqachon profil bormi',
   'register' => 'Ro\'yhatdan o\'tish',
   'verify' => 'Tasdiqlash',
   'verify_text' => 'Sizning telefon raqamingizga tasdiqlash kodini yubordik',

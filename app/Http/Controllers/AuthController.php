@@ -8,6 +8,7 @@ use App\Http\Requests\ForgotPasswordRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\SmsVerifyRequest;
+use App\Models\User;
 use App\Services\AuthService;
 use App\Services\SmsService;
 use App\Services\UserService;
@@ -38,6 +39,12 @@ class AuthController extends Controller
         $phone = preg_replace('/[^0-9]/', '', $data['phone']);
         $data['phone'] = $phone;
 
+        $user_exists = User::where('phone', $data['phone'])->first();
+
+        if ($user_exists->sms_verif_code_expires_at == null) {
+            User::find($user_exists->id)->delete();
+        }
+        
         if ($this->userService->existsByColumn('phone', $phone = $data['phone'])) {
             return back()->with('error', 'Phone already exists');
         }

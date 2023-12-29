@@ -22,6 +22,14 @@
             </div>
           </form>
         </div>
+        <div class="text-center mt-20">
+            <span>Agar sizga 1 daqiqa ichida tasdiqlash kodi kelmasa qayta ro'yhatdan o'ting</span>
+          </div>
+          <div class="text-center mt-10">
+            <a href="{{route('auth.register-view')}}" style="color: blue">
+                {{__('common.register')}}
+            </a>
+          </div>
       </div>
     </div>
   </div>
