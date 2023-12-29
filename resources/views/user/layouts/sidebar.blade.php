@@ -1,4 +1,4 @@
-{{-- <div class="dashboard__sidebar -base scroll-bar-1 border-right-light lg:px-30 mt0 height100 main-color-rtl pd">
+<div class="dashboard__sidebar -base scroll-bar-1 border-right-light lg:px-30 mt0 height100 main-color-rtl pd">
     <div class="sidebar -base-sidebar">
         <div class="menu_div">
             <button type="button" id="close_btn" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -58,8 +58,8 @@
             </div>
         </div>
     </div>
-</div> --}}
-<style>
+</div>
+{{-- <style>
     .cd__main{
    position: relative;
    width: 360px !important;
@@ -142,4 +142,4 @@
             </div>
         </div>
     </nav>
-</div>
+</div> --}}

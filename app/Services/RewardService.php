@@ -45,11 +45,13 @@ class RewardService extends BaseService
     public function saveRewards($data)
     {
         try {
+            // dd($data);
             foreach ($data['rewards'] as $key => $reward) {
                 if(isset($reward['text']) && !isset($reward['id'])) {
                     if (isset($reward['old'])) {
                         $this->edit($reward['old'], [
-                            'text' => $reward['text']
+                            'text' => $reward['text'],
+                            'feelings' => getProp($reward, 'feelings')
                         ]);
                     } else {
                         $item = [
@@ -62,13 +64,15 @@ class RewardService extends BaseService
                 } else if (isset($reward['text']) && isset($reward['id'])) {
                     $data = $this->edit($reward['id'], [
                         'done' => 1,
-                        'text' => $reward['text']
+                        'text' => $reward['text'],
+                        'feelings' => getProp($reward, 'feelings')
                     ]);
                     // dd("aaaa", ['d' => $data]);
                     Session::flash('rewarddone', "Mukofotlaringizni oling !");
                 } else if (!isset($reward['text']) && isset($reward['id'])) {
                     $this->edit($reward['id'], [
-                        'done' => 1
+                        'done' => 1,
+                        'feelings' => getProp($reward, 'feelings')
                     ]);
                     Session::flash('rewarddone', "Mukofotlaringizni oling !");
                 }

@@ -4,7 +4,7 @@
     <div class="dashboard -home-9 px-0 js-dashboard-home-9">
     @include('user.layouts.sidebar')
       <div class="dashboard__main mt-0">
-        @include('user.will.slider')
+        {{-- @include('user.will.slider') --}}
         <div class="container" style="margin-top: 20px">
             <div class="menu__btn" id="menu_btn" style="color: black;">
                 Menu
@@ -83,7 +83,7 @@
                                                         </div>
                                                     @else
                                                         <div class="col-1">
-                                                            <a href="{{route('reward.thanks', ['reward' => $reward->id])}}">
+                                                            <a class="@if($reward->done) show @endif" data-bs-toggle="collapse" href="#rewardCollapse{{$reward->id}}" role="button" aria-expanded="false" aria-controls="rewardCollapse{{$reward->id}}">
                                                                 <img src="{{asset('calm/show.png')}}" alt="Alt">
                                                             </a>
                                                         </div>
@@ -107,10 +107,38 @@
                                                 @endif
                                             </div>
                                         </div>
+                                        <div class="collapse @if($reward->done) show @endif" id="rewardCollapse{{$reward->id}}">
+                                            <div class="card card-body">
+                                                <div class="row">
+                                                    @foreach ($reward->images as $image)
+                                                        <div class="col-6">
+                                                            <img style="width: 200px" src="{{asset($image->path)}}" alt="">
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                    
+                                                <form class="row align-items-center" style="margin-top:30px" action="{{route('reward-image-upload', ['reward' => $reward->id])}}" method="POST" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="col-10">
+                                                        <label>Image</label>
+                                                        <input name="file" class="form-control" type="file" placeholder="Reward avatar">
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <button type="submit" class="btn btn-primary text-white">Upload</button>
+                                                    </div>
+                                                </form>
+                                                <div class="">
+                                                    <label>Feelings</label>
+                                                    <textarea class="form-control" name="rewards[{{$k}}][feelings]">
+                                                        {{$reward->feelings}}
+                                                    </textarea>
+                                                </div>
+                                            </div>
+                                          </div>
                                     </div>
                                 @endforeach
                                 <div class="mb-5 pb-5">
-                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
                             </form>
                         @else
