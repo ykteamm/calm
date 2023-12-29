@@ -64,6 +64,15 @@
                     </div>
                 </div>
 
+                <div style="margin:30px 0">
+                    <a href="{{route('medicine.return')}}" style="display: contents">
+                        <button style="background-color: #391e83;border-radius:25px;" class="w-100 d-flex justify-content-center btn  mt-10">
+                            <span style="font-weight:700;color:#fff;font-size:20px;">Qayta test yechish</span>
+                        </button>
+                    </a>
+
+
+                </div>
 
 
                 {{-- <div style="height:1px;background-color:black">
