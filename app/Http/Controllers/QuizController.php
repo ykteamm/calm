@@ -72,6 +72,13 @@ class QuizController extends Controller
         return view('user.quiz.index');
     }
 
+    public function return()
+    {
+        Usertest::where('user_id', auth()->user()->id)->delete();
+        
+        return view('user.quiz.index');
+    }
+
     public function quiz()
     {
         return view('user.quiz.quiz');

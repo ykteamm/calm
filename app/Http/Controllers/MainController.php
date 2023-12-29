@@ -204,7 +204,7 @@ class MainController extends Controller
         $this->variantService->willParseToRelation = [
             'translation'
         ];
-        return $variants;
+        // return $variants;
         $this->variantService->queryClosure = fn ($q) => $q->whereIn('id', $variants);
         $variants = $this->variantService->getList([]);
         return view('user.test.answers', compact('variants'));
