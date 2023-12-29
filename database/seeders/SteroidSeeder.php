@@ -89,6 +89,7 @@ class SteroidSeeder extends Seeder
                     'language_code' => $lang->code
                 ]);
             }
+            $j=0;
             foreach ($this->infos() as $key => $info) {
                 $streroidInfo = Steroidinfo::create([
                     'steroid_id' => $steroid->id,
@@ -98,11 +99,12 @@ class SteroidSeeder extends Seeder
                 foreach ($langs as $lang) {
                     SteroidinfoTranslation::create([
                         // 'name' => $steroids[$lang->code][$i] . " " . $info['min'] ."-". $info['max'],
-                        'name' => $info_name[$i][$key],
+                        'name' => $info_name[$i][$j],
                         'object_id' => $streroidInfo->id,
                         'language_code' => $lang->code
                     ]);
                 }
+                $j++;
             }
         }
     }
@@ -155,42 +157,22 @@ class SteroidSeeder extends Seeder
         return [
             0 => [
                 [
-                    'id' => 1,
-                    'percent' => 10
-                ],
-                [
-                    'id' => 3,
-                    'percent' => 10
-                ],
-                [
-                    'id' => 5,
-                    'percent' => 20
-                ],
-                [
-                    'id' => 7,
-                    'percent' => 4
-                ],
-                [
-                    'id' => 9,
-                    'percent' => 10
-                ],
-                [
-                    'id' => 11,
-                    'percent' => 5
-                ],
-                [
                     'id' => 13,
-                    'percent' => 15
+                    'percent' => 50
+                ],
+                [
+                    'id' => 14,
+                    'percent' => 50
                 ],
             ],
             1 => [
                 [
                     'id' => 1,
-                    'percent' => 10
+                    'percent' => 20
                 ],
                 [
                     'id' => 2,
-                    'percent' => 25
+                    'percent' => 20
                 ],
                 [
                     'id' => 3,
@@ -198,140 +180,112 @@ class SteroidSeeder extends Seeder
                 ],
                 [
                     'id' => 4,
-                    'percent' => 20
-                ],
-                [
-                    'id' => 5,
                     'percent' => 10
                 ],
                 [
+                    'id' => 5,
+                    'percent' => 5
+                ],
+                [
                     'id' => 6,
-                    'percent' => 15
+                    'percent' => 5
                 ],
                 [
                     'id' => 7,
-                    'percent' => 15
+                    'percent' => 10
+                ],
+                [
+                    'id' => 14,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 15,
+                    'percent' => 10
                 ],
             ],
             2 => [
+                [
+                    'id' => 2,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 3,
+                    'percent' => 50
+                ],
+                [
+                    'id' => 7,
+                    'percent' => 10
+                ],
                 [
                     'id' => 8,
                     'percent' => 10
                 ],
                 [
                     'id' => 9,
-                    'percent' => 20
-                ],
-                [
-                    'id' => 10,
-                    'percent' => 16
-                ],
-                [
-                    'id' => 11,
-                    'percent' => 5
-                ],
-                [
-                    'id' => 12,
                     'percent' => 10
                 ],
                 [
                     'id' => 15,
-                    'percent' => 15
-                ],
-                [
-                    'id' => 14,
                     'percent' => 10
-                ],
+                ]
             ],
             3 => [
                 [
-                    'id' => 15,
-                    'percent' => 10
-                ],
-                [
-                    'id' => 6,
-                    'percent' => 25
-                ],
-                [
-                    'id' => 1,
-                    'percent' => 35
-                ],
-                [
-                    'id' => 12,
-                    'percent' => 10
-                ],
-                [
-                    'id' => 1,
-                    'percent' => 10
-                ],
-                [
-                    'id' => 12,
-                    'percent' => 5
-                ],
-                [
-                    'id' => 5,
-                    'percent' => 20
-                ],
-            ],
-            4 => [
-                [
-                    'id' => 15,
-                    'percent' => 10
-                ],
-                [
-                    'id' => 6,
-                    'percent' => 25
-                ],
-                [
-                    'id' => 1,
-                    'percent' => 5
-                ],
-                [
-                    'id' => 12,
-                    'percent' => 10
-                ],
-                [
-                    'id' => 1,
-                    'percent' => 10
+                    'id' => 3,
+                    'percent' => 50
                 ],
                 [
                     'id' => 9,
-                    'percent' => 35
+                    'percent' => 25
+                ],
+                [
+                    'id' => 15,
+                    'percent' => 25
+                ]
+            ],
+            4 => [
+                [
+                    'id' => 3,
+                    'percent' => 10
                 ],
                 [
                     'id' => 5,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 8,
                     'percent' => 20
                 ],
+                [
+                    'id' => 9,
+                    'percent' => 50
+                ],
+                [
+                    'id' => 15,
+                    'percent' => 10
+                ]
             ],
             5 => [
                 [
-                    'id' => 15,
-                    'percent' => 15
-                ],
-                [
-                    'id' => 6,
-                    'percent' => 5
-                ],
-                [
-                    'id' => 1,
-                    'percent' => 15
-                ],
-                [
-                    'id' => 12,
+                    'id' => 3,
                     'percent' => 10
                 ],
                 [
-                    'id' => 1,
+                    'id' => 7,
                     'percent' => 10
                 ],
                 [
-                    'id' => 12,
-                    'percent' => 15
-                ],
-                [
-                    'id' => 5,
+                    'id' => 8,
                     'percent' => 20
                 ],
+                [
+                    'id' => 13,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 15,
+                    'percent' => 50
+                ]
             ]
         ];
     }

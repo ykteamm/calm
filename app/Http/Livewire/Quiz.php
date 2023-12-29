@@ -57,6 +57,7 @@ class Quiz extends Component
     {
         try {
             $steroidsData= $this->calculateSteroid();
+
             $packagesData = $this->calculatePackage();
 
             $this->result = [
@@ -89,7 +90,7 @@ class Quiz extends Component
             $value = $this->getAnswerValueByTestId($test->test_id);
             $sum += $value * $test->percent;
             $chartSum += $value;
-          }  
+          }
           $result = round($sum / 100);
           $chart = round($chartSum / $i);
           $info = Steroidinfo::where('steroid_id', $steroid->id)
@@ -98,11 +99,14 @@ class Quiz extends Component
             ->with('translation')
             ->first();
           $steroid = $steroid->toArray();
-          $steroid['info'] = $info->toArray(); 
+          $steroid['info'] = $info->toArray();
           $steroid['result'] = $result;
           $steroid['chart'] = $chart;
           $steroidsData[] = $steroid;
         }
+
+        // dd($steroidsData);
+
         return $steroidsData;
     }
 
@@ -117,7 +121,7 @@ class Quiz extends Component
     //         $i++;
     //         $value = $this->getAnswerValueByTestId($test->test_id);
     //         $sum += $value;
-    //       }  
+    //       }
     //       $result = round($sum / $i);
     //       $steroidsDataAvg["$steroid->id"] = $result;
     //     }
@@ -126,61 +130,127 @@ class Quiz extends Component
 
     private function calculatePackage()
     {
+
         $packages = $this->packageService->getAll();
         $packagesData = [];
         $ignores = [];
         $total = [];
+
+        $asd = [];
         foreach ($packages as $package) {
-            $package->qty = 0;
-            $sum = 0;
-            if (in_array($package->id, $ignores)) {
-                continue;
-            }
-            foreach ($package->tests as $test) {
-                $value = $this->getAnswerValueByTestId($test->test_id);
-                $sum += $value * $test->percent;
-            }  
-            $percent = round($sum / 100);
-            if ($percent < 59) {
-                $package->qty = 1;
-                $ignores = array_merge($ignores, json_decode($package->ignores));
-                $package->percent = $percent;
-                $package->medicines = ($package->medicines()->with('translation')->get()->toArray());
-                unset($package->tests);
-                $packagesData[] = $package->toArray();
-            }
+                $package->qty = 0;
+                $sum = 0;
+                if (in_array($package->id, $ignores)) {
+                    continue;
+                }
+                foreach ($package->tests as $test) {
+                    $value = $this->getAnswerValueByTestId($test->test_id);
+                    $sum += $value * $test->percent;
+                }
+                $percent = round($sum / 100);
+                if($package->id == 1)
+                {
+                    if ($percent < 50) {
+                        $package->qty = 1;
+                        $ignores = array_merge($ignores, json_decode($package->ignores));
+                        $package->percent = $percent;
+                        $package->medicines = ($package->medicines()->with('translation')->get()->toArray());
+                        unset($package->tests);
+                        $packagesData[] = $package->toArray();
+                    }
+                    $asd[$package->id] = $percent;
+
+                }elseif($package->id == 2)
+                {
+                    if ($percent < 50) {
+                        $package->qty = 1;
+                        $ignores = array_merge($ignores, json_decode($package->ignores));
+                        $package->percent = $percent;
+                        $package->medicines = ($package->medicines()->with('translation')->get()->toArray());
+                        unset($package->tests);
+                        $packagesData[] = $package->toArray();
+                    }
+                    $asd[$package->id] = $percent;
+
+                }
+                elseif($package->id == 3)
+                {
+                    if ($percent < 50) {
+                        $package->qty = 1;
+                        $ignores = array_merge($ignores, json_decode($package->ignores));
+                        $package->percent = $percent;
+                        $package->medicines = ($package->medicines()->with('translation')->get()->toArray());
+                        unset($package->tests);
+                        $packagesData[] = $package->toArray();
+                    }
+                    $asd[$package->id] = $percent;
+
+                }
+                else
+                {
+                    if($asd[3] > 49)
+                    {
+                        $package->qty = 1;
+                        $ignores = array_merge($ignores, json_decode($package->ignores));
+                        $package->percent = $percent;
+                        $package->medicines = ($package->medicines()->with('translation')->get()->toArray());
+                        unset($package->tests);
+                        $packagesData[] = $package->toArray();
+                    }
+                }
+
+
+            // if ($percent < 49) {
+            //     $package->qty = 1;
+            //     $ignores = array_merge($ignores, json_decode($package->ignores));
+            //     $package->percent = $percent;
+            //     $package->medicines = ($package->medicines()->with('translation')->get()->toArray());
+            //     unset($package->tests);
+            //     $packagesData[] = $package->toArray();
+            // }
             $total[] = $package->toArray();
         }
+        // dd($packagesData);
 
         $result = array_values($packagesData);
-        if(count($packagesData) == 3) {
-            $result[0]['qty']++;
-        } else if (count($packagesData) == 2) {
-            $result[0]['qty']++;
-            $result[1]['qty']++;
-        } else if (count($packagesData) == 1) {
-            try {
-                $package = $packagesData[0];
-                $extra = json_decode(getProp($package, 'extra', '[]'));
-                $extraMedicines = Medicine::whereIn('id', $extra)->with('translation')->get()->toArray();
-                $package['medicines'] = array_merge($package['medicines'], $extraMedicines);
-                $package['qty'] = 3;
-                $result = [$package];
-            } catch (\Throwable $th) {
-                dd($th->getMessage());
+
+        // dd($result);
+        if(count($result) != 0)
+        {
+            if(count($packagesData) == 3) {
+                $result[0]['qty']++;
+            } else if (count($packagesData) == 2) {
+                $result[0]['qty']++;
+                $result[1]['qty']++;
+            } else if (count($packagesData) == 1) {
+
+                try {
+                    $package = $packagesData[0];
+                    $extra = json_decode(getProp($package, 'extra', '[]'));
+                    $extraMedicines = Medicine::whereIn('id', $extra)->with('translation')->get()->toArray();
+                    $package['medicines'] = array_merge($package['medicines'], $extraMedicines);
+                    $package['qty'] = 4;
+                    $result = [$package];
+                } catch (\Throwable $th) {
+                    dd($th->getMessage());
+                }
+            } else if (count($packagesData) == 0) {
+                try {
+                    $package = $total[0];
+                    $extra = json_decode(getProp($package, 'extra', '[]'));
+                    $extraMedicines = Medicine::whereIn('id', $extra)->with('translation')->get()->toArray();
+                    $package['medicines'] = array_merge($package['medicines'], $extraMedicines);
+                    $package['qty'] = 3;
+                    $result = [$package];
+                } catch (\Throwable $th) {
+                    dd($th->getMessage());
+                }
             }
-        } else if (count($packagesData) == 0) {
-            try {
-                $package = $total[0];
-                $extra = json_decode(getProp($package, 'extra', '[]'));
-                $extraMedicines = Medicine::whereIn('id', $extra)->with('translation')->get()->toArray();
-                $package['medicines'] = array_merge($package['medicines'], $extraMedicines);
-                $package['qty'] = 3;
-                $result = [$package];
-            } catch (\Throwable $th) {
-                dd($th->getMessage());
-            }
+        }else{
+
         }
+
+
         return $result;
     }
 
@@ -225,7 +295,7 @@ class Quiz extends Component
             } else {
                 $this->hasPrev = false;
             }
-        } 
+        }
     }
 
     public function select($answer)

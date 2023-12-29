@@ -56,7 +56,7 @@
                                     </div>
                                 @endforeach
                                 <div class="mb-5 pb-5">
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-primary">Update222</button>
                                 </div>
                             </form>
                         @else
@@ -107,7 +107,8 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        <div class="collapse @if($reward->done) show @endif" id="rewardCollapse{{$reward->id}}">
+                                        {{-- <div class="collapse @if($reward->done) show @endif" id="rewardCollapse{{$reward->id}}"> --}}
+                                            <div class="collapse show" id="rewardCollapse{{$reward->id}}">
                                             <div class="card card-body">
                                                 <div class="row">
                                                     @foreach ($reward->images as $image)
@@ -116,7 +117,7 @@
                                                         </div>
                                                     @endforeach
                                                 </div>
-                                    
+
                                                 <form class="row align-items-center" style="margin-top:30px" action="{{route('reward-image-upload', ['reward' => $reward->id])}}" method="POST" enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="col-10">
@@ -145,7 +146,7 @@
                                     </div>
                                 @endforeach
                                 <div class="mb-5 pb-5">
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-primary">Update222</button>
                                 </div>
                             </form>
                         @else

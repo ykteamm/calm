@@ -124,7 +124,7 @@
                                             </div>
                                             <div class="card-footer border-0">
                                               <div>
-                                                <span style="color: blue">{{$steroid->info->translation->name}}</span>
+                                                <span style="color: rgb(0, 0, 0);font-size:17px;">{{$steroid->info->translation->name}}</span>
                                               </div>
                                             </div>
                                           </div>

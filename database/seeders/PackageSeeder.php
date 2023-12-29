@@ -64,33 +64,14 @@ class PackageSeeder extends Seeder
         return [
             0 => [
                 [
-                    'id' => 1,
-                    'percent' => 10
-                ],
-                [
-                    'id' => 3,
-                    'percent' => 10
-                ],
-                [
-                    'id' => 5,
-                    'percent' => 20
-                ],
-                [
-                    'id' => 7,
-                    'percent' => 4
-                ],
-                [
-                    'id' => 9,
-                    'percent' => 5
-                ],
-                [
-                    'id' => 11,
-                    'percent' => 5
-                ],
-                [
                     'id' => 13,
-                    'percent' => 15
+                    'percent' => 50
                 ],
+                [
+                    'id' => 14,
+                    'percent' => 50
+                ],
+
             ],
             1 => [
                 [
@@ -99,7 +80,7 @@ class PackageSeeder extends Seeder
                 ],
                 [
                     'id' => 2,
-                    'percent' => 5
+                    'percent' => 20
                 ],
                 [
                     'id' => 3,
@@ -107,81 +88,113 @@ class PackageSeeder extends Seeder
                 ],
                 [
                     'id' => 4,
-                    'percent' => 5
+                    'percent' => 10
                 ],
                 [
                     'id' => 5,
-                    'percent' => 10
-                ],
-                [
-                    'id' => 6,
-                    'percent' => 11
-                ],
-                [
-                    'id' => 7,
-                    'percent' => 15
-                ],
-            ],
-            2 => [
-                [
-                    'id' => 8,
-                    'percent' => 10
-                ],
-                [
-                    'id' => 9,
-                    'percent' => 20
-                ],
-                [
-                    'id' => 10,
-                    'percent' => 10
-                ],
-                [
-                    'id' => 11,
                     'percent' => 5
                 ],
                 [
-                    'id' => 12,
-                    'percent' => 10
+                    'id' => 6,
+                    'percent' => 5
                 ],
                 [
-                    'id' => 15,
+                    'id' => 7,
                     'percent' => 20
                 ],
                 [
                     'id' => 14,
                     'percent' => 10
                 ],
-            ],
-            3 => [
                 [
                     'id' => 15,
                     'percent' => 10
                 ],
-                [
-                    'id' => 6,
-                    'percent' => 25
-                ],
-                [
-                    'id' => 1,
-                    'percent' => 5
-                ],
-                [
-                    'id' => 12,
-                    'percent' => 10
-                ],
+            ],
+            2 => [
                 [
                     'id' => 1,
                     'percent' => 10
                 ],
                 [
-                    'id' => 12,
-                    'percent' => 15
+                    'id' => 2,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 3,
+                    'percent' => 10
                 ],
                 [
                     'id' => 5,
                     'percent' => 10
                 ],
-            ]
+                [
+                    'id' => 7,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 8,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 9,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 13,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 14,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 15,
+                    'percent' => 10
+                ],
+            ],
+            3 => [
+                [
+                    'id' => 1,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 2,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 3,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 5,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 7,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 8,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 9,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 13,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 14,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 15,
+                    'percent' => 10
+                ],
+            ],
         ];
     }
 }
