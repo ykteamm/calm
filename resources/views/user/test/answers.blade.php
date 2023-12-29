@@ -17,7 +17,7 @@
             <section class="">
                 <div class="container mt-30">
                     <h3 class="text-color-white-for text-center font_family_a">
-                        Yechim:
+                        Natija
                     </h3>
                 </div>
             </section>
@@ -25,18 +25,28 @@
             <section>
                 <div class="container">
                     <div class="row y-gap-30 pt-60">
-                        @foreach($variants as $item)
-                        <div class="col-lg-3 col-md-6 col-6" style="cursor: pointer;">
+                        <div class="col-lg-12 col-md-12 col-12" style="cursor: pointer;">
                             <div data-anim-child="slide-left delay-2" class="blogCard card_active -type-1 rounded-8  shadow-1 overflow-hidden is-in-view">
-                                <div class="blogCard__image ratio ratio-3:2">
-                                    {{-- <img class="img-ratio" src="{{$item->image->path}}" alt="image"> --}}
-                                </div>
+
                                 <div class="px-15 py-15 text-center bg-white">
-                                    <h4 class="text-17 lh-15 fw-500 font_family_a">{{$item->translation->answer}}</h4>
+                                    @if ($ball >= 5)
+                                    <h4 class="text-17 lh-15 fw-500 font_family_a">
+                                        Sizning ruhiyatingizda buzilishlar mavjud. Bu tanangizdagi yetishmovchiliklar, surunkali kasalliklar, kuchli stresslar yoki ruhiy travmalar sababli qolgan bo’lishi mumkin. Ruhiy holatni yaxshilash uchun avvalo organizmni yetishmagan vitamin va minerallar bilan to’yintirish, surunkali kasalliklarni davolash, stresslar va ruhiy travmalardan halos bo’lish ucbun esa meditatsiyalar, ruhiyat mashqali bilan shug’ullanishingiz lozim.
+                                    </h4>
+
+                                    @elseif($ball < 5 && $ball > 1)
+                                    <h4 class="text-17 lh-15 fw-500 font_family_a">
+                                        Sizning ruhiy holatingiz qoniqarli holatda. Sog’lom fikr va qalb muvozanatiga erishish, minnatdorchilikni, baxtni his qilish uchun meditatsiyalar qilishni, organizmni yetishmayotgan mahsulotlari bilan to’ldirishni tavsiya etamiz. Shunda siz to’laqonli sog’lom ruhiyat egasi bo’la olasiz.
+                                    </h4>
+                                    @elseif($ball < 5 && $ball > 1)
+                                    <h4 class="text-17 lh-15 fw-500 font_family_a">
+                                        Sizning ruhiy holatingiz havas qilarli darajada
+                                    </h4>
+
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                        @endforeach
                     </div>
                 </div>
                 <div class="text-center mt-30">

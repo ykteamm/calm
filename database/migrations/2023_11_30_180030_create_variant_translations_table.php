@@ -20,6 +20,8 @@ class CreateVariantTranslationsTable extends Migration
             $table->text('name');
             $table->text('answer');
             $table->index(['object_id']);
+            $table->integer('ball');
+
         });
     }
 

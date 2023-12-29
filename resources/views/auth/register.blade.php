@@ -8,14 +8,25 @@
         <div class="row">
             <h1 class="text-30 lh-12 fw-700" style="text-align: center;">{{__('common.nvt')}}</h1>
         </div>
-        <div class="text-center mt-20">
+        <div class="text-center mt-10">
             <span>{{__('common.login_if_login')}}</span>
           </div>
-          <div class="text-center mt-10 mb-10">
-            <a href="{{route('auth.login')}}" style="color: blue">
-                {{__('common.login')}}
-            </a>
+          <div class="row justify-center mb-20">
+            <div class="col-auto">
+                <a href="{{route('auth.login')}}" style="color: blue">
+                    <button type="button" class="button -purple-1 text-white" style="padding: 5px 25px;">{{__('common.login')}}</button>
+                </a>
+            </div>
           </div>
+
+          {{-- <div class="text-center mt-10 mb-10">
+
+            <a href="{{route('auth.login')}}" style="color: blue">
+            <button type="button" class="button -md -purple-1 text-white">{{__('common.login')}}</button>
+
+
+            </a>
+          </div> --}}
         <div class="row y-gap-60">
             <div class="col-12">
                 <div class="rounded-16 bg-white -dark-bg-dark-1 shadow-4 h-100">
@@ -24,23 +35,23 @@
                             @csrf
                             <div class="">
                                 <label class="text-16 lh-1 fw-500 text-dark-1 ">{{__('common.login_name')}}</label>
-                                <input name="firstname" type="text">
+                                <input name="firstname" type="text" style="padding: 8px 10px 8px 10px;">
                             </div>
                             <div class="">
                                 <label class="text-16 lh-1 fw-500 text-dark-1 ">{{__('common.login_surname')}}</label>
-                                <input name="lastname" type="text">
+                                <input name="lastname" type="text" style="padding: 8px 10px 8px 10px;">
                             </div>
                             <div class="">
                                 <label class="text-16 lh-1 fw-500 text-dark-1 ">{{__('common.login_phone')}}</label>
-                                <input name="phone" value="998" type="text" data-inputmask='"mask": "999 (99) 999-99-99"' data-mask name="phone">
+                                <input name="phone" value="998" style="padding: 8px 10px 8px 10px;" type="text" data-inputmask='"mask": "999 (99) 999-99-99"' data-mask name="phone">
                             </div>
                             <div class="">
                                 <label class="text-16 lh-1 fw-500 text-dark-1 ">{{__('common.login_password')}}</label>
-                                <input name="password" type="password" id="forpass">
+                                <input name="password" style="padding: 8px 10px 8px 10px;" type="password" id="forpass">
                             </div>
                             <div class="">
                                 <label class="text-16 lh-1 fw-500 text-dark-1 ">{{__('common.login_re_password')}}</label>
-                                <input name="re_password" type="password" id="forrepass">
+                                <input name="re_password" style="padding: 8px 10px 8px 10px;" type="password" id="forrepass">
                             </div>
                             {{-- <div class="">
                                 <label class="text-16 lh-1 fw-500 text-dark-1 ">{{__('common.login_re_password')}}</label>

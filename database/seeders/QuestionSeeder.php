@@ -21,7 +21,7 @@ class QuestionSeeder extends Seeder
                 "Mening asablarim taranglashgan.O'zimni qo'yishga joy topa olmayapman",
                 "Avvallari ko'nglim to'lganlardan xozir ko'nglim to'lmaydi",
                 "Men kulguli voqealarni o'ylab topa olish va xoxolab kulish qobiliyatiga egaman",
-                "Menga tinclik bermaydigan fikrlar miyamni chulg'ab olgan",
+                "Menga tinchlik bermaydigan fikrlar miyamni chulg'ab olgan",
                 "Men o'zimni tetik his qilaman",
             ],
             'en' => [

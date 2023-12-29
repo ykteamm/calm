@@ -16,6 +16,6 @@ class UserSeeder extends Seeder
             'phone' => '007',
             'password' => Hash::make('007'),
             'type' => UserTypeEnum::MEDITATOR
-        ]); 
+        ]);
     }
 }

@@ -7,6 +7,8 @@ use App\Services\CategoryService;
 use Illuminate\Http\Request;
 use App\Http\Requests\IndexRequest;
 use App\Models\Question;
+use App\Models\Variant;
+use App\Models\VariantTranslation;
 use App\Services\EmojiService;
 use App\Services\GratitudeService;
 use App\Services\IssueService;
@@ -204,10 +206,12 @@ class MainController extends Controller
         $this->variantService->willParseToRelation = [
             'translation'
         ];
-        // return $variants;
+
+        $ball = VariantTranslation::whereIn('id', $variants)->sum('ball');
+
         $this->variantService->queryClosure = fn ($q) => $q->whereIn('id', $variants);
         $variants = $this->variantService->getList([]);
-        return view('user.test.answers', compact('variants'));
+        return view('user.test.answers', compact('variants','ball'));
     }
 
     protected function rand($array)
