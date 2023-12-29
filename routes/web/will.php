@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/will', [WillController::class, 'index'])->name('will.index');
 Route::post('/save-aims', [WillController::class, 'saveAims'])->name('save-aims');
 Route::post('/save-rewards', [WillController::class, 'saveRewards'])->name('save-rewards');
-Route::put('/update-reward-feelings', [WillController::class, 'updateRewardFelings'])->name('update-reward-feelings');
+Route::put('/update-reward-feelings/{reward}', [WillController::class, 'updateRewardFelings'])->name('update-reward-feelings');
 Route::resource('aim', AimController::class);
 Route::get('reward-thanks/{reward}', [WillController::class, 'rewardThanks'])->name('reward.thanks');
 Route::post('reward-image-upload/{reward}', [WillController::class, 'upload'])->name('reward-image-upload');

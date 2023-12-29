@@ -66,7 +66,7 @@ class WillController extends Controller
 
     public function updateRewardFelings(RewardUpsertRequest $rewardUpsertRequest, $reward)
     {
-        return $this->rewardService->edit($reward, $rewardUpsertRequest->validated())
+        return $this->rewardService->edit($reward, $rewardUpsertRequest->validated(), true)
             ->redirect('will.index');
     }
 

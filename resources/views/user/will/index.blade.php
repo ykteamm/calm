@@ -127,12 +127,19 @@
                                                         <button type="submit" class="btn btn-primary text-white">Upload</button>
                                                     </div>
                                                 </form>
-                                                <div class="">
-                                                    <label>Feelings</label>
-                                                    <textarea class="form-control" name="rewards[{{$k}}][feelings]">
-                                                        {{$reward->feelings}}
-                                                    </textarea>
-                                                </div>
+                                                <form class="row align-items-center" action="{{route('update-reward-feelings', ['reward' => $reward->id])}}" method="POST">
+                                                    @csrf
+                                                    @method('put')
+                                                    <div class="col-10">
+                                                        <label>Feelings</label>
+                                                        <textarea class="form-control" name="feelings">
+                                                            {{$reward->feelings}}
+                                                        </textarea>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <button type="submit" class="btn btn-primary text-white">Update</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                           </div>
                                     </div>
