@@ -16,6 +16,7 @@ use App\Models\Reward;
 use App\Services\MeditationService;
 use App\Services\RewardService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class WillController extends Controller
 {
@@ -39,6 +40,10 @@ class WillController extends Controller
         $rewards = $this->rewardService->weekRewards();
         $meditations = $this->meditationService->getAllByCatName('will');
         $doneAims = $this->aimService->doneAims();
+        // dd($aims, $rewards);
+        // dd(['a' => $doneAims]);
+        // dd(Session::get('aimdone'));
+        // dd($rewards->toArray());
         // dd($rewards->toArray());
         return view('user.will.index', [
             'meditations' => $meditations,
@@ -50,6 +55,7 @@ class WillController extends Controller
 
     public function saveAims(AimsUpsertRequest $aimsUpsertRequest)
     {
+        // dd($aimsUpsertRequest->validated());   
         return $this->aimService->saveAims($aimsUpsertRequest->validated());
     }
 

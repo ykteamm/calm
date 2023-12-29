@@ -7,6 +7,7 @@ use App\Services\BaseService;
 use App\Http\Resources\RewardResource;
 use App\Traits\MakeAsset;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 
 class RewardService extends BaseService
 {
@@ -32,34 +33,44 @@ class RewardService extends BaseService
     public function randomly($count)
     {
         $this->setQuery();
-        return $this->query->inRandomOrder()->limit(3)->get();
+        return $this->query->where('type', 1)->inRandomOrder()->limit(3)->get();
     }
 
     public function randomOne($items)
     {
         $this->setQuery();
-        return $this->query->whereNotIn('id', $items)->inRandomOrder()->first();
+        return $this->query->where('type', 1)->whereNotIn('id', $items)->inRandomOrder()->first();
     }
 
     public function saveRewards($data)
     {
         try {
-
-            foreach ($data['rewards'] as $key => $aim) {
-                if(isset($aim['text'])) {
-                    $item = [
-                        'user_id' => auth()->user()->id,
-                        'text' => $aim['text']
-                    ];
-                    if(isset($aim['id'])) {
-                        $item['done'] = 1;
+            foreach ($data['rewards'] as $key => $reward) {
+                if(isset($reward['text']) && !isset($reward['id'])) {
+                    if (isset($reward['old'])) {
+                        $this->edit($reward['old'], [
+                            'text' => $reward['text']
+                        ]);
+                    } else {
+                        $item = [
+                            'text' => $reward['text'],
+                            'user_id' => auth()->user()->id,
+                            'type' => 2
+                        ];
+                        $this->create($item);
                     }
-                    $this->create($item);
-                } else if (isset($aim['id'])) {
-                    $this->setQuery();
-                    $this->query->where('id', $aim['id'])->update([
+                } else if (isset($reward['text']) && isset($reward['id'])) {
+                    $data = $this->edit($reward['id'], [
+                        'done' => 1,
+                        'text' => $reward['text']
+                    ]);
+                    // dd("aaaa", ['d' => $data]);
+                    Session::flash('rewarddone', "Mukofotlaringizni oling !");
+                } else if (!isset($reward['text']) && isset($reward['id'])) {
+                    $this->edit($reward['id'], [
                         'done' => 1
                     ]);
+                    Session::flash('rewarddone', "Mukofotlaringizni oling !");
                 }
             }
             return back();

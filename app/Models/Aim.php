@@ -9,7 +9,8 @@ class Aim extends BaseModel
     protected $fillable = [
         'user_id',
         'text',
-        'done'
+        'done',
+        'type'
     ];
 
 

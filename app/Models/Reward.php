@@ -25,6 +25,8 @@ class Reward extends BaseModel
     protected $fillable = [
         'user_id',
         'text',
-        'feelings'
+        'feelings',
+        'type',
+        'done'
     ];
 }

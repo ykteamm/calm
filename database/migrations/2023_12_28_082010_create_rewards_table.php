@@ -19,6 +19,7 @@ class CreateRewardsTable extends Migration
             $table->text('text');
             $table->text('feelings')->nullable();
             $table->tinyInteger('done')->default(0);
+            $table->tinyInteger('type')->default(1);
             $table->timestamps();
         });
     }

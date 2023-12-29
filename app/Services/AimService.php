@@ -6,6 +6,7 @@ use App\Models\Aim;
 use App\Services\BaseService;
 use App\Http\Resources\AimResource;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 
 class AimService extends BaseService
 {
@@ -29,30 +30,44 @@ class AimService extends BaseService
     public function randomly($count)
     {
         $this->setQuery();
-        return $this->query->inRandomOrder()->limit(3)->get();
+        return $this->query->where('type', 1)->inRandomOrder()->limit(3)->get();
     }
 
     public function randomOne($items)
     {
         $this->setQuery();
-        return $this->query->whereNotIn('id', $items)->inRandomOrder()->first();
+        return $this->query->where('type', 1)->whereNotIn('id', $items)->inRandomOrder()->first();
     }
 
     public function saveAims($data)
     {
         try {
+            // dd($data['aims'][0]);
             foreach ($data['aims'] as $key => $aim) {
-                if(isset($aim['text'])) {
-                    $item = [
-                        'user_id' => auth()->user()->id,
-                        'text' => $aim['text']
-                    ];
-                    if(isset($aim['id'])) {
-                        $item['done'] = 1;
+                if(isset($aim['text']) && !isset($aim['id'])) {
+                    if (isset($aim['old'])) {
+                        $this->edit($aim['old'], [
+                            'text' => $aim['text']
+                        ]);
+                    } else {
+                        $item = [
+                            'text' => $aim['text'],
+                            'user_id' => auth()->user()->id,
+                            'type' => 2
+                        ];
+                        $this->create($item);
                     }
-                    $this->create($item);
-                } else if (isset($aim['id'])) {
-                    $this->edit($aim['id'], ['done' => 1]);
+                } else if (isset($aim['text']) && isset($aim['id'])) {
+                    $this->edit($aim['id'], [
+                        'done' => 1,
+                        'text' => $aim['text']
+                    ]);
+                    Session::flash('aimdone', "Mukofotlaringizni oling !");
+                } else if (!isset($aim['text']) && isset($aim['id'])) {
+                    $this->edit($aim['id'], [
+                        'done' => 1
+                    ]);
+                    Session::flash('aimdone', "Mukofotlaringizni oling !");
                 }
             }
             return back();
