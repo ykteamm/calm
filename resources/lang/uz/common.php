@@ -44,6 +44,6 @@ return [
   'verify_pl_text' => 'Tasdiqlash kodini kiriting...',
   //login-register-end
 
-  'task' => 'Vazifa',
+  'task' => 'Maqsad',
   'reward' => 'Mukofot',
 ];

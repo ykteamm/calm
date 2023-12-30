@@ -17,5 +17,12 @@ class UserSeeder extends Seeder
             'password' => Hash::make('007'),
             'type' => UserTypeEnum::MEDITATOR
         ]);
+        User::create([
+            'firstname' => 'abduser',
+            'lastname' => 'abduser',
+            'phone' => '998990821015',
+            'password' => Hash::make('1111'),
+            'type' => UserTypeEnum::MEDITATOR
+        ]);
     }
 }

@@ -23,7 +23,7 @@ class RewardSeeder extends Seeder
         ];
         for ($i=0; $i < 10; $i++) { 
             Reward::create([
-                'user_id' => 2,
+                'user_id' => 1,
                 'text' => $texts[$i]
             ]);
         }
