@@ -67,7 +67,7 @@ class NewLessonSeeder extends Seeder
                     ]);
 
                     $lesson->image()->create([
-                        'path' => "lesson/ichki.jpg",
+                        'path' => "lessons/ichki.jpg",
                         'info' => '[]',
                         'type' => Lesson::IMAGE
                     ]);

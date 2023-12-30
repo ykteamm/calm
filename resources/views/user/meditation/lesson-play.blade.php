@@ -51,8 +51,8 @@
   </div>
   <div class="player">
     <div class="p-controls-panel">
-      <div class="p-title">
-        1.Calm music
+      <div class="p-titl" style="color: #fff">
+          {{$lesson->translation->name}}
       </div>
       <div class="p-buttons">
           <div class="p-prev-track" onclick="prevTrack()"><i class="fa fa-step-backward fa-1x"></i></div>
