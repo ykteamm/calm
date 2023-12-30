@@ -232,7 +232,7 @@ display: none !important;
                                                     @method('put')
                                                     <div class="col-12">
                                                         <label>Mukofotinga rahmat ayting</label>
-                                                        <textarea class="form-control" rows="4" cols="50">
+                                                        <textarea class="form-control" rows="4" cols="200">
                                                             {{$reward->feelings}}
                                                         </textarea>
                                                     </div>
