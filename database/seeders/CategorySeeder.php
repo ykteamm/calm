@@ -18,7 +18,7 @@ class CategorySeeder extends Seeder
     {
         $langs = Language::all();
         $categories = [
-            'uz' => ["Meditations", "Dori", "Iroda"],
+            'uz' => ["Meditatsiya", "Dori", "Iroda"],
             'en' => ["Meditatsiyalar", "Medicine", "Will"],
             'ru' => ["Медитации", "Лекарство", "Воля"]
         ];

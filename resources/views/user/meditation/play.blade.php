@@ -1,17 +1,17 @@
 @extends('user.layouts.app')
 @section('user_content')
 <div class="content-wrapper js-content-wrapper">
-   <div class="dashboard -home-9 px-0 js-dashboard-home-9" style="background-image: url('{{asset($medidation->meditator->image->path)}}');height:100vh;background-size: cover;background-position: center center;
+   <div class="dashboard -home-9 px-0 js-dashboard-home-9" style="background-image: url('{{asset($medidation->lessons->image->path)}}');height:100vh;background-size: cover;background-position: center center;
     background-repeat: no-repeat;">
     {{-- <div class="dashboard -home-9 px-0 js-dashboard-home-9" style="background-image: url('https://assets.calm.com/384/9c1d8d0876904827cf12a9cc228ad435.jpeg');height:100vh;background-size: cover;" > --}}
       @include('user.layouts.sidebar')
       <div class="dashboard__main mt-0" >
         {{-- <div class="dashboard__main mt-0 main-color" style="background-image: url('calm/2.jpg');height: 100vh"> --}}
-        <div class="dashboard__content pt-0 px-15 pb-0" style="background: rgba(146, 164, 255, 0.129);height:100%">
+        <div class="dashboard__content pt-0 px-15 pb-0" style="height:100%">
             <section class="layout-pt-md layout-pb-lg">
                 <div class="container">
                     <div class="teamCard__img" style="text-align: center">
-                        <img src="{{asset($medidation->meditator->avatar->path)}}" alt="image" style="width:20%" class="rounded-200">
+                        <img src="{{asset($medidation->meditator->image->path)}}" alt="image" style="width:20%" class="rounded-200">
                       </div>
                     <div style="text-align: center">
                         <h4 class="teamCard__title text-17 lh-15 fw-500 mt-12" style="color:white;">{{$medidation->meditator->firstname}} {{$medidation->meditator->lastname}}</h4>

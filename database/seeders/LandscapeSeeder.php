@@ -16,10 +16,12 @@ class LandscapeSeeder extends Seeder
     public function run()
     {
 
-        for ($i=0; $i < 3; $i++) { 
-            $landscape = Landscape::create(['name' => 'Landscape ' . ($i + 1)]);
+        // $name
+
+        // for ($i=0; $i < 3; $i++) {
+            $landscape = Landscape::create(['name' => 'Olov']);
             $landscape->video()->create([
-                'path' => 'calm/media/video_bg.mp4',
+                'path' => 'calm/media/olov.mp4',
                 'info' => '[]',
                 'type' => Landscape::VIDEO
             ]);
@@ -33,6 +35,40 @@ class LandscapeSeeder extends Seeder
                 'info' => '[]',
                 'type' => Landscape::IMAGE
             ]);
-        }
+
+
+            $landscape = Landscape::create(['name' => 'O\'rmonda yomg\'ir']);
+            $landscape->video()->create([
+                'path' => 'calm/media/yom-mon.mp4',
+                'info' => '[]',
+                'type' => Landscape::VIDEO
+            ]);
+            $landscape->audio()->create([
+                'path' => 'calm/media/test.mp3',
+                'info' => '[]',
+                'type' => Landscape::AUDIO
+            ]);
+            $landscape->image()->create([
+                'path' => 'calm/2.jpg',
+                'info' => '[]',
+                'type' => Landscape::IMAGE
+            ]);
+            $landscape = Landscape::create(['name' => 'Yomg\'irli momaqaldiroq']);
+            $landscape->video()->create([
+                'path' => 'calm/media/yom-chaqmoq.mp4',
+                'info' => '[]',
+                'type' => Landscape::VIDEO
+            ]);
+            $landscape->audio()->create([
+                'path' => 'calm/media/test.mp3',
+                'info' => '[]',
+                'type' => Landscape::AUDIO
+            ]);
+            $landscape->image()->create([
+                'path' => 'calm/2.jpg',
+                'info' => '[]',
+                'type' => Landscape::IMAGE
+            ]);
+        // }
     }
 }

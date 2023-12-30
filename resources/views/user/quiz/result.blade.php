@@ -12,7 +12,7 @@
             <div class="container mb-80">
                 <div class="d-flex justify-content-center pt-5">
                     <div class="w-100" style="overflow:hidden">
-                        <img style="" src="https://images.prismic.io/thesis-shopify/b5bc5d03-e7fa-40be-9fee-3ea365089712_StarterKitBYOBDesktop02.png?auto=compress,format&rect=0,0,2790,760&w=2790&h=760" alt="">
+                        <img style="" src="{{asset('packages/dddddd.png')}}" alt="">
                     </div>
                 </div>
                 <div style="margin:30px 0">

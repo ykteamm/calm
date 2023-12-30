@@ -19,20 +19,17 @@ class MotivationSeeder extends Seeder
         $langs = Language::all();
         $motivations = [
             'uz' => [
-                "Hayot uyqudir, o‘limla uyg‘onur inson. Sen shoshil, o‘lmasdan avval uyg‘on",
-                "Do‘st deb achchiq gapirganga emas, achchiqni shirin gapirganga aytiladi",
-                "Har holni xayr, har kechani qadr, har kelganni Hizr bil",
-                "Shamdek yosh to‘k, ko‘ngil uying charog‘on bo‘lsin"
+                "Hayot uyqudir, o‘limla uyg‘onur inson. Sen shoshil, o‘lmasdan avval uyg‘on.",
+                "Do‘st deb achchiq gapirganga emas, achchiqni shirin gapirganga aytiladi.",
+                "Shamdek yosh to‘k, ko‘ngil uying charog‘on bo‘lsin."
             ],
             'en' => [
                 "He who wants to climb to the top must be ready to get his hands dirty.",
-                "Never be ashamed of the simple way of life",
                 "What do people say? Yes, they say something. Whether you do it or not",
                 "Life is today. Look at life realistically"
             ],
             'ru' => [
                 "Тот, кто хочет подняться на вершину, должен быть готов испачкать руки",
-                "Никогда не стыдись простого образа жизни",
                 "Что говорят люди? Да, они что-то говорят. Делаете ли вы это или нет",
                 "Жизнь есть сегодня. Смотри на жизнь реалистично"
             ]
@@ -43,7 +40,7 @@ class MotivationSeeder extends Seeder
             ]);
             foreach ($langs as $lang) {
                 MotivationTranslation::create([
-                    'author' => "Olim Valiyev",
+                    'author' => "Rumiy",
                     'text' => $motivations[$lang->code][$i],
                     'object_id' => $motivation->id,
                     'language_code' => $lang->code

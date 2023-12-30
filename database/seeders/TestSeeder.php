@@ -33,7 +33,7 @@ class TestSeeder extends Seeder
                 "Atrofdagilar oldida fikringizni to'liq yetkazib berishga uyalasizmi?",
                 "Tashqi ko'rinishingiz sizni qoniqtirmaslik holati kuzatiladimi?",
                 "Qilgan ishlaringiz yoki aytgan gaplaringizni eslab afsuslanasizmi?",
-                "Charchagan bo'lsangiz ham yotishiz bilan uxlab qololmaslik muammosi bormi sizda?",
+                "Charchagan bo'lsangiz ham yotishingiz bilan uxlab qololmaslik muammosi bormi?",
                 "Uyquda ko'p uyg'onish, ko'p tushlar ko'rish yoki uyquda cho'chib uyg'onib ketish kuzatiladimi?",
                 "Diqqatingizni jamlashga qiynalasizmi, masalan biror narsa o’qiganda yoki ko’rsatuv tomosha qilganda yoki ishlayotgan vaqtda?"
             ],

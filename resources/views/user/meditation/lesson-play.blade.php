@@ -7,7 +7,7 @@
       @include('user.layouts.sidebar')
       <div class="dashboard__main mt-0" >
         {{-- <div class="dashboard__main mt-0 main-color" style="background-image: url('calm/2.jpg');height: 100vh"> --}}
-        <div class="dashboard__content pt-0 px-15 pb-0" style="background: rgba(146, 164, 255, 0.129);height:100%">
+        <div class="dashboard__content pt-0 px-15 pb-0" style="height:100%">
             <section class="layout-pt-md layout-pb-lg">
                 <div class="container">
                     <div class="teamCard__img" style="text-align: center">

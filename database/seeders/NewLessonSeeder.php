@@ -23,20 +23,62 @@ class NewLessonSeeder extends Seeder
     public function run()
     {
 
-        $nameser = [
-            '8-mart',
-            'Yangi yil',
-            'Ustzolar kuni',
-            'Mustaqillik',
-        ];
+
 
         $medi = [
             'Katta g\'oya',
             'Zamin tanlash',
-            'Hayyollardan qutulish',
+            'Hayollardan qutulish',
             'Ichki ravonlik',
-            'K\'ozlar katta ochiq',
+            'Ko\'zlar katta ochiq',
             'Kechinmalarni neytrallash',
+        ];
+
+        $medi_img = [
+            'kattas',
+            'zamin',
+            'hayol-qutulish',
+            'ichki',
+            'kozlar-ochiq',
+            'kechinmalar',
+        ];
+
+        $iro1 = [
+            'Depressiyaga zarba',
+            'Motivatsiya yechim emas',
+            'Ur yo qoch tizimi',
+            'Sintetik iroda',
+            'Miya qismlarini yoqish',
+        ];
+
+        $iro1_img = [
+            'depressiya-zarba',
+            'motiv-emas',
+            'ur-yon-qoch',
+            'sintetik-iroda',
+            'miya-qismlari',
+        ];
+
+        $iro2 = [
+            'Miyada parcha go\'sht - Gippokampus',
+            'Ikki neyro tarmoq',
+            'Freyd va baxt',
+            'Minnatdorchilik neyrokimyosi',
+            'Baxt strategiyasi',
+            'Sarob - hedonik mashina',
+            'Salbiy tasavvur (Vizualizatsiya)',
+            'Tana, Aql, Qalb',
+        ];
+
+        $iro2_img = [
+            'bir-parcha',
+            'neyro-tarmoq',
+            'freyd-baxt',
+            'neyro-kimyo',
+            'baxt-strategiya',
+            'sarob',
+            'salbiy-tas',
+            'tana-aql',
         ];
 
         // $meditators = Meditator::all();
@@ -61,17 +103,81 @@ class NewLessonSeeder extends Seeder
                         ]);
                     }
                     $lesson->audio()->create([
-                        'path' => 'lessons/jack.mp3',
+                        'path' => 'lessons/1.mp3',
                         'info' => '[]',
                         'type' => Lesson::AUDIO
                     ]);
 
                     $lesson->image()->create([
-                        'path' => "lessons/ichki.jpg",
+                        'path' => "lessons/".$medi_img[$i].".jpg",
                         'info' => '[]',
                         'type' => Lesson::IMAGE
                     ]);
                 }
+
+                for ($i=0; $i < 5; $i++) {
+                    $data = [
+                        'meditation_id' => 2,
+                        'daily' => $i + 1,
+                        'duration' => 600
+                    ];
+                    if ($i == 0) {
+                        $data['block'] = 0;
+                    }
+                    $lesson = Lesson::create($data);
+                    $langs = Language::all();
+                    foreach ($langs as $lang) {
+                        LessonTranslation::create([
+                            'name' => $iro1[$i],
+                            'object_id' => $lesson->id,
+                            'language_code' => $lang->code
+                        ]);
+                    }
+                    $lesson->audio()->create([
+                        'path' => 'lessons/1.mp3',
+                        'info' => '[]',
+                        'type' => Lesson::AUDIO
+                    ]);
+
+                    $lesson->image()->create([
+                        'path' => "lessons/".$iro1_img[$i].".jpg",
+                        'info' => '[]',
+                        'type' => Lesson::IMAGE
+                    ]);
+                }
+
+                for ($i=0; $i < 8; $i++) {
+                    $data = [
+                        'meditation_id' => 3,
+                        'daily' => $i + 1,
+                        'duration' => 600
+                    ];
+                    if ($i == 0) {
+                        $data['block'] = 0;
+                    }
+                    $lesson = Lesson::create($data);
+                    $langs = Language::all();
+                    foreach ($langs as $lang) {
+                        LessonTranslation::create([
+                            'name' => $iro2[$i],
+                            'object_id' => $lesson->id,
+                            'language_code' => $lang->code
+                        ]);
+                    }
+                    $lesson->audio()->create([
+                        'path' => 'lessons/1.mp3',
+                        'info' => '[]',
+                        'type' => Lesson::AUDIO
+                    ]);
+
+                    $lesson->image()->create([
+                        'path' => 'lessons/'.$iro2_img[$i].'.jpg',
+                        'info' => '[]',
+                        'type' => Lesson::IMAGE
+                    ]);
+                }
+
+
             // }
         // }
     }
