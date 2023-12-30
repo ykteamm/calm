@@ -53,7 +53,14 @@ class NewLessonSeeder extends Seeder
                     }
                     $lesson->audio()->create([
                         'path' => "lessons/" . strtolower($meditator->firstname) . '.mp3',
-                        'info' => '[]'
+                        'info' => '[]',
+                        'type' => Lesson::AUDIO
+                    ]);
+    
+                    $lesson->image()->create([
+                        'path' => "calm/1.jpg",
+                        'info' => '[]',
+                        'type' => Lesson::IMAGE
                     ]);
                 }
             }

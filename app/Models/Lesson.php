@@ -6,6 +6,9 @@ use App\Traits\HasTranslation;
 
 class Lesson extends BaseModel
 {
+    const AUDIO = 10;
+    const IMAGE = 20;
+
 	use HasTranslation, HasAsset;
 
 	public $translationClass = LessonTranslation::class;
@@ -24,9 +27,22 @@ class Lesson extends BaseModel
         return $this->belongsTo(Meditation::class, 'meditation_id', 'id');
     }
 
+    public function assetTypes()
+    {
+        return [
+            static::IMAGE => $this->image(),
+            static::AUDIO => $this->audio()
+        ];
+    }
+
     public function audio()
     {
-        return $this->asset();
+        return $this->asset()->where('type', static::AUDIO);
+    }
+
+    public function image()
+    {
+        return $this->asset()->where('type', static::IMAGE);
     }
 
     public function usershows()

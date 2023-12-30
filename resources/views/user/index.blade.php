@@ -271,8 +271,8 @@ use Illuminate\Support\Facades\DB;
                                                                     <a href="{{route('lesson.user.show', ['lesson' => $lesson->id])}}" class="coursesCard -type-1 ">
                                                                         <div class="relative">
                                                                             <div class="coursesCard__image overflow-hidden rounded-8">
-                                                                            @if ($meditation->meditator->image)
-                                                                                <img class="w-1/1" src="{{asset($meditation->meditator->image->path)}}" alt="image">
+                                                                            @if ($lesson->image)
+                                                                                <img class="w-1/1" src="{{asset($lesson->image->path)}}" alt="image">
                                                                             @endif
                                                                                 <div class="coursesCard__image_overlay rounded-8"></div>
                                                                             </div>

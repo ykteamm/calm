@@ -39,8 +39,9 @@ class CategoryService extends BaseService
                         'avatar' => []
                     ],
                     'lessons' => function($q) {
-                        $q->leftJoin('usershows', 'usershows.lesson_id', 'lessons.id');
-                        $q->with(['audio', 'translation']);
+                        $q->selectRaw("id,meditation_id,block,daily,duration");
+                        // $q->leftJoin('usershows', 'usershows.lesson_id', 'lessons.id');
+                        $q->with(['audio', 'image', 'translation']);
                     },
                     'translation' => []
                 ]

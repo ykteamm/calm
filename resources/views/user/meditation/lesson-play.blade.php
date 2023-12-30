@@ -11,7 +11,9 @@
             <section class="layout-pt-md layout-pb-lg">
                 <div class="container">
                     <div class="teamCard__img" style="text-align: center">
-                        <img src="{{asset($lesson->meditation->meditator->avatar->path)}}" alt="image" style="width:20%" class="rounded-200">
+                      @if ($lesson->image)
+                          <img src="{{asset($lesson->image->path)}}" alt="image" style="width:20%" class="rounded-200">
+                      @endif
                       </div>
                     <div style="text-align: center">
                         <h4 class="teamCard__title text-17 lh-15 fw-500 mt-12" style="color:white;">{{$lesson->meditation->meditator->firstname}} {{$lesson->meditation->meditator->lastname}}</h4>
