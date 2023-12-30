@@ -16,6 +16,9 @@ class CreateLessonsTable extends Migration
         Schema::create('lessons', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('meditation_id');
+            $table->bigInteger('duration')->default(0);
+            $table->bigInteger('daily')->default(1);
+            $table->tinyInteger('block')->default(1);
             $table->timestamps();
         });
     }

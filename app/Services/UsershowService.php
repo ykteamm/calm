@@ -28,4 +28,10 @@ class UsershowService extends BaseService
         $this->setQuery();
         return $this->query->where('user_id', auth()->id())->where('meditation_id', $meditation)->exists();
     }
+
+    public function userViewExistsByLesson($lesson)
+    {
+        $this->setQuery();
+        return $this->query->where('user_id', auth()->id())->where('lesson_id', $lesson)->exists();
+    }
 }

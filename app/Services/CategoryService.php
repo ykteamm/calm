@@ -38,6 +38,10 @@ class CategoryService extends BaseService
                         'image'=> [],
                         'avatar' => []
                     ],
+                    'lessons' => function($q) {
+                        $q->leftJoin('usershows', 'usershows.lesson_id', 'lessons.id');
+                        $q->with(['audio', 'translation']);
+                    },
                     'translation' => []
                 ]
             ]))

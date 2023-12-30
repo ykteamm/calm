@@ -259,57 +259,57 @@ use Illuminate\Support\Facades\DB;
                                         <div class="tabs__pane -tab-item-1 is-active">
                                             <div class="overflow-hidden js-section-slider" data-gap="30" data-slider-cols="xl-4 lg-3 md-2 sm-2">
                                                 <div class="swiper-wrapper">
-                                                    @foreach ($category->meditations as $g => $f)
-                                                        <div class="swiper-slide">
-                                                            <div data-anim-child="slide-up delay-2">
-
-                                                                <a href="{{route('meditation.show', ['meditation' => $f->id])}}" class="coursesCard -type-1 ">
-                                                                    <div class="relative">
-                                                                        <div class="coursesCard__image overflow-hidden rounded-8">
-                                                                        @if ($f->meditator->image)
-                                                                            <img class="w-1/1" src="{{asset($f->meditator->image->path)}}" alt="image">
-                                                                        @endif
-                                                                            <div class="coursesCard__image_overlay rounded-8"></div>
-                                                                        </div>
-                                                                        <div class="d-flex justify-between py-10 px-10 absolute-full-center z-3">
-
-                                                                            <div>
-                                                                                <div class="px-15 rounded-200 bg-purple-1">
-                                                                                    <span class="text-11 lh-1 uppercase fw-500 text-white">{{$category->translation->name}}</span>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div>
-                                                                                <div class="px-15 rounded-200 bg-green-1">
-                                                                                    <span class="text-11 lh-1 uppercase fw-500 text-dark-1">Best sellers</span>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div>
-                                                                                <div class="px-15 rounded-200 bg-green-1">
-                                                                                    <span class="text-11 lh-1 uppercase fw-500 text-dark-1">Best sellers</span>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div>
-                                                                                <div class="px-15 rounded-200 bg-green-1">
-                                                                                    <span class="text-11 lh-1 uppercase fw-500 text-dark-1">Best sellers</span>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
+                                                    @foreach ($category->meditations as $g => $meditation)
+                                                        @foreach ($meditation->lessons as $lesson)
+                                                            <div class="swiper-slide" style="position: relative">
+                                                                @if ($lesson->block)
+                                                                    <div class="d-flex align-items-center justify-content-center rounded" style="top:0;bottom:0;left:0;right:0;background: #0559f7cf;position: absolute;z-index:200">
+                                                                        <img src="{{asset('calm/lock.png')}}" alt="">
                                                                     </div>
-                                                                    <div class="h-100 pt-15">
-                                                                        <div class="text-17 lh-15 fw-500 text-dark-1 mt-10 text-color-white-for">{{$f->translation->name}}</div>
-                                                                        <div class="d-flex x-gap-10 items-center pt-10">
-                                                                            <div class="d-flex items-center">
-                                                                                <div class="text-14 lh-1 text-color-white-for">{{$f->meditator->firstname}} {{$f->meditator->lastname}}</div>
+                                                                @endif
+                                                                <div data-anim-child="slide-up delay-2">
+                                                                    <a href="{{route('lesson.user.show', ['lesson' => $lesson->id])}}" class="coursesCard -type-1 ">
+                                                                        <div class="relative">
+                                                                            <div class="coursesCard__image overflow-hidden rounded-8">
+                                                                            @if ($meditation->meditator->image)
+                                                                                <img class="w-1/1" src="{{asset($meditation->meditator->image->path)}}" alt="image">
+                                                                            @endif
+                                                                                <div class="coursesCard__image_overlay rounded-8"></div>
+                                                                            </div>
+                                                                            <div class="d-flex justify-between py-10 px-10 absolute-full-center z-3">
+
+                                                                                <div>
+                                                                                    <div class="px-15 rounded-200 bg-purple-1">
+                                                                                        <span class="text-11 lh-1 uppercase fw-500 text-white">{{$category->translation->name}}</span>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                {{-- <div>
+                                                                                    <div class="px-15 rounded-200 bg-green-1">
+                                                                                        <span class="text-11 lh-1 uppercase fw-500 text-dark-1">{{$meditation->translation->name}}</span>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div>
+                                                                                    <div class="px-15 rounded-200 bg-green-1">
+                                                                                        <span class="text-11 lh-1 uppercase fw-500 text-dark-1">{{$lesson->translation->name}}</span>
+                                                                                    </div>
+                                                                                </div> --}}
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                </a>
+                                                                        <div class="h-100 pt-15">
+                                                                            <div class="text-17 lh-15 fw-500 text-dark-1 mt-10 text-color-white-for">{{$meditation->translation->name}}</div>
+                                                                            <div class="text-17 lh-15 fw-500 text-dark-1 mt-10 text-color-white-for">{{$lesson->translation->name}}</div>
+                                                                            <div class="d-flex x-gap-10 items-center pt-10">
+                                                                                <div class="d-flex items-center">
+                                                                                    <div class="text-14 lh-1 text-color-white-for">{{$meditation->meditator->firstname}} {{$meditation->meditator->lastname}}</div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        @endforeach
                                                     @endforeach
                                                 </div>
                                                 <button class="section-slider-nav -prev -dark-bg-dark-2 -white -absolute size-50 rounded-full shadow-5 js-prev">

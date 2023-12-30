@@ -9,6 +9,7 @@ class Usershow extends BaseModel
     protected $fillable = [
         'user_id',
         'meditation_id',
+        'lesson_id'
     ];
 
     public function user()
@@ -19,5 +20,10 @@ class Usershow extends BaseModel
     public function meditation()
     {
         return $this->belongsTo(Meditation::class, 'meditation_id', 'id');
+    }
+
+    public function lesson()
+    {
+        return $this->belongsTo(Lesson::class, 'lesson_id', 'id');
     }
 }

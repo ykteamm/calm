@@ -17,6 +17,7 @@ class CreateUsershowsTable extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->bigInteger('meditation_id');
+            $table->bigInteger('lesson_id')->nullable();
             $table->timestamps();
         });
     }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AimController;
+use App\Http\Controllers\LessonController;
 use App\Http\Controllers\MeditationController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\UserController;
@@ -17,5 +18,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('user-image-reupload/{asset}', [UserController::class, 'reupload'])->name('user-image-reupload');
     Route::delete('user-image-unupload/{asset}', [UserController::class, 'unupload'])->name('user-image-unupload');
     Route::get('user-image-view', [UserController::class, 'image'])->name('user-image-view');
+    Route::get('lesson/{lesson}', [LessonController::class, 'lessonUserShow'])->name('lesson.user.show');
     Route::get('meditation/{meditation}', [MeditationController::class, 'show'])->name('meditation.show');
 });

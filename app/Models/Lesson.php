@@ -13,7 +13,10 @@ class Lesson extends BaseModel
     protected $guarded = [];
 
     protected $fillable = [
-        'meditation_id'
+        'meditation_id',
+        'block',
+        'daily',
+        'duration'
     ];
 
     public function meditation()
@@ -24,5 +27,10 @@ class Lesson extends BaseModel
     public function audio()
     {
         return $this->asset();
+    }
+
+    public function usershows()
+    {
+        return $this->hasMany(Usershow::class, 'lesson_id', 'id');
     }
 }

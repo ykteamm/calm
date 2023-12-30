@@ -81,6 +81,23 @@ class LessonController extends Controller
         return $this->service->create($upsertRequest->validated(), true)->redirect('admin.lesson.index');
     }
 
+    public function lessonUserShow($id)
+    {
+        $this->service->willParseToRelation = [
+            'audio' => [], 
+            'translation' => [],
+            'meditation' => [
+                'meditator' => [
+                    'image'=> [],
+                    'avatar' => []
+                ]
+            ]
+        ];
+        $this->service->markAsViewedLesson($id);
+        $lesson = $this->service->show($id);
+        return view('user.meditation.lesson-play', compact('lesson'));
+    }
+
     public function show($id)
     {
         $this->service->willParseToRelation = ['audio', 'translation'];

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MeditationUpsertRequest;
 use App\Services\CategoryService;
 use App\Services\LanguageService;
+use App\Services\LessonService;
 use App\Services\MeditatorService;
 
 class MeditationController extends Controller
@@ -16,17 +17,19 @@ class MeditationController extends Controller
     protected LanguageService $languageService;
     protected CategoryService $categoryService;
     protected MeditatorService $meditatorService;
-
+    protected LessonService $lessonService;
     public function __construct(
         MeditationService $service,
         LanguageService $languageService,
         CategoryService $categoryService,
-        MeditatorService $meditatorService
+        MeditatorService $meditatorService,
+        LessonService $lessonService
     ){
         $this->service = $service;
         $this->languageService = $languageService;
         $this->categoryService = $categoryService;
         $this->meditatorService = $meditatorService;
+        $this->lessonService = $lessonService;
     }
 
     
@@ -85,6 +88,7 @@ class MeditationController extends Controller
             ],
         ];
         $medidation = $this->service->show($id);
+        // difd($medidation);
         // return $medidation;
         return view('user.meditation.play', compact('medidation'));
     }
