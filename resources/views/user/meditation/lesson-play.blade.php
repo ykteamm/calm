@@ -1,7 +1,7 @@
 @extends('user.layouts.app')
 @section('user_content')
 <div class="content-wrapper js-content-wrapper">
-   <div class="dashboard -home-9 px-0 js-dashboard-home-9" style="background-image: url('{{asset($lesson->meditation->meditator->image->path)}}');height:100vh;background-size: cover;background-position: center center;
+   <div class="dashboard -home-9 px-0 js-dashboard-home-9" style="background-image: url('{{asset($lesson->image->path)}}');height:100vh;background-size: cover;background-position: center center;
     background-repeat: no-repeat;">
     {{-- <div class="dashboard -home-9 px-0 js-dashboard-home-9" style="background-image: url('https://assets.calm.com/384/9c1d8d0876904827cf12a9cc228ad435.jpeg');height:100vh;background-size: cover;" > --}}
       @include('user.layouts.sidebar')
@@ -11,8 +11,8 @@
             <section class="layout-pt-md layout-pb-lg">
                 <div class="container">
                     <div class="teamCard__img" style="text-align: center">
-                      @if ($lesson->image)
-                          <img src="{{asset($lesson->image->path)}}" alt="image" style="width:20%" class="rounded-200">
+                      @if ($lesson->meditation->meditator->image)
+                          <img src="{{asset($lesson->meditation->meditator->image->path)}}" alt="image" style="width:20%" class="rounded-200">
                       @endif
                       </div>
                     <div style="text-align: center">
