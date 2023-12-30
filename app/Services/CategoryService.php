@@ -34,6 +34,9 @@ class CategoryService extends BaseService
             ->with(parseToRelation([
                 'translation' => [],
                 'meditations' => [
+                    'usershows' => function ($q) {
+                        $q->where('user_id', getProp(auth()->user(), 'id'));
+                    },
                     'meditator' => [
                         'image'=> [],
                         'avatar' => []

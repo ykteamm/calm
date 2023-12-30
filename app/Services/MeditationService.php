@@ -101,7 +101,12 @@ class MeditationService extends BaseService
             'image'=> [],
             'avatar' => []
         ],
-        'translation' => []]))
+        'translation' => [],
+        'lessons' => [
+            'image' => [], 
+            'translation' => [], 
+            'audio' => []
+        ]]))
         ->limit(10);
         return $this->getList($data);
     }

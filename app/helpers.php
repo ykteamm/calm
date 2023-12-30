@@ -10,6 +10,22 @@ if(!function_exists('getLanguages')) {
     }
 }
 
+if(!function_exists('hasLessonBlocked')) {
+    function hasLessonBlocked($usershow, $lesson)
+    {
+        $created = getProp($usershow->toArray(), '0.created_at');
+        $daily = getProp($lesson->toArray(), 'daily');
+        if ($created && $daily) {
+            // $start = date("Y-m-d", strtotime($created));
+            $lessonDay = date("Y-m-d", strtotime($created, strtotime("+$daily day")));
+            if (date("Y-m-d") >= $lessonDay) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
 if(!function_exists('getCategories')) {
     function getCategories()
     {
