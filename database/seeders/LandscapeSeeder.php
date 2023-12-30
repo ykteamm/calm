@@ -26,7 +26,7 @@ class LandscapeSeeder extends Seeder
                 'type' => Landscape::VIDEO
             ]);
             $landscape->audio()->create([
-                'path' => 'calm/media/test.mp3',
+                'path' => 'calm/media/olov1.mp3',
                 'info' => '[]',
                 'type' => Landscape::AUDIO
             ]);
@@ -44,7 +44,7 @@ class LandscapeSeeder extends Seeder
                 'type' => Landscape::VIDEO
             ]);
             $landscape->audio()->create([
-                'path' => 'calm/media/test.mp3',
+                'path' => 'calm/media/olovo1.mp3',
                 'info' => '[]',
                 'type' => Landscape::AUDIO
             ]);
@@ -60,7 +60,7 @@ class LandscapeSeeder extends Seeder
                 'type' => Landscape::VIDEO
             ]);
             $landscape->audio()->create([
-                'path' => 'calm/media/test.mp3',
+                'path' => 'calm/media/yomch1.mp3',
                 'info' => '[]',
                 'type' => Landscape::AUDIO
             ]);
