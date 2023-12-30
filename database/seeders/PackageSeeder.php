@@ -92,15 +92,11 @@ class PackageSeeder extends Seeder
                 ],
                 [
                     'id' => 5,
-                    'percent' => 5
-                ],
-                [
-                    'id' => 6,
-                    'percent' => 5
+                    'percent' => 15
                 ],
                 [
                     'id' => 7,
-                    'percent' => 20
+                    'percent' => 15
                 ],
                 [
                     'id' => 14,
@@ -129,6 +125,10 @@ class PackageSeeder extends Seeder
                     'percent' => 10
                 ],
                 [
+                    'id' => 6,
+                    'percent' => 10
+                ],
+                [
                     'id' => 7,
                     'percent' => 10
                 ],
@@ -141,11 +141,7 @@ class PackageSeeder extends Seeder
                     'percent' => 10
                 ],
                 [
-                    'id' => 13,
-                    'percent' => 10
-                ],
-                [
-                    'id' => 14,
+                    'id' => 12,
                     'percent' => 10
                 ],
                 [
@@ -171,6 +167,10 @@ class PackageSeeder extends Seeder
                     'percent' => 10
                 ],
                 [
+                    'id' => 6,
+                    'percent' => 10
+                ],
+                [
                     'id' => 7,
                     'percent' => 10
                 ],
@@ -183,11 +183,7 @@ class PackageSeeder extends Seeder
                     'percent' => 10
                 ],
                 [
-                    'id' => 13,
-                    'percent' => 10
-                ],
-                [
-                    'id' => 14,
+                    'id' => 12,
                     'percent' => 10
                 ],
                 [

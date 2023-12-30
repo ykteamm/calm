@@ -21,20 +21,18 @@ class TestSeeder extends Seeder
         $langs = Language::all();
         $tests = [
             'uz' => [
-                "Bosh og'rig'i sizni bezovta qiladimi?", 
-                "Juda ko'p ovqat yemasangiz ham semirishga moyilmisiz?", 
+                "Bosh og'rig'i sizni bezovta qiladimi?",
+                "Semirishga moyilmisiz?",
                 "Kayfiyat tez tushishi, sababsiz tushkunlik kuzatiladimi?",
-                "Hazm tizimidagi muammolar: ich qotishi, jig'ildon qaynashi, ovqat hazm qilish qiyinligi kabilar sizda kuzatiladimi?",
+                "Tez sovuq qotish yoki oyoq qo'llar muzlashi bezovta qiladimi?",
                 "Tez charchash, jismoniy harakatdan keyin oyoq qo'llarda toliqish, holsizlik kabilar bezovta qiladimi?",
-                "Bosh aylanishi, o'zini yomon his qilish kabilar sizni bezovta qiladimi?",
-                "Jinsiy sistemadagi o'zgarishlar 
-                (ayollar uchun) hayz sikli buzilishi, libido pasayishi, hayz vaqtidagi og'riqlar, kayfiyatning buzilishi
-                (Erkaklar uchun) libido pasayishi, jinsiy aloqa vaqti qisqarishi kabilar kuzatiladimi?",
-                "Jismoniy yoki aqliy mehnatga layoqatingiz va ish unumingiz pasaygandek tuyuladimi?",
+                "Biron bir muammoni uzoq o'ylash yoki hayoldan ketmaydigan fikrlar bezovta qiladimi?",
+                "Jinsiy tomonlama muammolar bormi, o'zingizga seziladimi?",
+                "Boshlagan ishingizni oxiriga yetkazmaslik kuzatiladimi?",
                 "Yangi rejalar tuzishga qiyinchilik, tuzilganda ham unga hoxish topa olmaslik kuzatiladimi?",
-                "Yurak sohasida og'riq, yurak tez urib ketishi, yurak sohasida noqulay his kabilar kuzatiladimi?",
-                "Qon bosimi ko'tarilishi yoki infarkt, insult holatlari kuzatilganmi?",
-                "Salomatligingizni qo'llab quvvatlash uchun, vitaminlar, temir, kalsiy kabilar qabul qilib yurasizmi?",
+                "Atrofdagilar oldida fikringizni to'liq yetkazib berishga uyalaizmi?",
+                "Tashqi ko'rinishingiz sizni qoniqtirmaslik holati kuzatiladimi?",
+                "Qilgan ishlaringiz yoki aytgan gaplaringizni eslab afsuslanasizmi?",
                 "Charchagan bo'lsangiz ham yotishiz bilan uxlab qololmaslik muammosi bormi sizda?",
                 "Uyquda ko'p uyg'onish, ko'p tushlar ko'rish yoki uyquda cho'chib uyg'onib ketish kuzatiladimi?",
                 "Diqqatingizni jamlashga qiynalasizmi, masalan biror narsa o’qiganda yoki ko’rsatuv tomosha qilganda yoki ishlayotgan vaqtda?"
@@ -84,7 +82,7 @@ class TestSeeder extends Seeder
                 "Huddi shunday",
                 "Shunga yaqin",
                 "Bazan",
-                "Aniq aytolmayman",
+                "Kamdan kam holatlarda",
                 "Umuman unday emas"
             ],
             'en' => [
@@ -105,7 +103,7 @@ class TestSeeder extends Seeder
 
         for ($i = 0; $i < count($tests['uz']); $i++){
             $test = Test::create([]);
-            for ($k = 0; $k < count($answers['uz']); $k++) { 
+            for ($k = 0; $k < count($answers['uz']); $k++) {
                 $answer = Answer::create([
                     'test_id' => $test->id,
                     'order' => $k + 1

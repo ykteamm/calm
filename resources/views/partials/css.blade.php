@@ -15,6 +15,10 @@
 <link rel="stylesheet" href="{{asset('calm/css/vendors.css')}}">
 <link rel="stylesheet" href="{{asset('calm/css/main.css')}}">
 <link rel="stylesheet" href="{{asset('calm/css/style.css')}}">
+
+{{-- <link rel="stylesheet" href="{{asset('calm/bulma/bulma.min.css')}}">
+<link rel="stylesheet" href="{{asset('calm/css/main.min.css')}}"> --}}
+
 {{-- <link rel="stylesheet" href="{{asset('calm/css/player.css')}}"> --}}
 
 {{-- @include('styles.player') --}}

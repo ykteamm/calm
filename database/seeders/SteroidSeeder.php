@@ -168,7 +168,7 @@ class SteroidSeeder extends Seeder
             1 => [
                 [
                     'id' => 1,
-                    'percent' => 20
+                    'percent' => 10
                 ],
                 [
                     'id' => 2,
@@ -184,15 +184,11 @@ class SteroidSeeder extends Seeder
                 ],
                 [
                     'id' => 5,
-                    'percent' => 5
-                ],
-                [
-                    'id' => 6,
-                    'percent' => 5
+                    'percent' => 15
                 ],
                 [
                     'id' => 7,
-                    'percent' => 10
+                    'percent' => 15
                 ],
                 [
                     'id' => 14,
@@ -206,27 +202,23 @@ class SteroidSeeder extends Seeder
             2 => [
                 [
                     'id' => 2,
-                    'percent' => 10
+                    'percent' => 5
                 ],
                 [
                     'id' => 3,
-                    'percent' => 50
+                    'percent' => 5
                 ],
                 [
-                    'id' => 7,
-                    'percent' => 10
+                    'id' => 10,
+                    'percent' => 30
                 ],
                 [
-                    'id' => 8,
-                    'percent' => 10
+                    'id' => 11,
+                    'percent' => 30
                 ],
                 [
-                    'id' => 9,
-                    'percent' => 10
-                ],
-                [
-                    'id' => 15,
-                    'percent' => 10
+                    'id' => 12,
+                    'percent' => 30
                 ]
             ],
             3 => [
@@ -254,11 +246,11 @@ class SteroidSeeder extends Seeder
                 ],
                 [
                     'id' => 8,
-                    'percent' => 20
+                    'percent' => 40
                 ],
                 [
                     'id' => 9,
-                    'percent' => 50
+                    'percent' => 30
                 ],
                 [
                     'id' => 15,
@@ -271,11 +263,15 @@ class SteroidSeeder extends Seeder
                     'percent' => 10
                 ],
                 [
-                    'id' => 7,
+                    'id' => 8,
                     'percent' => 10
                 ],
                 [
-                    'id' => 8,
+                    'id' => 9,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 6,
                     'percent' => 20
                 ],
                 [
@@ -284,7 +280,7 @@ class SteroidSeeder extends Seeder
                 ],
                 [
                     'id' => 15,
-                    'percent' => 50
+                    'percent' => 40
                 ]
             ]
         ];

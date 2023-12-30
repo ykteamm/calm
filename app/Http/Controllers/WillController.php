@@ -44,7 +44,7 @@ class WillController extends Controller
         // dd(['a' => $doneAims]);
         // dd(Session::get('aimdone'));
         // dd($rewards->toArray());
-        // dd($rewards->toArray());
+        // dd($rewards[1]->images[0]->path);
         return view('user.will.index', [
             'meditations' => $meditations,
             'doneAims' => $doneAims,
@@ -55,7 +55,7 @@ class WillController extends Controller
 
     public function saveAims(AimsUpsertRequest $aimsUpsertRequest)
     {
-        // dd($aimsUpsertRequest->validated());   
+        // dd($aimsUpsertRequest->validated());
         return $this->aimService->saveAims($aimsUpsertRequest->validated());
     }
 
@@ -81,6 +81,7 @@ class WillController extends Controller
     public function upload(RewardAssetRequest $assetRequest, $reward)
     {
         $data = $assetRequest->validated();
+
         $data['type'] = Reward::IMAGE;
         return $this->rewardService->storeAsset($reward, $data, true)
             ->redirect('will.index');

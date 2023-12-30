@@ -1,6 +1,68 @@
 @extends('user.layouts.app')
 @section('user_content')
+
 <div class="content-wrapper js-content-wrapper">
+    <style>
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.form-group {
+padding: 30px;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+.input-group {
+margin-bottom: 30px;
+}
+
+#img-upload{
+    width: 150px;
+    height: 150px;
+}
+
+.as-console-wrapper {
+display: none !important;
+}
+.gallery {
+  --size: min(60vmin, 400px);
+  /* position: absolute; */
+  top: 50%;
+  left: 50%;
+  /* transform: translate(-50%, -50%); */
+  box-shadow:
+    0 0 10px #0002,
+    0 20px 40px -20px #0004;
+  /* width: var(--size); */
+  height: var(--size);
+  background: #fff;
+  border: 6px solid #fff;
+  display: grid;
+  grid-template-rows: 50% 50%;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  gap: 6px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+    </style>
     <div class="dashboard -home-9 px-0 js-dashboard-home-9">
     @include('user.layouts.sidebar')
       <div class="dashboard__main mt-0">
@@ -29,7 +91,7 @@
                         <div>
                             <span style="font-size: 20px">{{__('common.task')}}</span>
                         </div>
-                        
+
                     </div>
                     </li>
                     <li style="width:45%" class="nav-item text-center" role="presentation">
@@ -80,87 +142,102 @@
                     </div>
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                         @if (count($rewards) > 0)
-                            <form action="{{route('save-rewards')}}" method="POST">
+                            {{-- <form action="{{route('save-rewards')}}" method="POST"> --}}
                                 @csrf
                                 @foreach ($rewards as $k => $reward)
                                     <div class="card my-2 border-1" style="box-shadow:0 -1px 9px 0 rgb(255 0 0 / 20%), 0 0px 14px 0 rgb(0 145 251 / 19%);">
                                         <div class="card-header border-0" style="background: rgb(179, 225, 220)">
                                             <div class="row">
-                                                <div class="col-12" style="text-align: center">
-                                                    {{-- <span style="width: 10%" class="mr-5">{{$k+1}}.</span> --}}
-                                                    <span>{{$reward->text}}</span>
-                                                    {{-- <input style="width: 90%" name="rewards[{{$k}}][text]" value="{{$reward->text}}" type="text"> --}}
-                                                </div>
+
                                                 @if ($doneAims)
-                                                    {{-- @if (!$reward->done)
-                                                        <div class="col-2">
-                                                            <input name="rewards[{{$k}}][id]" value="{{$reward->id}}" class="form-check" type="checkbox" style="width:17px;" >
-                                                            <input class="d-none" name="rewards[{{$k}}][old]" value="{{$reward->id}}" type="text" >
-                                                        </div>
-                                                    @else
-                                                        <div class="col-2">
-                                                            <a class="@if($reward->done) show @endif" data-bs-toggle="collapse" href="#rewardCollapse{{$reward->id}}" role="button" aria-expanded="false" aria-controls="rewardCollapse{{$reward->id}}">
-                                                                <img src="{{asset('calm/show.png')}}" alt="Alt">
-                                                            </a>
-                                                        </div>
-                                                    @endif --}}
+                                                <div class="col-12" style="text-align: center">
+                                                    <span>{{$reward->text}}</span>
+                                                </div>
                                                 @else
-                                                    <div class="col-1">
-                                                        <button type="button" data-bs-toggle="modal" data-bs-target="#lockRewardModal">
-                                                            <img width="20px" style="    margin-left: 20px !important;" src="{{asset('calm/lock.png')}}" alt="Alt">
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal fade" id="lockRewardModal" tabindex="-1" aria-labelledby="lockRewardModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered">
-                                                            <div class="modal-content text-center">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">Mukofotni olish uchun oldin o'zingizga belgilab olgan vazifalaringizni birini bajaring</h5>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                </div>
+                                                <div class="col-9" style="text-align: center">
+                                                    <span>{{$reward->text}}</span>
+                                                </div>
+                                                <div class="col-2">
+                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#lockRewardModal">
+                                                        <img width="20px" style="    margin-left: 18px !important;" src="{{asset('calm/lock.png')}}" alt="Alt">
+                                                    </button>
+                                                </div>
+                                                <div class="modal fade" id="lockRewardModal" tabindex="-1" aria-labelledby="lockRewardModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content text-center">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Mukofotni olish uchun oldin o'zingizga belgilab olgan vazifalaringizni birini bajaring</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                         </div>
-                                                      </div>
+                                                    </div>
+                                                  </div>
                                                 @endif
+
+
+
                                             </div>
                                         </div>
-                                        <div class="collapse show" id="rewardCollapse{{$reward->id}}">
+                                        <div class="collapse @if($doneAims) show @endif" id="rewardCollapse{{$reward->id}}">
                                             {{-- <div class="collapse show" id="rewardCollapse{{$reward->id}}"> --}}
                                             <div class="card-body">
-                                                <div class="row">
+                                                @if (isset($reward->images) && count($reward->images) > 0)
+                                                <div class="gallery">
                                                     @foreach ($reward->images as $image)
-                                                        <div class="col-6">
-                                                            <img style="width: 200px" src="{{asset($image->path)}}" alt="">
-                                                        </div>
+                                                        {{-- <div class="col-4" > --}}
+                                                            <img  src="{{asset($image->path)}}" alt="">
+                                                        {{-- </div> --}}
                                                     @endforeach
                                                 </div>
+                                                @endif
+
 
                                                 <form class="row align-items-center" style="margin-top:30px" action="{{route('reward-image-upload', ['reward' => $reward->id])}}" method="POST" enctype="multipart/form-data">
+
+                                                    {{--  --}}
+
+
                                                     @csrf
-                                                    <div class="col-10">
-                                                        <div class="image-upload-wrap">
-                                                            <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
-                                                            <div class="drag-text">
-                                                              <h3>Drag and drop a file or select add Image</h3>
-                                                            </div>
-                                                          </div>
-                                                        <label>Image</label>
-                                                        <input name="file" class="form-control" type="file" placeholder="Reward avatar">
+                                                    <div class="row">
+                                                        <div class="col-2">
+                                                            <span class="btn btn-default btn-file" style="border: 1px solid #50935a;
+                                                            border-radius: 11px;">
+                                                                + <input type="file" name="file" id="imgInp">
+                                                            </span>
+                                                        </div>
+
+                                                        <div class="col-8">
+                                                            {{-- <div class="form-group"> --}}
+                                                                    <span class="input-group-btn">
+                                                                    </span>
+                                                                    <input type="text" class="fffff" name="img" class="form-control" readonly style="border: 1px solid #314730;
+                                                                    border-radius: 10px;
+                                                                    padding: 4px 20px;">
+
+
+                                                                {{-- <img id='img-upload'/> --}}
+                                                            {{-- </div> --}}
+                                                            {{-- <input name="file" class="form-control" type="file" placeholder="Reward avatar"> --}}
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <button type="submit" class="btn btn-primary text-white">
+                                                                <i class="fas fa-save"></i>
+                                                            </button>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <button type="submit" class="btn btn-primary text-white">Upload</button>
-                                                    </div>
+
                                                 </form>
-                                                <form class="row align-items-center" action="{{route('update-reward-feelings', ['reward' => $reward->id])}}" method="POST">
+                                                <form class="row align-items-center mt-20" action="{{route('update-reward-feelings', ['reward' => $reward->id])}}" method="POST">
                                                     @csrf
                                                     @method('put')
-                                                    <div class="col-10">
-                                                        <label>Feelings</label>
-                                                        <textarea class="form-control" name="feelings">
+                                                    <div class="col-12">
+                                                        <label>Mukofotinga rahmat ayting</label>
+                                                        <textarea class="form-control" rows="4" cols="50">
                                                             {{$reward->feelings}}
                                                         </textarea>
                                                     </div>
-                                                    <div class="col-2">
-                                                        <button type="submit" class="btn btn-primary text-white">Update</button>
+                                                    <div class="col-12 mt-10" style="text-align: center">
+                                                        <button type="submit" class="btn btn-primary text-white">Saqlash</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -170,7 +247,7 @@
                                 {{-- <div class="mb-5 pb-5">
                                     <button type="submit" class="btn btn-primary">Mukofotni</button>
                                 </div> --}}
-                            </form>
+                            {{-- </form> --}}
                         @else
                             @if (count($aims) == 0)
                             <div>
@@ -191,7 +268,52 @@
 @section('script')
 <script src="{{ asset('calm/js/jquery-3.3.1.min.js') }}"></script>
 
+
 <script>
+    $(document).ready( function() {
+        $(document).on('change', '.btn-file :file', function() {
+        var input = $(this),
+            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+        input.trigger('fileselect', [label]);
+        });
+
+        $('.btn-file :file').on('fileselect', function(event, label) {
+
+            var input = $(this).parents('.input-group').find(':text'),
+                log = label;
+
+                $('.fffff').val(log);
+
+            // if( input.length ) {
+            //     input.val(log);
+            // } else {
+            //     if( log ) alert(log);
+            // }
+
+        });
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img-upload').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function sdfsdf()
+        {
+            readURL(this);
+
+        }
+        // $("#imgInp").change(function(){
+        // });
+    });
+</script>
+<script>
+
 
     function checkk()
     {
@@ -210,7 +332,7 @@
 
         }
     }
-    
+
 </script>
 
 @endsection
