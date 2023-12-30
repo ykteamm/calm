@@ -193,31 +193,31 @@ use Illuminate\Support\Facades\DB;
                                                                 <div class="relative">
                                                                     <div class="coursesCard__image overflow-hidden rounded-8">
                                                                     @if ($f->meditator->image)
-                                                                        <img class="w-1/1" src="{{asset($f->meditator->image->path)}}" alt="image">
+                                                                        <img class="" src="{{asset($f->meditator->image->path)}}" alt="image">
                                                                     @endif
                                                                         <div class="coursesCard__image_overlay rounded-8"></div>
                                                                     </div>
-                                                                    <div class="d-flex justify-between py-10 px-10 absolute-full-center z-3">
+                                                                    <div class="d-flex py-10 px-10 justify-between absolute-full-center z-3">
 
+                                                                        <div>
+                                                                                <div class="px-15 rounded-200 bg-purple-1">
+                                                                                    <span class="text-11 lh-1 uppercase fw-500 text-white">{{__('common.popular')}}</span>
+                                                                                </div>
+
+                                                                        </div>
                                                                         <div>
                                                                             <div class="px-15 rounded-200 bg-purple-1">
                                                                                 <span class="text-11 lh-1 uppercase fw-500 text-white">{{__('common.popular')}}</span>
                                                                             </div>
-                                                                        </div>
 
-                                                                        <div>
-                                                                            <div class="px-15 rounded-200 bg-green-1">
-                                                                                <span class="text-11 lh-1 uppercase fw-500 text-dark-1">Best sellers</span>
-                                                                            </div>
-                                                                        </div>
-
+                                                                    </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="h-100 pt-15">
-                                                                    <div class="text-17 lh-15 fw-500 text-dark-1 mt-10 text-color-white-for">{{$f->translation->name}}</div>
+                                                                    <div class="text-17 lh-15 fw-500 text-dark-1 mt-10 text-color-white-for">{{$f->meditator->firstname}} {{$f->meditator->lastname}}</div>
                                                                     <div class="d-flex x-gap-10 items-center pt-10">
                                                                         <div class="d-flex items-center">
-                                                                            <div class="text-14 lh-1 text-color-white-for">{{$f->meditator->firstname}} {{$f->meditator->lastname}}</div>
+                                                                            <div class="text-14 lh-1 text-color-white-for">{{$f->translation->name}} {{$f->lessons[0]->translation->name}}</div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -276,6 +276,18 @@ use Illuminate\Support\Facades\DB;
                                                                             <div>
                                                                                 <div class="px-15 rounded-200 bg-purple-1">
                                                                                     <span class="text-11 lh-1 uppercase fw-500 text-white">{{$category->translation->name}}</span>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div>
+                                                                                <div class="px-15 rounded-200 bg-green-1">
+                                                                                    <span class="text-11 lh-1 uppercase fw-500 text-dark-1">Best sellers</span>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div>
+                                                                                <div class="px-15 rounded-200 bg-green-1">
+                                                                                    <span class="text-11 lh-1 uppercase fw-500 text-dark-1">Best sellers</span>
                                                                                 </div>
                                                                             </div>
 

@@ -22,6 +22,14 @@ class LessonSeeder extends Seeder
      */
     public function run()
     {
+
+        $nameser = [
+            '8-mart',
+            'Yangi yil',
+            'Ustzolar kuni',
+            'Mustaqillik',
+        ];
+
         $meditators = Meditator::all();
         foreach ($meditators as $meditator) {
             foreach ($meditator->meditations as $meditation) {
@@ -31,7 +39,7 @@ class LessonSeeder extends Seeder
                 $langs = Language::all();
                 foreach ($langs as $lang) {
                     LessonTranslation::create([
-                        'name' => Str::random(10),
+                        'name' => $nameser[rand(0,3)],
                         'object_id' => $lesson->id,
                         'language_code' => $lang->code
                     ]);

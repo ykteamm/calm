@@ -16,35 +16,35 @@ class MeditatorSeeder extends Seeder
     {
         $meditators = [
             [
-                'firstname' => "Cristiano",
-                'lastname' => "Ronaldo",
+                'firstname' => "Tursunxojayev",
+                'lastname' => "Azamatillo",
                 'avatar' => 'meditators/cristiano-avatar.jpeg',
                 'image' => 'meditators/cristiano-image.webp'
             ],
             [
-                'firstname' => "Lebron",
-                'lastname' => "James",
+                'firstname' => "Salimov",
+                'lastname' => "Saidabror",
                 'avatar' => 'meditators/lebron-avatar.jpg',
                 'image' => 'meditators/lebron-image.jpeg'
             ],
-            [
-                'firstname' => "Andrew",
-                'lastname' => "Tate",
-                'avatar' => 'meditators/andrew-avatar.webp',
-                'image' => 'meditators/andrew-image.webp'
-            ],
-            [
-                'firstname' => "Jack",
-                'lastname' => "Ma",
-                'avatar' => 'meditators/jack-avatar.jpg',
-                'image' => 'meditators/jack-image.webp'
-            ],
-            [
-                'firstname' => "Elon",
-                'lastname' => "Musk",
-                'avatar' => 'meditators/elon-avatar.jpg',
-                'image' => 'meditators/elon-image.jpg'
-            ],
+            // [
+            //     'firstname' => "Andrew",
+            //     'lastname' => "Tate",
+            //     'avatar' => 'meditators/andrew-avatar.webp',
+            //     'image' => 'meditators/andrew-image.webp'
+            // ],
+            // [
+            //     'firstname' => "Jack",
+            //     'lastname' => "Ma",
+            //     'avatar' => 'meditators/jack-avatar.jpg',
+            //     'image' => 'meditators/jack-image.webp'
+            // ],
+            // [
+            //     'firstname' => "Elon",
+            //     'lastname' => "Musk",
+            //     'avatar' => 'meditators/elon-avatar.jpg',
+            //     'image' => 'meditators/elon-image.jpg'
+            // ],
         ];
 
         foreach ($meditators as $m) {

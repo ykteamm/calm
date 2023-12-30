@@ -58,7 +58,7 @@
     justify-content: center;
 }
 .player.open {
-  bottom: 0;
+  bottom: 50px;
 }
 .p-controls-panel {
   width: 90%;

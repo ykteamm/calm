@@ -21,11 +21,18 @@ class MeditationSeeder extends Seeder
     public function run()
     {
         $meditators = Meditator::all();
-        for ($i=0; $i < 10; $i++) { 
+        // for ($i=0; $i < 2; $i++) {
             foreach ($meditators as $meditator) {
-                $this->create($meditator);
+                if ($meditator->id == 1) {
+                    $this->create($meditator);
+
+                } else {
+                    $this->create2($meditator);
+
+                }
+
             }
-        }
+        // }
     }
 
     protected function create($meditator)
@@ -35,15 +42,54 @@ class MeditationSeeder extends Seeder
             'en' => 'Meditation',
             'ru' => 'Медитация'
         ];
-        $meditation = Meditation::create([
-            'meditator_id' => $meditator->id,
-            'category_id' => Category::inRandomOrder()->first()->id
-        ]);
+
+        $nameser = [
+            'Boshlang\'ich Meditaciya'
+        ];
+
+            $meditation = Meditation::create([
+                'meditator_id' => $meditator->id,
+                'category_id' => 1
+            ]);
+        // $meditation = Meditation::create([
+        //     'meditator_id' => $meditator->id,
+        //     'category_id' => Category::inRandomOrder()->first()->id
+        // ]);
         $meditation->usershows()->create(['user_id' => User::first()->id]);
         $langs = Language::all();
-        foreach ($langs as $lang) {
+
+        foreach ($langs as $sd => $lang) {
             MeditationTranslation::create([
-                'name' => $names[$lang->code] . ' ' . Str::random(10) . ' ' . $lang->code,
+                'name' => $nameser[0],
+                'object_id' => $meditation->id,
+                'language_code' => $lang->code
+            ]);
+        }
+    }
+    protected function create2($meditator)
+    {
+        $names = [
+            'uz' => 'Meditatsiya',
+            'en' => 'Meditation',
+            'ru' => 'Медитация'
+        ];
+
+        $nameser = [
+            'Tirishqoqlik va Iroda Sirlari'
+        ];
+
+
+            $meditation = Meditation::create([
+                'meditator_id' => $meditator->id,
+                'category_id' => 3
+            ]);
+
+        $meditation->usershows()->create(['user_id' => User::first()->id]);
+        $langs = Language::all();
+
+        foreach ($langs as $sd => $lang) {
+            MeditationTranslation::create([
+                'name' => $nameser[0],
                 'object_id' => $meditation->id,
                 'language_code' => $lang->code
             ]);

@@ -232,9 +232,7 @@ display: none !important;
                                                     @method('put')
                                                     <div class="col-12">
                                                         <label>Mukofotinga rahmat ayting</label>
-                                                        <textarea class="form-control" rows="4" cols="200">
-                                                            {{$reward->feelings}}
-                                                        </textarea>
+                                                        <textarea class="editor form-control" name="feelings" rows="10" cols="50">{{$reward->feelings}}</textarea>
                                                     </div>
                                                     <div class="col-12 mt-10" style="text-align: center">
                                                         <button type="submit" class="btn btn-primary text-white">Saqlash</button>
@@ -267,8 +265,16 @@ display: none !important;
 @endsection
 @section('script')
 <script src="{{ asset('calm/js/jquery-3.3.1.min.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js" integrity="sha512-BmM0/BQlqh02wuK5Gz9yrbe7VyIVwOzD1o40yi1IsTjriX/NGF37NyXHfmFzIlMmoSIBXgqDiG1VNU6kB5dBbA==" crossorigin="anonymous"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script>
+    tinymce.init({
+      selector: 'textarea.editor',
+    });
+  </script>
 <script>
     $(document).ready( function() {
         $(document).on('change', '.btn-file :file', function() {
