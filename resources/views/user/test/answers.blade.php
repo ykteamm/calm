@@ -31,12 +31,12 @@
                                 <div class="px-15 py-15 text-center bg-white">
                                     @if ($ball >= 5)
                                     <h4 class="text-17 lh-15 fw-500 font_family_a">
-                                        Sizning ruhiyatingizda buzilishlar mavjud. Bu tanangizdagi yetishmovchiliklar, surunkali kasalliklar, kuchli stresslar yoki ruhiy travmalar sababli qolgan bo’lishi mumkin. Ruhiy holatni yaxshilash uchun avvalo organizmni yetishmagan vitamin va minerallar bilan to’yintirish, surunkali kasalliklarni davolash, stresslar va ruhiy travmalardan halos bo’lish ucbun esa meditatsiyalar, ruhiyat mashqali bilan shug’ullanishingiz lozim.
+                                        Sizning ruhiyatingizda buzilishlar mavjud. Bu tanangizdagi yetishmovchiliklar, surunkali kasalliklar, kuchli stresslar yoki ruhiy travmalar sababli qolgan bo’lishi mumkin. Ruhiy holatni yaxshilash uchun avvalo organizmni yetishmagan vitamin va minerallar bilan to’yintirish, surunkali kasalliklarni davolash, stresslar va ruhiy travmalardan halos bo’lish uchun esa meditatsiyalar, ruhiyat mashqlari bilan shug’ullanishingiz lozim.
                                     </h4>
 
                                     @elseif($ball < 5 && $ball > 1)
                                     <h4 class="text-17 lh-15 fw-500 font_family_a">
-                                        Sizning ruhiy holatingiz qoniqarli holatda. Sog’lom fikr va qalb muvozanatiga erishish, minnatdorchilikni, baxtni his qilish uchun meditatsiyalar qilishni, organizmni yetishmayotgan mahsulotlari bilan to’ldirishni tavsiya etamiz. Shunda siz to’laqonli sog’lom ruhiyat egasi bo’la olasiz.
+                                        Sizning ruhiy holatingiz qoniqarli holatda. Sog’lom fikr va qalb muvozanatiga erishish, minnatdorchilikni, baxtni his qilish uchun meditatsiyalar qilishni, organizmni yetishmayotgan mahsulotlar bilan to’ldirishni tavsiya etamiz. Shunda siz to’laqonli sog’lom ruhiyat egasi bo’la olasiz.
                                     </h4>
                                     @elseif($ball < 5 && $ball > 1)
                                     <h4 class="text-17 lh-15 fw-500 font_family_a">

@@ -3,7 +3,7 @@
 <div class="content-wrapper js-content-wrapper">
     <div class="dashboard -home-9 px-0 js-dashboard-home-9">
     @include('user.layouts.sidebar')
-      <div class="dashboard__main mt-0">
+      <div class="dashboard__main mt-0 mb-10">
         <div class="dashboard__content pt-0 px-15 pb-0" style="padding-left: 0 !important; position: relative;background: linear-gradient(90deg, #162a39, #194d75);border-radius: 0;overflow: hidden;">
 
             <div id="landscapeVideoTest" style="position: relative; z-index: 2; background: linear-gradient(90deg, #162a39, #194d75);color: #f1f1f1; width: 100%;height: 900px;padding: 20px;">
@@ -25,7 +25,7 @@
                 <div class="container pt-40 mp-80" style="position: relative; z-index: 5;">
                     <div class="col-auto">
                         <h1 class="text-30 text-color-white lh-12 fw-700 font_family_a">
-                            Scenes
+                            Ovoz
                         </h1>
                         <h1>
                             <input type="range" class="volume" id="volume_audio" value="0" maxlength="100">
@@ -33,9 +33,9 @@
                     </div>
                 </div>
 
-                <section class="layout-pb-lg" style="position: relative; z-index: 6">
-                    <div class="container">
-                        <div class="row y-gap-30 pt-60">
+                <section class="layout-pb-lg " style="position: relative; z-index: 6">
+                    <div class="container ">
+                        <div class="row y-gap-30 pt-10">
                             @foreach ($landscapes as $item)
                                 <div class="col-lg-3 col-md-6" style="cursor: pointer;">
                                     <div onclick="landscapeAudio({{$item}})" id="playBtn" data-anim-child="slide-left delay-2" class="blogCard -type-1 rounded-8 border-light shadow-1 overflow-hidden is-in-view">
@@ -46,7 +46,7 @@
                                                 <img class="img-ratio" src="../calm/img/home-3/blog/img.png" alt="image">
                                             @endif
                                         </div>
-                                        <div class="px-30 py-30 bg-white">
+                                        <div class="px-10 py-10 bg-white" style="text-align: center">
                                             <h4 class="text-17 lh-15 fw-500 font_family_a">{{$item->name}}</h4>
                                         </div>
 

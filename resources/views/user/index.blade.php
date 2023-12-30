@@ -193,7 +193,7 @@ use Illuminate\Support\Facades\DB;
                                                                 <div class="relative">
                                                                     <div class="coursesCard__image overflow-hidden rounded-8">
                                                                     @if ($f->meditator->image)
-                                                                        <img class="" src="{{asset($f->meditator->image->path)}}" alt="image">
+                                                                        {{-- <img class="" src="{{asset($f->lessons->image->path)}}" alt="image"> --}}
                                                                     @endif
                                                                         <div class="coursesCard__image_overlay rounded-8"></div>
                                                                     </div>
@@ -217,7 +217,7 @@ use Illuminate\Support\Facades\DB;
                                                                     <div class="text-17 lh-15 fw-500 text-dark-1 mt-10 text-color-white-for">{{$f->meditator->firstname}} {{$f->meditator->lastname}}</div>
                                                                     <div class="d-flex x-gap-10 items-center pt-10">
                                                                         <div class="d-flex items-center">
-                                                                            <div class="text-14 lh-1 text-color-white-for">{{$f->translation->name}} {{$f->lessons[0]->translation->name}}</div>
+                                                                            {{-- <div class="text-14 lh-1 text-color-white-for">{{$f->translation->name}} {{$f->lessons[0]->translation->name}}</div> --}}
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -260,15 +260,16 @@ use Illuminate\Support\Facades\DB;
                                             <div class="overflow-hidden js-section-slider" data-gap="30" data-slider-cols="xl-4 lg-3 md-2 sm-2">
                                                 <div class="swiper-wrapper">
                                                     @foreach ($category->meditations as $g => $meditation)
-                                                        @foreach ($meditation->lessons as $lesson)
+                                                        @foreach ($meditation->lessons as $key => $lesson)
                                                             <div class="swiper-slide" style="position: relative">
                                                                 @if ($lesson->block)
-                                                                    <div class="d-flex align-items-center justify-content-center rounded" style="top:0;bottom:0;left:0;right:0;background: #0559f7cf;position: absolute;z-index:200">
+                                                                    <div class="d-flex align-items-center justify-content-center rounded" style="top:0;bottom:0;left:0;right:0;position: absolute;z-index:200">
                                                                         <img src="{{asset('calm/lock.png')}}" alt="">
                                                                     </div>
                                                                 @endif
                                                                 <div data-anim-child="slide-up delay-2">
-                                                                    <a href="{{route('lesson.user.show', ['lesson' => $lesson->id])}}" class="coursesCard -type-1 ">
+
+                                                                    <a  @if ($lesson->block) @else href="{{route('lesson.user.show', ['lesson' => $lesson->id])}}" @endif class="coursesCard -type-1 ">
                                                                         <div class="relative">
                                                                             <div class="coursesCard__image overflow-hidden rounded-8">
                                                                             @if ($lesson->image)
@@ -280,31 +281,25 @@ use Illuminate\Support\Facades\DB;
 
                                                                                 <div>
                                                                                     <div class="px-15 rounded-200 bg-purple-1">
-                                                                                        <span class="text-11 lh-1 uppercase fw-500 text-white">{{$category->translation->name}}</span>
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                {{-- <div>
-                                                                                    <div class="px-15 rounded-200 bg-green-1">
-                                                                                        <span class="text-11 lh-1 uppercase fw-500 text-dark-1">{{$meditation->translation->name}}</span>
+                                                                                        <span class="text-11 lh-1 fw-500 text-white">{{$key+1}}-kun</span>
                                                                                     </div>
                                                                                 </div>
 
                                                                                 <div>
-                                                                                    <div class="px-15 rounded-200 bg-green-1">
-                                                                                        <span class="text-11 lh-1 uppercase fw-500 text-dark-1">{{$lesson->translation->name}}</span>
+                                                                                    <div class="px-15 rounded-200 bg-purple-2">
+                                                                                        <span class="text-11 lh-1 fw-500" style="color: black;">11 min</span>
                                                                                     </div>
-                                                                                </div> --}}
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="h-100 pt-15">
                                                                             <div class="text-17 lh-15 fw-500 text-dark-1 mt-10 text-color-white-for">{{$meditation->translation->name}}</div>
                                                                             <div class="text-17 lh-15 fw-500 text-dark-1 mt-10 text-color-white-for">{{$lesson->translation->name}}</div>
-                                                                            <div class="d-flex x-gap-10 items-center pt-10">
+                                                                            {{-- <div class="d-flex x-gap-10 items-center pt-10">
                                                                                 <div class="d-flex items-center">
                                                                                     <div class="text-14 lh-1 text-color-white-for">{{$meditation->meditator->firstname}} {{$meditation->meditator->lastname}}</div>
                                                                                 </div>
-                                                                            </div>
+                                                                            </div> --}}
                                                                         </div>
                                                                     </a>
                                                                 </div>

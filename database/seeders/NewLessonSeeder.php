@@ -30,12 +30,21 @@ class NewLessonSeeder extends Seeder
             'Mustaqillik',
         ];
 
-        $meditators = Meditator::all();
-        foreach ($meditators as $meditator) {
-            foreach ($meditator->meditations as $meditation) {
-                for ($i=0; $i < 5; $i++) {
+        $medi = [
+            'Katta g\'oya',
+            'Zamin tanlash',
+            'Hayyollardan qutulish',
+            'Ichki ravonlik',
+            'K\'ozlar katta ochiq',
+            'Kechinmalarni neytrallash',
+        ];
+
+        // $meditators = Meditator::all();
+        // foreach ($meditators as $meditator) {
+            // foreach ($meditator->meditations as $meditation) {
+                for ($i=0; $i < 6; $i++) {
                     $data = [
-                        'meditation_id' => $meditation->id,
+                        'meditation_id' => 1,
                         'daily' => $i + 1,
                         'duration' => 600
                     ];
@@ -46,24 +55,24 @@ class NewLessonSeeder extends Seeder
                     $langs = Language::all();
                     foreach ($langs as $lang) {
                         LessonTranslation::create([
-                            'name' => $nameser[rand(0,3)] . "-$i",
+                            'name' => $medi[$i],
                             'object_id' => $lesson->id,
                             'language_code' => $lang->code
                         ]);
                     }
                     $lesson->audio()->create([
-                        'path' => "lessons/" . strtolower($meditator->firstname) . '.mp3',
+                        'path' => 'lessons/jack.mp3',
                         'info' => '[]',
                         'type' => Lesson::AUDIO
                     ]);
-    
+
                     $lesson->image()->create([
-                        'path' => "calm/1.jpg",
+                        'path' => "lesson/ichki.jpg",
                         'info' => '[]',
                         'type' => Lesson::IMAGE
                     ]);
                 }
-            }
-        }
+            // }
+        // }
     }
 }

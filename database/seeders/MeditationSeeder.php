@@ -25,10 +25,8 @@ class MeditationSeeder extends Seeder
             foreach ($meditators as $meditator) {
                 if ($meditator->id == 1) {
                     $this->create($meditator);
-
-                } else {
                     $this->create2($meditator);
-
+                    $this->create3($meditator);
                 }
 
             }
@@ -44,7 +42,7 @@ class MeditationSeeder extends Seeder
         ];
 
         $nameser = [
-            'Boshlang\'ich Meditaciya'
+            'Boshlang\'ich Meditatsiya'
         ];
 
             $meditation = Meditation::create([
@@ -76,6 +74,35 @@ class MeditationSeeder extends Seeder
 
         $nameser = [
             'Tirishqoqlik va Iroda Sirlari'
+        ];
+
+
+            $meditation = Meditation::create([
+                'meditator_id' => $meditator->id,
+                'category_id' => 3
+            ]);
+
+        $meditation->usershows()->create(['user_id' => User::first()->id]);
+        $langs = Language::all();
+
+        foreach ($langs as $sd => $lang) {
+            MeditationTranslation::create([
+                'name' => $nameser[0],
+                'object_id' => $meditation->id,
+                'language_code' => $lang->code
+            ]);
+        }
+    }
+    protected function create3($meditator)
+    {
+        $names = [
+            'uz' => 'Meditatsiya',
+            'en' => 'Meditation',
+            'ru' => 'Медитация'
+        ];
+
+        $nameser = [
+            'Minnatdorchilik va Miraj'
         ];
 
 

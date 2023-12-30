@@ -56,7 +56,9 @@
                       <div onclick="playerOpenClose({{$lesson->audio}}, {{$medidation->lessons}})" class="d-flex justify-between py-8 mb-40" style="background: #fff;border-radius:20px;width:100%;margin: 30px 0;cursor: pointer">
                         <div class="d-flex items-center text-dark-1">
                           <div class="icon-heart"></div>
-                          <h2 class="ml-10" >Lesson {{$lesson->translation->name}}</h2>
+                          <h5 class="ml-10" >
+                            <i class="fas fa-play"></i>
+                            {{$lesson->translation->name}}</h5>
                         </div>
                         <div class="text-dark-1">{{2}} m</div>
                       </div>

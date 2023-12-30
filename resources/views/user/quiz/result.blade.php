@@ -113,14 +113,14 @@
                                                   <h6 class="text-white">{{$steroid->chart}}%</h6>
                                                 </button>
                                               </div>
-                                              <div class="btn btn-secondary d-flex justify-content-between mt-1">
+                                              {{-- <div class="btn btn-secondary d-flex justify-content-between mt-1">
                                                 <div>
                                                   O'rtacha holatda
                                                 </div>
                                                 <button class="btn btn-success btn-sm">
                                                   <h6 class="text-white">{{$steroid->avg}}%</h6>
                                                 </button>
-                                              </div>
+                                              </div> --}}
                                             </div>
                                             <div class="card-footer border-0">
                                               <div>

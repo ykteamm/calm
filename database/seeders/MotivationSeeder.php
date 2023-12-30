@@ -19,10 +19,10 @@ class MotivationSeeder extends Seeder
         $langs = Language::all();
         $motivations = [
             'uz' => [
-                "Cho'qqiga chiqishni hohlagan odam qo'li shilinishiga tayyor turishi kerak", 
-                "Hech qachon oddiy hayot tarzidan uyalma", 
-                "Odamlar nima deydi? Ha albatta biron nima deydi. Qilsang ham qilmasang ham",
-                "Hayot bugundir. Hayotga real qara"
+                "Hayot uyqudir, o‘limla uyg‘onur inson. Sen shoshil, o‘lmasdan avval uyg‘on",
+                "Do‘st deb achchiq gapirganga emas, achchiqni shirin gapirganga aytiladi",
+                "Har holni xayr, har kechani qadr, har kelganni Hizr bil",
+                "Shamdek yosh to‘k, ko‘ngil uying charog‘on bo‘lsin"
             ],
             'en' => [
                 "He who wants to climb to the top must be ready to get his hands dirty.",

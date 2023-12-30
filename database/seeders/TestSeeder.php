@@ -30,7 +30,7 @@ class TestSeeder extends Seeder
                 "Jinsiy tomonlama muammolar bormi, o'zingizga seziladimi?",
                 "Boshlagan ishingizni oxiriga yetkazmaslik kuzatiladimi?",
                 "Yangi rejalar tuzishga qiyinchilik, tuzilganda ham unga hoxish topa olmaslik kuzatiladimi?",
-                "Atrofdagilar oldida fikringizni to'liq yetkazib berishga uyalaizmi?",
+                "Atrofdagilar oldida fikringizni to'liq yetkazib berishga uyalasizmi?",
                 "Tashqi ko'rinishingiz sizni qoniqtirmaslik holati kuzatiladimi?",
                 "Qilgan ishlaringiz yoki aytgan gaplaringizni eslab afsuslanasizmi?",
                 "Charchagan bo'lsangiz ham yotishiz bilan uxlab qololmaslik muammosi bormi sizda?",
