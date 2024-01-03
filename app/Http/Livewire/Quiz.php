@@ -157,12 +157,26 @@ class Quiz extends Component
                         $package->medicines = ($package->medicines()->with('translation')->get()->toArray());
                         unset($package->tests);
                         $packagesData[] = $package->toArray();
+                    }elseif ($percent >= 50 && $percent < 80) {
+                        $package->qty = 1;
+                        $ignores = array_merge($ignores, json_decode($package->ignores));
+                        $package->percent = $percent;
+                        $package->medicines = ($package->medicines()->with('translation')->get()->toArray());
+                        unset($package->tests);
+                        $packagesData[] = $package->toArray();
                     }
                     $asd[$package->id] = $percent;
 
                 }elseif($package->id == 2)
                 {
                     if ($percent < 50) {
+                        $package->qty = 1;
+                        $ignores = array_merge($ignores, json_decode($package->ignores));
+                        $package->percent = $percent;
+                        $package->medicines = ($package->medicines()->with('translation')->get()->toArray());
+                        unset($package->tests);
+                        $packagesData[] = $package->toArray();
+                    }elseif ($percent >= 50 && $percent < 80) {
                         $package->qty = 1;
                         $ignores = array_merge($ignores, json_decode($package->ignores));
                         $package->percent = $percent;

@@ -153,7 +153,28 @@
                                         <div class="col-md-12">
                                             <div class="card shadow border-0" style="margin-bottom:20px">
                                                 <div style="padding:25px;" class="card-header bg-transparent border-0 d-flex justify-content-between">
+                                                    @if ($package->id == 1)
+
+                                                        @if ($package->percent < 50)
+                                                            <h1 style="color: #127cba;font-size:30px" class="py-3">{{$package->translation->name}} {{$package->qty}}x</h1>
+                                                        @endif
+
+                                                        @if ($package->percent >= 50 && $package->percent < 80)
+                                                            <h1 style="color: #127cba;font-size:30px" class="py-3">Yengil {{$package->translation->name}} {{$package->qty}}x</h1>
+                                                        @endif
+
+                                                    @elseif($package->id == 2)
+                                                        @if ($package->percent < 50)
+                                                        <h1 style="color: #127cba;font-size:30px" class="py-3">{{$package->translation->name}} {{$package->qty}}x</h1>
+                                                        @endif
+
+                                                        @if ($package->percent >= 50 && $package->percent < 80)
+                                                            <h1 style="color: #127cba;font-size:30px" class="py-3">Yengil {{$package->translation->name}} {{$package->qty}}x</h1>
+                                                        @endif
+                                                    @else
                                                     <h1 style="color: #127cba;font-size:30px" class="py-3">{{$package->translation->name}} {{$package->qty}}x</h1>
+
+                                                    @endif
                                                     <span id="resultHeaderLogo{{$i}}">
                                                         <img style="width: 40px" src="https://thesis-shopify.cdn.prismic.io/thesis-shopify/aa82fd19-1bd4-45c9-82be-b43526730783_Clarity_blue.svg" alt=" Image " data-src="https://thesis-shopify.cdn.prismic.io/thesis-shopify/aa82fd19-1bd4-45c9-82be-b43526730783_Clarity_blue.svg">
                                                     </span>
