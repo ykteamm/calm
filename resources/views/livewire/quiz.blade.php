@@ -30,7 +30,7 @@
             </h4>
             <div class="d-flex flex-column row" style="margin-top: 40px">
                 @foreach ($question->answers as $answ)
-                    <button wire:click="select({{$answ}})" class="mb-4 offset-3 col-6 select-btn"
+                    <button wire:click="select({{$answ}})" onclick="asd({{$answ->id}})" id="asdasd{{$answ->id}}" class="mb-4 offset-3 col-6 select-btn"
                     style="color: #1d4d57;height:50px;
                         @if($answ->id == getProp($answer, 'id')) background-color: #3e646022 @endif;
                         @if($answ->id == getProp($answer, 'id')) border:1px solid #1d4d57 @endif;
@@ -41,13 +41,22 @@
             </div>
         </div>
     @endif
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        function asd(id)
+        {
+            $(`#asdasd${id}`).css('border','1px solid #1d4d57');
+            $(`#asdasd${id}`).css('background-color','#3e646022');
+            console.log(3232);
+        }
+    </script>
     <style>
         .select-btn{
             background-color: #fff;
         }
-        .select-btn:hover {
+        /* .select-btn:hover {
             border: 1px solid #1d4d57;
             background-color: #3e646022;
-        }
+        } */
     </style>
 </div>

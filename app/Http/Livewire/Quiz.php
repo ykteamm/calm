@@ -92,7 +92,7 @@ class Quiz extends Component
             $chartSum += $value;
           }
           $result = round($sum / 100);
-          $chart = round($chartSum / $i);
+        //   $chart = round($chartSum / $i);
           $info = Steroidinfo::where('steroid_id', $steroid->id)
             ->where('min', '<=', $result)
             ->where('max', '>=', $result)
@@ -101,7 +101,7 @@ class Quiz extends Component
           $steroid = $steroid->toArray();
           $steroid['info'] = $info->toArray();
           $steroid['result'] = $result;
-          $steroid['chart'] = $chart;
+          $steroid['chart'] = $result;
           $steroidsData[] = $steroid;
         }
 
@@ -324,6 +324,10 @@ class Quiz extends Component
         }
     }
 
+    public function test()
+    {
+
+    }
     public function render()
     {
         return view('livewire.quiz');
