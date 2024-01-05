@@ -182,7 +182,7 @@
                                                         <button type="button" class="btn-close"  aria-label="Close"></button>
                                                     </span>
                                                 </div>
-                                                {{-- <div id="resultBody{{$i}}" style="padding:25px;" class="card-body pt-0">
+                                                <div id="resultBody{{$i}}" style="padding:25px;" class="card-body pt-0">
                                                     <ul style="padding-left: 20px;font-size:17px;">
                                                       @if ($package->id == 1)
                                                         <li style="list-style-type: circle">Tez uxlash</li>
@@ -235,8 +235,8 @@
                                                             <img src="https://images.prismic.io/thesis-shopify/f95908fa-3557-4515-8d2b-68785b433984_Alpha+GPC+and+Caffeine+VS+Placebo+Chart.jpg?auto=compress,format&w=1946" alt="image">
                                                         @endif
                                                     </div>
-                                                </div> --}}
-                                                {{-- <div id="resultIngridient{{$i}}" style="padding:25px;display:none" class="card-body pt-0">
+                                                </div>
+                                                <div id="resultIngridient{{$i}}" style="padding:25px;display:none" class="card-body pt-0">
                                                     <div style="letter-spacing: .01rem;font-weight:402;color:#1e1e1e;margin-bottom:0.5rem">
                                                         Tarkib:
                                                     </div>
@@ -245,8 +245,8 @@
                                                             <li style="list-style-type: circle">{{$item->translation->name}}</li>
                                                         @endforeach
                                                     </ul>
-                                                </div> --}}
-                                                {{-- <div onclick="resultCollapser({{$i}})" class="card-footer p-3 bg-transparent d-flex justify-content-between align-items-center pointer">
+                                                </div>
+                                                <div onclick="resultCollapser({{$i}})" class="card-footer p-3 bg-transparent d-flex justify-content-between align-items-center pointer">
                                                     <div id="resultCollapse{{$i}}">
                                                         Tarkibni ko'rish
                                                     </div>
@@ -259,7 +259,7 @@
                                                     <div id="resultCollapseMinus{{$i}}" style="display: none;font-size:25px;">
                                                         -
                                                     </div>
-                                                </div> --}}
+                                                </div>
                                             </div>
                                         </div>
                                     @endforeach

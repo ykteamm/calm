@@ -74,6 +74,8 @@ class MainController extends Controller
             $recentlyViewedMeditations = $this->meditationService->recentlyViewed();
             $meditations = $this->categoryService->getMeditationsAll();
 
+            // dd($meditations[2]->meditations);
+
             return view("user.index",[
                 'user_emoj_have' => $user_emoj_have,
                 'emoj_have' => $emoj_have,
