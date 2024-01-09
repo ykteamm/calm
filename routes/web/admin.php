@@ -37,6 +37,9 @@ Route::post('lesson-audio-update/{lesson}/{audio}', [LessonController::class, 'a
 Route::get('lesson-audio-update/{lesson}/{audio}', [LessonController::class, 'audioEdit'])->name('lesson-audio-update-view');
 Route::get('lesson-audio-download/{lesson}/{audio}', [LessonController::class, 'audioDownload'])->name('lesson-audio-download');
 Route::delete('lesson-audio-delete/{lesson}/{audio}', [LessonController::class, 'audioDelete'])->name('lesson-audio-delete');
+Route::get('lesson-image/{lesson}', [LessonController::class, 'image'])->name('lesson-image-view');
+Route::post('lesson-image-upload/{lesson}', [LessonController::class, 'upload'])->name('lesson-image-upload');
+Route::post('lesson-image-reupload/{lesson}/{asset}', [LessonController::class, 'reupload'])->name('lesson-image-reupload');
 Route::resource('motivation', MotivationController::class);
 Route::resource('gratitude', GratitudeController::class);
 Route::resource('issue', IssueController::class);

@@ -19,5 +19,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('user-image-unupload/{asset}', [UserController::class, 'unupload'])->name('user-image-unupload');
     Route::get('user-image-view', [UserController::class, 'image'])->name('user-image-view');
     Route::get('lesson/{lesson}', [LessonController::class, 'lessonUserShow'])->name('lesson.user.show');
-    Route::get('meditation/{meditation}', [MeditationController::class, 'show'])->name('meditation.show');
+    Route::get('meditation/{meditation}', [MeditationController::class, 'play'])->name('meditation.show');
 });

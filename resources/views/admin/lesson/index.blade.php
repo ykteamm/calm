@@ -30,6 +30,10 @@
                 <a href="{{route('admin.lesson.edit', ['lesson' => $item->id])}}" class="text-14 text-purple-1 underline">Update</a>
               </div>
               <div class="d-flex items-center">
+                <i class="icon-online-learning text-15 mr-10"></i>
+                <a href="{{route('admin.lesson-image-view', ['lesson' => $item->id])}}" class="text-14 text-purple-1 underline">Image</a>
+              </div>
+              <div class="d-flex items-center">
                 <i class="icon-play text-15 mr-10"></i>
                 <form action="{{route('admin.lesson.destroy', ['lesson' => $item->id])}}" method="POST">
                   @csrf

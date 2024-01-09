@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Services\LessonService;
 use App\Http\Requests\IndexRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AssetRequest;
 use App\Http\Requests\LessonUpsertRequest;
 use App\Http\Requests\AudioUploadRequest;
+use App\Models\Lesson;
 use App\Services\LanguageService;
 use App\Services\MeditationService;
 
@@ -28,7 +30,9 @@ class LessonController extends Controller
 
     public function audioStore(AudioUploadRequest $audioUploadRequest, $lesson)
     {
-        return $this->service->storeAsset($lesson, $audioUploadRequest->validated(), true)
+        $data = $audioUploadRequest->validated();
+        $data['type'] = Lesson::AUDIO;
+        return $this->service->storeAsset($lesson, $data, true)
             ->redirect('admin.lesson.index');
     }
     
@@ -40,7 +44,9 @@ class LessonController extends Controller
 
     public function audioUpdate(AudioUploadRequest $audioUploadRequest, $lesson, $audio)
     {
-        return $this->service->updateAsset($lesson, $audio, $audioUploadRequest->validated(), true)
+        $data = $audioUploadRequest->validated();
+        $data['type'] = Lesson::AUDIO;
+        return $this->service->updateAsset($lesson, $audio, $data, true)
             ->redirect('admin.lesson.index');
     }
 
@@ -61,6 +67,29 @@ class LessonController extends Controller
         return $this->service->downloadAsset($lesson, $audio, true);
     }
 
+    public function image($lesson)
+    {
+        $this->service->willParseToRelation = ['image'];
+        $lesson = $this->service->show($lesson);
+        return view('admin.lesson.image', compact('lesson'));
+    }
+
+    public function upload(AssetRequest $assetRequest, $lesson)
+    {
+        $data = $assetRequest->validated();
+        $data['type'] = Lesson::IMAGE;
+        return $this->service->storeAsset($lesson, $data, true)
+            ->redirect('admin.lesson.index');
+    }
+
+    public function reupload(AssetRequest $assetRequest, $lesson, $asset)
+    {
+        $data = $assetRequest->validated();
+        $data['type'] = Lesson::IMAGE;
+        return $this->service->updateAsset($lesson, $asset, $data, true)
+            ->redirect('admin.lesson.index');
+    }
+
     public function index(IndexRequest $indexRequest)
     {
         $this->service->willParseToRelation = ['translation'];
@@ -70,8 +99,7 @@ class LessonController extends Controller
 
     public function create()
     {
-        $this->meditationService->willParseToRelation = ['translation'];
-        $meditations = $this->meditationService->getList([]);
+        $meditations = $this->meditationService->forLesson();
         $langs = $this->languageService->getList([]);
         return view('admin.lesson.create', compact('meditations', 'langs'));
     }
@@ -93,8 +121,8 @@ class LessonController extends Controller
                 ]
             ]
         ];
-        $this->service->markAsViewedLesson($id);
         $lesson = $this->service->show($id);
+        $this->service->markAsViewedLesson($id);
         return view('user.meditation.lesson-play', compact('lesson'));
     }
 
@@ -109,15 +137,19 @@ class LessonController extends Controller
     {
         $this->meditationService->willParseToRelation = ['translation'];
         $this->service->willParseToRelation = ['audio', 'translation'];
-        $meditations = $this->meditationService->getList([]);
         $langs = $this->languageService->getList([]);
         $lesson = $this->service->show($id);
+        $meditations = $this->meditationService->except($lesson->meditation_id)->getList([]);
         return view('admin.lesson.edit', compact('lesson', 'meditations', 'langs'));
     }
 
     public function update($id, LessonUpsertRequest $upsertRequest)
     {
-        return $this->service->edit($id, $upsertRequest->validated(), true)->redirect('admin.lesson.index');
+        $data = $upsertRequest->validated();
+        if (!isset($data['block'])) {
+            $data['block'] = 0;
+        }
+        return $this->service->edit($id, $data, true)->redirect('admin.lesson.index');
     }
 
     public function destroy($id)

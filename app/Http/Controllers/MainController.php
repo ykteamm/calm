@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\MeditationGroupEnum;
 use App\Models\Feeling;
 use App\Services\CategoryService;
 use Illuminate\Http\Request;
@@ -73,7 +74,8 @@ class MainController extends Controller
             $popularMeditations = $this->meditationService->popular();
             $recentlyViewedMeditations = $this->meditationService->recentlyViewed();
             $meditations = $this->categoryService->getMeditationsAll();
-
+            $single = MeditationGroupEnum::SINGLE;
+            // return $meditations;
             // dd($meditations[2]->meditations);
 
             return view("user.index",[
@@ -89,6 +91,7 @@ class MainController extends Controller
                 'popularMeditations' => $popularMeditations,
                 'recentlyViewedMeditations' => $recentlyViewedMeditations,
                 'meditations' => $meditations,
+                'single' => $single
             ]);
         } else {
             return view("user.test.start");

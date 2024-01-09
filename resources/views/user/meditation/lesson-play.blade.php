@@ -1,7 +1,7 @@
 @extends('user.layouts.app')
 @section('user_content')
 <div class="content-wrapper js-content-wrapper">
-   <div class="dashboard -home-9 px-0 js-dashboard-home-9" style="background-image: url('{{asset($lesson->image->path)}}');height:100vh;background-size: cover;background-position: center center;
+   <div class="dashboard -home-9 px-0 js-dashboard-home-9" style="@if ($lesson->image) background-image: url('{{asset($lesson->image->path)}}'); @endif height:100vh;background-size: cover;background-position: center center;
     background-repeat: no-repeat;">
     {{-- <div class="dashboard -home-9 px-0 js-dashboard-home-9" style="background-image: url('https://assets.calm.com/384/9c1d8d0876904827cf12a9cc228ad435.jpeg');height:100vh;background-size: cover;" > --}}
       @include('user.layouts.sidebar')
@@ -31,7 +31,7 @@
                           </div>
                       </div>
                     </div>
-                    <button id="lessonPlayButton" onclick="playerOpenClose({{$lesson->audio}}, {{$lesson->meditation->lessons}})" class="d-none">
+                    <button id="lessonPlayButton" onclick="playerOpenClose({{$lesson}})" class="d-none">
                       {{-- @foreach ($lesson->meditation->lessons as $lesson)
                         <div onclick="playerOpenClose({{$lesson->audio}}, {{$lesson->meditation->lessons}})" class="d-flex justify-between py-8 mb-40" style="background: #fff;border-radius:20px;width:100%;margin: 30px 0;cursor: pointer">
                           <div class="d-flex items-center text-dark-1">
@@ -49,10 +49,10 @@
       </div>
     </div>
   </div>
-  <div class="player">
+  <<div class="player">
     <div class="p-controls-panel">
-      <div class="p-titl" style="color: #fff">
-          {{$lesson->translation->name}}
+      <div class="p-title">
+        1.Calm music
       </div>
       <div class="p-buttons">
           <div class="p-prev-track" onclick="prevTrack()"><i class="fa fa-step-backward fa-1x"></i></div>

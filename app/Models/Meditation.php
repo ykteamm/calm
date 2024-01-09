@@ -17,7 +17,9 @@ class Meditation extends BaseModel
     protected $fillable = [
         'meditator_id',
         'category_id',
-        'views'
+        'views',
+        'type',
+        'group'
     ];
 
     public function meditator()

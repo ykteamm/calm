@@ -36,6 +36,24 @@
                 </select>
               </div>
             </div>
+            <div class="row">
+              <div class="col-6">
+                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Type select</label>
+                <select name="type" id="">
+                  @foreach ($types as $code => $type)
+                    <option value="{{$code}}">{{$type}}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="col-6">
+                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Group select</label>
+                <select name="group" id="">
+                  @foreach ($groups as $code => $type)
+                    <option value="{{$code}}">{{$type}}</option>
+                  @endforeach
+                </select>
+              </div>
+            </div>
             @foreach ($langs as $key => $lang)
                 <div class="col-12">
                     <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Meditation {{$lang->code}}</label>

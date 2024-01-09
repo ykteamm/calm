@@ -12,6 +12,8 @@
       <h4 class="ml-10 text-15 lh-1 fw-500">Name: {{$meditation->translation->name}}</h4>
       <h4 class="ml-10 text-15 lh-1 fw-500">Category: {{$meditation->category->translation->name}}</h4>
       <h4 class="ml-10 text-15 lh-1 fw-500">Meditator: {{$meditation->meditator->firstname}}</h4>
+      <h4 class="ml-10 text-15 lh-1 fw-500">Type: {{$meditation->type}}</h4>
+      <h4 class="ml-10 text-15 lh-1 fw-500">Group: {{$meditation->group}}</h4>
       <h3 class="ml-10 text-15 lh-1 fw-500 pt-5">Lessons</h3>
       @foreach ($meditation->lessons as $lesson)
           <div class="d-flex items-center rounded-16 bg-white -dark-bg-dark-4 p-2 m-3 shadow-4 h-100" style="justify-content:space-between;border: 1px solid rgb(124, 124, 179)">

@@ -2,9 +2,11 @@
 
 namespace App\Services;
 
+use App\Enums\MeditationGroupEnum;
 use App\Models\Meditation;
 use App\Services\BaseService;
 use App\Http\Resources\MeditationResource;
+use Illuminate\Support\Facades\DB;
 
 class MeditationService extends BaseService
 {
@@ -109,5 +111,16 @@ class MeditationService extends BaseService
         ]]))
         ->limit(10);
         return $this->getList($data);
+    }
+
+    public function forLesson()
+    {
+        $this->willParseToRelation = ['translation'];
+        $this->queryClosure = function($q) {
+            $group = MeditationGroupEnum::SINGLE;
+            $q->whereRaw("CASE WHEN meditations.group = $group THEN (SELECT COUNT(*) FROM lessons AS l WHERE l.meditation_id = meditations.id) = 0 ELSE 1=1 END");
+        };
+        $data = $this->getList();
+        return $data;
     }
 }

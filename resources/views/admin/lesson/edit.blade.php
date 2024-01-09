@@ -21,10 +21,25 @@
             <div class="col-12">
               <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Meditation select</label>
               <select name="meditation_id" id="">
+                <option value="{{$lesson->meditation_id}}" selected>{{$lesson->meditation->translation->name}}</option>
                 @foreach ($meditations as $meditation)
                   <option value="{{$meditation->id}}">{{$meditation->translation->name}}</option>
                 @endforeach
               </select>
+            </div>
+            <div class="row">
+              <div class="col-12 col-md-4">
+                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Daily </label>
+                <input name="daily" type="number" value="{{$lesson->daily}}" placeholder="" class="form-control form-control-sm">
+              </div>
+              <div class="col-12 col-md-4">
+                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Duration </label>
+                <input name="duration" type="number" value="{{$lesson->duration}}" placeholder="" class="form-control form-control-sm">
+              </div>
+              <div class="col-12 col-md-4">
+                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Block </label>
+                <input name="block" type="checkbox"  value="1" @if ($lesson->block == 1) checked @endif placeholder="" class="form-check">
+              </div>
             </div>
             @foreach ($langs as $key => $lang)
                 <div class="col-12">

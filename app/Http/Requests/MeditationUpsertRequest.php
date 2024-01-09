@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\MeditationGroupEnum;
+use App\Enums\MeditationTypeEnum;
 use App\Rules\CategoryExists;
 use App\Rules\MeditatorExists;
 use Illuminate\Foundation\Http\FormRequest;
@@ -30,6 +32,8 @@ class MeditationUpsertRequest extends FormRequest
         return [
             'meditator_id' => [$required, new MeditatorExists],
             'category_id' => [$required, new CategoryExists],
+            'type' => [$required, MeditationTypeEnum::in()],
+            'group' => [$required, MeditationGroupEnum::in()],
             'translations' => [$required, 'array'],
             'translations.*' => [$required, 'array'],
             'translations.*.id' => ['nullable'],

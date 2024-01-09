@@ -28,6 +28,9 @@ class LessonUpsertRequest extends FormRequest
         
         return [
             'meditation_id' => [$required, 'string'],
+            'daily' => ['nullable'],
+            'block' => ['nullable'],
+            'duration' => ['nullable'],
             'translations' => [$required, 'array'],
             'translations.*' => [$required, 'array'],
             'translations.*.id' => ['nullable'],

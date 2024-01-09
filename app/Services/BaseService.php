@@ -208,6 +208,28 @@ abstract class BaseService
         }
     }
 
+    public function except($model, $key = 'id')
+    {
+        if(is_object($model)) {
+            if (isset($model->{$key})) {
+                $this->conditions[] = ['id', '<>', $model->{$key}];
+            }
+        } else {
+            $this->conditions[] = ['id', '<>', $model];
+        }
+        return $this;
+    }
+
+    private function completed() 
+    {
+        $this->relations = [];
+        $this->willParseToRelation = [];
+        $this->conditions = [];
+        $this->queryClosure = null;
+        $this->resultClosure = null;
+        $this->query = null;
+    }
+
     public function getList($data = [])
     {
         $this->authorizeMethod(__FUNCTION__);
@@ -225,6 +247,7 @@ abstract class BaseService
         $this->sort();
         $this->specialSort();
         $data = $needPagination ? $this->query->paginate($rows, ['*'], $page) : $this->query->get();
+        $this->completed();
         return $data;
     }
 
@@ -330,6 +353,7 @@ abstract class BaseService
             DB::connection($this->model->connection)->commit();
             $model->refresh();
             $this->setResult($model);
+            $this->completed();
             return $model;
         } catch (\Throwable $throwable) {
             DB::connection($this->model->connection)->rollBack();
@@ -362,7 +386,9 @@ abstract class BaseService
             foreach ($values as $column => $value) {
                 $this->query = $this->query->where($column, $value);
             }
-            return $this->query->first();
+            $data = $this->query->first(); 
+            $this->completed();
+            return $data;
         }
     }
     /**
@@ -373,7 +399,9 @@ abstract class BaseService
         if(!$query) $this->setQuery();
         if ($this->model->hasUuid) $this->id = 'uuid';
         try {
-            return $this->query->where($this->id, '=', $id)->first();
+            $data = $this->query->where($this->id, '=', $id)->first();
+            $this->completed();
+            return $data;
         } catch (QueryException $e) {
             throw new \Error("Please give main operation column name " . static::class . '::$id constructor. Default column is id or check ' . $e->getMessage());
         }
@@ -429,6 +457,7 @@ abstract class BaseService
                 DB::connection($this->model->connection)->commit();
                 $model->refresh();
                 $this->setResult($model);
+                $this->completed();
                 return $this->withResource($model);
             } catch (\Throwable $throwable) {
                 DB::connection($this->model->connection)->rollBack();
@@ -461,6 +490,7 @@ abstract class BaseService
         if ($model) {
             $this->authorizeMethod(__FUNCTION__, $model);
             $this->setResult($model);
+            $this->completed();
             return $model;
         } else {
             $message = 'not_found';
@@ -498,6 +528,7 @@ abstract class BaseService
             if ($this->translation) $model->translations()->delete();
             $this->setResult($model);
             $model->delete();
+            $this->completed();
         } else {
             $message = 'not_found';
             $arr = explode('\\', get_class($this->model));

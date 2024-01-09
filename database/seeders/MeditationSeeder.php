@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Enums\MeditationGroupEnum;
+use App\Enums\MeditationTypeEnum;
 use App\Models\Category;
 use App\Models\Language;
 use App\Models\Meditation;
@@ -9,117 +11,87 @@ use App\Models\MeditationTranslation;
 use App\Models\Meditator;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
 class MeditationSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        $meditators = Meditator::all();
-        // for ($i=0; $i < 2; $i++) {
-            foreach ($meditators as $meditator) {
-                if ($meditator->id == 1) {
-                    $this->create($meditator);
-                    $this->create2($meditator);
-                    $this->create3($meditator);
-                }
+        $meditations = [
+            [
+                'name' => "Boshlang'ich Meditatsiya course",
+                'type' => MeditationTypeEnum::COURSE,
+                'group' => MeditationGroupEnum::MULTIPLE,
+                'category_id' => 1,
+                'meditator_id' => 1
+            ],
+            [
+                'name' => "Tirishqoqlik va Iroda Sirlari course",
+                'type' => MeditationTypeEnum::COURSE,
+                'group' => MeditationGroupEnum::MULTIPLE,
+                'category_id' => 2,
+                'meditator_id' => 1
+            ],
+            [
+                'name' => "Minnatdorchilik va Miraj course",
+                'type' => MeditationTypeEnum::COURSE,
+                'group' => MeditationGroupEnum::MULTIPLE,
+                'category_id' => 3,
+                'meditator_id' => 1
+            ],
+            [
+                'name' => "Ishchanlik course",
+                'type' => MeditationTypeEnum::COURSE,
+                'group' => MeditationGroupEnum::MULTIPLE,
+                'category_id' => 4,
+                'meditator_id' => 1
+            ],
+            [
+                'name' => "Boshlang'ich Meditatsiya MASTERCLASS",
+                'type' => MeditationTypeEnum::MASTERCLASS,
+                'group' => MeditationGroupEnum::SINGLE,
+                'category_id' => 1,
+                'meditator_id' => 1
+            ],
+            [
+                'name' => "Tirishqoqlik va Iroda Sirlari MASTERCLASS",
+                'type' => MeditationTypeEnum::MASTERCLASS,
+                'group' => MeditationGroupEnum::SINGLE,
+                'category_id' => 2,
+                'meditator_id' => 1
+            ],
+            [
+                'name' => "Minnatdorchilik va Miraj MASTERCLASS",
+                'type' => MeditationTypeEnum::MASTERCLASS,
+                'group' => MeditationGroupEnum::SINGLE,
+                'category_id' => 3,
+                'meditator_id' => 1
+            ],
+            [
+                'name' => "Ishchanlik MASTERCLASS",
+                'type' => MeditationTypeEnum::MASTERCLASS,
+                'group' => MeditationGroupEnum::SINGLE,
+                'category_id' => 4,
+                'meditator_id' => 1
+            ]
+        ];
+        foreach ($meditations as $meditation) {
+            $meditationObj = Meditation::create([
+                'meditator_id' => $meditation['meditator_id'],
+                'category_id' => $meditation['category_id'],
+                'type' => $meditation['type'],
+                'group' => $meditation['group']
+            ]);
 
+            $meditationObj->usershows()->create(['user_id' => User::first()->id]);
+            $langs = Language::all();
+
+            foreach ($langs as $lang) {
+                MeditationTranslation::create([
+                    'name' => $meditation['name'],
+                    'object_id' => $meditationObj->id,
+                    'language_code' => $lang->code
+                ]);
             }
-        // }
-    }
-
-    protected function create($meditator)
-    {
-        $names = [
-            'uz' => 'Meditatsiya',
-            'en' => 'Meditation',
-            'ru' => 'Медитация'
-        ];
-
-        $nameser = [
-            'Boshlang\'ich Meditatsiya'
-        ];
-
-            $meditation = Meditation::create([
-                'meditator_id' => $meditator->id,
-                'category_id' => 1
-            ]);
-        // $meditation = Meditation::create([
-        //     'meditator_id' => $meditator->id,
-        //     'category_id' => Category::inRandomOrder()->first()->id
-        // ]);
-        $meditation->usershows()->create(['user_id' => User::first()->id]);
-        $langs = Language::all();
-
-        foreach ($langs as $sd => $lang) {
-            MeditationTranslation::create([
-                'name' => $nameser[0],
-                'object_id' => $meditation->id,
-                'language_code' => $lang->code
-            ]);
-        }
-    }
-    protected function create2($meditator)
-    {
-        $names = [
-            'uz' => 'Meditatsiya',
-            'en' => 'Meditation',
-            'ru' => 'Медитация'
-        ];
-
-        $nameser = [
-            'Tirishqoqlik va Iroda Sirlari'
-        ];
-
-
-            $meditation = Meditation::create([
-                'meditator_id' => $meditator->id,
-                'category_id' => 3
-            ]);
-
-        $meditation->usershows()->create(['user_id' => User::first()->id]);
-        $langs = Language::all();
-
-        foreach ($langs as $sd => $lang) {
-            MeditationTranslation::create([
-                'name' => $nameser[0],
-                'object_id' => $meditation->id,
-                'language_code' => $lang->code
-            ]);
-        }
-    }
-    protected function create3($meditator)
-    {
-        $names = [
-            'uz' => 'Meditatsiya',
-            'en' => 'Meditation',
-            'ru' => 'Медитация'
-        ];
-
-        $nameser = [
-            'Minnatdorchilik va Miraj'
-        ];
-
-
-            $meditation = Meditation::create([
-                'meditator_id' => $meditator->id,
-                'category_id' => 3
-            ]);
-
-        $meditation->usershows()->create(['user_id' => User::first()->id]);
-        $langs = Language::all();
-
-        foreach ($langs as $sd => $lang) {
-            MeditationTranslation::create([
-                'name' => $nameser[0],
-                'object_id' => $meditation->id,
-                'language_code' => $lang->code
-            ]);
         }
     }
 }

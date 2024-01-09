@@ -25,6 +25,20 @@
                 @endforeach
               </select>
             </div>
+            <div class="row">
+              <div class="col-12 col-md-4">
+                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Daily </label>
+                <input name="daily" type="number" placeholder="" class="form-control form-control-sm">
+              </div>
+              <div class="col-12 col-md-4">
+                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Duration </label>
+                <input name="duration" type="number" value="1" placeholder="" class="form-control form-control-sm">
+              </div>
+              <div class="col-12 col-md-4">
+                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Block </label>
+                <input name="block" type="checkbox" value="1" placeholder="" class="form-check">
+              </div>
+            </div>
             @foreach ($langs as $key => $lang)
                 <div class="col-12">
                     <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Lesson {{$lang->code}}</label>

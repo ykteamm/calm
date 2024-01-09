@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\MeditationGroupEnum;
+use App\Enums\MeditationTypeEnum;
 use App\Services\MeditationService;
 use App\Http\Requests\IndexRequest;
 use App\Http\Controllers\Controller;
@@ -67,7 +69,9 @@ class MeditationController extends Controller
         $categories = $this->categoryService->getList([]);
         $meditators = $this->meditatorService->getList([]);
         $langs = $this->languageService->getList([]);
-        return view('admin.meditation.create', compact('categories', 'meditators', 'langs'));
+        $groups = MeditationGroupEnum::list(true);
+        $types = MeditationTypeEnum::list(true);
+        return view('admin.meditation.create', compact('categories', 'meditators', 'langs', 'groups', 'types'));
     }
 
     public function store(MeditationUpsertRequest $upsertRequest)
@@ -79,6 +83,8 @@ class MeditationController extends Controller
     {
         $this->service->willParseToRelation = [
             'lessons' => [
+                fn ($q) => $q->orderBy('block', 'ASC'),
+                'image' => [],
                 'audio' => [], 
                 'translation' => []
             ],
@@ -87,10 +93,16 @@ class MeditationController extends Controller
                 'avatar' => []
             ],
         ];
-        $medidation = $this->service->show($id);
-        // difd($medidation);
-        // return $medidation;
-        return view('user.meditation.play', compact('medidation'));
+        if ($meditation = $this->service->show($id)) {
+            $meditation->type = MeditationTypeEnum::getLabel($meditation->type);
+            $meditation->group = MeditationGroupEnum::getLabel($meditation->group);
+            // difd($meditation);
+            // return $meditation;
+            return view('admin.meditation.show', compact('meditation'));
+        } else {
+            return ['message' => 'NOt found'];
+        }
+
     }
 
     public function edit($id)
@@ -101,7 +113,9 @@ class MeditationController extends Controller
         $categories = $this->categoryService->getList([]);
         $meditators = $this->meditatorService->getList([]);
         $langs = $this->languageService->getList([]);
-        return view('admin.meditation.edit', compact('meditation', 'categories', 'meditators', 'langs'));
+        $groups = MeditationGroupEnum::list(true);
+        $types = MeditationTypeEnum::list(true);
+        return view('admin.meditation.edit', compact('meditation', 'categories', 'meditators', 'langs', 'groups', 'types'));
     }
 
     public function update($id, MeditationUpsertRequest $upsertRequest)
@@ -112,5 +126,25 @@ class MeditationController extends Controller
     public function destroy($id)
     {
         return $this->service->delete($id, true)->redirect('admin.meditation.index');
+    }
+
+    public function play($id)
+    {
+        $this->service->willParseToRelation = [
+            'lessons' => [
+                fn ($q) => $q->orderBy('block', 'ASC'),
+                'image' => [],
+                'audio' => [], 
+                'translation' => []
+            ],
+            'meditator' => [
+                'image'=> [],
+                'avatar' => []
+            ],
+        ];
+        $meditation = $this->service->show($id);
+        // difd($meditation);
+        // return $meditation;
+        return view('user.meditation.play', compact('meditation', 'id'));
     }
 }
