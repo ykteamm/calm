@@ -22,14 +22,26 @@
                     <source src="../calm/media/forest.mp4" type="video/mp4">
                 </video> --}}
 
-                <div class="container pt-40 mp-80" style="position: relative; z-index: 5;">
-                    <div class="col-auto">
-                        <h1 class="text-30 text-color-white lh-12 fw-700 font_family_a">
-                            Ovoz
-                        </h1>
-                        <h1>
-                            <input type="range" class="volume" id="volume_audio" value="0" maxlength="100">
-                        </h1>
+                
+
+
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-6">
+                            <div class="container pt-40 mp-80" style="position: relative; z-index: 5;">
+                                <div class="col-auto">
+                                    <h1 class="text-30 text-color-white lh-12 fw-700 font_family_a">
+                                        Ovoz
+                                    </h1>
+                                    <h1>
+                                        <input type="range" class="volume" id="volume_audio" value="0" maxlength="100">
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <button onclick="mediaCancel()" class="btn btn-sm btn-danger h2 text-white">Stop</button>
+                        </div>
                     </div>
                 </div>
 

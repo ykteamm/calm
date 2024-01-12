@@ -1,301 +1,256 @@
-{{-- <script>
-    let player = document.querySelector(".player")
-    let playpause_btn = document.querySelector(".p-playpause-track");
-    let next_btn = document.querySelector(".p-next-track");
-    let prev_btn = document.querySelector(".p-prev-track");
+<script>
+  class Audio {
+    #lesson;
+    #audio;
+    #updateTimerInterval;
+    #updateTimerCallback;
+    #restartAudioCallback;
+    #player;
+    #playPauseBtn;
+    #nextBtn;
+    #prevBtn;
+    #seekSlider;
+    #volumeSlider;
+    #currentTime;
+    #totalDuration;
+    #playerTitle;
+    #isPlaying;
 
-    let seek_slider = document.querySelector(".p-seek_slider");
-    let volume_slider = document.querySelector(".p-volume_slider");
-    let curr_time = document.querySelector(".p-current-time");
-    let total_duration = document.querySelector(".p-total-duration");
-    let player_title = document.querySelector(".p-title");
+    constructor() {
+      this.mount();
+    }
 
-    let track_index = 0;
-    let isPlaying = false;
-    let updateTimer;
+    setLesson(lesson) {
+      this.lesson = lesson;
+    }
 
-    // Create new audio element
-    let currentAudio = document.createElement('audio');
+    unmount() {
+      this.isPlaying = false;
+      this.audio = null;
+      this.player = null;
+      this.playPauseBtn = null;
+      this.nextBtn = null;
+      this.prevBtn = null;
+      this.seekSlider = null;
+      this.volumeSlider = null;
+      this.currentTime = null;
+      this.totalDuration = null;
+      this.playerTitle = null;
+    }
 
-    // Define the tracks that have to be played
-    let track_list = [
-      {
-        name: "Night Owl",
-        artist: "Broke For Free",
-        image: "https://images.pexels.com/photos/2264753/pexels-photo-2264753.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250&w=250",
-        path: "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Tours/Enthusiast/Tours_-_01_-_Enthusiast.mp3"
-      },
-      {
-        name: "Enthusiast",
-        artist: "Tours",
-        image: "https://images.pexels.com/photos/3100835/pexels-photo-3100835.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250&w=250",
-        path: "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Tours/Enthusiast/Tours_-_01_-_Enthusiast.mp3"
-      },
-      {
-        name: "Shipping Lanes",
-        artist: "Chad Crouch",
-        image: "https://images.pexels.com/photos/1717969/pexels-photo-1717969.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250&w=250",
-        path: "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Chad_Crouch/Arps/Chad_Crouch_-_Shipping_Lanes.mp3",
-      },
-    ];
+    mount(){
+      this.isPlaying = true;
+      this.audio = document.createElement('audio');
+      this.player = document.querySelector(".player")
+      this.playPauseBtn = document.querySelector(".p-playpause-track");
+      this.nextBtn = document.querySelector(".p-next-track");
+      this.prevBtn = document.querySelector(".p-prev-track");
+      this.seekSlider = document.querySelector(".p-seek_slider");
+      this.volumeSlider = document.querySelector(".p-volume_slider");
+      this.currentTime = document.querySelector(".p-current-time");
+      this.totalDuration = document.querySelector(".p-total-duration");
+      this.playerTitle = document.querySelector(".p-title");
+      return this;
+    }
 
-    function playerOpenClose(audio, lessons)
-    {
-      track_list = lessons;
-      if(player.classList.contains('open')) {
-        player.classList.remove('open');
-        pauseTrack(audio,lessons)
-      } else {
-        player.classList.add('open');
-        playTrack(audio, lessons)
+    play(path = null, name = null){
+      if (this.loadAudio(path, name)) {
+        try {
+          this.clearTimer()
+          this.resetValues();
+          this.setTimer();
+          this.setRestarter();
+          this.playTrack();
+        } catch (error) {
+          console.log(error);
+        }
+        return this;
       }
     }
 
-    function stopPlayer()
-    {
-      pauseTrack()
-      player.classList.remove('open');
-    }
-
-    function loadTrack(track_index) {
-      clearInterval(updateTimer);
-      resetValues();
-
-      // Load a new track
-      if(track_list[track_index]?.audio?.path) {
-        currentAudio.src = location.origin+'/'+track_list[track_index]?.audio?.path;
+    setRestarter() {
+      if (this.restartAudioCallback) {
+        this.audio.addEventListener("ended", this.restartAudioCallback);
       }
-      player_title.innerHTML = track_list[track_index]?.translation?.name
-
-      currentAudio.load();
-      // Set an interval of 1000 milliseconds for updating the seek slider
-      updateTimer = setInterval(seekUpdate, 1000);
-
-      // Move to the next track if the current one finishes playing
-      currentAudio.addEventListener("ended", nextTrack);
+      return this;
     }
 
-
-    // Reset Values
-    function resetValues() {
-      curr_time.textContent = "00:00";
-      total_duration.textContent = "00:00";
-      seek_slider.value = 0;
-    }
-
-    function playpauseTrack() {
-      if (!isPlaying) playTrack();
-      else pauseTrack();
-    }
-
-    function playTrack(audio = null, lessons = []) {
-      // console.log(audio, lessons);
-      if(audio) {
-        currentAudio.src=location.origin+'/'+audio.path
+    async loadAudio(path = null, name = null) {
+      try {
+        if (path && typeof path == "string") {
+          this.audio.src = path;
+          this.playerTitle.innerHTML = name ? name : "Audio";
+          this.audio.load();
+        } else if (path && typeof path == "object") {
+          this.setLesson(path);
+          this.audio.src = location?.origin + '/' + this.lesson?.audio?.path;
+          this.playerTitle.innerHTML = this.lesson?.translation?.name
+          this.audio.load();
+        } else if (this.lesson) {
+          this.audio.src = location?.origin + '/' + this.lesson?.audio?.path;
+          this.playerTitle.innerHTML = this.lesson?.translation?.name
+          this.audio.load();
+        }
+        return true;
+      } catch (error) {
+        console.log(error);
+        return false;
       }
-      // console.log(currentAudio.src);
-      currentAudio.play();
-      isPlaying = true;
-
-      // Replace icon with the pause icon
-      playpause_btn.innerHTML = '<i class="fa fa-pause-circle fa-3x"></i>';
     }
-
-    function pauseTrack(audio = null, lessons = []) {
-      if(audio) {
-        currentAudio.src=location.origin+'/'+audio.path
+    
+    clearTimer() {
+      if (this.updateTimerInterval) {
+        clearInterval(this.updateTimerInterval)
       }
-      currentAudio.pause();
-      isPlaying = false;
-
-      // Replace icon with the play icon
-      playpause_btn.innerHTML = '<i class="fa fa-play-circle fa-3x"></i>';;
     }
 
-    function nextTrack() {
-      if (track_index < track_list.length - 1)
-        track_index += 1;
-      else track_index = 0;
-      loadTrack(track_index);
-      playTrack();
+    setTimer() {
+      if (this.updateTimerCallback) {
+        this.updateTimerInterval = setInterval(this.updateTimerCallback, 1000);
+      }
     }
 
-    function prevTrack() {
-      if (track_index > 0)
-        track_index -= 1;
-      else track_index = track_list.length;
-      loadTrack(track_index);
-      playTrack();
+    registerTimer(callback) {
+      if (typeof callback == "function") {
+        this.updateTimerCallback = callback(this);
+      }
     }
 
-    function seekTo() {
-      seekto = currentAudio.duration * (seek_slider.value / 100);
-      currentAudio.currentTime = seekto;
+    registerRestarter(callback) {
+      if (typeof callback == "function") {
+        this.restartAudioCallback = callback(this);
+      }
     }
 
-    function setVolume() {
-      currentAudio.volume = volume_slider.value / 100;
+    showPlayer(path = null, name = null){
+      this.play(path, name);
+      this.player.classList.add('open');
+      return this;
     }
 
-    function seekUpdate() {
+    hidePlayer() {
+      if (this.player) {
+        if(this.player.classList.contains('open')) {
+          this.player.classList.remove('open');
+        } 
+      }
+      this.unmount();
+    }
+
+    resetValues() {
+      this.currentTime.textContent = "00:00";
+      this.totalDuration.textContent = "00:00";
+      this.seekSlider.value = 0;
+      return this;
+    }
+
+    playTrack() {
+      this.audio.play();
+      this.isPlaying = true;
+      this.playPauseBtn.innerHTML = '<i class="fa fa-pause-circle fa-3x"></i>';
+      return this;
+    }
+
+    playPauseTrack() {
+      if (!this.isPlaying) this.playTrack();
+      else this.pauseTrack();
+      return this;
+    }
+  
+    pauseTrack() {
+      this.audio.pause();
+      this.isPlaying = false;
+      this.playPauseBtn.innerHTML = '<i class="fa fa-play-circle fa-3x"></i>';
+      return this;
+    }
+  
+    stopPlayer(){
+      this.pauseTrack()
+      this.player.classList.remove('open');
+      return this;
+    }
+
+    restart() {
+      this.play()
+      return this;
+    }
+
+    setVolume() {
+      this.audio.volume = this.volumeSlider.value / 100;
+      return this;
+    }
+  
+    seekUpdate() {
       let seekPosition = 0;
-
-      // Check if the current track duration is a legible number
-      if (!isNaN(currentAudio.duration)) {
-        seekPosition = currentAudio.currentTime * (100 / currentAudio.duration);
-        seek_slider.value = seekPosition;
-
-        // Calculate the time left and the total duration
-        let currentMinutes = Math.floor(currentAudio.currentTime / 60);
-        let currentSeconds = Math.floor(currentAudio.currentTime - currentMinutes * 60);
-        let durationMinutes = Math.floor(currentAudio.duration / 60);
-        let durationSeconds = Math.floor(currentAudio.duration - durationMinutes * 60);
-
-        // Adding a zero to the single digit time values
+      if (!isNaN(this.audio.duration)) {
+        seekPosition = this.audio.currentTime * (100 / this.audio.duration);
+        this.seekSlider.value = seekPosition;
+        let currentMinutes = Math.floor(this.audio.currentTime / 60);
+        let currentSeconds = Math.floor(this.audio.currentTime - currentMinutes * 60);
+        let durationMinutes = Math.floor(this.audio.duration / 60);
+        let durationSeconds = Math.floor(this.audio.duration - durationMinutes * 60);
         if (currentSeconds < 10) { currentSeconds = "0" + currentSeconds; }
         if (durationSeconds < 10) { durationSeconds = "0" + durationSeconds; }
         if (currentMinutes < 10) { currentMinutes = "0" + currentMinutes; }
         if (durationMinutes < 10) { durationMinutes = "0" + durationMinutes; }
-
-        curr_time.textContent = currentMinutes + ":" + currentSeconds;
-        total_duration.textContent = durationMinutes + ":" + durationSeconds;
-      }
-    }
-
-    // Load the first track in the tracklist
-    loadTrack(track_index);
-</script> --}}
-<script>
-  let player = document.querySelector(".player")
-  let playpause_btn = document.querySelector(".p-playpause-track");
-  let next_btn = document.querySelector(".p-next-track");
-  let prev_btn = document.querySelector(".p-prev-track");
-  
-  let seek_slider = document.querySelector(".p-seek_slider");
-  let volume_slider = document.querySelector(".p-volume_slider");
-  let curr_time = document.querySelector(".p-current-time");
-  let total_duration = document.querySelector(".p-total-duration");
-  let player_title = document.querySelector(".p-title");
-  
-  let track_index = 0;
-  let isPlaying = false;
-  let updateTimer;
-  let currentAudio = document.createElement('audio');
-
-  function playerOpenClose(lesson)
-  {
-    loadTrack(lesson);
-    if(player.classList.contains('open')) {
-      player.classList.remove('open');
-      pauseTrack(lesson)
-    } else {
-      player.classList.add('open');
-      playTrack(lesson)
-    }
-  }
-
-  function stopPlayer()
-  {
-    pauseTrack()
-    player.classList.remove('open');
-  }
-  
-  function loadTrack(lesson) {
-    // clearInterval(updateTimer);
-    // resetValues();
     
-    currentAudio.src = location.origin + '/' + lesson.audio.path;
-    if (player_title) {
-      player_title.innerHTML = lesson.translation.name
+        this.currentTime.textContent = currentMinutes + ":" + currentSeconds;
+        this.totalDuration.textContent = durationMinutes + ":" + durationSeconds;
+      }
+      return this;
     }
 
-    currentAudio.load();
-    // Set an interval of 1000 milliseconds for updating the seek slider
-    updateTimer = setInterval(seekUpdate, 1000);
+    seekTo() {
+      let seekto = this.audio.duration * (this.seekSlider.value / 100);
+      console.log(seekto);  
+      this.audio.currentTime = seekto;
+    }
+
+    nextTrack() {
+      // if (track_index < track_list.length - 1)
+      //   track_index += 1;
+      // else track_index = 0;
+      // loadTrack(track_index);
+      // playTrack();
+    }
   
-    // Move to the next track if the current one finishes playing
-    currentAudio.addEventListener("ended", nextTrack);
-  }
-  
-  
-  // Reset Values
-  function resetValues() {
-    // curr_time.textContent = "00:00";
-    // total_duration.textContent = "00:00";
-    // seek_slider.value = 0;
-  }
-  
-  function playpauseTrack() {
-    if (!isPlaying) playTrack();
-    else pauseTrack();
-  }
-  
-  function playTrack() {
-    currentAudio.play();
-    isPlaying = true;
-  
-    // Replace icon with the pause icon
-    playpause_btn.innerHTML = '<i class="fa fa-pause-circle fa-3x"></i>';
-  }
-  
-  function pauseTrack() {
-    currentAudio.pause();
-    isPlaying = false;
-  
-    // Replace icon with the play icon
-    playpause_btn.innerHTML = '<i class="fa fa-play-circle fa-3x"></i>';;
-  }
-  
-  function nextTrack() {
-    // if (track_index < track_list.length - 1)
-    //   track_index += 1;
-    // else track_index = 0;
-    // loadTrack(track_index);
-    // playTrack();
-  }
-  
-  function prevTrack() {
-    // if (track_index > 0)
-    //   track_index -= 1;
-    // else track_index = track_list.length;
-    // loadTrack(track_index);
-    // playTrack();
-  }
-  
-  function seekTo() {
-    seekto = currentAudio.duration * (seek_slider.value / 100);
-    console.log(seekto);
-    currentAudio.currentTime = seekto;
-  }
-  
-  function setVolume() {
-    currentAudio.volume = volume_slider.value / 100;
-  }
-  
-  function seekUpdate() {
-    let seekPosition = 0;
-  
-    // Check if the current track duration is a legible number
-    if (!isNaN(currentAudio.duration)) {
-      seekPosition = currentAudio.currentTime * (100 / currentAudio.duration);
-      // seek_slider.value = seekPosition;
-  
-      // Calculate the time left and the total duration
-      let currentMinutes = Math.floor(currentAudio.currentTime / 60);
-      let currentSeconds = Math.floor(currentAudio.currentTime - currentMinutes * 60);
-      let durationMinutes = Math.floor(currentAudio.duration / 60);
-      let durationSeconds = Math.floor(currentAudio.duration - durationMinutes * 60);
-  
-      // Adding a zero to the single digit time values
-      if (currentSeconds < 10) { currentSeconds = "0" + currentSeconds; }
-      if (durationSeconds < 10) { durationSeconds = "0" + durationSeconds; }
-      if (currentMinutes < 10) { currentMinutes = "0" + currentMinutes; }
-      if (durationMinutes < 10) { durationMinutes = "0" + durationMinutes; }
-  
-      curr_time.textContent = currentMinutes + ":" + currentSeconds;
-      total_duration.textContent = durationMinutes + ":" + durationSeconds;
+    prevTrack() {
+      // if (track_index > 0)
+      //   track_index -= 1;
+      // else track_index = track_list.length;
+      // loadTrack(track_index);
+      // playTrack();
     }
   }
+
   
-  // Load the first track in the tracklist
+  let audioplayer = new Audio();
+  audioplayer.registerTimer(function (player) {
+    return function () {
+      player.seekUpdate();
+    }
+  })
+
+  audioplayer.registerRestarter(function (player) {
+    return function () {
+      player.restart();
+    }
+  })
+
+  function playerOpenClose(lesson){
+    audioplayer.setLesson(lesson);
+    audioplayer.showPlayer();
+  } 
+
+  function playPauseTrack() {
+    audioplayer.playPauseTrack();
+  }
+
+  function setVolume() {
+    audioplayer.setVolume();
+  }
+
+  function seekTo() {
+    audioplayer.seekTo();
+  }
 </script>

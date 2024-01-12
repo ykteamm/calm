@@ -20,7 +20,7 @@
       </div>
       <div class="p-buttons">
           <div class="p-prev-track" onclick="prevTrack()"><i class="fa fa-step-backward fa-1x"></i></div>
-          <div class="p-playpause-track" onclick="playpauseTrack()"><i class="fa fa-play-circle fa-3x"></i></div>
+          <div class="p-playpause-track" onclick="playPauseTrack()"><i class="fa fa-play-circle fa-3x"></i></div>
           <div class="p-next-track" onclick="nextTrack()"><i class="fa fa-step-forward fa-1x"></i></div>
       </div>
       <div class="p-stop">

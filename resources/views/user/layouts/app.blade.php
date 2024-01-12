@@ -27,13 +27,13 @@
                     @endif
             @endif
 
-            {{-- @if (session('landscape_audio_path') == "aaaaa") --}}
-                <audio id="mainBackgroundAudio" class="d-none"controls  preload="none">
-                    <source src="{{asset(session('landscape_audio_path'))}}" type="audio/ogg">
-                    <source src="{{asset(session('landscape_audio_path'))}}" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-            {{-- @endif --}}
+            <audio id="mainBackgroundAudio" class="d-none" autoplay controls  preload="none">
+                <source src="{{asset(session('landscape_audio_path'))}}" type="audio/ogg">
+                <source src="{{asset(session('landscape_audio_path'))}}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            {{-- @if (session('landscape_audio_path'))
+            @endif --}}
         @endif
         <div class="barba-container" id="mainContent" data-barba="container">
 
@@ -55,5 +55,11 @@
         @yield('script')
 
         @livewireScripts
+        <script>
+            window.addEventListener("load", (event) => {
+                playAudio("mainBackgroundAudio");
+                playVideo("mainBackgroundVideo");
+            });
+        </script>
       </body>
 </html>

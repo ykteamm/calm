@@ -1,5 +1,9 @@
 <script>
     function landscapeAudio(landscape){
+        let info = localStorage.setItem('landscape', JSON.stringify(landscape));
+        // playAudio();
+        // playVideo();
+        // console.log(landscape, info);
         var data = new FormData();
         data.append('landscape', landscape.id);
         data.append('landscape_audio_path', landscape.audio.path);
@@ -9,45 +13,80 @@
             body: data
         }).then(async (res) => {
             console.log(await res.json());
-            playVideo(landscape)
-            playAudio(landscape)
+            playVideo(null, landscape)
+            playAudio(null, landscape)
         }).catch(err => {
             console.log(err);
         })
     }
 
-    function playVideo(landscape){
+    function mediaCancel() {
+        var data = new FormData();
+        data.append('landscape', null);
+        data.append('landscape_audio_path', null);
+        data.append('landscape_video_path', null);
+        fetch('landscape-save-session', {
+            method: 'post',
+            body: data
+        })
+        localStorage.removeItem('landscape');
+    }
+
+    function playVideo(id = null, landscape = null){
+        ln = localStorage.getItem('landscape');
+        if(!landscape && ln) {
+            landscape = JSON.parse(ln);
+        } else {
+            return;
+        }
         var parentElement = document.getElementById('landscapeVideoTest');
         var landscapeVideo = document.createElement('video');
+        if (id) {
+            var landscapeVideo = document.getElementById(id);
+        }
         var prevVideo = document.querySelector('.temporaryLandscapeVideoClass');
         if(prevVideo) {
             parentElement.removeChild(prevVideo)
         }
-        landscapeVideo.type="video/mp4"
-        landscapeVideo.style.position = 'absolute'; 
-        landscapeVideo.style.zIndex = '1'; 
-        landscapeVideo.classList.add('temporaryLandscapeVideoClass')
-        landscapeVideo.style.opacity='50%'; 
-        landscapeVideo.style.right = '0'; 
-        landscapeVideo.style.bottom ='0';
-        landscapeVideo.style.left= '0';
-        landscapeVideo.style.minWidth = '100%'; 
-        landscapeVideo.style.minHeight='100%'; 
         landscapeVideo.src=location.origin+'/'+landscape.video.path
-        landscapeVideo.autoplay=true
-        landscapeVideo.loop=true
-        landscapeVideo.muted=true 
-        landscapeVideo.playsinline=true
-        parentElement.appendChild(landscapeVideo)
+        if (!id){
+            landscapeVideo.type="video/mp4"
+            landscapeVideo.style.position = 'absolute'; 
+            landscapeVideo.style.zIndex = '1'; 
+            landscapeVideo.classList.add('temporaryLandscapeVideoClass')
+            landscapeVideo.style.opacity='50%'; 
+            landscapeVideo.style.right = '0'; 
+            landscapeVideo.style.bottom ='0';
+            landscapeVideo.style.left= '0';
+            landscapeVideo.style.minWidth = '100%'; 
+            landscapeVideo.style.minHeight='100%'; 
+            landscapeVideo.autoplay=true
+            landscapeVideo.loop=true
+            landscapeVideo.muted=true 
+            landscapeVideo.playsinline=true
+            parentElement.appendChild(landscapeVideo)
+        }
     }
-    function playAudio(landscape){
+    function playAudio(id = null, landscape = null){
+        ln = localStorage.getItem('landscape');
+        if(!landscape && ln) {
+            landscape = JSON.parse(ln);
+        } else {
+            return;
+        }
         var parentElement = document.getElementById('landscapeVideoTest');
         var landscapeAudio = document.createElement('audio');
+        if (id) {
+            var landscapeAudio = document.getElementById(id);
+            console.log(id, landscapeAudio, landscape, parentElement);
+        }
+        document.body.appendChild(landscapeAudio);
         var prevAudio = document.querySelector('.temporaryLandscapeAudioClass');
-        if(prevAudio) {
+        if(prevAudio && parentElement) {
             parentElement.removeChild(prevAudio)
         }
         landscapeAudio.src=location.origin+'/'+landscape.audio.path
+        // landscapeAudio.muted = true;
         landscapeAudio.play()
         landscapeAudio.addEventListener('ended', function() {
             landscapeAudio.currentTime = 0;
@@ -56,18 +95,12 @@
         window.addEventListener('load', function() {
             landscapeAudio.load();
         });
-        parentElement.appendChild(landscapeAudio)
+        if (!id) {
+            parentElement.appendChild(landscapeAudio)
+        }
     }
 </script>
 
-<script>
-    window.addEventListener("load", (event) => {
-        var mainBackgroundAudio = document.getElementById('mainBackgroundAudio');
-        if(mainBackgroundAudio) {
-            mainBackgroundAudio.play()
-        }
-    });
-</script>
 <script>
     // var audioElement1 = document.getElementById('audio-player');
     // var audioElement2 = document.getElementById('audio-player-1');
