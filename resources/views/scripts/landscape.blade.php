@@ -1,9 +1,6 @@
 <script>
     function landscapeAudio(landscape){
         let info = localStorage.setItem('landscape', JSON.stringify(landscape));
-        // playAudio();
-        // playVideo();
-        // console.log(landscape, info);
         var data = new FormData();
         data.append('landscape', landscape.id);
         data.append('landscape_audio_path', landscape.audio.path);
@@ -12,9 +9,8 @@
             method: 'post',
             body: data
         }).then(async (res) => {
-            console.log(await res.json());
-            playVideo(null, landscape)
-            playAudio(null, landscape)
+            playVideoSelected(landscape)
+            playAudioSelected(landscape)
         }).catch(err => {
             console.log(err);
         })
@@ -30,63 +26,67 @@
             body: data
         })
         localStorage.removeItem('landscape');
+        let LANDSCAPE_VIDEO_ID = 'mainBackgroundVideo';
+        let LANDSCAPE_AUDIO_ID = 'mainBackgroundAudio';
+        let audio = document.getElementById(LANDSCAPE_AUDIO_ID);
+        var mainBackgroundVideo = document.getElementById(LANDSCAPE_VIDEO_ID);
+        var testBackgroundVideo = document.getElementById("testBackgroundVideo");
+
+        audio?.pause();
+        audio.style.display = 'none';
+        mainBackgroundVideo?.pause();
+        mainBackgroundVideo.style.display = 'none';
+        testBackgroundVideo.style.display = 'none';
     }
 
-    function playVideo(id = null, landscape = null){
-        ln = localStorage.getItem('landscape');
-        if(!landscape && ln) {
-            landscape = JSON.parse(ln);
+    function playVideoSelected(landscape){
+        let LANDSCAPE_VIDEO_ID = 'mainBackgroundVideo';
+        var video = document.getElementById("mainBackgroundVideo");
+        var testBackgroundVideo = document.getElementById("testBackgroundVideo");
+        if(video) {
+            mainBackgroundVideo = video;
+            if (mainBackgroundVideo.style.display == 'none') {
+                mainBackgroundVideo.style.display = 'block';
+            }
+            if (testBackgroundVideo.style.display == 'none') {
+                testBackgroundVideo.style.display = 'block';
+            }
         } else {
-            return;
+            var mainBackgroundVideo = document.createElement('audio');
+            mainBackgroundVideo.setAttribute('id', LANDSCAPE_VIDEO_ID);
+            document.querySelector('preloader-visible').appendChild(mainBackgroundVideo);
         }
-        var parentElement = document.getElementById('landscapeVideoTest');
-        var landscapeVideo = document.createElement('video');
-        if (id) {
-            var landscapeVideo = document.getElementById(id);
-        }
-        var prevVideo = document.querySelector('.temporaryLandscapeVideoClass');
-        if(prevVideo) {
-            parentElement.removeChild(prevVideo)
-        }
-        landscapeVideo.src=location.origin+'/'+landscape.video.path
-        if (!id){
-            landscapeVideo.type="video/mp4"
-            landscapeVideo.style.position = 'absolute'; 
-            landscapeVideo.style.zIndex = '1'; 
-            landscapeVideo.classList.add('temporaryLandscapeVideoClass')
-            landscapeVideo.style.opacity='50%'; 
-            landscapeVideo.style.right = '0'; 
-            landscapeVideo.style.bottom ='0';
-            landscapeVideo.style.left= '0';
-            landscapeVideo.style.minWidth = '100%'; 
-            landscapeVideo.style.minHeight='100%'; 
-            landscapeVideo.autoplay=true
-            landscapeVideo.loop=true
-            landscapeVideo.muted=true 
-            landscapeVideo.playsinline=true
-            parentElement.appendChild(landscapeVideo)
-        }
+        mainBackgroundVideo.src = location.origin+'/'+landscape.video.path;
+        testBackgroundVideo.src=location.origin+'/'+landscape.video.path;
+
+        testBackgroundVideo.type="video/mp4"
+        testBackgroundVideo.style.position = 'absolute'; 
+        testBackgroundVideo.style.zIndex = '1'; 
+        testBackgroundVideo.classList.remove('d-none')
+        testBackgroundVideo.style.opacity='50%'; 
+        testBackgroundVideo.style.right = '0'; 
+        testBackgroundVideo.style.bottom ='0';
+        testBackgroundVideo.style.left= '0';
+        testBackgroundVideo.style.minWidth = '100%'; 
+        testBackgroundVideo.style.minHeight='100%'; 
+        testBackgroundVideo.autoplay=true
+        testBackgroundVideo.loop=true
+        testBackgroundVideo.muted=true 
+        testBackgroundVideo.playsinline=true
+        // document.querySelector(".preloader-visible").appendChild(testBackgroundVideo);
     }
-    function playAudio(id = null, landscape = null){
-        ln = localStorage.getItem('landscape');
-        if(!landscape && ln) {
-            landscape = JSON.parse(ln);
+
+    function playAudioSelected(landscape){
+        let LANDSCAPE_AUDIO_ID = 'mainBackgroundAudio';
+        let audio = document.getElementById(LANDSCAPE_AUDIO_ID);
+        if(audio) {
+            landscapeAudio = audio;
         } else {
-            return;
-        }
-        var parentElement = document.getElementById('landscapeVideoTest');
-        var landscapeAudio = document.createElement('audio');
-        if (id) {
-            var landscapeAudio = document.getElementById(id);
-            console.log(id, landscapeAudio, landscape, parentElement);
-        }
-        document.body.appendChild(landscapeAudio);
-        var prevAudio = document.querySelector('.temporaryLandscapeAudioClass');
-        if(prevAudio && parentElement) {
-            parentElement.removeChild(prevAudio)
+            var landscapeAudio = document.createElement('audio');
+            landscapeAudio.setAttribute('id', LANDSCAPE_AUDIO_ID);
+            document.body.appendChild(landscapeAudio);
         }
         landscapeAudio.src=location.origin+'/'+landscape.audio.path
-        // landscapeAudio.muted = true;
         landscapeAudio.play()
         landscapeAudio.addEventListener('ended', function() {
             landscapeAudio.currentTime = 0;
@@ -95,74 +95,5 @@
         window.addEventListener('load', function() {
             landscapeAudio.load();
         });
-        if (!id) {
-            parentElement.appendChild(landscapeAudio)
-        }
     }
-</script>
-
-<script>
-    // var audioElement1 = document.getElementById('audio-player');
-    // var audioElement2 = document.getElementById('audio-player-1');
-    // var video_bg = document.getElementById('myVideo');
-    // var video_bg1 = document.getElementById('myVideo1');
-    // var isPlaying1 = false;
-    // var isPlaying2 = false;
-
-    // function play_audio(task, audioElement) {
-    //     if (task === 'play') {
-    //         audioElement.play();
-    //         if (audioElement === audioElement1) {
-    //             isPlaying1 = true;
-    //             video_bg.style.display = 'block';
-    //             video_bg1.style.display = 'none';
-    //             isPlaying2 = false;
-    //         } else if (audioElement === audioElement2) {
-    //             isPlaying1 = false;
-    //             video_bg.style.display = 'none';
-    //             video_bg1.style.display = 'block';
-    //             isPlaying2 = true;
-    //         }
-
-    //         // Qaytaruvchi (looper) qo'shish
-    //         audioElement.addEventListener('ended', function() {
-    //             audioElement.currentTime = 0;
-    //             audioElement.play();
-    //         });
-    //         // video_bg.style.display = 'none';
-    //     }
-    //     if (task === 'stop') {
-    //         audioElement.pause();
-    //         audioElement.currentTime = 0;
-    //         isPlaying1 = false;
-    //         isPlaying2 = false;
-
-    //         // video_bg.style.display = 'block';
-    //     }
-    // }
-
-    // document.getElementById('playBtn').addEventListener('click', function() {
-    //     if (!isPlaying1) {
-    //         play_audio('play', audioElement1);
-    //         play_audio('stop', audioElement2);
-    //     }
-    // });
-
-    // document.getElementById('playBtn1').addEventListener('click', function() {
-    //     if (!isPlaying2) {
-    //         play_audio('play', audioElement2);
-    //         play_audio('stop', audioElement1);
-    //     }
-    // });
-
-    // document.getElementById('stopBtn').addEventListener('click', function() {
-    //     play_audio('stop', audioElement1);
-    //     play_audio('stop', audioElement2);
-    // });
-
-    // // Saqlangan sahifani ochib bo'lganda audio ni yuklash
-    // window.addEventListener('load', function() {
-    //     audioElement1.load();
-    //     audioElement2.load();
-    // });
 </script>

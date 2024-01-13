@@ -18,23 +18,19 @@
 
         <!-- barba container start -->
         @if ((request()->segment(1) == 'menu') || true || request()->getPathInfo() == '/')
-
             @if ((request()->getPathInfo() != '/quiz') && (request()->getPathInfo() != '/will') && (request()->getPathInfo() != '/auth/login') && (request()->getPathInfo() != '/auth/register'))
-                    @if (session('landscape_video_path'))
-                    <video id="mainBackgroundVideo" autoplay loop muted playsinline style="position: fixed; z-index: 0;opacity: 50%; right: 0; bottom: 0;left: 0; min-width: 100%; min-height: 100%">
+            @if (session('landscape_video_path'))
+                <video id="mainBackgroundVideo" autoplay loop muted playsinline style="position: fixed; z-index: 0;opacity: 50%; right: 0; bottom: 0;left: 0; min-width: 100%; min-height: 100%">
                     <source src="{{asset(session('landscape_video_path'))}}" type="video/mp4">
-                    </video>
-                    @endif
+                </video>
             @endif
-
-            <audio id="mainBackgroundAudio" class="d-none" autoplay controls  preload="none">
-                <source src="{{asset(session('landscape_audio_path'))}}" type="audio/ogg">
-                <source src="{{asset(session('landscape_audio_path'))}}" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-            {{-- @if (session('landscape_audio_path'))
-            @endif --}}
+            @endif
         @endif
+        <audio id="mainBackgroundAudio" class="d-none" autoplay controls  preload="none">
+            <source src="{{asset(session('landscape_audio_path'))}}" type="audio/ogg">
+            <source src="{{asset(session('landscape_audio_path'))}}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
         <div class="barba-container" id="mainContent" data-barba="container">
 
           <main class="main-content">
@@ -56,10 +52,13 @@
 
         @livewireScripts
         <script>
-            window.addEventListener("load", (event) => {
-                playAudio("mainBackgroundAudio");
-                playVideo("mainBackgroundVideo");
-            });
+            let landscape = localStorage.getItem('landscape');
+            if (landscape) {
+                landscape = JSON.parse(landscape);
+                playVideoSelected(landscape);
+                playAudioSelected(landscape);
+            }
+            console.log(landscape);
         </script>
       </body>
 </html>
