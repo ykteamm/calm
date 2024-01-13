@@ -76,14 +76,14 @@
   will-change: transform;
   transform: translateZ(0);
   display: flex;
-  height: 50px;
+  height: 70px;
   box-shadow: 0 -2px 5px -2px #333;
   background-color: #fff;
 }
 .mobile-bottom-nav__item {
   flex-grow: 1;
   text-align: center;
-  font-size: 12px;
+  font-size: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
