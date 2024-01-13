@@ -261,6 +261,10 @@
     audioplayer.nextTrack()
   }
 
+  function stopPlayer(){
+    audioplayer.stopPlayer()
+  }
+
   function playPauseTrack() {
     audioplayer.playPauseTrack();
   }
