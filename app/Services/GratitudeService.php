@@ -57,4 +57,15 @@ class GratitudeService extends BaseService
             return $gratitude;
         }
     }
+
+    public function getRandomly($old = null)
+    {
+        $this->setQuery();
+        if($old) {
+            $this->query->where('id', '<>', getProp($old, 'id'));
+        }
+
+        return $this->query->with('translation')->inRandomOrder()->first();
+        // if ($data) return $data->toArray();
+    }
 }
