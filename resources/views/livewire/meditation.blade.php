@@ -34,7 +34,7 @@
               </div>
             </div>
             @foreach ($meditation->lessons as $lesson)
-              <div @if (!$lesson->blocked) wire:click="played({{$lesson}})" onclick="playerOpenClose({{$lesson}})" @endif class="d-flex justify-between py-8 mb-40" style="background: #fff;border-radius:20px;width:100%;margin: 30px 0;cursor: pointer">
+              <div @if (!$lesson->blocked) wire:click="played({{$lesson}})" onclick="playerOpenClose({{$lesson}}, {{$meditation->lessons}})" @endif class="d-flex justify-between py-8 mb-40" style="background: #fff;border-radius:20px;width:100%;margin: 30px 0;cursor: pointer">
                 <div class="d-flex items-center text-dark-1">
                   <div class="icon-heart"></div>
                   <h5 class="ml-10" >

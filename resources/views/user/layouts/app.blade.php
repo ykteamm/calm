@@ -57,6 +57,11 @@
                 landscape = JSON.parse(landscape);
                 playVideoSelected(landscape);
                 playAudioSelected(landscape);
+            } else {
+                let mainBackgroundVideo = document.getElementById('mainBackgroundVideo');
+                if (mainBackgroundVideo) {
+                    mainBackgroundVideo.style.display = 'none';
+                }
             }
             console.log(landscape);
         </script>

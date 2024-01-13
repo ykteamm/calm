@@ -1,6 +1,7 @@
 <script>
   class Audio {
     #lesson;
+    #lessons;
     #audio;
     #updateTimerInterval;
     #updateTimerCallback;
@@ -24,6 +25,10 @@
       this.lesson = lesson;
     }
 
+    setLessons(lessons = []) {
+      this.lessons = lessons;
+    }
+
     unmount() {
       this.isPlaying = false;
       this.audio = null;
@@ -36,6 +41,7 @@
       this.currentTime = null;
       this.totalDuration = null;
       this.playerTitle = null;
+      this.lessons = [];
     }
 
     mount(){
@@ -50,6 +56,7 @@
       this.currentTime = document.querySelector(".p-current-time");
       this.totalDuration = document.querySelector(".p-total-duration");
       this.playerTitle = document.querySelector(".p-title");
+      this.lessons = [];
       return this;
     }
 
@@ -202,24 +209,27 @@
 
     seekTo() {
       let seekto = this.audio.duration * (this.seekSlider.value / 100);
-      console.log(seekto);  
       this.audio.currentTime = seekto;
     }
 
     nextTrack() {
-      // if (track_index < track_list.length - 1)
-      //   track_index += 1;
-      // else track_index = 0;
-      // loadTrack(track_index);
-      // playTrack();
+      if (this.lessons.length > 0) {
+        let index = this.lessons.findIndex(les => les.id == this.lesson.id);
+        if (index < this.lessons.length && this.lessons[index + 1]) {
+          this.lesson = this.lessons[index + 1];
+          this.play();
+        }
+      }
     }
   
     prevTrack() {
-      // if (track_index > 0)
-      //   track_index -= 1;
-      // else track_index = track_list.length;
-      // loadTrack(track_index);
-      // playTrack();
+      if (this.lessons.length > 0) {
+        let index = this.lessons.findIndex(les => les.id == this.lesson.id);
+        if (index > 0 && this.lessons[index - 1]) {
+          this.lesson = this.lessons[index - 1];
+          this.play();
+        }
+      }
     }
   }
 
@@ -237,10 +247,19 @@
     }
   })
 
-  function playerOpenClose(lesson){
+  function playerOpenClose(lesson, lessons){
     audioplayer.setLesson(lesson);
+    audioplayer.setLessons(lessons);
     audioplayer.showPlayer();
   } 
+
+  function prevTrack() {
+    audioplayer.prevTrack()
+  }
+
+  function nextTrack() {
+    audioplayer.nextTrack()
+  }
 
   function playPauseTrack() {
     audioplayer.playPauseTrack();

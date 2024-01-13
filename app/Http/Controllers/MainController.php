@@ -77,7 +77,6 @@ class MainController extends Controller
             $single = MeditationGroupEnum::SINGLE;
             // return $meditations;
             // dd($meditations[2]->meditations);
-
             return view("user.index",[
                 'user_emoj_have' => $user_emoj_have,
                 'emoj_have' => $emoj_have,
