@@ -1,5 +1,5 @@
 <style>     
-    .player {
+    /* .player {
         transition: all .2s ease;
         position: fixed;
         background-color: rgb(34, 42, 84);
@@ -173,5 +173,5 @@
         align-items: center;
         justify-content: space-between;
       }
-    }
+    } */
 </style>

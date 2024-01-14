@@ -9,8 +9,8 @@
             method: 'post',
             body: data
         }).then(async (res) => {
-            playVideoSelected(landscape)
-            playAudioSelected(landscape)
+            playVideoSelected(landscape);
+            playAudioSelected(landscape);
         }).catch(err => {
             console.log(err);
         })
@@ -42,37 +42,39 @@
     function playVideoSelected(landscape){
         let LANDSCAPE_VIDEO_ID = 'mainBackgroundVideo';
         var video = document.getElementById("mainBackgroundVideo");
-        var testBackgroundVideo = document.getElementById("testBackgroundVideo");
         if(video) {
             mainBackgroundVideo = video;
             if (mainBackgroundVideo.style.display == 'none') {
                 mainBackgroundVideo.style.display = 'block';
             }
+            
+        } else {
+            var mainBackgroundVideo = document.createElement('video');
+            mainBackgroundVideo.setAttribute('id', LANDSCAPE_VIDEO_ID);
+            document.querySelector('.preloader-visible').appendChild(mainBackgroundVideo);
+        }
+        var testBackgroundVideo = document.getElementById("testBackgroundVideo");
+        if (testBackgroundVideo) {
             if (testBackgroundVideo.style.display == 'none') {
                 testBackgroundVideo.style.display = 'block';
             }
-        } else {
-            var mainBackgroundVideo = document.createElement('audio');
-            mainBackgroundVideo.setAttribute('id', LANDSCAPE_VIDEO_ID);
-            document.querySelector('preloader-visible').appendChild(mainBackgroundVideo);
+            testBackgroundVideo.src=location.origin+'/'+landscape.video.path;
+            testBackgroundVideo.type="video/mp4"
+            testBackgroundVideo.style.position = 'absolute'; 
+            testBackgroundVideo.style.zIndex = '1'; 
+            testBackgroundVideo.classList.remove('d-none')
+            testBackgroundVideo.style.opacity='50%'; 
+            testBackgroundVideo.style.right = '0'; 
+            testBackgroundVideo.style.bottom ='0';
+            testBackgroundVideo.style.left= '0';
+            testBackgroundVideo.style.minWidth = '100%'; 
+            testBackgroundVideo.style.minHeight='100%'; 
+            testBackgroundVideo.autoplay=true
+            testBackgroundVideo.loop=true
+            testBackgroundVideo.muted=true 
+            testBackgroundVideo.playsinline=true
         }
         mainBackgroundVideo.src = location.origin+'/'+landscape.video.path;
-        testBackgroundVideo.src=location.origin+'/'+landscape.video.path;
-
-        testBackgroundVideo.type="video/mp4"
-        testBackgroundVideo.style.position = 'absolute'; 
-        testBackgroundVideo.style.zIndex = '1'; 
-        testBackgroundVideo.classList.remove('d-none')
-        testBackgroundVideo.style.opacity='50%'; 
-        testBackgroundVideo.style.right = '0'; 
-        testBackgroundVideo.style.bottom ='0';
-        testBackgroundVideo.style.left= '0';
-        testBackgroundVideo.style.minWidth = '100%'; 
-        testBackgroundVideo.style.minHeight='100%'; 
-        testBackgroundVideo.autoplay=true
-        testBackgroundVideo.loop=true
-        testBackgroundVideo.muted=true 
-        testBackgroundVideo.playsinline=true
         // document.querySelector(".preloader-visible").appendChild(testBackgroundVideo);
     }
 

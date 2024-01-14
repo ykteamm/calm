@@ -15,6 +15,7 @@
     #currentTime;
     #totalDuration;
     #playerTitle;
+    #playerTitleSm;
     #isPlaying;
 
     constructor() {
@@ -56,6 +57,7 @@
       this.currentTime = document.querySelector(".p-current-time");
       this.totalDuration = document.querySelector(".p-total-duration");
       this.playerTitle = document.querySelector(".p-title");
+      this.playerTitleSm = document.querySelector(".p-title-sm");
       this.lessons = [];
       return this;
     }
@@ -87,20 +89,23 @@
         if (path && typeof path == "string") {
           this.audio.src = path;
           this.playerTitle.innerHTML = name ? name : "Audio";
+          this.playerTitleSm.innerHTML = name ? name : "Audio";
           this.audio.load();
         } else if (path && typeof path == "object") {
           this.setLesson(path);
           this.audio.src = location?.origin + '/' + this.lesson?.audio?.path;
           this.playerTitle.innerHTML = this.lesson?.translation?.name
+          this.playerTitleSm.innerHTML = this.lesson?.translation?.name
           this.audio.load();
         } else if (this.lesson) {
           this.audio.src = location?.origin + '/' + this.lesson?.audio?.path;
           this.playerTitle.innerHTML = this.lesson?.translation?.name
+          this.playerTitleSm.innerHTML = this.lesson?.translation?.name
           this.audio.load();
         }
         return true;
       } catch (error) {
-        console.log(error);
+        console.log(error, "Error load audio");
         return false;
       }
     }

@@ -55,15 +55,19 @@
             let landscape = localStorage.getItem('landscape');
             if (landscape) {
                 landscape = JSON.parse(landscape);
-                playVideoSelected(landscape);
-                playAudioSelected(landscape);
+                // console.log(landscape);
+                try {
+                    playAudioSelected(landscape);
+                    playVideoSelected(landscape);
+                } catch (error) {
+                    console.log("Bu app error", error);                    
+                }
             } else {
                 let mainBackgroundVideo = document.getElementById('mainBackgroundVideo');
                 if (mainBackgroundVideo) {
                     mainBackgroundVideo.style.display = 'none';
                 }
             }
-            console.log(landscape);
         </script>
       </body>
 </html>

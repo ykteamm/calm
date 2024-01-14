@@ -49,9 +49,48 @@ use Illuminate\Support\Facades\DB;
                             </div>
                         </div>
                     </section>
-                    <div class="accordion -block text-left pt-60 lg:pt-40 js-accordion" style="z-index: 100! important;position:relative">
+                    <div style="position: relative">
+                        <button type="button"  data-bs-toggle="modal" data-bs-target="#emojiModal">
+                            <div class="row align-items-center" style="border: 2px solid rgb(255, 255, 255);border-radius:10px;box-sizing:border-box">
+                                <div class="col-2 px-1" style="position: relative">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
+                                        <img src="player/smile.svg" sty alt="">
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
+                                </div>
+                                <div class="col-7">
+                                    <span class="text-17 fw-500 text-dark-1 font_family_a text-color-white-for">
+                                        How are you feeling?
+                                    </span>
+                                </div>
+                                <div class="col-3">
+                                    @foreach($emoj_have as $have)
+                                        @if($have->user_id == auth()->user()->id)
+                                            @foreach($emoji as $emoj)
+                                                @if($have->emoji_id == $emoj->id )
+                                                    <div class=""  style="display: flex; justify-content: space-around;">
+                                                        <div class="">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
+                                                                @if(asset($emoj->image->path))
+                                                                <img src="{{asset($emoj->image->path)}}" sty alt="">
+                                                                @else
+                                                                @endif
+                                                            </svg>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                        </button>
+                        @include('user.modals.emoji')
+                    </div>
+                    {{-- <div class="accordion -block text-left pt-60 lg:pt-40" style="z-index: 100! important;position:relative">
                         <div class="accordion__item">
-                            <div class="accordion__button">
+                            <button class="accordion__button" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#emojiModalLabel">
                                 <div class="col-1">
                                     <div class="accordion__icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
@@ -61,9 +100,9 @@ use Illuminate\Support\Facades\DB;
                                     </div>
                                 </div>
                                 <div class="col-9 text_cent">
-                                        <span class="text-17 fw-500 text-dark-1 font_family_a text-color-white-for">
-                                            How are you feeling?
-                                        </span>
+                                    <span class="text-17 fw-500 text-dark-1 font_family_a text-color-white-for">
+                                        How are you feeling?
+                                    </span>
                                 </div>
                                 @foreach($emoj_have as $have)
                                     @if($have->user_id == auth()->user()->id)
@@ -84,8 +123,8 @@ use Illuminate\Support\Facades\DB;
                                         @endforeach
                                     @endif
                                 @endforeach
-                            </div>
-
+                            </button>
+                            @include('user.modals.emoji')
                             <div class="accordion__content">
                                 @if($user_emoj_have)
                                     @foreach($emoj_have as $have)
@@ -170,7 +209,7 @@ use Illuminate\Support\Facades\DB;
                                 @endif
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     {{-- <section class="layout-pt-md layout-pb-md">
                         <div data-anim-wrap class="container">
                             <div class="tabs -pills js-tabs">
