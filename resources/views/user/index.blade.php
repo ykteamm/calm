@@ -445,12 +445,12 @@ use Illuminate\Support\Facades\DB;
                                     <div class="tabs__content pt-60 lg:pt-50 js-tabs-content">
                                         <div class="tabs__pane -tab-item-1 is-active">
                                             <div class="overflow-hidden js-section-slider" data-gap="30" data-slider-cols="xl-4 lg-3 md-2 sm-2">
-                                                <div class="swiper-wrapper">
+                                                <div class="swiper-wrapper" style="transform: translate3d(-84px, 0px, 0px);">
                                                     @foreach ($category->meditations as $g => $meditation)
                                                         @php
                                                             $lesson = $meditation->lessons[0];
                                                         @endphp
-                                                        <div class="swiper-slide" style="position: relative">
+                                                        <div class="swiper-slide" style="position: relative;">
                                                             {{-- @if (count($meditation->usershows) > 0 && ($lesson->block))
                                                                 @if (hasLessonBlocked($meditation->usershows, $lesson))
                                                                     <div class="d-flex align-items-center justify-content-center rounded" style="top:0;bottom:0;left:0;right:0;position: absolute;z-index:200">

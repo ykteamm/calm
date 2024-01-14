@@ -17,9 +17,9 @@ class PackageSeeder extends Seeder
         $langs = Language::all();
         $medicines = Medicine::all()->pluck('id')->toArray();
         $packages = [
-            'uz' => ["Uyqu", "Endokrin", "Anti-Depressiya", "Kayfiyat"],
-            'en' => ["Sleep", "Adenois", "Heavy stress", "Mild stress"],
-            'ru' => ["Сон", "Аденуа", "Сильный стресс", "Легкий стресс"],
+            'uz' => ["Uyqu", "Endokrin", "Anti-Depressiya", "Kayfiyat", "Yengil Uyqu", "Yengil Endokrin"],
+            'en' => ["Sleep", "Adenois", "Anti-Depressiya", "Mood", "Mild Sleep", "Mild Adenois"],
+            'ru' => ["Сон", "Аденуа", "Антидепрессия", "Настроение", "Легкий Стресс", "Легкий Аденуа"],
         ];
 
         for ($i = 0; $i < count($packages['uz']); $i++){
