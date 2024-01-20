@@ -155,6 +155,14 @@ abstract class BaseService
      */
     protected ?Closure $resultClosure = null;
 
+    protected bool $clear = false;
+
+    public function clearAfter($clear = true)
+    {
+        $this->clear = $clear;
+        return $this;
+    }
+
     protected function authorizeMethod($method, $model = null)
     {
         if ($this->needAuthorization) {
@@ -222,12 +230,14 @@ abstract class BaseService
 
     private function completed() 
     {
-        $this->relations = [];
-        $this->willParseToRelation = [];
-        $this->conditions = [];
-        $this->queryClosure = null;
-        $this->resultClosure = null;
-        $this->query = null;
+        if ($this->clear) {
+            $this->relations = [];
+            $this->willParseToRelation = [];
+            $this->conditions = [];
+            $this->queryClosure = null;
+            $this->resultClosure = null;
+            $this->query = null;
+        }
     }
 
     public function getList($data = [])
@@ -268,6 +278,7 @@ abstract class BaseService
      */
     protected function setResult($result)
     {
+        // dd($result, "Result", $this->resultClosure);
         if ($this->resultClosure && $this->resultClosure instanceof Closure) {
             call_user_func($this->resultClosure, $result, $this->query);
         }
@@ -353,7 +364,7 @@ abstract class BaseService
             DB::connection($this->model->connection)->commit();
             $model->refresh();
             $this->setResult($model);
-            $this->completed();
+            // $this->completed();
             return $model;
         } catch (\Throwable $throwable) {
             DB::connection($this->model->connection)->rollBack();
@@ -387,7 +398,7 @@ abstract class BaseService
                 $this->query = $this->query->where($column, $value);
             }
             $data = $this->query->first(); 
-            $this->completed();
+            // $this->completed();
             return $data;
         }
     }
@@ -400,7 +411,7 @@ abstract class BaseService
         if ($this->model->hasUuid) $this->id = 'uuid';
         try {
             $data = $this->query->where($this->id, '=', $id)->first();
-            $this->completed();
+            // $this->completed();
             return $data;
         } catch (QueryException $e) {
             throw new \Error("Please give main operation column name " . static::class . '::$id constructor. Default column is id or check ' . $e->getMessage());
@@ -457,7 +468,7 @@ abstract class BaseService
                 DB::connection($this->model->connection)->commit();
                 $model->refresh();
                 $this->setResult($model);
-                $this->completed();
+                // $this->completed();
                 return $this->withResource($model);
             } catch (\Throwable $throwable) {
                 DB::connection($this->model->connection)->rollBack();
@@ -490,7 +501,7 @@ abstract class BaseService
         if ($model) {
             $this->authorizeMethod(__FUNCTION__, $model);
             $this->setResult($model);
-            $this->completed();
+            // $this->completed();
             return $model;
         } else {
             $message = 'not_found';
@@ -528,7 +539,7 @@ abstract class BaseService
             if ($this->translation) $model->translations()->delete();
             $this->setResult($model);
             $model->delete();
-            $this->completed();
+            // $this->completed();
         } else {
             $message = 'not_found';
             $arr = explode('\\', get_class($this->model));

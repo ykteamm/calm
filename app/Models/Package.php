@@ -15,7 +15,6 @@ class Package extends BaseModel
 
     protected $fillable = [
         'priority',
-        'ignores',
         'extra'
     ];
 

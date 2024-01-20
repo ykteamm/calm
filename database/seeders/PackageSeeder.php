@@ -23,17 +23,12 @@ class PackageSeeder extends Seeder
         ];
 
         for ($i = 0; $i < count($packages['uz']); $i++){
-            $ignores = [];
-            if($i == 2) {
-                $ignores[] = 4;
-            }
             $extra = [];
             if($i == 1) {
                 $extra[] = 1;
             }
             $package = Package::create([
                 'priority' => $i + 1,
-                'ignores' => json_encode($ignores),
                 'extra' => json_encode($extra)
             ]);
             $package->image()->create([
@@ -150,6 +145,90 @@ class PackageSeeder extends Seeder
                 ],
             ],
             3 => [
+                [
+                    'id' => 1,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 2,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 3,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 5,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 6,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 7,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 8,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 9,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 12,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 15,
+                    'percent' => 10
+                ],
+            ],
+            4 => [
+                [
+                    'id' => 1,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 2,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 3,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 5,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 6,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 7,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 8,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 9,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 12,
+                    'percent' => 10
+                ],
+                [
+                    'id' => 15,
+                    'percent' => 10
+                ],
+            ],
+            5 => [
                 [
                     'id' => 1,
                     'percent' => 10

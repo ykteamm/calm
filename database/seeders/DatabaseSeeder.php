@@ -33,7 +33,8 @@ class DatabaseSeeder extends Seeder
             PackageSeeder::class,
             SteroidSeeder::class,
             AimSeeder::class,
-            RewardSeeder::class
+            RewardSeeder::class,
+            RuleSeeder::class
         ]);
     }
 }

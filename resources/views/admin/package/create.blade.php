@@ -41,17 +41,6 @@
                 @endforeach
               </div>
               <div class="col-6">
-                Ignores
-                @foreach ($packages as $package)
-                  <div class="form-check">
-                    <input name="ignores[]" class="form-check-input" type="checkbox" value="{{$package->id}}" id="flexCheckDefaultIgnore{{$package->id}}">
-                    <label class="form-check-label" for="flexCheckDefaultIgnore{{$package->id}}">
-                        {{$package->translation->name}}
-                    </label>
-                  </div>
-                @endforeach
-              </div>
-              <div class="col-6">
                 Extra Medicines
                 @foreach ($medicines as $medicine)
                   <div class="form-check">

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePackagesTable extends Migration
+class CreateRulesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreatePackagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('packages', function (Blueprint $table) {
+        Schema::create('rules', function (Blueprint $table) {
             $table->id();
-            $table->integer('priority');
-            $table->json('extra')->default('[]');
+            $table->bigInteger('package_id');
+            $table->bigInteger('result_id')->nullable();
+            $table->integer('min')->default(0);
+            $table->integer('max')->default(100000)->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreatePackagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('packages');
+        Schema::dropIfExists('rules');
     }
 }

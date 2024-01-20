@@ -21,6 +21,13 @@
         </a>
     </div>
 
+    <div class="sidebar__item {{classer('admin.rule.index')}}">
+        <a href="{{route('admin.rule.index')}}" class="d-flex items-center text-17 lh-1 fw-500 -dark-text-white">
+        <i class="text-20 icon-discovery mr-15"></i>
+            Package rules
+        </a>
+    </div>
+
     <div class="sidebar__item {{classer('admin.steroid.index')}}">
         <a href="{{route('admin.steroid.index')}}" class="d-flex items-center text-17 lh-1 fw-500 -dark-text-white">
         <i class="text-20 icon-discovery mr-15"></i>

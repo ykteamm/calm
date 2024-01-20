@@ -31,7 +31,7 @@ class SteroidUpsertRequest extends FormRequest
             'addes' => ['nullable', 'array'],
             'updates' => ['nullable', 'array'],
             'deletes' => ['nullable', 'array'],
-            'avg' => [$required, 'integer'],
+            'avg' => [$required, 'string'],
             'translations.*' => [$required, 'array'],
             'translations.*.id' => ['nullable'],
             'translations.*.name' => [$required, 'string'],

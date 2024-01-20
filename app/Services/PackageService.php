@@ -38,6 +38,18 @@ class PackageService extends BaseService
         ]))->orderBy('priority', 'ASC')->get();    
     }
 
+    public function getOne($id)
+    {
+        $this->setQuery();
+        return $this->query
+        ->with(parseToRelation([
+            'tests', 'translation', 'image'
+        ]))
+        ->where('id', $id)
+        ->orderBy('priority', 'ASC')
+        ->first();    
+    }
+
     public function getIds()
     {
         $this->setQuery();
@@ -51,8 +63,9 @@ class PackageService extends BaseService
         $addes = popper($data, 'addes', []);
         $old = popper($data, 'medicines_old', []);
         $new = popper($data, 'medicines_new', []);
+        $extra = popper($data, 'extra', []);
         return $this
-            ->onSuccess(function ($package, $query) use ($updates, $deletes, $addes, $old, $new){
+            ->onSuccess(function ($package, $query) use ($updates, $deletes, $addes, $old, $new, $extra){
                 $package->tests()->whereIn('id', $deletes)->delete();
                 foreach ($updates as $utest) {
                     if (($id = getProp($utest, 'id')) && ($t = $package->tests()->find($id))) {

@@ -1,11 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\CategoryController;
-use App\Http\Controllers\Api\LessonController;
-use App\Http\Controllers\Api\MeditationController;
-use App\Http\Controllers\Api\MeditatorController;
-use App\Http\Controllers\Api\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +12,14 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::get('/test', function () {
+    /**
+     * @var \App\Services\CalculateQuizService
+     */
+    $calculate = resolve(\App\Services\CalculateQuizService::class);
+    $answers = require_once resource_path('answers.php');
+    $result = $calculate->result($answers);
+    dd($result);
+    return $result;
+});

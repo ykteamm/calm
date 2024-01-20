@@ -26,9 +26,13 @@
                     <input name="translations[{{$key}}][language_code]" type="text" value="{{$lang->code}}" style="display: none">
                 </div>
             @endforeach
+            <div class="col-12">
+              <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Priority</label>
+              <input name="priority" type="number" value="{{$package->priority}}">
+            </div>
            <div class="row">
-            <div class="col-6">
-              Attached
+            <div class="col-4">
+              Package medicines
               @foreach ($package->medicines as $medicine)
                 <div class="form-check">
                   <input name="medicines_old[]" class="form-check-input" type="checkbox" value="{{$medicine->id}}" id="flexCheckDefault{{$medicine->id}}">
@@ -38,11 +42,22 @@
                 </div>
               @endforeach
             </div>
-            <div class="col-6">
-              Not atached
+            <div class="col-4">
+              Other medicines
               @foreach ($medicines as $medicine)
                 <div class="form-check">
                   <input name="medicines_new[]" class="form-check-input" type="checkbox" value="{{$medicine->id}}" id="flexCheckDefault{{$medicine->id}}">
+                  <label class="form-check-label" for="flexCheckDefault{{$medicine->id}}">
+                      {{$medicine->translation->name}}
+                  </label>
+                </div>
+              @endforeach
+            </div>
+            <div class="col-4">
+              Extra medicines
+              @foreach ($medicines as $medicine)
+                <div class="form-check">
+                  <input name="extra[]" class="form-check-input" type="checkbox" value="{{$medicine->id}}" id="flexCheckDefault{{$medicine->id}}">
                   <label class="form-check-label" for="flexCheckDefault{{$medicine->id}}">
                       {{$medicine->translation->name}}
                   </label>
