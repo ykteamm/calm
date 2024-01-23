@@ -25,7 +25,7 @@
                                                         <div class="accordion__icon" >
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
                                                                 @if(asset($emoj->image->path))
-                                                                    <img width="100" src="{{asset($emoj->image->path)}}" sty alt="">
+                                                                    <img src="{{asset($emoj->image->path)}}" style="width: 100px" alt="">
                                                                 @else
                                                                 @endif
                                                             </svg>
@@ -65,7 +65,7 @@
                                                 <div class="accordion__icon" >
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
                                                         @if(asset($emoj->image->path))
-                                                            <img src="{{asset($emoj->image->path)}}" sty alt="">
+                                                            <img src="{{asset($emoj->image->path)}}" style="width: 100px" alt="IMage">
                                                         @else
                                                         @endif
                                                     </svg>

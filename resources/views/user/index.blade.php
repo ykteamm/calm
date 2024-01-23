@@ -54,7 +54,7 @@ use Illuminate\Support\Facades\DB;
                             <div class="row align-items-center" style="border: 2px solid rgb(255, 255, 255);border-radius:10px;box-sizing:border-box">
                                 <div class="col-2 px-1" style="position: relative">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
-                                        <img src="player/smile.svg" sty alt="">
+                                        <img src="player/smile.svg" style="width:100px" alt="Emoji">
                                     </svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
                                 </div>
@@ -72,7 +72,7 @@ use Illuminate\Support\Facades\DB;
                                                         <div class="">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
                                                                 @if(asset($emoj->image->path))
-                                                                <img src="{{asset($emoj->image->path)}}" sty alt="">
+                                                                <img src="{{asset($emoj->image->path)}}" style="width:100px" alt="Emoji">
                                                                 @else
                                                                 @endif
                                                             </svg>
@@ -94,7 +94,7 @@ use Illuminate\Support\Facades\DB;
                                 <div class="col-1">
                                     <div class="accordion__icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
-                                            <img src="player/smile.svg" sty alt="">
+                                            <img src="player/smile.svg" style="width:100px" alt="Emoji">
                                         </svg>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
                                     </div>
@@ -112,7 +112,7 @@ use Illuminate\Support\Facades\DB;
                                                     <div class="accordion__icon ">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
                                                             @if(asset($emoj->image->path))
-                                                            <img src="{{asset($emoj->image->path)}}" sty alt="">
+                                                            <img src="{{asset($emoj->image->path)}}" style="width:100px" alt="Emoji">
                                                             @else
                                                             @endif
                                                         </svg>
@@ -145,7 +145,7 @@ use Illuminate\Support\Facades\DB;
                                                                                 <div class="accordion__icon" >
                                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
                                                                                         @if(asset($emoj->image->path))
-                                                                                            <img src="{{asset($emoj->image->path)}}" sty alt="">
+                                                                                            <img src="{{asset($emoj->image->path)}}" style="width:100px" alt="Emoji">
                                                                                         @else
                                                                                         @endif
                                                                                     </svg>
@@ -185,7 +185,7 @@ use Illuminate\Support\Facades\DB;
                                                                         <div class="accordion__icon" >
                                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
                                                                                 @if(asset($emoj->image->path))
-                                                                                    <img src="{{asset($emoj->image->path)}}" sty alt="">
+                                                                                    <img src="{{asset($emoj->image->path)}}" style="width:100px" alt="Emoji">
                                                                                 @else
                                                                                 @endif
                                                                             </svg>
