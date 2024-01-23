@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['auth']], function () {
     Route::get('last-reply', [ReplyController::class, 'lastReply'])->name('reply.last-reply');
     Route::post('reply', [ReplyController::class, 'store'])->name('reply.store');
-    Route::post('create-reply', [ReplyController::class, 'Createreply'])->name('create-reply');
+    Route::post('create-reply', [ReplyController::class, 'createReply'])->name('create-reply');
     Route::get('meditation-mark-as-viewed/{meditation}', [MeditationController::class, 'markAsViewed'])->name('meditation-mark-as-viewed');
     Route::get('meditation-recently-viewed', [MeditationController::class, 'recentlyViewed'])->name('meditation-recently-viewed');
     Route::get('meditation-popular-by-category', [MeditationController::class, 'popularByCategory'])->name('meditation-popular-by-category');

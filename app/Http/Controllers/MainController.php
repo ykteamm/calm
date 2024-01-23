@@ -75,6 +75,7 @@ class MainController extends Controller
             $recentlyViewedMeditations = $this->meditationService->recentlyViewed();
             $meditations = $this->categoryService->getMeditationsAll();
             $single = MeditationGroupEnum::SINGLE;
+
             // return $meditations;
             // dd($meditations[2]->meditations);
             return view("user.index",[
