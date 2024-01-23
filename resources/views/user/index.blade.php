@@ -445,7 +445,7 @@ use Illuminate\Support\Facades\DB;
                                     <div class="tabs__content pt-60 lg:pt-50 js-tabs-content">
                                         <div class="tabs__pane -tab-item-1 is-active">
                                             <div class="overflow-hidden js-section-slider" data-gap="30" data-slider-cols="xl-4 lg-3 md-2 sm-2">
-                                                <div class="swiper-wrapper" style="transform: translate3d(-84px, 0px, 0px);">
+                                                <div class="swiper-wrapper" style="transform: translate3d(px, 0px, 0px);">
                                                     @foreach ($category->meditations as $g => $meditation)
                                                         @php
                                                             $lesson = $meditation->lessons[0];
