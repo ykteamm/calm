@@ -444,84 +444,86 @@ use Illuminate\Support\Facades\DB;
                                     </div>
                                     <div class="tabs__content pt-60 lg:pt-50 js-tabs-content">
                                         <div class="tabs__pane -tab-item-1 is-active">
-                                            <div class="overflow-hidden js-section-slider" data-gap="30" data-slider-cols="xl-4 lg-3 md-2 sm-2">
-                                                <div class="swiper-wrapper" style="transform: translate3d(px, 0px, 0px);">
-                                                    @foreach ($category->meditations as $g => $meditation)
-                                                        @php
-                                                            $lesson = $meditation->lessons[0];
-                                                        @endphp
-                                                        <div class="swiper-slide" style="position: relative;">
-                                                            {{-- @if (count($meditation->usershows) > 0 && ($lesson->block))
-                                                                @if (hasLessonBlocked($meditation->usershows, $lesson))
-                                                                    <div class="d-flex align-items-center justify-content-center rounded" style="top:0;bottom:0;left:0;right:0;position: absolute;z-index:200">
-                                                                        <img src="{{asset('calm/lock.png')}}" alt="Alt">
-                                                                    </div>
+                                            <div class="overflow-hidden ">
+                                                <div class="js-section-slider" data-gap="30" data-slider-cols="xl-4 lg-3 md-2 sm-2">
+                                                    <div class="swiper-wrapper" style="transform: translate3d(px, 0px, 0px);">
+                                                        @foreach ($category->meditations as $g => $meditation)
+                                                            @php
+                                                                $lesson = $meditation->lessons[0];
+                                                            @endphp
+                                                            <div class="swiper-slide" style="position: relative;">
+                                                                {{-- @if (count($meditation->usershows) > 0 && ($lesson->block))
+                                                                    @if (hasLessonBlocked($meditation->usershows, $lesson))
+                                                                        <div class="d-flex align-items-center justify-content-center rounded" style="top:0;bottom:0;left:0;right:0;position: absolute;z-index:200">
+                                                                            <img src="{{asset('calm/lock.png')}}" alt="Alt">
+                                                                        </div>
+                                                                    @endif
                                                                 @endif
-                                                            @endif
-                                                            @if ($lesson->block)
-                                                                <div class="d-flex align-items-center justify-content-center rounded" style="top:0;bottom:0;left:0;right:0;position: absolute;z-index:200">
-                                                                    <img src="{{asset('calm/lock.png')}}" alt="">
-                                                                </div>
-                                                            @endif --}}
-                                                            <div data-anim-child="slide-up delay-2">
-
-                                                                <a  @if ($meditation->group == $single) href="{{route('lesson.user.show', ['lesson' => $lesson->id])}}" @else href="{{route('meditation.show', ['meditation' => $meditation->id])}}" @endif class="coursesCard -type-1 ">
-                                                                    <div class="relative">
-                                                                        <div class="coursesCard__image overflow-hidden rounded-8">
-                                                                        @if ($lesson->image)
-                                                                            <img class="w-1/1" src="{{asset($lesson->image->path)}}" alt="image">
-                                                                        @endif
-                                                                            <div class="coursesCard__image_overlay rounded-8"></div>
-                                                                        </div>
-                                                                        <div class="d-flex justify-between py-10 px-10 absolute-full-center z-3">
-
-                                                                            <div>
-                                                                                <div class="px-15 rounded-200 bg-purple-1">
-                                                                                    <span class="text-11 lh-1 fw-500 text-white">{{$key+1}}-kun</span>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div>
-                                                                                <div class="px-15 rounded-200 bg-purple-2">
-                                                                                    <span class="text-11 lh-1 fw-500" style="color: black;">11 min</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
+                                                                @if ($lesson->block)
+                                                                    <div class="d-flex align-items-center justify-content-center rounded" style="top:0;bottom:0;left:0;right:0;position: absolute;z-index:200">
+                                                                        <img src="{{asset('calm/lock.png')}}" alt="">
                                                                     </div>
-                                                                    <div class="h-100 pt-5">
-                                                                        <div class="text-17 lh-15 fw-500 text-dark-1 text-color-white-for">{{$meditation->translation->name}}</div>
-                                                                        <div class="text-17 text-color-white-for">
-                                                                            @if ($category->id == 1)
-                                                                            {{$category->translation->name}} * Kurs
-                                                                            @else
-                                                                                {{$category->translation->name}} * Masterklass
+                                                                @endif --}}
+                                                                <div data-anim-child="slide-up delay-2">
+    
+                                                                    <a  @if ($meditation->group == $single) href="{{route('lesson.user.show', ['lesson' => $lesson->id])}}" @else href="{{route('meditation.show', ['meditation' => $meditation->id])}}" @endif class="coursesCard -type-1 ">
+                                                                        <div class="relative">
+                                                                            <div class="coursesCard__image overflow-hidden rounded-8">
+                                                                            @if ($lesson->image)
+                                                                                <img class="w-1/1" src="{{asset($lesson->image->path)}}" alt="image">
                                                                             @endif
-
-                                                                        </div>
-                                                                        <div class="d-flex x-gap-10 items-center mb-10">
-                                                                            <div class="d-flex items-center">
-                                                                                <div class="text-14 lh-1 text-color-white-for">
-                                                                                    <span style="font-size:18px;">{{$lesson->translation->name}}</span>
-
+                                                                                <div class="coursesCard__image_overlay rounded-8"></div>
+                                                                            </div>
+                                                                            <div class="d-flex justify-between py-10 px-10 absolute-full-center z-3">
+    
+                                                                                <div>
+                                                                                    <div class="px-15 rounded-200 bg-purple-1">
+                                                                                        <span class="text-11 lh-1 fw-500 text-white">{{$key+1}}-kun</span>
+                                                                                    </div>
+                                                                                </div>
+    
+                                                                                <div>
+                                                                                    <div class="px-15 rounded-200 bg-purple-2">
+                                                                                        <span class="text-11 lh-1 fw-500" style="color: black;">11 min</span>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                </a>
+                                                                        <div class="h-100 pt-5">
+                                                                            <div class="text-17 lh-15 fw-500 text-dark-1 text-color-white-for">{{$meditation->translation->name}}</div>
+                                                                            <div class="text-17 text-color-white-for">
+                                                                                @if ($category->id == 1)
+                                                                                {{$category->translation->name}} * Kurs
+                                                                                @else
+                                                                                    {{$category->translation->name}} * Masterklass
+                                                                                @endif
+    
+                                                                            </div>
+                                                                            <div class="d-flex x-gap-10 items-center mb-10">
+                                                                                <div class="d-flex items-center">
+                                                                                    <div class="text-14 lh-1 text-color-white-for">
+                                                                                        <span style="font-size:18px;">{{$lesson->translation->name}}</span>
+    
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        {{-- @if ($meditation->group == $single)
-                                                        @endif
-                                                        @foreach ($meditation->lessons as $key => $lesson)
-                                                        @endforeach --}}
-                                                    @endforeach
+                                                            {{-- @if ($meditation->group == $single)
+                                                            @endif
+                                                            @foreach ($meditation->lessons as $key => $lesson)
+                                                            @endforeach --}}
+                                                        @endforeach
+                                                    </div>
+                                                    <button class="section-slider-nav -prev -dark-bg-dark-2 -white -absolute size-50 rounded-full shadow-5 js-prev">
+                                                        <i class="icon icon-arrow-left text-24"></i>
+                                                    </button>
+                                                    <button class="section-slider-nav -next -dark-bg-dark-2 -white -absolute size-50 rounded-full shadow-5 js-next">
+                                                        <i class="icon icon-arrow-right text-24"></i>
+                                                    </button>
                                                 </div>
-                                                <button class="section-slider-nav -prev -dark-bg-dark-2 -white -absolute size-50 rounded-full shadow-5 js-prev">
-                                                    <i class="icon icon-arrow-left text-24"></i>
-                                                </button>
-                                                <button class="section-slider-nav -next -dark-bg-dark-2 -white -absolute size-50 rounded-full shadow-5 js-next">
-                                                    <i class="icon icon-arrow-right text-24"></i>
-                                                </button>
                                             </div>
                                         </div>
                                     </div>

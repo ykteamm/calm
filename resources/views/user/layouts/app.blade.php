@@ -51,18 +51,15 @@
         @yield('script')
 
         @livewireScripts
-        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
         <script>
-            var swiper = new Swiper(".mySwiper", {
-                slidesPerView: 4,
-                centeredSlides: true,
-                spaceBetween: 30,
-                grabCursor: true,
-                // pagination: {
-                //     el: ".swiper-pagination",
-                //     clickable: true,
-                // },
-                });
+            let sliderItems = document.querySelectorAll('.swiper-slide');
+            let sliders = document.querySelectorAll('.js-section-slider');
+            sliders.forEach(element => {
+                element.classList.add('swiper-slide-custom')
+            });
+            sliderItems.forEach(element => {
+                element.classList.add('swiper-slide-custom')
+            });
         </script>
         <script>
             let landscape = localStorage.getItem('landscape');

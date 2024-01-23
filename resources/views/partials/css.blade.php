@@ -247,4 +247,9 @@
       height: 100%;
       object-fit: cover;
     } */
+
+
+    .swiper-slide-custom {
+      width: 230px !important;
+    }
 </style>
