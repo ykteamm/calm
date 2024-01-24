@@ -20,6 +20,7 @@ class CategorySeeder extends Seeder
         $categories = [
             'uz' => ["Qalb meditatsiyasi", "Tana dorilari", "Aql rivojlanishi"],
             // 'uz' => ["Meditatsiya", "Dori", "Iroda", "Baxtli hayot"],
+            // 'uz' => ["Meditatsiya", "Dori", "Iroda", "Baxtli hayot"],
             'en' => ["Meditatsiyalar", "Medicine", "Will", "Happy life"],
             'ru' => ["Медитации", "Лекарство", "Воля", "Счастливая жизнь"]
         ];
