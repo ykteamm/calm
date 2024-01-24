@@ -146,7 +146,7 @@ use Illuminate\Support\Facades\DB;
                         {{-- @endif --}}
                         @if ($key == 0)
                         <div class="container">
-                            <div class="accordion -block text-left js-accordion" >
+                            <div class="accordion -block text-left js-accordion" style="position: relative">
                                 <div class="item_test"  data-bs-toggle="modal" data-bs-target="#emojiModal">
                                     <div class="accordion__button p-1">
                                         <div class="accordion__icon">
@@ -183,7 +183,7 @@ use Illuminate\Support\Facades\DB;
                         @if ($key == 2)
                             @if(!$todayRepliedGratitude && $gratitude)
                                 <div class="container">
-                                    <div class="accordion -block text-left js-accordion" >
+                                    <div class="accordion -block text-left js-accordion" style="position: relative">
                                         <div class="item_test"  data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             <div class="accordion__button p-1">
                                                 <div class="accordion__icon">
