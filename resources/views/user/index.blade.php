@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
         <div class="dashboard -home-9 px-0 js-dashboard-home-9">
             @include('user.layouts.sidebar')
             <div class="dashboard__main mt-0 main-color">
-                <div class="dashboard__content pt-0 px-30 pb-0 mb-80">
+                <div class="pt-0 pb-0 mb-80">
                     <div class="container pt-40 ">
                         <div class="col-auto">
                             <h1 class="text-30 font_family_a text-color-white lh-12 fw-700">
@@ -49,259 +49,40 @@ use Illuminate\Support\Facades\DB;
                             </div>
                         </div>
                     </section>
-                    <div style="position: relative">
-                        <button type="button"  data-bs-toggle="modal" data-bs-target="#emojiModal">
-                            <div class="row align-items-center" style="border: 2px solid rgb(255, 255, 255);border-radius:10px;box-sizing:border-box">
-                                <div class="col-2 px-1" style="position: relative">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
-                                        <img src="player/smile.svg" style="width:100px" alt="Emoji">
-                                    </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
-                                </div>
-                                <div class="col-7">
-                                    <span class="text-17 fw-500 text-dark-1 font_family_a text-color-white-for">
-                                        How are you feeling?
+                    <div class="container">
+                        <div class="accordion -block text-left pt-60 lg:pt-40 js-accordion" >
+                            <div class="item_test"  data-bs-toggle="modal" data-bs-target="#emojiModal">
+                                <div class="accordion__button">
+                                    <div class="accordion__icon">
+                                        <img src="player/smile.svg" style="width:30px" alt="Emoji">
+                                    </div>
+                                    <span class="ml-30 text-color-white-for">
+                                        Kayfiyatingiz qanday ?
                                     </span>
-                                </div>
-                                <div class="col-3">
+                                    <span class="ml-80" >
                                     @foreach($emoj_have as $have)
                                         @if($have->user_id == auth()->user()->id)
                                             @foreach($emoji as $emoj)
                                                 @if($have->emoji_id == $emoj->id )
                                                     <div class=""  style="display: flex; justify-content: space-around;">
                                                         <div class="">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
                                                                 @if(asset($emoj->image->path))
-                                                                <img src="{{asset($emoj->image->path)}}" style="width:100px" alt="Emoji">
+                                                                <img src="{{asset($emoj->image->path)}}" style="width:30px" alt="Emoji">
                                                                 @else
                                                                 @endif
-                                                            </svg>
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
                                                         </div>
                                                     </div>
                                                 @endif
                                             @endforeach
                                         @endif
                                     @endforeach
+                                </span>
                                 </div>
                             </div>
-                        </button>
+                        </div>
                         @include('user.modals.emoji')
+
                     </div>
-                    {{-- <div class="accordion -block text-left pt-60 lg:pt-40" style="z-index: 100! important;position:relative">
-                        <div class="accordion__item">
-                            <button class="accordion__button" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#emojiModalLabel">
-                                <div class="col-1">
-                                    <div class="accordion__icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
-                                            <img src="player/smile.svg" style="width:100px" alt="Emoji">
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
-                                    </div>
-                                </div>
-                                <div class="col-9 text_cent">
-                                    <span class="text-17 fw-500 text-dark-1 font_family_a text-color-white-for">
-                                        How are you feeling?
-                                    </span>
-                                </div>
-                                @foreach($emoj_have as $have)
-                                    @if($have->user_id == auth()->user()->id)
-                                        @foreach($emoji as $emoj)
-                                            @if($have->emoji_id == $emoj->id )
-                                                <div class="col-2"  style="display: flex; justify-content: space-around;">
-                                                    <div class="accordion__icon ">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
-                                                            @if(asset($emoj->image->path))
-                                                            <img src="{{asset($emoj->image->path)}}" style="width:100px" alt="Emoji">
-                                                            @else
-                                                            @endif
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
-                                                    </div>
-                                                </div>
-                                            @endif
-                                        @endforeach
-                                    @endif
-                                @endforeach
-                            </button>
-                            @include('user.modals.emoji')
-                            <div class="accordion__content">
-                                @if($user_emoj_have)
-                                    @foreach($emoj_have as $have)
-                                        @if($have->user_id == auth()->user()->id)
-                                            <div class="accordion__content__inner">
-                                                <form action="{{route('feeling.update', ['feeling' => $have->id])}}" method="POST">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <div class="row">
-                                                        @foreach($emoji as $emoj)
-                                                            <div class="col-md-2 col-4 pb-10">
-                                                                <div class="accordion__item add-class">
-                                                                    <input type="checkbox" class="d-none" value="{{$emoj->id}}" name="emoji_id">
-                                                                    <input type="hidden" class="d-none" value="{{auth()->user()->id}}" name="user_id">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <div class="accordion__button justify-content-around">
-                                                                                <div class="accordion__icon" >
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
-                                                                                        @if(asset($emoj->image->path))
-                                                                                            <img src="{{asset($emoj->image->path)}}" style="width:100px" alt="Emoji">
-                                                                                        @else
-                                                                                        @endif
-                                                                                    </svg>
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-12">
-                                                                            <p class="text-color-white-for text-center font_family_a pb-10">{{$emoj->text}}</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        @endforeach
-                                                    </div>
-                                                    <div class="d-flex justify-content-center pt-10 pl-10 pr-10">
-                                                        <button class="button -md -purple-1 font_family_a text-white">Save</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        @else
-                                        @endif
-                                    @endforeach
-                                @else
-                                    <div class="accordion__content__inner">
-                                        <form action="{{route('feeling.store')}}" method="POST">
-                                            @csrf
-                                            <div class="row">
-                                                @foreach($emoji as $emoj)
-                                                    <div class="col-md-2 col-4 pb-10">
-                                                        <div class="accordion__item add-class">
-                                                            <input type="checkbox" class="d-none" value="{{$emoj->id}}" name="emoji_id">
-                                                            <input type="hidden" class="d-none" value="{{auth()->user()->id}}" name="user_id">
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="accordion__button justify-content-around">
-                                                                        <div class="accordion__icon" >
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
-                                                                                @if(asset($emoj->image->path))
-                                                                                    <img src="{{asset($emoj->image->path)}}" style="width:100px" alt="Emoji">
-                                                                                @else
-                                                                                @endif
-                                                                            </svg>
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus icon"></svg>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-12">
-                                                                    <p class="text-color-white-for text-center font_family_a pb-10">{{$emoj->text}}</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                            <div class="d-flex justify-content-center pt-10 pl-10 pr-10">
-                                                <button class="button -md -purple-1 font_family_a text-white">Save</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                    </div> --}}
-                    {{-- <section class="layout-pt-md layout-pb-md">
-                        <div data-anim-wrap class="container">
-                            <div class="tabs -pills js-tabs">
-                                <div class="row y-gap-20 justify-between items-end">
-                                    <div class="col-auto">
-                                        <div class="sectionTitle ">
-                                            <h2 class="sectionTitle__title font_family_a text-color-white-for">{{__('common.popular')}}</h2>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tabs__content pt-60 lg:pt-50 js-tabs-content">
-                                    <div class="tabs__pane -tab-item-1 is-active">
-                                        <div class="overflow-hidden js-section-slider" data-gap="30" data-slider-cols="xl-4 lg-3 md-2 sm-2">
-                                            <div class="swiper-wrapper">
-                                                @foreach ($popularMeditations as $g => $meditation)
-                                                        @foreach ($meditation->lessons as $key => $lesson)
-                                                            <div class="swiper-slide" style="position: relative">
-                                                                @if (count($meditation->usershows) > 0 && ($lesson->block))
-                                                                    @if (hasLessonBlocked($meditation->usershows, $lesson))
-                                                                        <div class="d-flex align-items-center justify-content-center rounded" style="top:0;bottom:0;left:0;right:0;position: absolute;z-index:200">
-                                                                            <img src="{{asset('calm/lock.png')}}" alt="Alt">
-                                                                        </div>
-                                                                    @endif
-                                                                @endif
-                                                                @if ($lesson->block)
-                                                                    <div class="d-flex align-items-center justify-content-center rounded" style="top:0;bottom:0;left:0;right:0;position: absolute;z-index:200">
-                                                                        <img src="{{asset('calm/lock.png')}}" alt="">
-                                                                    </div>
-                                                                @endif
-                                                                <div data-anim-child="slide-up delay-2">
-
-                                                                    <a  @if ($lesson->block) @else href="{{route('lesson.user.show', ['lesson' => $lesson->id])}}" @endif class="coursesCard -type-1 ">
-                                                                        <div class="relative">
-                                                                            <div class="coursesCard__image overflow-hidden rounded-8">
-                                                                            @if ($lesson->image)
-                                                                                <img class="w-1/1" src="{{asset($lesson->image->path)}}" alt="image">
-                                                                            @endif
-                                                                                <div class="coursesCard__image_overlay rounded-8"></div>
-                                                                            </div>
-                                                                            <div class="d-flex justify-between py-10 px-10 absolute-full-center z-3">
-
-                                                                                <div>
-                                                                                    <div class="px-15 rounded-200 bg-purple-1">
-                                                                                        <span class="text-11 lh-1 fw-500 text-white">{{$key+1}}-kun</span>
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div>
-                                                                                    <div class="px-15 rounded-200 bg-purple-2">
-                                                                                        <span class="text-11 lh-1 fw-500" style="color: black;">11 min</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="h-100 pt-5">
-                                                                            <div class="text-17 lh-15 fw-500 text-dark-1 text-color-white-for">{{$meditation->translation->name}}</div>
-                                                                            <div class="text-17 text-color-white-for">
-                                                                                @if ($meditation->id == 1)
-                                                                                Meditatsiya * Kurs
-                                                                                @else
-                                                                                    Iroda * Masterklass
-                                                                                @endif
-
-                                                                            </div>
-                                                                            <div class="d-flex x-gap-10 items-center mb-10">
-                                                                                <div class="d-flex items-center">
-                                                                                    <div class="text-14 lh-1 text-color-white-for">
-                                                                                        <span style="font-size:18px;">{{$lesson->translation->name}}</span>
-
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        @endforeach
-                                                    @endforeach
-                                            </div>
-                                            <button class="section-slider-nav -prev -dark-bg-dark-2 -white -absolute size-50 rounded-full shadow-5 js-prev">
-                                                <i class="icon icon-arrow-left text-24"></i>
-                                            </button>
-                                            <button class="section-slider-nav -next -dark-bg-dark-2 -white -absolute size-50 rounded-full shadow-5 js-next">
-                                                <i class="icon icon-arrow-right text-24"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section> --}}
-
                     @if(!$todayRepliedGratitude && $gratitude)
                         <div class="container">
                             <div class="accordion -block text-left pt-60 lg:pt-40 js-accordion" >
@@ -442,7 +223,7 @@ use Illuminate\Support\Facades\DB;
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tabs__content pt-60 lg:pt-50 js-tabs-content">
+                                    <div class="tabs__content pt-10 js-tabs-content">
                                         <div class="tabs__pane -tab-item-1 is-active">
                                             <div class="overflow-hidden ">
                                                 <div class="js-section-slider" data-gap="30" data-slider-cols="xl-4 lg-3 md-2 sm-2">

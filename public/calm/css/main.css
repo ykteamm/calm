@@ -15268,7 +15268,7 @@ div[data-slider] > input[type=range]::-ms-tooltip {
         /*right: 60px !important;*/
     }
     .section-slider-nav.-absolute.-next {
-        right: -10px;
+        right: 0px;
     }
 }
 
@@ -15278,17 +15278,21 @@ div[data-slider] > input[type=range]::-ms-tooltip {
         /*right: 60px !important;*/
     }
     .section-slider-nav.-absolute.-next {
-        right: -10px;
+        right: 0px;
     }
 }
 
 @media (max-width: 767px) {
     .section-slider-nav.-absolute.-prev {
         left: 300px;
+        top: -30px;
+
         /*right: 60px !important;*/
     }
     .section-slider-nav.-absolute.-next {
-        right: -10px;
+        right: 0px;
+        top: -30px;
+
     }
 }
 
@@ -15304,21 +15308,24 @@ div[data-slider] > input[type=range]::-ms-tooltip {
         font-size: 20px !important;
     }
     .section-slider-nav.-absolute.-prev {
-        left: 250px;
+        left: 300px;
+        top: -30px;
         /*right: 60px !important;*/
     }
     .section-slider-nav.-absolute.-next {
-        right: -10px;
+        right: 0px;
+        top: -30px;
+
     }
 }
 
 @media (max-width: 430px) {
     .section-slider-nav.-absolute.-prev {
-        left: 180px;
+        left: 245px;
         /*right: 60px !important;*/
     }
     .section-slider-nav.-absolute.-next {
-        right: -10px;
+        right: 0px;
     }
 }
 
@@ -15331,11 +15338,11 @@ div[data-slider] > input[type=range]::-ms-tooltip {
         height: 42px;
     }
     .section-slider-nav.-absolute.-prev {
-        left: 140px;
+        left: 220px;
         /*right: 60px !important;*/
     }
     .section-slider-nav.-absolute.-next {
-        right: -10px;
+        right: 0px;
     }
 }
 
