@@ -22,7 +22,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="accordion__button justify-content-around">
-                                                        <div class="accordion__icon" >
+                                                        <div class="" style="width:40px;">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus icon">
                                                                 @if(asset($emoj->image->path))
                                                                     <img src="{{asset($emoj->image->path)}}" style="width: 100px" alt="">
@@ -34,7 +34,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <p class="text-center font_family_a pb-10">{{$emoj->text}}</p>
+                                                    <p class="text-center font_family_a pb-10" style="font-size: 13px;">{{$emoj->text}}</p>
                                                 </div>
                                             </div>
                                         </div>
