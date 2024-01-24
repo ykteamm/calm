@@ -18,61 +18,26 @@ class MeditationSeeder extends Seeder
     {
         $meditations = [
             [
-                'name' => "Boshlang'ich Meditatsiya course",
+                'name' => "Boshlang'ich Meditatsiya",
                 'type' => MeditationTypeEnum::COURSE,
                 'group' => MeditationGroupEnum::MULTIPLE,
                 'category_id' => 1,
                 'meditator_id' => 1
             ],
             [
-                'name' => "Tirishqoqlik va Iroda Sirlari course",
-                'type' => MeditationTypeEnum::COURSE,
-                'group' => MeditationGroupEnum::MULTIPLE,
-                'category_id' => 2,
-                'meditator_id' => 1
-            ],
-            [
-                'name' => "Minnatdorchilik va Miraj course",
-                'type' => MeditationTypeEnum::COURSE,
+                'name' => "Tirishqoqlik va Iroda Sirlari",
+                'type' => MeditationTypeEnum::MASTERCLASS,
                 'group' => MeditationGroupEnum::MULTIPLE,
                 'category_id' => 3,
                 'meditator_id' => 1
             ],
             [
-                'name' => "Ishchanlik course",
-                'type' => MeditationTypeEnum::COURSE,
+                'name' => "Minnatdorchilik va Miraj",
+                'type' => MeditationTypeEnum::MASTERCLASS,
                 'group' => MeditationGroupEnum::MULTIPLE,
-                'category_id' => 4,
-                'meditator_id' => 1
-            ],
-            [
-                'name' => "Boshlang'ich Meditatsiya MASTERCLASS",
-                'type' => MeditationTypeEnum::MASTERCLASS,
-                'group' => MeditationGroupEnum::SINGLE,
-                'category_id' => 1,
-                'meditator_id' => 1
-            ],
-            [
-                'name' => "Tirishqoqlik va Iroda Sirlari MASTERCLASS",
-                'type' => MeditationTypeEnum::MASTERCLASS,
-                'group' => MeditationGroupEnum::SINGLE,
-                'category_id' => 2,
-                'meditator_id' => 1
-            ],
-            [
-                'name' => "Minnatdorchilik va Miraj MASTERCLASS",
-                'type' => MeditationTypeEnum::MASTERCLASS,
-                'group' => MeditationGroupEnum::SINGLE,
                 'category_id' => 3,
                 'meditator_id' => 1
             ],
-            [
-                'name' => "Ishchanlik MASTERCLASS",
-                'type' => MeditationTypeEnum::MASTERCLASS,
-                'group' => MeditationGroupEnum::SINGLE,
-                'category_id' => 4,
-                'meditator_id' => 1
-            ]
         ];
         foreach ($meditations as $meditation) {
             $meditationObj = Meditation::create([

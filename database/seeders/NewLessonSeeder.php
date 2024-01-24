@@ -35,8 +35,8 @@ class NewLessonSeeder extends Seeder
             ],
             [
                 'Depressiyaga zarba',
-                'Motivatsiya echim emas',
-                'Ur yo qoch qizimi',
+                'Motivatsiya yechim emas',
+                'Ur yo qoch tizimi',
                 'Sintetik iroda',
                 'Miya qismlarini yoqish',
             ],
@@ -50,12 +50,6 @@ class NewLessonSeeder extends Seeder
                 'Salbiy tasavvur (Vizualizatsiya)',
                 'Tana, Aql, Qalb',
             ],
-            [
-                'Kamroq hayol surish',
-                "Masuliyatni his qilish",
-                'Muntazam jismoniy harakatda bo\'lish',
-                'Kun tartibiga rioya qilish'
-            ]
         ];
 
         $imgs = [
@@ -83,19 +77,13 @@ class NewLessonSeeder extends Seeder
                 'sarob',
                 'salbiy-tas',
                 'tana-aql',
-            ],
-            [
-                'neyro-kimyo',
-                'kattas',
-                'kechinmalar',
-                'miya-qismlari'
             ]
         ];
 
         $langs = Language::all();
         $single = Meditation::where('group', MeditationGroupEnum::SINGLE)->get();
         $multiple = Meditation::where('group', MeditationGroupEnum::MULTIPLE)->get();
-        
+
         foreach ($single as $ms) {
             $lesson = Lesson::create([
                 'meditation_id' => $ms->id,

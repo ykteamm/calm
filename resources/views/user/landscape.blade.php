@@ -6,7 +6,7 @@
       <div class="dashboard__main mt-0 mb-10">
         <div class="dashboard__content pt-0 px-15 pb-0" style="padding-left: 0 !important; position: relative;background: linear-gradient(90deg, #162a39, #194d75);border-radius: 0;overflow: hidden;">
 
-            <div id="landscapeVideoTest" style="position: relative; z-index: 10; background: linear-gradient(90deg, #162a39, #194d75);color: #f1f1f1; width: 100%;height: 900px;padding: 20px;">
+            <div id="landscapeVideoTest" style="position: relative; z-index: 10; background: linear-gradient(90deg, #162a39, #194d75);color: #f1f1f1; width: 100%;height: 900px;padding: 20px; padding-bottom:50px;">
                 {{-- @foreach ($landscapes as $item)
                     @if ($item->video)
                     <video autoplay loop muted playsinline id="landscapeVideoItem{{$item->id}}" class="background-video " style="position: absolute; z-index: 0;opacity: 50%; right: 0; bottom: 0;left: 0; min-width: 100%; min-height: 100%; display: none">
@@ -24,8 +24,8 @@
                 <video autoplay loop muted playsinline id="myVideo1" class="background-video " style="position: absolute; z-index: 0;opacity: 50%; right: 0; bottom: 0;left: 0; min-width: 100%; min-height: 100%; display: none">
                     <source src="../calm/media/forest.mp4" type="video/mp4">
                 </video> --}}
-                
-                
+
+
 
 
                 <div class="container">
@@ -54,7 +54,7 @@
                             @foreach ($landscapes as $item)
                                 <div class="col-lg-3 col-md-6" style="cursor: pointer;">
                                     <div onclick="landscapeAudio({{$item}})" id="playBtn" data-anim-child="slide-left delay-2" class="blogCard -type-1 rounded-8 border-light shadow-1 overflow-hidden is-in-view">
-                                        <div class="blogCard__image ratio ratio-3:2">
+                                        <div class="blogCard__image ratio ratio-3:2" style="width:70%">
                                             @if ($item->image)
                                                 <img class="img-ratio" src="{{$item->image->path}}" alt="image">
                                             @else

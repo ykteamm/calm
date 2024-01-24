@@ -10,6 +10,21 @@ if(!function_exists('getLanguages')) {
     }
 }
 
+if(!function_exists('getLabel')) {
+    function getLabel($code)
+    {
+        if($code == 10)
+        {
+            return 'Kurs';
+
+        }
+        if($code == 20)
+        {
+            return 'Masterklass';
+        }
+    }
+}
+
 if(!function_exists('hasLessonBlocked')) {
     function hasLessonBlocked($usershow, $lesson)
     {

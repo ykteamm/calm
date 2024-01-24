@@ -15301,11 +15301,11 @@ div[data-slider] > input[type=range]::-ms-tooltip {
         font-size: 25px;
     }
     .section-slider-nav.-absolute {
-        width: 44px;
-        height: 44px;
+        width: 30px;
+        height: 30px;
     }
     .section-slider-nav.-absolute i {
-        font-size: 20px !important;
+        font-size: 15px !important;
     }
     .section-slider-nav.-absolute.-prev {
         left: 300px;
@@ -15334,8 +15334,8 @@ div[data-slider] > input[type=range]::-ms-tooltip {
         font-size: 24px;
     }
     .section-slider-nav.-absolute {
-        width: 42px;
-        height: 42px;
+        width: 30px;
+        height: 30px;
     }
     .section-slider-nav.-absolute.-prev {
         left: 220px;
