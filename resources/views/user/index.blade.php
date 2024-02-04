@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\DB;
                                     Hayrli tun,
                                 @endif
                                 @auth
-                                    {{auth()->user()->firstname}}
+                                    {{getProp(auth()->user(), 'firstname')}}
                                 @endauth
                             </h1>
                         </div>
@@ -157,7 +157,7 @@ use Illuminate\Support\Facades\DB;
                                         </span>
                                         <span class="ml-80" >
                                         @foreach($emoj_have as $have)
-                                            @if($have->user_id == auth()->user()->id)
+                                            @if($have->user_id == getProp(auth()->user(), 'id'))
                                                 @foreach($emoji as $emoj)
                                                     @if($have->emoji_id == $emoj->id )
                                                         <div class=""  style="display: flex; justify-content: space-around;">

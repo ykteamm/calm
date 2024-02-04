@@ -8,7 +8,7 @@
         <div class="modal-body">
             @if($user_emoj_have)
             @foreach($emoj_have as $have)
-                @if($have->user_id == auth()->user()->id)
+                @if($have->user_id == getProp(auth()->user(), 'id'))
                     <div class="accordion__content__inner">
                         <form action="{{route('feeling.update', ['feeling' => $have->id])}}" method="POST">
                             @csrf
@@ -18,7 +18,7 @@
                                     <div class="col-md-2 col-4 pb-10">
                                         <div class="accordion__item add-class">
                                             <input type="checkbox" class="d-none" value="{{$emoj->id}}" name="emoji_id">
-                                            <input type="hidden" class="d-none" value="{{auth()->user()->id}}" name="user_id">
+                                            <input type="hidden" class="d-none" value="{{getProp(auth()->user(), 'id')}}" name="user_id">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="accordion__button justify-content-around">
@@ -58,7 +58,7 @@
                             <div class="col-md-2 col-4 pb-10">
                                 <div class="accordion__item add-class">
                                     <input type="checkbox" class="d-none" value="{{$emoj->id}}" name="emoji_id">
-                                    <input type="hidden" class="d-none" value="{{auth()->user()->id}}" name="user_id">
+                                    <input type="hidden" class="d-none" value="{{getProp(auth()->user(), 'id')}}" name="user_id">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="accordion__button justify-content-around">

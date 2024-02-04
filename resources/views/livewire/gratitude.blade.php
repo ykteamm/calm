@@ -25,7 +25,7 @@
     <div class="modal-body">
         <form action="{{url('create-reply')}}" class="contact-form" method="POST">
             @csrf
-            <input type="hidden" value="{{auth()->user()->id}}" name="user_id">
+            <input type="hidden" value="{{getProp(auth()->user(), 'id')}}" name="user_id">
             <input type="hidden" value="{{$gratitude->id}}" name="gratitude_id">
             <div class="row">
                 <div class="col-12 d-flex align-items-center">

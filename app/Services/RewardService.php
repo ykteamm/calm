@@ -56,7 +56,7 @@ class RewardService extends BaseService
                     } else {
                         $item = [
                             'text' => $reward['text'],
-                            'user_id' => auth()->user()->id,
+                            'user_id' => getProp(auth()->user(), 'id'),
                             'type' => 2
                         ];
                         $this->create($item);
@@ -91,7 +91,7 @@ class RewardService extends BaseService
         $end = Carbon::now()->endOfWeek()->format("Y-m-d");
         $rewards = $this->query
             ->whereBetween('created_at', [$start, $end])
-            ->where('user_id', auth()->user()->id)
+            ->where('user_id', getProp(auth()->user(), 'id'))
             ->orderBy('id', 'desc')
             ->with('images')
             ->limit(3)

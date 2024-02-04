@@ -17,13 +17,10 @@ class UserTypeMiddleware
      */
     public function handle(Request $request, Closure $next, $type)
     {
-        return $next($request);
-        // $user = $request->user();
-        // dd($user);
-        // $usertype = UserTypeEnum::getLabel($user->type);
-        // if($type && $usertype == $type){
-        // } else {
-        //     // abort(code: 403, message: "must");
-        // }
+        if (UserTypeEnum::ADMIN == getProp($request->user(), 'type')) {
+            return $next($request);
+        } else {
+            abort(403);
+        }
     }
 }

@@ -15,14 +15,14 @@ class UserSeeder extends Seeder
             'username' => 'abduser',
             'phone' => '007',
             'password' => Hash::make('007'),
-            'type' => UserTypeEnum::MEDITATOR
+            'type' => UserTypeEnum::ADMIN
         ]);
         User::create([
             'firstname' => 'To\'lqin',
             'lastname' => 'Ergashev',
             'phone' => '998990821015',
             'password' => Hash::make('1111'),
-            'type' => UserTypeEnum::MEDITATOR
+            'type' => UserTypeEnum::ADMIN
         ]);
     }
 }

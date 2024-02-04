@@ -2,6 +2,8 @@
 
 use App\Models\Category;
 use App\Models\Language;
+use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Collection AS SupportCollection;
 
 if(!function_exists('getLanguages')) {
     function getLanguages()
@@ -125,7 +127,12 @@ if (!function_exists('getProp')) {
             return getProp($firstProp, implode('.', $arr), $default);
         }
         if (is_array($data)) return isset($data[$key]) ? $data[$key] : $default;
-        else if  (is_object($data)) return isset($data->{$key}) ? $data->{$key} : $default;
+        else if  (is_object($data)) {
+            if ($data instanceof Collection || $data instanceof SupportCollection) {
+                return isset($data[$key]) ? $data[$key] : $default;
+            }
+            return isset($data->{$key}) ? $data->{$key} : $default;
+        }
         else return $default;
     }
 }

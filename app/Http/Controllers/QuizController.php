@@ -59,7 +59,7 @@ class QuizController extends Controller
 
     public function index()
     {
-        if ($usertest = Usertest::where('user_id', auth()->user()->id)->orderBy('id', 'DESC')->first()) {
+        if ($usertest = Usertest::where('user_id', getProp(auth()->user(), 'id'))->orderBy('id', 'DESC')->first()) {
             if ($done = Session::get('quiz')) {
                 Session::remove('quiz');
             }
@@ -74,7 +74,7 @@ class QuizController extends Controller
 
     public function return()
     {
-        Usertest::where('user_id', auth()->user()->id)->delete();
+        Usertest::where('user_id', getProp(auth()->user(), 'id'))->delete();
         
         return view('user.quiz.index');
     }
@@ -91,7 +91,7 @@ class QuizController extends Controller
         }
         $packages = [];
         $steroids = [];
-        if ($usertest = Usertest::where('user_id', auth()->user()->id)->orderBy('id', 'DESC')->first()) {
+        if ($usertest = Usertest::where('user_id', getProp(auth()->user(), 'id'))->orderBy('id', 'DESC')->first()) {
             $packages = json_decode($usertest->packages);
             $steroids = json_decode($usertest->steroids);
         }

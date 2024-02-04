@@ -58,44 +58,81 @@ class MainController extends Controller
         $this->landscapeService = $landscapeService;
     }
 
+
+    public function main(IndexRequest $indexRequest)
+    {
+        $time = date('H:i:s');
+        $user_emoj_have = null;
+        $emoj_have = Feeling::get();
+        $replyToday = $this->replyService->today();
+        $replyLast = $this->replyService->last();
+        $todayRepliedGratitude = $this->gratitudeService->todayRepliedGratitude($replyToday);
+        $lastRepliedGratitude = $this->gratitudeService->lastRepliedGratitude($replyLast);
+        $gratitude = $this->gratitudeService->random(['translation']);
+        $emojies = $this->emojiService->withRelation(['image'])->getList([]);
+        $motivation = $this->motivationService->random(['translation']);
+        $popularMeditations = $this->meditationService->popular();
+        $recentlyViewedMeditations = $this->meditationService->recentlyViewed();
+        $meditations = $this->categoryService->getMeditationsAll();
+        $single = MeditationGroupEnum::SINGLE;
+
+        // return $meditations;
+        // dd($meditations[2]->meditations);
+        return view("user.index", [
+            'user_emoj_have' => $user_emoj_have,
+            'emoj_have' => $emoj_have,
+            'emoji' => $emojies,
+            'gratitude' => $gratitude,
+            'todayRepliedGratitude' => $todayRepliedGratitude,
+            'lastRepliedGratitude' => $lastRepliedGratitude,
+            'emojies' => $emojies,
+            'motivation' => $motivation,
+            'time' => $time,
+            'popularMeditations' => $popularMeditations,
+            'recentlyViewedMeditations' => $recentlyViewedMeditations,
+            'meditations' => $meditations,
+            'single' => $single
+        ]);
+    }
+
     public function index(IndexRequest $indexRequest)
     {
-        if (auth()->check()){
-            $time = date('H:i:s');
-            $user_emoj_have = Feeling::where('user_id',auth()->user()->id)->first();
-            $emoj_have = Feeling::get();
-            $replyToday = $this->replyService->today();
-            $replyLast = $this->replyService->last();
-            $todayRepliedGratitude = $this->gratitudeService->todayRepliedGratitude($replyToday);
-            $lastRepliedGratitude = $this->gratitudeService->lastRepliedGratitude($replyLast);
-            $gratitude = $this->gratitudeService->random(['translation']);
-            $emojies = $this->emojiService->withRelation(['image'])->getList([]);
-            $motivation = $this->motivationService->random(['translation']);
-            $popularMeditations = $this->meditationService->popular();
-            $recentlyViewedMeditations = $this->meditationService->recentlyViewed();
-            $meditations = $this->categoryService->getMeditationsAll();
-            $single = MeditationGroupEnum::SINGLE;
+        $time = date('H:i:s');
+        $user_emoj_have = Feeling::where('user_id', getProp(auth()->user(), 'id'))->first();
+        $emoj_have = Feeling::get();
+        $replyToday = $this->replyService->today();
+        $replyLast = $this->replyService->last();
+        $todayRepliedGratitude = $this->gratitudeService->todayRepliedGratitude($replyToday);
+        $lastRepliedGratitude = $this->gratitudeService->lastRepliedGratitude($replyLast);
+        $gratitude = $this->gratitudeService->random(['translation']);
+        $emojies = $this->emojiService->withRelation(['image'])->getList([]);
+        $motivation = $this->motivationService->random(['translation']);
+        $popularMeditations = $this->meditationService->popular();
+        $recentlyViewedMeditations = $this->meditationService->recentlyViewed();
+        $meditations = $this->categoryService->getMeditationsAll();
+        $single = MeditationGroupEnum::SINGLE;
 
-            // return $meditations;
-            // dd($meditations[2]->meditations);
-            return view("user.index",[
-                'user_emoj_have' => $user_emoj_have,
-                'emoj_have' => $emoj_have,
-                'emoji' => $emojies,
-                'gratitude' => $gratitude,
-                'todayRepliedGratitude' => $todayRepliedGratitude,
-                'lastRepliedGratitude' => $lastRepliedGratitude,
-                'emojies' => $emojies,
-                'motivation' => $motivation,
-                'time' => $time,
-                'popularMeditations' => $popularMeditations,
-                'recentlyViewedMeditations' => $recentlyViewedMeditations,
-                'meditations' => $meditations,
-                'single' => $single
-            ]);
-        } else {
-            return view("user.test.start");
-        }
+        // return $meditations;
+        // dd($meditations[2]->meditations);
+        return view("user.index",[
+            'user_emoj_have' => $user_emoj_have,
+            'emoj_have' => $emoj_have,
+            'emoji' => $emojies,
+            'gratitude' => $gratitude,
+            'todayRepliedGratitude' => $todayRepliedGratitude,
+            'lastRepliedGratitude' => $lastRepliedGratitude,
+            'emojies' => $emojies,
+            'motivation' => $motivation,
+            'time' => $time,
+            'popularMeditations' => $popularMeditations,
+            'recentlyViewedMeditations' => $recentlyViewedMeditations,
+            'meditations' => $meditations,
+            'single' => $single
+        ]);
+        // if (auth()->check()){
+        // } else {
+        //     return view("user.test.start");
+        // }
     }
 
     public function meditatorsAll(IndexRequest $indexRequest)

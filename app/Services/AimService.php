@@ -52,7 +52,7 @@ class AimService extends BaseService
                     } else {
                         $item = [
                             'text' => $aim['text'],
-                            'user_id' => auth()->user()->id,
+                            'user_id' => getProp(auth()->user(), 'id'),
                             'type' => 2
                         ];
                         $this->create($item);
@@ -84,7 +84,7 @@ class AimService extends BaseService
         $end = Carbon::now()->endOfWeek()->format("Y-m-d");
         $aims = $this->query
             ->whereBetween('created_at', [$start, $end])
-            ->where('user_id', auth()->user()->id)
+            ->where('user_id', getProp(auth()->user(), 'id'))
             ->orderBy('id', 'desc')
             ->limit(3)
             ->get();
@@ -98,7 +98,7 @@ class AimService extends BaseService
         $end = Carbon::now()->endOfWeek()->format("Y-m-d");
         return $this->query
             ->whereBetween('created_at', [$start, $end])
-            ->where('user_id', auth()->user()->id)
+            ->where('user_id', getProp(auth()->user(), 'id'))
             ->where('done', 1)
             ->exists();
     }
