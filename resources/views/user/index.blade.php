@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
                                 @if(($time >= "04:00:00" && $time <= "12:00:00") == true)
                                     Hayrli tong,
                                 @elseif(($time >= "12:00:00" && $time <= "18:00:00") == true)
-                                    Hayrli kun,
+                                    Hayrli kun 2,
                                 @elseif(($time >= "18:00:00" && $time <= "23:59:59") == true)
                                     Hayrli kech,
                                 @else
