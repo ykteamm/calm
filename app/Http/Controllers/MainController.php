@@ -62,7 +62,7 @@ class MainController extends Controller
     public function main(IndexRequest $indexRequest)
     {
         $time = date('H:i:s');
-        $user_emoj_have = null;
+        $user_emoj_have = Feeling::where('user_id', getProp(auth()->user(), 'id'))->first();
         $emoj_have = Feeling::get();
         $replyToday = $this->replyService->today();
         $replyLast = $this->replyService->last();
