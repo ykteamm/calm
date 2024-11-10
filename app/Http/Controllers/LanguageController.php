@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LanguageUpsertRequest;
 use App\Services\LanguageService;
 
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
+
 class LanguageController extends Controller
 {
     protected LanguageService $service;
@@ -17,28 +20,51 @@ class LanguageController extends Controller
         $this->service = $service;
     }
 
-    public function changeLocale($locale) 
+//    public function changeLocale($locale)
+//    {
+//        $prev = url()->previous();
+//        if($this->service->existsByColumn('code', $locale)) {
+//            foreach (explode('/', $prev) as $item) {
+//                if($this->service->existsByColumn('code', $item)) {
+//                    app()->setLocale($locale);
+//                    if ($locale == config('app.default_locale')){
+//                        $prev = str_replace("/$item", '', $prev);
+//                    } else {
+//                        $prev = str_replace($item, $locale, $prev);
+//                    }
+//                    return redirect($prev);
+//                }
+//            }
+//            if ($url = str_replace(asset(''), '', $prev)) {
+//                $redirect = asset('') . "$locale/" . $url;
+//                return redirect($redirect);
+//            }
+//            return redirect($locale . '/admin/language');
+//        }
+//    }
+    public function changeLocale($locale)
     {
-        $prev = url()->previous();
-        if($this->service->existsByColumn('code', $locale)) {
-            foreach (explode('/', $prev) as $item) {
-                if($this->service->existsByColumn('code', $item)) {
-                    app()->setLocale($locale);
-                    if ($locale == config('app.default_locale')){
-                        $prev = str_replace("/$item", '', $prev);
-                    } else {
-                        $prev = str_replace($item, $locale, $prev);
-                    }
-                    return redirect($prev);
-                }
-            }
-            if ($url = str_replace(asset(''), '', $prev)) {
-                $redirect = asset('') . "$locale/" . $url;
-                return redirect($redirect);
-            }
-            return redirect($locale . '/admin/language');
+//        return $locale;
+        // Ruxsat berilgan tillar ro'yxati
+        $availableLocales = ['uz', 'ru', 'en'];
+
+        // Agar kiritilgan til ruxsat berilgan bo'lsa, sessiyaga yozamiz
+        if (in_array($locale, $availableLocales)) {
+            Session::put('locale', $locale);
+
+            // Laravel'ning global lokalini sozlash
+            App::setLocale($locale);
+
+            // Test: sessiya va App::getLocale()ni ko'rsatish
+//            dd(Session::get('locale'), App::getLocale());
+        } else {
+            abort(404, 'Til topilmadi!');
         }
+
+        // Foydalanuvchini orqaga qaytarish yoki boshqa joyga yo'naltirish
+        return redirect()->back();
     }
+
 
     public function index(IndexRequest $indexRequest)
     {

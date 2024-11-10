@@ -34,7 +34,7 @@ class MeditationController extends Controller
         $this->lessonService = $lessonService;
     }
 
-    
+
 
     public function recentlyViewed(IndexRequest $indexRequest)
     {
@@ -85,7 +85,7 @@ class MeditationController extends Controller
             'lessons' => [
                 fn ($q) => $q->orderBy('block', 'ASC'),
                 'image' => [],
-                'audio' => [], 
+                'audio' => [],
                 'translation' => []
             ],
             'meditator' => [
@@ -134,7 +134,7 @@ class MeditationController extends Controller
             'lessons' => [
                 fn ($q) => $q->orderBy('block', 'ASC'),
                 'image' => [],
-                'audio' => [], 
+                'audio' => [],
                 'translation' => []
             ],
             'meditator' => [
@@ -144,7 +144,7 @@ class MeditationController extends Controller
         ];
         $meditation = $this->service->show($id);
         // difd($meditation);
-        // return $meditation;
+//         return $meditation;
         return view('user.meditation.play', compact('meditation', 'id'));
     }
 }

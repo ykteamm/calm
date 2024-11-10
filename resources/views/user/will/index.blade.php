@@ -249,7 +249,7 @@ display: none !important;
                         @else
                             @if (count($aims) == 0)
                             <div>
-                                <h5 class="text-center">Oldin o'zinga maqsadlar belgilab oling va o'zingizni mukofotlang</h5>
+                                <h5 class="text-center">Mark your accomplishments beforehand and reward yourself</h5>
 
                             </div>
                             @else

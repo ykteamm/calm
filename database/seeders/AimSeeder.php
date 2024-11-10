@@ -10,17 +10,18 @@ class AimSeeder extends Seeder
     public function run()
     {
         $texts = [
-            "Bir kunda 5 soat uxlash",
-            "10 000 qadam piyoda bosib otish",
-            "Bir hafta shakar yemaslik",
-            "Qarindoshlar holidan habar olish",
-            "Ishga ertaroq borish",
-            "Yigirmata yangi lug'at yod olish",
-            "Qiynalganlarga yordam berish",
-            "Telefondan ko'p foydalanmaslik",
-            "Fast-foodlardan iloji boricha yiroqlashish",
-            "Muntazam jismoniy mashqlar bilan shug'ullanish"
+            "Sleep 5 hours a day",
+            "Walk 10,000 steps a day",
+            "Avoid sugar for a week",
+            "Check in with relatives",
+            "Go to work earlier",
+            "Learn 20 new vocabulary words",
+            "Help those in need",
+            "Minimize phone usage",
+            "Stay away from fast food as much as possible",
+            "Engage in regular physical exercises"
         ];
+
         for ($i=0; $i < 10; $i++) {
             Aim::create([
                 'user_id' => 1,

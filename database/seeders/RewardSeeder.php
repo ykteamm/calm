@@ -10,17 +10,18 @@ class RewardSeeder extends Seeder
     public function run()
     {
         $texts = [
-            "Fantastik kino ko'rish",
-            "Bon! ga borib nonushta qilish",
-            "Amerikaga sayohat qilish",
-            "Rep musiqa eshitish",
-            "Basseynga borib cho'milish",
-            "Jismoniy mashqlar bilan shug'ullanish",
-            "Playstation o'ynash",
-            "Futbol ko'rish",
-            "Anjirda kechki ovqatlanish",
-            "Meditatsiya tinglash"
+            "Watch a fantasy movie",
+            "Have breakfast at Bon!",
+            "Travel to America",
+            "Listen to rap music",
+            "Swim in a pool",
+            "Engage in physical exercises",
+            "Play PlayStation",
+            "Watch a football match",
+            "Have dinner at Anjir",
+            "Listen to meditation"
         ];
+
         for ($i=0; $i < 10; $i++) {
             Reward::create([
                 'user_id' => 1,

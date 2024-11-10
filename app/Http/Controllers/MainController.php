@@ -19,6 +19,7 @@ use App\Services\MotivationService;
 use App\Services\QuestionService;
 use App\Services\ReplyService;
 use App\Services\VariantService;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class MainController extends Controller
@@ -97,42 +98,48 @@ class MainController extends Controller
 
     public function index(IndexRequest $indexRequest)
     {
-        $time = date('H:i:s');
-        $user_emoj_have = Feeling::where('user_id', getProp(auth()->user(), 'id'))->first();
-        $emoj_have = Feeling::get();
-        $replyToday = $this->replyService->today();
-        $replyLast = $this->replyService->last();
-        $todayRepliedGratitude = $this->gratitudeService->todayRepliedGratitude($replyToday);
-        $lastRepliedGratitude = $this->gratitudeService->lastRepliedGratitude($replyLast);
-        $gratitude = $this->gratitudeService->random(['translation']);
-        $emojies = $this->emojiService->withRelation(['image'])->getList([]);
-        $motivation = $this->motivationService->random(['translation']);
-        $popularMeditations = $this->meditationService->popular();
-        $recentlyViewedMeditations = $this->meditationService->recentlyViewed();
-        $meditations = $this->categoryService->getMeditationsAll();
-        $single = MeditationGroupEnum::SINGLE;
+        if (Auth::user()){
+            $time = date('H:i:s');
+            $user_emoj_have = Feeling::where('user_id', getProp(auth()->user(), 'id'))->first();
+            $emoj_have = Feeling::get();
+            $replyToday = $this->replyService->today();
+            $replyLast = $this->replyService->last();
+            $todayRepliedGratitude = $this->gratitudeService->todayRepliedGratitude($replyToday);
+            $lastRepliedGratitude = $this->gratitudeService->lastRepliedGratitude($replyLast);
+            $gratitude = $this->gratitudeService->random(['translation']);
+            $emojies = $this->emojiService->withRelation(['image'])->getList([]);
+            $motivation = $this->motivationService->random(['translation']);
+            $popularMeditations = $this->meditationService->popular();
+            $recentlyViewedMeditations = $this->meditationService->recentlyViewed();
+            $meditations = $this->categoryService->getMeditationsAll();
+            $single = MeditationGroupEnum::SINGLE;
 
-        // return $meditations;
-        // dd($meditations[2]->meditations);
-        return view("user.index",[
-            'user_emoj_have' => $user_emoj_have,
-            'emoj_have' => $emoj_have,
-            'emoji' => $emojies,
-            'gratitude' => $gratitude,
-            'todayRepliedGratitude' => $todayRepliedGratitude,
-            'lastRepliedGratitude' => $lastRepliedGratitude,
-            'emojies' => $emojies,
-            'motivation' => $motivation,
-            'time' => $time,
-            'popularMeditations' => $popularMeditations,
-            'recentlyViewedMeditations' => $recentlyViewedMeditations,
-            'meditations' => $meditations,
-            'single' => $single
-        ]);
-        // if (auth()->check()){
-        // } else {
-        //     return view("user.test.start");
-        // }
+//            return  $time;
+            // return $meditations;
+            // dd($meditations[2]->meditations);
+            return view("user.index",[
+                'user_emoj_have' => $user_emoj_have,
+                'emoj_have' => $emoj_have,
+                'emoji' => $emojies,
+                'gratitude' => $gratitude,
+                'todayRepliedGratitude' => $todayRepliedGratitude,
+                'lastRepliedGratitude' => $lastRepliedGratitude,
+                'emojies' => $emojies,
+                'motivation' => $motivation,
+                'time' => $time,
+                'popularMeditations' => $popularMeditations,
+                'recentlyViewedMeditations' => $recentlyViewedMeditations,
+                'meditations' => $meditations,
+                'single' => $single
+            ]);
+        }else{
+            return view('auth.login');
+        }
+
+//         if (auth()->check()){
+//         } else {
+//             return view("user.test.start");
+//         }
     }
 
     public function meditatorsAll(IndexRequest $indexRequest)

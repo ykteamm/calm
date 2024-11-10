@@ -75,7 +75,7 @@ class QuizController extends Controller
     public function return()
     {
         Usertest::where('user_id', getProp(auth()->user(), 'id'))->delete();
-        
+
         return view('user.quiz.index');
     }
 

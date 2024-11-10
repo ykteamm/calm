@@ -14,15 +14,16 @@ use Illuminate\Support\Facades\DB;
                         <div class="col-auto" style="text-align: center;">
                             <h1 class="text-30 font_family_a text-color-white lh-12 fw-700">
                                 @if(($time >= "04:00:00" && $time <= "12:00:00") == true)
-                                    Hayrli tong,
+                                    Good morning,
                                 @elseif(($time >= "12:00:00" && $time <= "18:00:00") == true)
-                                    Hayrli kun,
+                                    Good day,
                                 @elseif(($time >= "18:00:00" && $time <= "23:59:59") == true)
-                                    Hayrli kech,
+                                    Good evening
                                 @else
-                                    Hayrli tun,
+                                    Good night,
                                 @endif
                                 @auth
+{{--                                    {{auth()->user()}}--}}
                                     {{getProp(auth()->user(), 'firstname')}}
                                 @endauth
                             </h1>
@@ -50,8 +51,40 @@ use Illuminate\Support\Facades\DB;
                         </div>
                     </section>
 
+                        <div class="container">
+                            <div class="accordion -block text-left js-accordion" style="position: relative">
+                                <div class="item_test"  data-bs-toggle="modal" data-bs-target="#emojiModal">
+                                    <div class="accordion__button p-1">
+                                        <div class="accordion__icon">
+                                            <img src="player/smile.svg" style="width:30px" alt="Emoji">
+                                        </div>
+                                        <span class="ml-30 text-color-white-for">
+                                            @lang('common.kayfiyat')
+                                        </span>
+                                        <span class="ml-80" >
+                                        @foreach($emoj_have as $have)
+                                                @if($have->user_id == getProp(auth()->user(), 'id'))
+                                                    @foreach($emoji as $emoj)
+                                                        @if($have->emoji_id == $emoj->id )
+                                                            <div class=""  style="display: flex; justify-content: space-around;">
+                                                            <div class="">
+                                                                    @if(asset($emoj->image->path))
+                                                                    <img src="{{asset($emoj->image->path)}}" style="width:30px" alt="Emoji">
+                                                                @else
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                            @endforeach
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                            @include('user.modals.emoji')
 
-
+                        </div>
                     @php
                         $i = 0;
                     @endphp
@@ -112,14 +145,14 @@ use Illuminate\Support\Facades\DB;
                                                                                 {{-- @if ($category->id == 1) --}}
                                                                                     {{-- {{$category->translation->name}} * Kurs --}}
                                                                                 {{-- @else --}}
-                                                                                    {{$category->translation->name}} * {{getLabel($meditation->type)}}
+{{--                                                                                    {{$category->translation->name}} * {{getLabel($meditation->type)}}--}}
                                                                                 {{-- @endif --}}
 
                                                                             </div>
                                                                             <div class="d-flex x-gap-10 items-center mb-10">
                                                                                 <div class="d-flex items-center">
                                                                                     <div class="text-14 lh-1 text-color-white-for">
-                                                                                        <span style="font-size:18px;">{{$lesson->translation->name}}</span>
+{{--                                                                                        <span style="font-size:18px;">{{$lesson->translation->name}}</span>--}}
 
                                                                                     </div>
                                                                                 </div>
@@ -144,42 +177,7 @@ use Illuminate\Support\Facades\DB;
                             </div>
                         </section>
                         {{-- @endif --}}
-                        @if ($key == 0)
-                        <div class="container">
-                            <div class="accordion -block text-left js-accordion" style="position: relative">
-                                <div class="item_test"  data-bs-toggle="modal" data-bs-target="#emojiModal">
-                                    <div class="accordion__button p-1">
-                                        <div class="accordion__icon">
-                                            <img src="player/smile.svg" style="width:30px" alt="Emoji">
-                                        </div>
-                                        <span class="ml-30 text-color-white-for">
-                                            Kayfiyatingiz qanday ?
-                                        </span>
-                                        <span class="ml-80" >
-                                        @foreach($emoj_have as $have)
-                                            @if($have->user_id == getProp(auth()->user(), 'id'))
-                                                @foreach($emoji as $emoj)
-                                                    @if($have->emoji_id == $emoj->id )
-                                                        <div class=""  style="display: flex; justify-content: space-around;">
-                                                            <div class="">
-                                                                    @if(asset($emoj->image->path))
-                                                                    <img src="{{asset($emoj->image->path)}}" style="width:30px" alt="Emoji">
-                                                                    @else
-                                                                    @endif
-                                                            </div>
-                                                        </div>
-                                                    @endif
-                                                @endforeach
-                                            @endif
-                                        @endforeach
-                                    </span>
-                                    </div>
-                                </div>
-                            </div>
-                            @include('user.modals.emoji')
 
-                        </div>
-                        @endif
                         @if ($key == 2)
                             @if(!$todayRepliedGratitude && $gratitude)
                                 <div class="container">

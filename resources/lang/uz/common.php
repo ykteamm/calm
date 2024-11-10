@@ -2,7 +2,7 @@
 
 return [
 
-    'nvt' => 'N O V A T I O',
+    'nvt' => 'Sog\'lom oziq-ovqat',
 
   'meditations' => 'Meditatsiyalar',
   'medicine' => 'Dori',
@@ -46,4 +46,7 @@ return [
 
   'task' => 'Maqsad',
   'reward' => 'Mukofot',
+
+   'kayfiyat'=>"Kayfiyatingiz qanday ?",
+
 ];

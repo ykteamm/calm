@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             EmojiSeeder::class,
             MeditatorSeeder::class,
             MeditationSeeder::class,
-            // LessonSeeder::class,
+//             LessonSeeder::class,
             NewLessonSeeder::class,
             GratitudeSeeder::class,
             MotivationSeeder::class,

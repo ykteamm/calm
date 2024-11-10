@@ -18,10 +18,10 @@ class CategorySeeder extends Seeder
     {
         $langs = Language::all();
         $categories = [
-            'uz' => ["Qalb meditatsiyasi", "Tana dorilari", "Aql rivojlanishi"],
+            'uz' => ["Tanani Mustahkamlash", "Dieta Rejasi", "Fitness va Dieta"],
             // 'uz' => ["Meditatsiya", "Dori", "Iroda", "Baxtli hayot"],
-            'en' => ["Meditatsiyalar", "Medicine", "Will", "Happy life"],
-            'ru' => ["Медитации", "Лекарство", "Воля", "Счастливая жизнь"]
+            'en' => ["Bodybuilding", "Diet Plan", "Fitness and Diet"],
+            'ru' => ["Бодибилдинг", "План диеты", "Фитнес и диета", ]
             // 'ru' => ["Медитации", "Лекарство", "Воля", "Счастливая жизнь"]
         ];
         for ($i = 0; $i < count($categories['uz']); $i++){

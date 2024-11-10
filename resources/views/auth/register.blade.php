@@ -9,12 +9,12 @@
             <h1 class="text-30 lh-12 fw-700" style="text-align: center;">{{__('common.nvt')}}</h1>
         </div>
         <div class="text-center mt-10">
-            <span>{{__('common.login_if_login')}}</span>
+            <span>If you are registered</span>
           </div>
           <div class="row justify-center mb-20">
             <div class="col-auto">
                 <a href="{{route('auth.login')}}" style="color: blue">
-                    <button type="button" class="button -purple-1 text-white" style="padding: 5px 25px;">{{__('common.login')}}</button>
+                    <button type="button" class="button -purple-1 text-white" style="padding: 5px 25px;">Login</button>
                 </a>
             </div>
           </div>
@@ -34,23 +34,23 @@
                         <form class="contact-form row y-gap-30" action="{{route('auth.register')}}" method="POST">
                             @csrf
                             <div class="">
-                                <label class="text-16 lh-1 fw-500 text-dark-1 ">{{__('common.login_name')}}</label>
+                                <label class="text-16 lh-1 fw-500 text-dark-1 ">Firstname</label>
                                 <input name="firstname" type="text" style="padding: 8px 10px 8px 10px;">
                             </div>
                             <div class="">
-                                <label class="text-16 lh-1 fw-500 text-dark-1 ">{{__('common.login_surname')}}</label>
+                                <label class="text-16 lh-1 fw-500 text-dark-1 ">Lastname</label>
                                 <input name="lastname" type="text" style="padding: 8px 10px 8px 10px;">
                             </div>
                             <div class="">
-                                <label class="text-16 lh-1 fw-500 text-dark-1 ">{{__('common.login_phone')}}</label>
-                                <input name="phone" value="998" style="padding: 8px 10px 8px 10px;" type="text" data-inputmask='"mask": "999 (99) 999-99-99"' data-mask name="phone">
+                                <label class="text-16 lh-1 fw-500 text-dark-1 ">Phone</label>
+                                <input name="phone" value="998" style="padding: 8px 10px 8px 10px;" type="text" data-inputmask='"mask": "+999 (99) 999-99-99"' data-mask name="phone">
                             </div>
                             <div class="">
-                                <label class="text-16 lh-1 fw-500 text-dark-1 ">{{__('common.login_password')}}</label>
+                                <label class="text-16 lh-1 fw-500 text-dark-1 ">Password</label>
                                 <input name="password" style="padding: 8px 10px 8px 10px;" type="password" id="forpass">
                             </div>
                             <div class="">
-                                <label class="text-16 lh-1 fw-500 text-dark-1 ">{{__('common.login_re_password')}}</label>
+                                <label class="text-16 lh-1 fw-500 text-dark-1 ">Current Password</label>
                                 <input name="re_password" style="padding: 8px 10px 8px 10px;" type="password" id="forrepass">
                             </div>
                             {{-- <div class="">
@@ -59,8 +59,8 @@
                             </div> --}}
                             <div class="row justify-center pt-15">
                                 <div class="col-auto">
-                                    <button type="button" onclick="login()" class="button -md -purple-1 text-white">{{__('common.register')}}</button>
-                                    <button type="submit" style="display:none;" id="forsubmit" class="button -md -purple-1 text-white">{{__('common.register')}}</button>
+                                    <button type="button" onclick="login()" class="button -md -purple-1 text-white">Register</button>
+                                    <button type="submit" style="display:none;" id="forsubmit" class="button -md -purple-1 text-white">Register</button>
                                 </div>
                             </div>
                         </form>

@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\Language;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,5 +29,8 @@ class AppServiceProvider extends ServiceProvider
 //        $urlArray = explode('/', request()->path());
 //        $locale = $urlArray[0];
 //        app()->setLocale($locale);
+
+//        dd(App::getLocale());
+
     }
 }

@@ -10,7 +10,7 @@
                 </h5>
                 <div class="row pt-5" style="margin-top: 40px">
                     @foreach ($steroids as $steroid)
-                      <div class="col-4 mt-5 pt-5">
+                      <div class="col-12 mt-5 pt-5">
                         <div class="card mb-3" style="max-width: 540px;">
                             <div class="card-header text-center">
                               <span style="font-size:21px;font-weight:700">
@@ -24,7 +24,7 @@
                               </div>
                               <div class="d-flex justify-content-between btn btn-secondary">
                                 <div>
-                                  Sizning daraja
+                                    Your degree
                                 </div>
                                 <button class="btn btn-success btn-sm">
                                   <h6 class="text-white">{{$steroid->chart}}</h6>
@@ -32,7 +32,7 @@
                               </div>
                               <div class="btn btn-secondary d-flex justify-content-between mt-1">
                                 <div>
-                                  O'rtacha holatda
+                                    In average condition
                                 </div>
                                 <button class="btn btn-success btn-sm">
                                   <h6 class="text-white">{{$steroid->avg}}</h6>
@@ -42,7 +42,6 @@
                             <div class="card-footer border-0">
                               <div>
                                 <span style="color: blue">{{$steroid->info->translation->name}}</span>
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi cupiditate itaque tenetur ullam reiciendis a necessitatibus ut repudiandae. Dolorem, adipisci!
                               </div>
                             </div>
                           </div>

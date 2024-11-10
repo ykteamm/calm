@@ -95,6 +95,30 @@
   display: flex;
   flex-direction: column;
 }
+    .mobile-bottom-nav__item-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /*font-size: 12px;*/
+    }
+
+    .language-label {
+        margin-bottom: 5px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .language-select {
+        padding: 2px 5px;
+        font-size: 12px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        outline: none;
+    }
+
+    .language-select:focus {
+        border-color: #007bff;
+    }
 </style>
 <div>
     <nav class="mobile-bottom-nav">
@@ -102,7 +126,7 @@
             <div class="mobile-bottom-nav__item-content">
                 <a href="{{route('index')}}" style="display: contents">
                     <i class="fa fa-home" aria-hidden="true"></i>
-                Asosiy
+                @lang('common.home')
                 </a>
 
             </div>
@@ -111,15 +135,15 @@
             <div class="mobile-bottom-nav__item-content">
                 <a href="{{route('meditators-all')}}" style="display: contents">
                 <i class="fa fa-heartbeat" aria-hidden="true"></i>
-                Meditatsiya
+                Coach
             </a>
             </div>
         </div>
         <div class="mobile-bottom-nav__item">
             <div class="mobile-bottom-nav__item-content">
                 <a href="{{route('medicine.index')}}" style="display: contents">
-                <i class="fa fa-battery-three-quarters" aria-hidden="true"></i>
-                Dori
+                <i class="fa fa-leaf" aria-hidden="true"></i>
+                    Diet Test
             </a>
             </div>
         </div>
@@ -128,18 +152,33 @@
             <div class="mobile-bottom-nav__item-content">
                 <a href="{{route('will.index')}}" style="display: contents">
                 <i class="fa fa-asterisk" aria-hidden="true"></i>
-                Iroda
+                    Will
             </a>
             </div>
         </div>
-        <div class="mobile-bottom-nav__item">
-            <div class="mobile-bottom-nav__item-content">
-                <a href="{{route('landscape')}}" style="display: contents">
-                <i class="fa fa-picture-o" aria-hidden="true"></i>
-                Manzara
-            </a>
+{{--        <div class="mobile-bottom-nav__item">--}}
+{{--            <div class="mobile-bottom-nav__item-content">--}}
+{{--                <a href="{{route('landscape')}}" style="display: contents">--}}
+{{--                <i class="fa fa-picture-o" aria-hidden="true"></i>--}}
+{{--                Manzara--}}
+{{--            </a>--}}
 
-            </div>
-        </div>
+{{--            </div>--}}
+{{--        </div>--}}
+
+{{--        <li class="nav-item dropdown" style="list-style-type: none">--}}
+{{--            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">--}}
+{{--                <i class="fa-solid flag-language"></i>--}}
+{{--                <span>{{ App::getLocale() }}</span>--}}
+{{--            </a>--}}
+{{--            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" data-bs-auto-close="outside">--}}
+{{--                <li><a class="dropdown-item {{ App::getLocale() === 'uz' ? 'active' : '' }}" href="{{ route('lang', 'uz') }}">O'zbekcha</a></li>--}}
+{{--                <li><a class="dropdown-item {{ App::getLocale() === 'ru' ? 'active' : '' }}" href="{{ route('lang', 'ru') }}">Русский</a></li>--}}
+{{--                <li><a class="dropdown-item {{ App::getLocale() === 'en' ? 'active' : '' }}" href="{{ route('lang', 'en') }}">English</a></li>--}}
+{{--            </ul>--}}
+{{--        </li>--}}
+
+
     </nav>
 </div>
+

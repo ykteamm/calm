@@ -11,117 +11,190 @@ use Illuminate\Database\Seeder;
 
 class TestSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         $langs = Language::all();
         $tests = [
             'uz' => [
-                "Bosh og'rig'i sizni bezovta qiladimi?",
-                "Semirishga moyilmisiz?",
-                "Kayfiyat tez tushishi, sababsiz tushkunlik kuzatiladimi?",
-                "Tez sovuq qotish yoki oyoq qo'llar muzlashi bezovta qiladimi?",
-                "Tez charchash, jismoniy harakatdan keyin oyoq qo'llarda toliqish, holsizlik kabilar bezovta qiladimi?",
-                "Biron bir muammoni uzoq o'ylash yoki hayoldan ketmaydigan fikrlar bezovta qiladimi?",
-                "Jinsiy tomonlama muammolar bormi, o'zingizga seziladimi?",
-                "Boshlagan ishingizni oxiriga yetkazmaslik kuzatiladimi?",
-                "Yangi rejalar tuzishga qiyinchilik, tuzilganda ham unga hoxish topa olmaslik kuzatiladimi?",
-                "Atrofdagilar oldida fikringizni to'liq yetkazib berishga uyalasizmi?",
-                "Tashqi ko'rinishingiz sizni qoniqtirmaslik holati kuzatiladimi?",
-                "Qilgan ishlaringiz yoki aytgan gaplaringizni eslab afsuslanasizmi?",
-                "Charchagan bo'lsangiz ham yotishingiz bilan uxlab qololmaslik muammosi bormi?",
-                "Uyquda ko'p uyg'onish, ko'p tushlar ko'rish yoki uyquda cho'chib uyg'onib ketish kuzatiladimi?",
-                "Diqqatingizni jamlashga qiynalasizmi, masalan biror narsa o’qiganda yoki ko’rsatuv tomosha qilganda yoki ishlayotgan vaqtda?"
+                "Sizning asosiy maqsadingiz nima? (Vazn yo'qotish, vazn olish, sog'lom saqlash)",
+                "Kun davomida qancha ovqat iste'mol qilasiz?",
+                "Ovqatlanishingizda sabzavot va mevalar ulushi qanchalik yuqori?",
+                "Kun davomida suv ichish odatingiz qanday?",
+                "Jismoniy faoliyatingiz darajasi qanday? (Masalan: kundalik mashg'ulotlar, yurish, sport)",
+                "Oshqozoningiz bilan bog'liq muammolar bormi?",
+                "Ovqatlanish vaqtlaringiz muntazammi yoki o'zgarmaydimi?",
+                "Kaloriyalarni hisoblaydigan odatlaringiz bormi?"
             ],
             'en' => [
-                "Does the headache disturb you?",
-                "Even if you don't eat too much, are you inclined to fat?",
-                "Does the mood to fall quickly, is depressing depressions without a reason?",
-                "Designated systems are observed in you such as the hardening, laugh boiling, the difficulty of digestion",
-                "Quick fatigue, does the feet bother in arms after a physical activity?",
-                "Dizziness, do they bother you like feeling bad?",
-                "Changes in the sex system
-                (for Women) Menstruation cycle disorder, decrease in libido, pain during menstruation, corruption of mood
-                (Men's) libido decrease, is there such as the reduction in sexual intercourition? ",
-                "Does your ability to physically or mental labor and work seem to be reduced?",
-                "Is it not to find any direction to make new plans?",
-                "Heart is observed in the heart in the heart, and the heart is observed, and the heart is uncomfortable in the heart?",
-                "Is blood pressure rising or infarcitation, stroke?",
-                "Do you accept your health, such as vitamins, iron, calcium?",
-                "Do you have a problem inability to fall asleep even if you are tired?",
-                "Does sleep a lot of sleep, are there a lot of dreams or awakening fear in sleep,",
-                "You have difficulty accumulating your attention, for example, when you read something or watching a show or time?"
+                "What is your primary goal? (Weight loss, weight gain, maintenance)",
+                "How many meals do you consume daily?",
+                "What is the proportion of vegetables and fruits in your meals?",
+                "What is your daily water intake habit?",
+                "How would you describe your physical activity level? (e.g., daily exercises, walking, sports)",
+                "Do you experience any stomach-related issues?",
+                "Are your meal times consistent or irregular?",
+                "Do you usually count your calorie intake?"
             ],
             'ru' => [
-                "Головная боль вас беспокоит?",
-                "Даже если вы не едите слишком много, вы склонны к жиру?",
-                "Является ли настроение быстро упасть, удручает депрессии без причины?",
-                "У вас наблюдаются назначенные системы, такие как затвердевание, смех, кипячение, сложность пищеварения",
-                "Быстрая усталость, ноги беспокоятся ли в руках после физической активности?",
-                "Глухание, они беспокоят вас, как чувствовать себя плохо?",
-                "Изменения в сексуальной системе
-                (для женщин) Расстройство менструального цикла, уменьшение либидо, боль во время менструации, коррупция настроения
-                (Мужские) Снижение либидо, есть ли, например, сокращение сексуального межкурирования? ",
-                "Кажется, ваша способность физически или умственного труда и работы снижается?",
-                "Нельзя ли найти какого -либо направления, чтобы составить новые планы?",
-                "Сердце наблюдается в сердце в сердце, и сердце наблюдается, и сердце в сердце неудобно?",
-                "Поднимается ли артериальное давление или инфарцирация, инсульт?",
-                "Принимаете ли вы свое здоровье, например, витамины, железо, кальций?",
-                "У вас есть проблема с проблемой заснуть, даже если вы устали?",
-                "Спи много сна, есть много мечтаний или пробуждать страх во сне",
-                "У вас есть трудности, накапливающие ваше внимание, например, когда вы что -то читаете или смотрите шоу или время?"
+                "Какая у вас основная цель? (Похудение, набор веса, поддержание формы)",
+                "Сколько раз в день вы едите?",
+                "Какова доля овощей и фруктов в вашем рационе?",
+                "Какова ваша привычка пить воду ежедневно?",
+                "Как вы оцениваете уровень своей физической активности? (например, ежедневные упражнения, прогулки, спорт)",
+                "Есть ли у вас проблемы с желудком?",
+                "Ваши приемы пищи регулярны или нерегулярны?",
+                "Вы обычно считаете количество потребляемых калорий?"
             ]
         ];
 
         $answers = [
             'uz' => [
-                "Huddi shunday",
-                "Shunga yaqin",
-                "Bazan",
-                "Kamdan kam holatlarda",
-                "Umuman unday emas"
+                [
+                    "Vazn yo'qotish",
+                    "Vazn olish",
+                    "Sog'lom saqlash"
+                ],
+                [
+                    "1-2 marta",
+                    "3 yoki undan ko'p marta",
+                    "Juda kam"
+                ],
+                [
+                    "Yuqori",
+                    "O'rtacha",
+                    "Kam"
+                ],
+                [
+                    "Ko'p ichaman",
+                    "O'rtacha ichaman",
+                    "Kam ichaman"
+                ],
+                [
+                    "Faol",
+                    "O'rtacha",
+                    "Passiv"
+                ],
+                [
+                    "Ha",
+                    "Yo'q"
+                ],
+                [
+                    "Muntazam",
+                    "O'zgarmaydi"
+                ],
+                [
+                    "Ha, hisoblayman",
+                    "Yo'q, hisoblamayman"
+                ]
             ],
             'en' => [
-                "Similarly",
-                "It's close to that",
-                "Sometimes",
-                "I can't say exactly",
-                "It's not like that at all"
+                [
+                    "Weight loss",
+                    "Weight gain",
+                    "Maintenance"
+                ],
+                [
+                    "1-2 times",
+                    "3 or more times",
+                    "Very rarely"
+                ],
+                [
+                    "High",
+                    "Moderate",
+                    "Low"
+                ],
+                [
+                    "I drink a lot",
+                    "I drink moderately",
+                    "I drink very little"
+                ],
+                [
+                    "Active",
+                    "Moderate",
+                    "Passive"
+                ],
+                [
+                    "Yes",
+                    "No"
+                ],
+                [
+                    "Consistent",
+                    "Irregular"
+                ],
+                [
+                    "Yes, I count",
+                    "No, I don't count"
+                ]
             ],
             'ru' => [
-                "Сходным образом",
-                "Это близко к этому",
-                "Иногда",
-                "Я не могу точно сказать",
-                "Это совсем не так"
+                [
+                    "Похудение",
+                    "Набор веса",
+                    "Поддержание формы"
+                ],
+                [
+                    "1-2 раза",
+                    "3 или более раз",
+                    "Очень редко"
+                ],
+                [
+                    "Высокий",
+                    "Средний",
+                    "Низкий"
+                ],
+                [
+                    "Пью много",
+                    "Пью умеренно",
+                    "Пью мало"
+                ],
+                [
+                    "Активный",
+                    "Умеренный",
+                    "Пассивный"
+                ],
+                [
+                    "Да",
+                    "Нет"
+                ],
+                [
+                    "Регулярно",
+                    "Нерегулярно"
+                ],
+                [
+                    "Да, считаю",
+                    "Нет, не считаю"
+                ]
             ]
         ];
 
-        for ($i = 0; $i < count($tests['uz']); $i++){
+        foreach ($tests['uz'] as $index => $question_uz) {
+            // Testni yaratish
             $test = Test::create([]);
-            for ($k = 0; $k < count($answers['uz']); $k++) {
+
+            // Test tarjimalarini kiritish
+            foreach ($langs as $lang) {
+                TestTranslation::create([
+                    'name' => $tests[$lang->code][$index],
+                    'object_id' => $test->id,
+                    'language_code' => $lang->code
+                ]);
+            }
+
+            // Javoblarni yaratish
+            foreach ($answers['uz'][$index] as $answer_index => $answer_uz) {
                 $answer = Answer::create([
                     'test_id' => $test->id,
-                    'order' => $k + 1
+                    'order' => $answer_index + 1
                 ]);
+
+                // Javob tarjimalarini kiritish
                 foreach ($langs as $lang) {
                     AnswerTranslation::create([
-                        'name' => $answers[$lang->code][$k],
+                        'name' => $answers[$lang->code][$index][$answer_index],
                         'object_id' => $answer->id,
                         'language_code' => $lang->code
                     ]);
                 }
-            }
-            foreach ($langs as $lang) {
-                TestTranslation::create([
-                    'name' => $tests[$lang->code][$i],
-                    'object_id' => $test->id,
-                    'language_code' => $lang->code
-                ]);
             }
         }
     }

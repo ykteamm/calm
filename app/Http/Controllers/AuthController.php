@@ -58,15 +58,17 @@ class AuthController extends Controller
         $data['sms_verif_code'] = $sms_verif_code;
         try {
             $this->userService->createWithThrow($data);
-            $message = "Sizning parol $sms_verif_code";
-            $response = $this->smsService->sendSms("+".$data['phone'], $message);
-            if ($response->ok()) {
-                Session::put('phone', $data['phone']);
-                Session::put('sms_verif_code', $sms_verif_code);
-                return redirect(route('auth.sms-verify-view'));
-            } else {
-                return back()->with('error', json_encode($response->body()));
-            }
+            return view('auth.login');
+
+//            $message = "Sizning parol $sms_verif_code";
+//            $response = $this->smsService->sendSms("+".$data['phone'], $message);
+//            if ($response->ok()) {
+//                Session::put('phone', $data['phone']);
+//                Session::put('sms_verif_code', $sms_verif_code);
+//                return redirect(route('auth.sms-verify-view'));
+//            } else {
+//                return back()->with('error', json_encode($response->body()));
+//            }
         } catch (\Throwable $th) {
             return back()->with('error', $th->getMessage());
         }

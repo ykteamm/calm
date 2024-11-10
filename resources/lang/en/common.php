@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 return [
   'meditations' => 'Meditations',
@@ -26,4 +26,8 @@ return [
   'show_result' => 'Show result',
   'task' => 'Task',
   'reward' => 'Reward',
+    'kayfiyat'=>"How are you feeling?",
+      'buy_now' => 'Buy now',
+
+    'nvt' => 'Healthy Food',
 ];

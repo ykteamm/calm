@@ -39,17 +39,17 @@ class AimService extends BaseService
         return $this->query->where('type', 1)->whereNotIn('id', $items)->inRandomOrder()->first();
     }
 
-    public function saveAims($data)
+    public function saveAims(array $data)
     {
         try {
-            // dd($data['aims'][0]);
-            foreach ($data['aims'] as $key => $aim) {
-                if(isset($aim['text']) && !isset($aim['id'])) {
+            foreach ($data['aims'] as $aim) {
+                // Tekshirish: text va id mavjudligi
+                if (isset($aim['text']) && !isset($aim['id'])) {
+                    // Oldingi elementni tahrirlash
                     if (isset($aim['old'])) {
-                        $this->edit($aim['old'], [
-                            'text' => $aim['text']
-                        ]);
+                        $this->edit($aim['old'], ['text' => $aim['text']]);
                     } else {
+                        // Yangi ma'lumot yaratish
                         $item = [
                             'text' => $aim['text'],
                             'user_id' => getProp(auth()->user(), 'id'),
@@ -57,31 +57,38 @@ class AimService extends BaseService
                         ];
                         $this->create($item);
                     }
-                } else if (isset($aim['text']) && isset($aim['id'])) {
+                } elseif (isset($aim['text']) && isset($aim['id'])) {
+                    // Ma'lumotni yangilash va mukofot xabari
                     $this->edit($aim['id'], [
                         'done' => 1,
                         'text' => $aim['text']
                     ]);
                     Session::flash('aimdone', "Mukofotlaringizni oling !");
-                } else if (!isset($aim['text']) && isset($aim['id'])) {
-                    $this->edit($aim['id'], [
-                        'done' => 1
-                    ]);
+                } elseif (!isset($aim['text']) && isset($aim['id'])) {
+                    // Faqat "done" maydonini yangilash
+                    $this->edit($aim['id'], ['done' => 1]);
                     Session::flash('aimdone', "Mukofotlaringizni oling !");
                 }
             }
             return back();
         } catch (\Throwable $th) {
-            dd($th->getMessage());
-            return back()->with('error', $th->getMessage());
+            // To'g'ridan-to'g'ri xatolikni foydalanuvchiga qaytarmaslik uchun loglash
+            \Log::error('Error saving aims: ' . $th->getMessage());
+            return back()->with('error', 'Aim maʼlumotlarini saqlashda xatolik yuz berdi.');
         }
     }
+
 
     public function weekAims()
     {
         $this->setQuery();
         $start = Carbon::now()->startOfWeek()->format("Y-m-d");
+//        return $start;
         $end = Carbon::now()->endOfWeek()->format("Y-m-d");
+//        return[
+//            'start'=>$start,
+//            'end'=>$end
+//        ];
         $aims = $this->query
             ->whereBetween('created_at', [$start, $end])
             ->where('user_id', getProp(auth()->user(), 'id'))

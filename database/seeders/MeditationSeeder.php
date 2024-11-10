@@ -18,28 +18,42 @@ class MeditationSeeder extends Seeder
     {
         $meditations = [
             [
-                'name' => "Boshlang'ich Meditatsiya",
+                'translations' => [
+                    'uz' => "Tanangizni sezishni o‘rganing",
+                    'ru' => "Изучите ощущения своего тела",
+                    'en' => "Learn to feel your body"
+                ],
                 'type' => MeditationTypeEnum::COURSE,
                 'group' => MeditationGroupEnum::MULTIPLE,
                 'category_id' => 1,
                 'meditator_id' => 1
             ],
             [
-                'name' => "Tirishqoqlik va Iroda Sirlari",
+                'translations' => [
+                    'uz' => "To‘g‘ri ovqatlanish",
+                    'ru' => "Правильное питание",
+                    'en' => "Healthy eating"
+                ],
                 'type' => MeditationTypeEnum::MASTERCLASS,
                 'group' => MeditationGroupEnum::MULTIPLE,
-                'category_id' => 3,
-                'meditator_id' => 1
+                'category_id' => 2,
+                'meditator_id' => 3
             ],
             [
-                'name' => "Minnatdorchilik va Miraj",
+                'translations' => [
+                    'uz' => "Orzuingizdagi formaga erishing",
+                    'ru' => "Достигните формы своей мечты",
+                    'en' => "Achieve your dream shape"
+                ],
                 'type' => MeditationTypeEnum::MASTERCLASS,
                 'group' => MeditationGroupEnum::MULTIPLE,
                 'category_id' => 3,
-                'meditator_id' => 1
+                'meditator_id' => 2
             ],
         ];
+
         foreach ($meditations as $meditation) {
+            // Asosiy meditation ob'ektini yaratish
             $meditationObj = Meditation::create([
                 'meditator_id' => $meditation['meditator_id'],
                 'category_id' => $meditation['category_id'],
@@ -47,14 +61,15 @@ class MeditationSeeder extends Seeder
                 'group' => $meditation['group']
             ]);
 
+            // User bilan bog'lash
             $meditationObj->usershows()->create(['user_id' => User::first()->id]);
-            $langs = Language::all();
 
-            foreach ($langs as $lang) {
+            // Har bir til uchun tarjimalarni saqlash
+            foreach ($meditation['translations'] as $langCode => $translationName) {
                 MeditationTranslation::create([
-                    'name' => $meditation['name'],
+                    'name' => $translationName,
                     'object_id' => $meditationObj->id,
-                    'language_code' => $lang->code
+                    'language_code' => $langCode
                 ]);
             }
         }

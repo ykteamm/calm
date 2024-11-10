@@ -26,50 +26,49 @@ class NewLessonSeeder extends Seeder
 
         $info = [
             [
-                'Katta g\'oya',
-                'Zamin tanlash',
-                'Hayyollardan qutulish',
-                'Ichki ravonlik',
-                'K\'ozlar katta ochiq',
-                'Kechinmalarni neytrallash',
+                "Mushaklarni kuchaytirishning asosiy qoidalari",
+                "To'g'ri tiklanish va dam olish usullari",
+               " Suyuqlik balansini saqlash ahamiyati",
+              "  Sog'lom energiya manbalari: tabiiy mahsulotlar",
+               " Immunitetni mustahkamlash usullari",
+                "Jismoniy faollik va metabolizm tezligi",
             ],
             [
-                'Depressiyaga zarba',
-                'Motivatsiya yechim emas',
-                'Ur yo qoch tizimi',
-                'Sintetik iroda',
-                'Miya qismlarini yoqish',
+                'Ovqatlanishning oltin qoidalari',
+                'Vitamin va minerallarni to\'g\'ri tanlash',
+                'Ovqatlanish odatlarini o\'zgartirishning sirlari',
+                'Sog\'lom nonushta: kunning muvaffaqiyatli boshlanishi',
+                'Shakar iste\'molini kamaytirish usullari',
             ],
             [
-                'Miyada parcha go\'sht - gippokampus',
-                'Ikki neyro tarmoq',
-                'Freyd va baxt',
-                'Minnatdorchilik neyrokimyosi',
-                'Baxt strategiyasi',
-                'Sarob - hedonik mashina',
-                'Salbiy tasavvur (Vizualizatsiya)',
+                "Mashqlar va ovqatlanishning mukammal muvozanati",
+               " Kardio va kuch mashqlari: farqlari va afzalliklari",
+                "Mashg'ulotdan oldin va keyingi ovqatlanish qoidalari",
+               " Foydali yog'lar va protein iste'moli",
+               " Sportchilar uchun energiya manbalari",
+               " Metabolizmni tezlashtirish uchun mashqlar va ovqatlar",
                 'Tana, Aql, Qalb',
             ],
         ];
 
         $imgs = [
             [
-                'kattas',
-                'zamin',
-                'hayol-qutulish',
+                'tanas',
+                'dieta',
+                'fitnes',
                 'ichki',
                 'kozlar-ochiq',
                 'kechinmalar',
             ],
             [
-                'depressiya-zarba',
+                'dieta',
                 'motiv-emas',
                 'ur-yon-qoch',
                 'sintetik-iroda',
                 'miya-qismlari',
             ],
             [
-                'bir-parcha',
+                'fitnes',
                 'neyro-tarmoq',
                 'freyd-baxt',
                 'neyro-kimyo',
@@ -78,6 +77,12 @@ class NewLessonSeeder extends Seeder
                 'salbiy-tas',
                 'tana-aql',
             ]
+        ];
+
+        $audios = [
+          'tana.mp3',
+           'diet.mp3',
+            'fitnes.mp3'
         ];
 
         $langs = Language::all();
@@ -97,11 +102,13 @@ class NewLessonSeeder extends Seeder
                     'language_code' => $lang->code
                 ]);
             }
-            $lesson->audio()->create([
-                'path' => 'lessons/1.mp3',
-                'info' => '[]',
-                'type' => Lesson::AUDIO
-            ]);
+            foreach ($audios as $asd){
+                $lesson->audio()->create([
+                    'path' => 'lessons/'.$asd,
+                    'info' => '[]',
+                    'type' => Lesson::AUDIO
+                ]);
+            }
 
             $lesson->image()->create([
                 'path' => "lessons/miya-qismlari.jpg",
@@ -128,13 +135,15 @@ class NewLessonSeeder extends Seeder
                             'language_code' => $lang->code
                         ]);
                     }
-                    $lesson->audio()->create([
-                        'path' => 'lessons/1.mp3',
-                        'info' => '[]',
-                        'type' => Lesson::AUDIO
-                    ]);
+                    foreach ($audios as $ad){
+                        $lesson->audio()->create([
+                            'path' => 'lessons/'.$ad,
+                            'info' => '[]',
+                            'type' => Lesson::AUDIO
+                        ]);
+                    }
                     $lesson->image()->create([
-                        'path' => "lessons/".$imgs[$key][$i].".jpg",
+                        'path' => "lessons/".$imgs[$key][$i].".png",
                         'info' => '[]',
                         'type' => Lesson::IMAGE
                     ]);

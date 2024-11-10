@@ -20,9 +20,9 @@
             </div>
         @endforeach
         <div class="mb-5 pb-5" style="text-align: center;">
-            <button type="submit" class="btn btn-primary" style="font-size: 20px;
-            border-radius: 12px;
-            padding: 6px 30px;">Saqlash</button>
+{{--            <button type="submit" class="btn btn-primary" style="font-size: 20px;--}}
+{{--            border-radius: 12px;--}}
+{{--            padding: 6px 30px;">Saqlash</button>--}}
         </div>
     </form>
     </div>

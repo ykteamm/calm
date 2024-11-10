@@ -14,16 +14,16 @@
           <form class="contact-form row y-gap-30" action="{{route('auth.login')}}" method="POST">
             @csrf
             <div class="">
-              <label class="text-16 lh-1 fw-500 text-dark-1 ">{{__('common.login_phone')}}</label>
-              <input name="phone" type="text" value="998" data-inputmask='"mask": "999 (99) 999-99-99"' data-mask name="phone" onfocus="this.removeAttribute('readonly');" readonly>
+              <label class="text-16 lh-1 fw-500 text-dark-1 ">Phone</label>
+              <input name="phone" type="text" value="998" data-inputmask='"mask": "+999 (99) 999-99-99"' data-mask name="phone" onfocus="this.removeAttribute('readonly');" readonly>
             </div>
             <div class="">
-              <label class="text-16 lh-1 fw-500 text-dark-1 ">{{__('common.login_password')}}</label>
+              <label class="text-16 lh-1 fw-500 text-dark-1 ">Password</label>
               <input name="password" type="password">
           </div>
             <div class="row justify-center pt-15">
               <div class="col-auto">
-                <button type="submit" class="button -md -purple-1 text-white">{{__('common.login')}} </button>
+                <button type="submit" class="button -md -purple-1 text-white">Login </button>
               </div>
             </div>
           </form>
@@ -32,11 +32,11 @@
     </div>
   </div>
   <div class="text-center mt-20">
-    <span>{{__('common.login_if_register')}}</span>
+    <span>If you are not registered</span>
   </div>
   <div class="text-center mt-10">
     <a href="{{route('auth.register-view')}}" style="color: blue">
-        {{__('common.register')}}
+        Register
     </a>
   </div>
 </div>

@@ -16,23 +16,23 @@ class MeditatorSeeder extends Seeder
     {
         $meditators = [
             [
-                'firstname' => "Ergashev",
-                'lastname' => "To'lqinbek",
-                'avatar' => 'meditators/men.jpg',
-                'image' => 'meditators/men.jpg'
+                'firstname' => "Ahad",
+                'lastname' => "Xudoyorov",
+                'avatar' => 'meditators/ahad.jpeg',
+                'image' => 'meditators/ahad.jpeg'
             ],
-            // [
-            //     'firstname' => "Salimov",
-            //     'lastname' => "Saidabror",
-            //     'avatar' => 'meditators/lebron-avatar.jpg',
-            //     'image' => 'meditators/lebron-image.jpeg'
-            // ],
-            // [
-            //     'firstname' => "Andrew",
-            //     'lastname' => "Tate",
-            //     'avatar' => 'meditators/andrew-avatar.webp',
-            //     'image' => 'meditators/andrew-image.webp'
-            // ],
+             [
+                 'firstname' => "Zulfiqor",
+                 'lastname' => "Abdurahmonov",
+                 'avatar' => 'meditators/zulfiqor.png',
+                 'image' => 'meditators/zulfiqor.png'
+             ],
+             [
+                 'firstname' => "Dilya",
+                 'lastname' => "Asliddinova",
+                 'avatar' => 'meditators/dilya.png',
+                 'image' => 'meditators/dilya.png'
+             ],
             // [
             //     'firstname' => "Jack",
             //     'lastname' => "Ma",

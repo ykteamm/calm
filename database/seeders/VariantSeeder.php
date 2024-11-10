@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Seeders;
+
 use App\Models\Language;
 use App\Models\Variant;
 use App\Models\VariantTranslation;
@@ -8,370 +9,248 @@ use Illuminate\Database\Seeder;
 
 class VariantSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         $langs = Language::all();
         $variants = [
+            // Savol 1 uchun variantlar (Sizning asosiy maqsadingiz nima?)
             'uz' => [
                 [
-                    'name' => "Har doim",
-                    'answer' => "Meditatsiya bilan davolaning",
+                    'name' => "Vazn yo'qotish",
+                    'answer' => "Kaloriyalarni kamaytirish uchun reja tanlang.",
                     'object_id' => 1,
-                    'ball' => 3,
+                    'ball' => 5
                 ],
                 [
-                    'name' => "Tez tez",
-                    'answer' => "Meditatsiya bilan davolaning",
+                    'name' => "Vazn olish",
+                    'answer' => "Protein va uglevodlarga boy ovqatlar iste'mol qiling.",
                     'object_id' => 1,
-                    'ball' => 2,
-
+                    'ball' => 4
                 ],
                 [
-                    'name' => "Ba'zida",
-                    'answer' => "Sayr qiling va musiqa tinglang",
+                    'name' => "Sog'lom saqlash",
+                    'answer' => "Balanslangan ovqatlanishni davom ettiring.",
                     'object_id' => 1,
-                    'ball' => 1,
-
+                    'ball' => 3
                 ],
-                [
-                    'name' => "Aslo unday emas",
-                    'answer' => "Sayr qiling va musiqa tinglang",
-                    'object_id' => 1,
-                    'ball' => 0,
 
-                ],
+                // Savol 2 uchun variantlar
                 [
-                    'name' => "Xuddi shunday",
-                    'answer' => "Bir kunda kamida 5 soat uxlash tavsiya qilinadi",
+                    'name' => "3 yoki undan ko'p marta",
+                    'answer' => "Ovqatlanishingiz muntazam va yaxshi.",
                     'object_id' => 2,
-                    'ball' => 3,
+                    'ball' => 5
                 ],
                 [
-                    'name' => "Shunday bo'lsa kerak",
-                    'answer' => "Bu normal boshqa sabablar",
+                    'name' => "1-2 marta",
+                    'answer' => "Ovqatlanish odatlaringizni yaxshilashingiz kerak.",
                     'object_id' => 2,
-                    'ball' => 2,
+                    'ball' => 3
                 ],
+
+                // Savol 3 uchun variantlar
                 [
-                    'name' => "Juda kam holatlarda",
-                    'answer' => "Ko'pi zarar",
-                    'object_id' => 2,
-                    'ball' => 1,
-                ],
-                [
-                    'name' => "Aslo unday emas",
-                    'answer' => "Ko'pi zarar",
-                    'object_id' => 2,
-                    'ball' => 0,
-                ],
-                [
-                    'name' => "Xuddi shunday",
-                    'answer' => "Bir kunda kamida 5 soat uxlash tavsiya qilinadi",
+                    'name' => "50% yoki undan ko'p",
+                    'answer' => "Ajoyib! Ovqatlanishingiz yaxshi balanslangan.",
                     'object_id' => 3,
-                    'ball' => 3,
+                    'ball' => 5
                 ],
                 [
-                    'name' => "Shunday bo'lsa kerak",
-                    'answer' => "Bu normal boshqa sabablar",
+                    'name' => "25-50%",
+                    'answer' => "Sabzavot va mevalar miqdorini ko'paytiring.",
                     'object_id' => 3,
-                    'ball' => 2,
+                    'ball' => 4
                 ],
                 [
-                    'name' => "Juda kam holatlarda",
-                    'answer' => "Ko'pi zarar",
+                    'name' => "25% yoki kamroq",
+                    'answer' => "Dietangizni qayta ko'rib chiqing.",
                     'object_id' => 3,
-                    'ball' => 1,
+                    'ball' => 2
                 ],
+
+                // Savol 4 uchun variantlar
                 [
-                    'name' => "Aslo unday emas",
-                    'answer' => "Ko'pi zarar",
-                    'object_id' => 3,
-                    'ball' => 0,
-                ],
-                [
-                    'name' => "Deyarli har doim",
-                    'answer' => "Foydali mashg'ulot bilan shug'ullaning",
+                    'name' => "Kuniga 2 litr yoki undan ko'p",
+                    'answer' => "Sizning odatlaringiz mukammal.",
                     'object_id' => 4,
-                    'ball' => 3,
-
+                    'ball' => 5
                 ],
                 [
-                    'name' => "Ba'zi - ba'zida",
-                    'answer' => "Bu juda yaxshi. Shunday davom eting",
+                    'name' => "Kuniga 1-2 litr",
+                    'answer' => "Suv iste'molini oshirishga harakat qiling.",
                     'object_id' => 4,
-                    'ball' => 2,
-
+                    'ball' => 3
                 ],
                 [
-                    'name' => "Kam holatlarda",
-                    'answer' => "Yatatgandan rozi bo'ling. Shukr qiling va sizdan pastdagilarga qarang",
+                    'name' => "Kuniga 1 litrdan kam",
+                    'answer' => "Suv ichishni ko'paytirish zarur.",
                     'object_id' => 4,
-                    'ball' => 1,
-
-                ],
-                [
-                    'name' => "Deyarli kuzatilmaydi",
-                    'answer' => "Yatatgandan rozi bo'ling. Shukr qiling va sizdan pastdagilarga qarang",
-                    'object_id' => 4,
-                    'ball' => 0,
-
-                ],
-                [
-                    'name' => "Deyarli har doim",
-                    'answer' => "Foydali mashg'ulot bilan shug'ullaning",
-                    'object_id' => 5,
-                    'ball' => 3,
-
-                ],
-                [
-                    'name' => "Ko'p holatlarda",
-                    'answer' => "Bu juda yaxshi. Shunday davom eting",
-                    'object_id' => 5,
-                    'ball' => 2,
-
-                ],
-                [
-                    'name' => "Juda kam holatlarda",
-                    'answer' => "Yatatgandan rozi bo'ling. Shukr qiling va sizdan pastdagilarga qarang",
-                    'object_id' => 5,
-                    'ball' => 1,
-
-                ],
-                [
-                    'name' => "Aslo unday emas",
-                    'answer' => "Yatatgandan rozi bo'ling. Shukr qiling va sizdan pastdagilarga qarang",
-                    'object_id' => 5,
-                    'ball' => 0
-
+                    'ball' => 1
                 ]
             ],
             'en' => [
                 [
+                    'name' => "Weight Loss",
+                    'answer' => "Choose a plan that reduces your calorie intake.",
+                    'object_id' => 1,
+                    'ball' => 5
+                ],
+                [
+                    'name' => "Weight Gain",
+                    'answer' => "Consume protein-rich and carbohydrate-rich foods.",
+                    'object_id' => 1,
+                    'ball' => 4
+                ],
+                [
+                    'name' => "Maintain Health",
+                    'answer' => "Continue with balanced nutrition.",
+                    'object_id' => 1,
+                    'ball' => 3
+                ],
 
-                    'name' => "I die a lot",
-                    'answer' => "Don't think too much",
-                    'object_id' => 1
+                // Question 2
+                [
+                    'name' => "3 or more times",
+                    'answer' => "Your eating habits are regular and good.",
+                    'object_id' => 2,
+                    'ball' => 5
                 ],
                 [
-                    'name' => "I worry a lot about the future",
-                    'answer' => "Don't worry too much about the future",
-                    'object_id' => 1
+                    'name' => "1-2 times",
+                    'answer' => "You need to improve your eating habits.",
+                    'object_id' => 2,
+                    'ball' => 3
+                ],
+
+                // Question 3
+                [
+                    'name' => "50% or more",
+                    'answer' => "Excellent! Your meals are well balanced.",
+                    'object_id' => 3,
+                    'ball' => 5
                 ],
                 [
-                    'name' => "I work a lot",
-                    'answer' => "Make enough time for yourself too",
-                    'object_id' => 1
+                    'name' => "25-50%",
+                    'answer' => "Increase your intake of vegetables and fruits.",
+                    'object_id' => 3,
+                    'ball' => 4
                 ],
                 [
-                    'name' => "I work a lot",
-                    'answer' => "Make enough time for yourself too",
-                    'object_id' => 1
+                    'name' => "25% or less",
+                    'answer' => "Review your diet.",
+                    'object_id' => 3,
+                    'ball' => 2
+                ],
+
+                // Question 4
+                [
+                    'name' => "2 liters or more per day",
+                    'answer' => "Your water drinking habits are excellent.",
+                    'object_id' => 4,
+                    'ball' => 5
                 ],
                 [
-                    'name' => "I sleep for 4 hours",
-                    'answer' => "It is recommended to sleep at least 5 hours a day",
-                    'object_id' => 2
+                    'name' => "1-2 liters per day",
+                    'answer' => "Try to increase your water intake.",
+                    'object_id' => 4,
+                    'ball' => 3
                 ],
                 [
-                    'name' => "I sleep 8 hours",
-                    'answer' => "This is normal other reasons",
-                    'object_id' => 2
-                ],
-                [
-                    'name' => "I sleep 8 hours",
-                    'answer' => "This is normal other reasons",
-                    'object_id' => 2
-                ],
-                [
-                    'name' => "I sleep for 10 hours",
-                    'answer' => "Lots of damage",
-                    'object_id' => 2
-                ],
-                [
-                    'name' => "When talking loudly",
-                    'answer' => "Learn and adapt",
-                    'object_id' => 3
-                ],
-                [
-                    'name' => "When Children Cry",
-                    'answer' => "Be Kind",
-                    'object_id' => 3
-                ],
-                [
-                    'name' => "When the phone rings",
-                    'answer' => "Use less phone",
-                    'object_id' => 3
-                ],
-                [
-                    'name' => "When the phone rings",
-                    'answer' => "Use less phone",
-                    'object_id' => 3
-                ],
-                [
-                    'name' => "I'm in a good mood",
-                    'answer' => "Do a useful exercise",
-                    'object_id' => 4
-                ],
-                [
-                    'name' => "I'm in a good mood",
-                    'answer' => "That's great. Keep it up",
-                    'object_id' => 4
-                ],
-                [
-                    'name' => "I'm in a bad mood most of the time",
-                    'answer' => "Be content with what you lay down. Give thanks and look at those below you",
-                    'object_id' => 4
-                ],
-                [
-                    'name' => "I'm in a bad mood most of the time",
-                    'answer' => "Be content with what you lay down. Give thanks and look at those below you",
-                    'object_id' => 4
-                ],
-                [
-                    'name' => "I'm in a good mood",
-                    'answer' => "Do a useful exercise",
-                    'object_id' => 5
-                ],
-                [
-                    'name' => "I'm in a good mood",
-                    'answer' => "That's great. Keep it up",
-                    'object_id' => 5
-                ],
-                [
-                    'name' => "I'm in a bad mood most of the time",
-                    'answer' => "Be content with what you lay down. Give thanks and look at those below you",
-                    'object_id' => 5
-                ],
-                [
-                    'name' => "I'm in a bad mood most of the time",
-                    'answer' => "Be content with what you lay down. Give thanks and look at those below you",
-                    'object_id' => 5
+                    'name' => "Less than 1 liter per day",
+                    'answer' => "You need to improve your water intake habits.",
+                    'object_id' => 4,
+                    'ball' => 1
                 ]
             ],
             'ru' => [
                 [
+                    'name' => "Похудение",
+                    'answer' => "Выберите план с уменьшением калорий.",
+                    'object_id' => 1,
+                    'ball' => 5
+                ],
+                [
+                    'name' => "Набор веса",
+                    'answer' => "Употребляйте белковые и углеводные продукты.",
+                    'object_id' => 1,
+                    'ball' => 4
+                ],
+                [
+                    'name' => "Поддержание здоровья",
+                    'answer' => "Сбалансированное питание.",
+                    'object_id' => 1,
+                    'ball' => 3
+                ],
 
-                    'name' => "Я часто умираю",
-                    'answer' => "Не думай слишком много",
-                    'object_id' => 1
+                // Вопрос 2
+                [
+                    'name' => "3 или более раз",
+                    'answer' => "Ваши привычки питания регулярны и хороши.",
+                    'object_id' => 2,
+                    'ball' => 5
                 ],
                 [
-                    'name' => "Я очень беспокоюсь о будущем",
-                    'answer' => "Не беспокойтесь слишком сильно о будущем",
-                    'object_id' => 1
+                    'name' => "1-2 раза",
+                    'answer' => "Вам нужно улучшить свои привычки питания.",
+                    'object_id' => 2,
+                    'ball' => 3
+                ],
+
+                // Вопрос 3
+                [
+                    'name' => "50% или больше",
+                    'answer' => "Отлично! Ваш рацион сбалансирован.",
+                    'object_id' => 3,
+                    'ball' => 5
                 ],
                 [
-                    'name' => "Я много работаю",
-                    'answer' => "Уделите достаточно времени и себе",
-                    'object_id' => 1
+                    'name' => "25-50%",
+                    'answer' => "Увеличьте потребление овощей и фруктов.",
+                    'object_id' => 3,
+                    'ball' => 4
                 ],
                 [
-                    'name' => "Я много работаю",
-                    'answer' => "Уделите достаточно времени и себе",
-                    'object_id' => 1
+                    'name' => "25% или меньше",
+                    'answer' => "Пересмотрите свою диету.",
+                    'object_id' => 3,
+                    'ball' => 2
+                ],
+
+                // Вопрос 4
+                [
+                    'name' => "2 литра или больше в день",
+                    'answer' => "Ваши привычки питья воды отличны.",
+                    'object_id' => 4,
+                    'ball' => 5
                 ],
                 [
-                    'name' => "Я сплю 4 часа",
-                    'answer' => "Рекомендуется спать не менее 5 часов в сутки",
-                    'object_id' => 2
+                    'name' => "1-2 литра в день",
+                    'answer' => "Попробуйте увеличить потребление воды.",
+                    'object_id' => 4,
+                    'ball' => 3
                 ],
                 [
-                    'name' => "Я сплю 8 часов",
-                    'answer' => "Это нормально, другие причины",
-                    'object_id' => 2
-                ],
-                [
-                    'name' => "Я сплю 10 часов",
-                    'answer' => "Большой урон",
-                    'object_id' => 2
-                ],
-                [
-                    'name' => "Я сплю 10 часов",
-                    'answer' => "Большой урон",
-                    'object_id' => 2
-                ],
-                [
-                    'name' => "При громком разговоре",
-                    'answer' => "Учись и адаптируйся",
-                    'object_id' => 3
-                ],
-                [
-                    'name' => "Когда дети плачут",
-                    'answer' => "Будьте добры",
-                    'object_id' => 3
-                ],
-                [
-                    'name' => "Когда звонит телефон",
-                    'answer' => "Используйте меньше телефона",
-                    'object_id' => 3
-                ],
-                [
-                    'name' => "Когда звонит телефон",
-                    'answer' => "Используйте меньше телефона",
-                    'object_id' => 3
-                ],
-                [
-                    'name' => "У меня хорошее настроение",
-                    'answer' => "Сделай полезное упражнение",
-                    'object_id' => 4
-                ],
-                [
-                    'name' => "У меня хорошее настроение",
-                    'answer' => "Отлично. Продолжайте в том же духе",
-                    'object_id' => 4
-                ],
-                [
-                    'name' => "Большую часть времени я в плохом настроении",
-                    'answer' => "Будьте довольны тем, что вы положили. Благодарите и смотрите на тех, кто ниже вас",
-                    'object_id' => 4
-                ],
-                [
-                    'name' => "Большую часть времени я в плохом настроении",
-                    'answer' => "Будьте довольны тем, что вы положили. Благодарите и смотрите на тех, кто ниже вас",
-                    'object_id' => 4
-                ],
-                [
-                    'name' => "У меня хорошее настроение",
-                    'answer' => "Сделай полезное упражнение",
-                    'object_id' => 5
-                ],
-                [
-                    'name' => "У меня хорошее настроение",
-                    'answer' => "Отлично. Продолжайте в том же духе",
-                    'object_id' => 5
-                ],
-                [
-                    'name' => "Большую часть времени я в плохом настроении",
-                    'answer' => "Будьте довольны тем, что вы положили. Благодарите и смотрите на тех, кто ниже вас",
-                    'object_id' => 5
-                ],
-                [
-                    'name' => "Большую часть времени я в плохом настроении",
-                    'answer' => "Будьте довольны тем, что вы положили. Благодарите и смотрите на тех, кто ниже вас",
-                    'object_id' => 5
+                    'name' => "Меньше 1 литра в день",
+                    'answer' => "Вам нужно улучшить свои привычки питья воды.",
+                    'object_id' => 4,
+                    'ball' => 1
                 ]
             ]
         ];
 
-
-        for ($i = 0; $i < count($variants['uz']); $i++){
+        foreach ($variants['uz'] as $index => $variant_uz) {
             $variant = Variant::create([
-                'question_id' => $variants['uz'][$i]['object_id'],
-                'ball' => $variants['uz'][$i]['ball'],
+                'question_id' => $variant_uz['object_id'],
+                'ball' => $variant_uz['ball']
             ]);
+
             foreach ($langs as $lang) {
                 VariantTranslation::create([
-                    'name' => $variants[$lang->code][$i]['name'],
+                    'name' => $variants[$lang->code][$index]['name'],
                     'object_id' => $variant->id,
-                    'answer' => $variants[$lang->code][$i]['answer'],
+                    'answer' => $variants[$lang->code][$index]['answer'],
                     'language_code' => $lang->code,
-                    'ball' => $variants['uz'][$i]['ball'],
-
+                    'ball' => $variant_uz['ball']
                 ]);
             }
         }

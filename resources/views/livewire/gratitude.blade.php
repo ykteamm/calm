@@ -11,7 +11,7 @@
         <br><br>
         <button wire:click="changeQuestion({{$gratitude}})" class="text-white">
             <i class="fas fa-exchange-alt mr-10"></i>
-                Savolni almashtirish?
+            Replace the question?
         </button>
         {{-- <div class="col-md-12 text-center">
             <h6 class="modal-title text-color-white-for" id="question" style="cursor: pointer;">
@@ -30,21 +30,21 @@
             <div class="row">
                 <div class="col-12 d-flex align-items-center">
                     <label class="text-16 lh-1 fw-500 text-dark-1 mb-10 text-color-white-for">1.</label>
-                    <input type="text" class="placeholder123" required name="titles[]" placeholder="Men minnatdorman...">
+                    <input type="text" class="placeholder123" required name="titles[]" placeholder="Write something...">
                 </div>
                 <div class="col-12 d-flex align-items-center">
                     <label class="text-16 lh-1 fw-500 text-dark-1 mb-10 text-color-white-for">2.</label>
-                    <input type="text" class="placeholder123" name="titles[]" placeholder="Men minnatdorman...">
+                    <input type="text" class="placeholder123" name="titles[]" placeholder="Write something...">
                 </div>
                 <div class="col-12 d-flex align-items-center">
                     <label class="text-16 lh-1 fw-500 text-dark-1 mb-10 text-color-white-for">3.</label>
-                    <input type="text" class="placeholder123" name="titles[]" placeholder="Men minnatdorman...">
+                    <input type="text" class="placeholder123" name="titles[]" placeholder="Write something...">
                 </div>
             </div>
             <div class="modal-footer" style="border: none">
                 <button type="submit" class="btn btn-primary">
                     {{-- <i class="fas fa-plus-circle"></i> --}}
-                    Saqlash
+                    Save
                 </button>
             </div>
         </form>

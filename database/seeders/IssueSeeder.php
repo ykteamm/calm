@@ -27,9 +27,9 @@ class IssueSeeder extends Seeder
             'ru' => ["95% сообщают об уменьшении стресса", "82% сообщают об улучшении сна", "75% сообщают об улучшении концентрации внимания", "92% сообщают об улучшении настроения"]
         ];
         $images = [
-            'calm/img/home-3/blog/img.png',
+            'calm/img/home-3/blog/zulfiqor.png',
             'calm/img/home-3/blog/img_1.png',
-            'calm/img/home-3/blog/img.png',
+            'calm/img/home-3/blog/zulfiqor.png',
             'calm/img/home-3/blog/img_1.png'
         ];
         for ($i = 0; $i < count($issues['uz']); $i++){

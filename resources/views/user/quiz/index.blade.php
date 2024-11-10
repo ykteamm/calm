@@ -7,7 +7,7 @@
         <div class="dashboard__content pt-0 px-15 pb-0" style="padding-left: 0 !important; position: relative;background: linear-gradient(90deg, #162a39, #194d75);border-radius: 0;overflow: hidden;">
           <div style="width:100%;height:100vh;" class="d-flex flex-column justify-content-between">
             <div class="pt-5 text-center" style="margin-top: 50px">
-              <h1 class="text-white">Ruhiy holatingizni tekshiring</h1>
+              <h1 class="text-white">Evaluate your mental well-being to achieve better diet results.</h1>
               {{-- <h1 class="text-white">{{__('common.check_yourself')}}</h1> --}}
             </div>
             {{-- <div class="text-center" style="margin-bottom: 280px">
